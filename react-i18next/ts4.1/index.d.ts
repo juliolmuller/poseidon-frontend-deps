@@ -228,7 +228,7 @@ export type TFuncReturn<
 export interface TFunction<N extends Namespace = DefaultNamespace, TKPrefix = undefined> {
   <
     TKeys extends TFuncKey<N, TKPrefix> | TemplateStringsArray extends infer A ? A : never,
-    TDefaultResult extends TFunctionResult = string,
+    TDefaultResult extends TFunctionResult | React.ReactNode = string,
     TInterpolationMap extends object = StringMap
   >(
     key: TKeys | TKeys[],
@@ -236,7 +236,7 @@ export interface TFunction<N extends Namespace = DefaultNamespace, TKPrefix = un
   ): TFuncReturn<N, TKeys, TDefaultResult, TKPrefix>;
   <
     TKeys extends TFuncKey<N, TKPrefix> | TemplateStringsArray extends infer A ? A : never,
-    TDefaultResult extends TFunctionResult = string,
+    TDefaultResult extends TFunctionResult | React.ReactNode = string,
     TInterpolationMap extends object = StringMap
   >(
     key: TKeys | TKeys[],
@@ -251,7 +251,7 @@ export type TransProps<
   TKPrefix = undefined,
   E = React.HTMLProps<HTMLDivElement>
 > = E & {
-  children?: React.ReactNode;
+  children?: React.ReactNode | Record<string, unknown>;
   components?: readonly React.ReactNode[] | { readonly [tagName: string]: React.ReactNode };
   count?: number;
   context?: string;
@@ -341,6 +341,7 @@ export function withTranslation<N extends Namespace = DefaultNamespace>(
 ) => React.ComponentType<Omit<ResolvedProps, keyof WithTranslation<N>> & WithTranslationProps>;
 
 export interface I18nextProviderProps {
+  children?: React.ReactNode;
   i18n: i18n;
   defaultNS?: string;
 }

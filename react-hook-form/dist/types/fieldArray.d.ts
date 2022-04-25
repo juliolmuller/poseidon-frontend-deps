@@ -159,7 +159,7 @@ export declare type UseFieldArrayInsert<TFieldValues, TFieldArrayName extends Fi
  */
 export declare type UseFieldArrayUpdate<TFieldValues, TFieldArrayName extends FieldArrayPath<TFieldValues> = FieldArrayPath<TFieldValues>> = (index: number, value: UnpackNestedValue<FieldArray<TFieldValues, TFieldArrayName>>) => void;
 /**
- * 	Replace the entire field array values.
+ * Replace the entire field array values.
  *
  * @remarks
  * [API](https://react-hook-form.com/api/usefieldarray) • [Demo](https://codesandbox.io/s/calc-i231d)
