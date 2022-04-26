@@ -1,3 +1,28 @@
+### 11.16.7
+
+- types: Added objects explicitly to Trans children [1486](https://github.com/i18next/react-i18next/pull/1486)
+
+### 11.16.6
+
+- fix: warn just once 'i18n.languages were undefined or empty' and return true, like before
+
+### 11.16.5
+
+- types: ReactNode should be prefixed with React [1481](https://github.com/i18next/react-i18next/pull/1481)
+
+### 11.16.4
+
+- fix type 'TFunctionResult' is not assignable to type 'ReactNode' on React 18 [1480](https://github.com/i18next/react-i18next/pull/1480)
+
+### 11.16.3
+
+- types: children fix for React v18 [1478](https://github.com/i18next/react-i18next/pull/1478)
+- fix: apply [same fix](https://github.com/i18next/i18next/commit/0dcf7fdede9d58e16f82179b41b09f10eda5aeea) for local hasLoadedNamespace function
+
+### 11.16.2
+
+- update macro to wrap defaults in brackets when necessary [1472](https://github.com/i18next/react-i18next/pull/1472)
+
 ### 11.16.1
 
 - types: for context prop of Trans component

@@ -5,10 +5,10 @@
 This package contains type definitions for react-test-renderer (https://facebook.github.io/react/).
 
 # Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-test-renderer.
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-test-renderer/v17.
 
 ### Additional Details
- * Last updated: Fri, 12 Feb 2021 18:02:49 GMT
+ * Last updated: Tue, 12 Apr 2022 06:01:18 GMT
  * Dependencies: [@types/react](https://npmjs.com/package/@types/react)
  * Global values: none
 

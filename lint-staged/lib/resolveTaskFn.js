@@ -56,10 +56,16 @@ const handleOutput = (command, result, ctx, isError = false) => {
  * checks the context.
  */
 const interruptExecutionOnError = (ctx, execaChildProcess) => {
+  let loopIntervalId
+
   async function loop() {
     if (ctx.errors.size > 0) {
-      const ids = await pidTree(execaChildProcess.pid)
-      ids.forEach(process.kill)
+      clearInterval(loopIntervalId)
+
+      const childPids = await pidTree(execaChildProcess.pid)
+      for (const pid of childPids) {
+        process.kill(pid)
+      }
 
       // The execa process is killed separately in order
       // to get the `KILLED` status.
@@ -67,7 +73,7 @@ const interruptExecutionOnError = (ctx, execaChildProcess) => {
     }
   }
 
-  const loopIntervalId = setInterval(loop, ERROR_CHECK_INTERVAL)
+  loopIntervalId = setInterval(loop, ERROR_CHECK_INTERVAL)
 
   return () => {
     clearInterval(loopIntervalId)
