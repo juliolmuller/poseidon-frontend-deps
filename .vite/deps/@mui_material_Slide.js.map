@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["dep:@mui_material_Slide"],
-  "sourcesContent": ["import d from \"./node_modules/@mui/material/Slide/index.js\";export default d;"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAA4D,IAAO,6BAAQ;",
-  "names": []
-}
