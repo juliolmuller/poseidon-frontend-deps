@@ -28,6 +28,7 @@ declare namespace ReactPDF {
     language?: string;
     pdfVersion?: PDFVersion;
     onRender?: (props: OnRenderProps) => any;
+    children?: React.ReactNode;
   }
 
   /**
@@ -72,6 +73,7 @@ declare namespace ReactPDF {
     debug?: boolean;
     size?: PageSize;
     orientation?: Orientation;
+    children?: React.ReactNode;
   }
 
   /**
@@ -446,6 +448,7 @@ declare namespace ReactPDF {
     children?:
       | React.ReactNode
       | ((params: BlobProviderParams) => React.ReactNode);
+    onClick?: function;
   }
 
   /**

@@ -4,7 +4,6 @@
         </a>
 </div>
 
-
 https://user-images.githubusercontent.com/10513364/152621466-59a41c65-52b4-4518-9d79-ffa3fafa498a.mp4
 
 <div align="center">
@@ -31,7 +30,7 @@ https://user-images.githubusercontent.com/10513364/152621466-59a41c65-52b4-4518-
 - Embraces native HTML form [validation](https://react-hook-form.com/get-started#Applyvalidation)
 - Out of the box integration with [UI libraries](https://codesandbox.io/s/react-hook-form-v7-controller-5h1q5)
 - [Small size](https://bundlephobia.com/result?p=react-hook-form@latest) and no [dependencies](./package.json)
-- Support [Yup](https://github.com/jquense/yup), [Zod](https://github.com/vriad/zod), [Superstruct](https://github.com/ianstormtaylor/superstruct), [Joi](https://github.com/hapijs/joi), [Vest](https://github.com/ealush/vest), [class-validator](https://github.com/typestack/class-validator), [io-ts](https://github.com/gcanti/io-ts), [nope](https://github.com/bvego/nope-validator) and custom
+- Support [Yup](https://github.com/jquense/yup), [Zod](https://github.com/vriad/zod), [AJV](https://github.com/ajv-validator/ajv), [Superstruct](https://github.com/ianstormtaylor/superstruct), [Joi](https://github.com/hapijs/joi), [Vest](https://github.com/ealush/vest), [class-validator](https://github.com/typestack/class-validator), [io-ts](https://github.com/gcanti/io-ts), [nope](https://github.com/bvego/nope-validator) and custom build
 
 ### Install
 
@@ -72,6 +71,9 @@ function App() {
 
 Thanks go to these kind and lovely sponsors (companies and individuals)!
 
+<a href="https://wantedlyinc.com/" target="_blank">
+  <img src="https://images.opencollective.com/wantedly/d94e44e/logo/256.png" width="94" height="94" />
+</a>
 <a href="https://underbelly.is/" target="_blank">
   <img src="https://images.opencollective.com/underbelly/989a4a6/logo/256.png" width="94" height="94" />
 </a>
@@ -86,6 +88,9 @@ Thanks go to these kind and lovely sponsors (companies and individuals)!
 </a>
 <a href="https://www.feathery.io/" target="_blank">
   <img src="https://images.opencollective.com/feathery1/c29b0a1/logo/256.png" width="94" height="94" />
+</a>
+<a href="https://getform.io/" target="_blank">
+  <img src="https://images.opencollective.com/getformio2/3c978c8/avatar/256.png" width="94" height="94" />
 </a>
 
 <p>
@@ -467,6 +472,34 @@ Thanks go to these kind and lovely sponsors (companies and individuals)!
   <a href="https://github.com/anymaniax">
     <img
       src="https://avatars.githubusercontent.com/u/10516382?v=4"
+      width="45"
+      height="45"
+    />
+  </a>
+  <a href="https://github.com/rcmlee99">
+    <img
+      src="https://avatars.githubusercontent.com/u/548371?v=4"
+      width="45"
+      height="45"
+    />
+  </a>
+  <a href="https://github.com/sumant-k">
+    <img
+      src="https://avatars.githubusercontent.com/u/42692074?v=4"
+      width="45"
+      height="45"
+    />
+  </a>
+  <a href="https://github.com/reichhartd">
+    <img
+      src="https://avatars.githubusercontent.com/u/34721312?v=4"
+      width="45"
+      height="45"
+    />
+  </a>
+  <a href="https://github.com/alveshelio">
+    <img
+      src="https://avatars.githubusercontent.com/u/8176422?v=4"
       width="45"
       height="45"
     />

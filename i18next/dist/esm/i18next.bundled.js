@@ -480,7 +480,7 @@ function escape(data) {
 
   return data;
 }
-var isIE10 = typeof window !== 'undefined' && window.navigator && window.navigator.userAgent && window.navigator.userAgent.indexOf('MSIE') > -1;
+var isIE10 = typeof window !== 'undefined' && window.navigator && typeof window.navigator.userAgentData === 'undefined' && window.navigator.userAgent && window.navigator.userAgent.indexOf('MSIE') > -1;
 var chars = [' ', ',', '?', '!', ';'];
 function looksLikeObjectPath(key, nsSeparator, keySeparator) {
   nsSeparator = nsSeparator || '';
@@ -531,6 +531,7 @@ function deepFind(obj, path) {
       }
 
       if (mix === undefined) return undefined;
+      if (mix === null) return null;
 
       if (path.endsWith(p)) {
         if (typeof mix === 'string') return mix;
@@ -834,6 +835,7 @@ var Translator = function (_EventEmitter) {
       if (!options) options = {};
       if (keys === undefined || keys === null) return '';
       if (!Array.isArray(keys)) keys = [String(keys)];
+      var returnDetails = options.returnDetails !== undefined ? options.returnDetails : this.options.returnDetails;
       var keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;
 
       var _this$extractFromKey = this.extractFromKey(keys[keys.length - 1], options),
@@ -847,7 +849,18 @@ var Translator = function (_EventEmitter) {
       if (lng && lng.toLowerCase() === 'cimode') {
         if (appendNamespaceToCIMode) {
           var nsSeparator = options.nsSeparator || this.options.nsSeparator;
-          return namespace + nsSeparator + key;
+
+          if (returnDetails) {
+            resolved.res = "".concat(namespace).concat(nsSeparator).concat(key);
+            return resolved;
+          }
+
+          return "".concat(namespace).concat(nsSeparator).concat(key);
+        }
+
+        if (returnDetails) {
+          resolved.res = key;
+          return resolved;
         }
 
         return key;
@@ -869,9 +882,16 @@ var Translator = function (_EventEmitter) {
             this.logger.warn('accessing an object - but returnObjects options is not enabled!');
           }
 
-          return this.options.returnedObjectHandler ? this.options.returnedObjectHandler(resUsedKey, res, _objectSpread2(_objectSpread2({}, options), {}, {
+          var r = this.options.returnedObjectHandler ? this.options.returnedObjectHandler(resUsedKey, res, _objectSpread2(_objectSpread2({}, options), {}, {
             ns: namespaces
           })) : "key '".concat(key, " (").concat(this.language, ")' returned an object instead of string.");
+
+          if (returnDetails) {
+            resolved.res = r;
+            return resolved;
+          }
+
+          return r;
         }
 
         if (keySeparator) {
@@ -970,11 +990,16 @@ var Translator = function (_EventEmitter) {
 
         if ((usedKey || usedDefault) && this.options.parseMissingKeyHandler) {
           if (this.options.compatibilityAPI !== 'v1') {
-            res = this.options.parseMissingKeyHandler(key, usedDefault ? res : undefined);
+            res = this.options.parseMissingKeyHandler(this.options.appendNamespaceToMissingKey ? "".concat(namespace, ":").concat(key) : key, usedDefault ? res : undefined);
           } else {
             res = this.options.parseMissingKeyHandler(res);
           }
         }
+      }
+
+      if (returnDetails) {
+        resolved.res = res;
+        return resolved;
       }
 
       return res;
@@ -1084,7 +1109,7 @@ var Translator = function (_EventEmitter) {
             } else {
               var pluralSuffix;
               if (needsPluralHandling) pluralSuffix = _this4.pluralResolver.getSuffix(code, options.count, options);
-              var zeroSuffix = '_zero';
+              var zeroSuffix = "".concat(_this4.options.pluralSeparator, "zero");
 
               if (needsPluralHandling) {
                 finalKeys.push(key + pluralSuffix);
@@ -1760,7 +1785,7 @@ var Interpolator = function () {
           str = str.replace(match[0], safeValue);
 
           if (skipOnVariables) {
-            todo.regex.lastIndex += safeValue.length;
+            todo.regex.lastIndex += value.length;
             todo.regex.lastIndex -= match[0].length;
           } else {
             todo.regex.lastIndex = 0;
@@ -1874,11 +1899,11 @@ function parseFormatStr(formatStr) {
             key = _opt$split2[0],
             rest = _opt$split2.slice(1);
 
-        var val = rest.join(':');
-        if (!formatOptions[key.trim()]) formatOptions[key.trim()] = val.trim();
-        if (val.trim() === 'false') formatOptions[key.trim()] = false;
-        if (val.trim() === 'true') formatOptions[key.trim()] = true;
-        if (!isNaN(val.trim())) formatOptions[key.trim()] = parseInt(val.trim(), 10);
+        var val = rest.join(':').trim().replace(/^'+|'+$/g, '');
+        if (!formatOptions[key.trim()]) formatOptions[key.trim()] = val;
+        if (val === 'false') formatOptions[key.trim()] = false;
+        if (val === 'true') formatOptions[key.trim()] = true;
+        if (!isNaN(val)) formatOptions[key.trim()] = parseInt(val, 10);
       });
     }
   }
@@ -1970,12 +1995,10 @@ var Formatter = function () {
   return Formatter;
 }();
 
-function remove(arr, what) {
-  var found = arr.indexOf(what);
-
-  while (found !== -1) {
-    arr.splice(found, 1);
-    found = arr.indexOf(what);
+function removePending(q, name) {
+  if (q.pending[name] !== undefined) {
+    delete q.pending[name];
+    q.pendingCount--;
   }
 }
 
@@ -2003,6 +2026,9 @@ var Connector = function (_EventEmitter) {
     _this.languageUtils = services.languageUtils;
     _this.options = options;
     _this.logger = baseLogger.create('backendConnector');
+    _this.waitingReads = [];
+    _this.maxParallelReads = options.maxParallelReads || 10;
+    _this.readingCalls = 0;
     _this.state = {};
     _this.queue = [];
 
@@ -2018,10 +2044,10 @@ var Connector = function (_EventEmitter) {
     value: function queueLoad(languages, namespaces, options, callback) {
       var _this2 = this;
 
-      var toLoad = [];
-      var pending = [];
-      var toLoadLanguages = [];
-      var toLoadNamespaces = [];
+      var toLoad = {};
+      var pending = {};
+      var toLoadLanguages = {};
+      var toLoadNamespaces = {};
       languages.forEach(function (lng) {
         var hasAllNamespaces = true;
         namespaces.forEach(function (ns) {
@@ -2030,21 +2056,22 @@ var Connector = function (_EventEmitter) {
           if (!options.reload && _this2.store.hasResourceBundle(lng, ns)) {
             _this2.state[name] = 2;
           } else if (_this2.state[name] < 0) ; else if (_this2.state[name] === 1) {
-            if (pending.indexOf(name) < 0) pending.push(name);
+            if (pending[name] === undefined) pending[name] = true;
           } else {
             _this2.state[name] = 1;
             hasAllNamespaces = false;
-            if (pending.indexOf(name) < 0) pending.push(name);
-            if (toLoad.indexOf(name) < 0) toLoad.push(name);
-            if (toLoadNamespaces.indexOf(ns) < 0) toLoadNamespaces.push(ns);
+            if (pending[name] === undefined) pending[name] = true;
+            if (toLoad[name] === undefined) toLoad[name] = true;
+            if (toLoadNamespaces[ns] === undefined) toLoadNamespaces[ns] = true;
           }
         });
-        if (!hasAllNamespaces) toLoadLanguages.push(lng);
+        if (!hasAllNamespaces) toLoadLanguages[lng] = true;
       });
 
-      if (toLoad.length || pending.length) {
+      if (Object.keys(toLoad).length || Object.keys(pending).length) {
         this.queue.push({
           pending: pending,
+          pendingCount: Object.keys(pending).length,
           loaded: {},
           errors: [],
           callback: callback
@@ -2052,10 +2079,10 @@ var Connector = function (_EventEmitter) {
       }
 
       return {
-        toLoad: toLoad,
-        pending: pending,
-        toLoadLanguages: toLoadLanguages,
-        toLoadNamespaces: toLoadNamespaces
+        toLoad: Object.keys(toLoad),
+        pending: Object.keys(pending),
+        toLoadLanguages: Object.keys(toLoadLanguages),
+        toLoadNamespaces: Object.keys(toLoadNamespaces)
       };
     }
   }, {
@@ -2074,16 +2101,17 @@ var Connector = function (_EventEmitter) {
       var loaded = {};
       this.queue.forEach(function (q) {
         pushPath(q.loaded, [lng], ns);
-        remove(q.pending, name);
+        removePending(q, name);
         if (err) q.errors.push(err);
 
-        if (q.pending.length === 0 && !q.done) {
+        if (q.pendingCount === 0 && !q.done) {
           Object.keys(q.loaded).forEach(function (l) {
-            if (!loaded[l]) loaded[l] = [];
+            if (!loaded[l]) loaded[l] = {};
+            var loadedKeys = q.loaded[l];
 
-            if (q.loaded[l].length) {
-              q.loaded[l].forEach(function (ns) {
-                if (loaded[l].indexOf(ns) < 0) loaded[l].push(ns);
+            if (loadedKeys.length) {
+              loadedKeys.forEach(function (ns) {
+                if (loaded[l][ns] === undefined) loaded[l][ns] = true;
               });
             }
           });
@@ -2110,12 +2138,34 @@ var Connector = function (_EventEmitter) {
       var wait = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 350;
       var callback = arguments.length > 5 ? arguments[5] : undefined;
       if (!lng.length) return callback(null, {});
+
+      if (this.readingCalls >= this.maxParallelReads) {
+        this.waitingReads.push({
+          lng: lng,
+          ns: ns,
+          fcName: fcName,
+          tried: tried,
+          wait: wait,
+          callback: callback
+        });
+        return;
+      }
+
+      this.readingCalls++;
       return this.backend[fcName](lng, ns, function (err, data) {
         if (err && data && tried < 5) {
           setTimeout(function () {
             _this3.read.call(_this3, lng, ns, fcName, tried + 1, wait * 2, callback);
           }, wait);
           return;
+        }
+
+        _this3.readingCalls--;
+
+        if (_this3.waitingReads.length > 0) {
+          var next = _this3.waitingReads.shift();
+
+          _this3.read(next.lng, next.ns, next.fcName, next.tried, next.wait, next.callback);
         }
 
         callback(err, data);

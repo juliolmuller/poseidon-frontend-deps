@@ -15,11 +15,11 @@ var React = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _base = require("@mui/base");
-
-var _utils = require("@mui/utils");
-
 var _ModalUnstyled = _interopRequireWildcard(require("@mui/base/ModalUnstyled"));
+
+var _utils = require("@mui/base/utils");
+
+var _utils2 = require("@mui/utils");
 
 var _styled = _interopRequireDefault(require("../styles/styled"));
 
@@ -29,7 +29,7 @@ var _Backdrop = _interopRequireDefault(require("../Backdrop"));
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-const _excluded = ["BackdropComponent", "closeAfterTransition", "children", "components", "componentsProps", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted"];
+const _excluded = ["BackdropComponent", "BackdropProps", "closeAfterTransition", "children", "component", "components", "componentsProps", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "theme"];
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -56,7 +56,7 @@ const ModalRoot = (0, _styled.default)('div', {
   ownerState
 }) => (0, _extends2.default)({
   position: 'fixed',
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -88,7 +88,7 @@ const ModalBackdrop = (0, _styled.default)(_Backdrop.default, {
  */
 
 const Modal = /*#__PURE__*/React.forwardRef(function Modal(inProps, ref) {
-  var _componentsProps$root;
+  var _ref, _components$Root;
 
   const props = (0, _useThemeProps.default)({
     name: 'MuiModal',
@@ -96,8 +96,10 @@ const Modal = /*#__PURE__*/React.forwardRef(function Modal(inProps, ref) {
   });
   const {
     BackdropComponent = ModalBackdrop,
+    BackdropProps,
     closeAfterTransition = false,
     children,
+    component,
     components = {},
     componentsProps = {},
     disableAutoFocus = false,
@@ -107,7 +109,9 @@ const Modal = /*#__PURE__*/React.forwardRef(function Modal(inProps, ref) {
     disableRestoreFocus = false,
     disableScrollLock = false,
     hideBackdrop = false,
-    keepMounted = false
+    keepMounted = false,
+    // eslint-disable-next-line react/prop-types
+    theme
   } = props,
         other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
   const [exited, setExited] = React.useState(true);
@@ -126,16 +130,19 @@ const Modal = /*#__PURE__*/React.forwardRef(function Modal(inProps, ref) {
     exited
   });
   const classes = extendUtilityClasses(ownerState);
+  const Root = (_ref = (_components$Root = components.Root) != null ? _components$Root : component) != null ? _ref : ModalRoot;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_ModalUnstyled.default, (0, _extends2.default)({
     components: (0, _extends2.default)({
-      Root: ModalRoot
+      Root,
+      Backdrop: BackdropComponent
     }, components),
     componentsProps: {
-      root: (0, _extends2.default)({}, componentsProps.root, (!components.Root || !(0, _base.isHostComponent)(components.Root)) && {
-        ownerState: (0, _extends2.default)({}, (_componentsProps$root = componentsProps.root) == null ? void 0 : _componentsProps$root.ownerState)
-      })
+      root: () => (0, _extends2.default)({}, (0, _utils.resolveComponentProps)(componentsProps.root, ownerState), !(0, _utils.isHostComponent)(Root) && {
+        as: component,
+        theme
+      }),
+      backdrop: () => (0, _extends2.default)({}, BackdropProps, (0, _utils.resolveComponentProps)(componentsProps.backdrop, ownerState))
     },
-    BackdropComponent: BackdropComponent,
     onTransitionEnter: () => setExited(false),
     onTransitionExited: () => setExited(true),
     ref: ref
@@ -155,6 +162,7 @@ process.env.NODE_ENV !== "production" ? Modal.propTypes
 
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `components.Backdrop` instead.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -169,13 +177,14 @@ process.env.NODE_ENV !== "production" ? Modal.propTypes
 
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `componentsProps.backdrop` instead.
    */
   BackdropProps: _propTypes.default.object,
 
   /**
    * A single child content element.
    */
-  children: _utils.elementAcceptingRef.isRequired,
+  children: _utils2.elementAcceptingRef.isRequired,
 
   /**
    * Override or extend the styles applied to the component.
@@ -189,11 +198,18 @@ process.env.NODE_ENV !== "production" ? Modal.propTypes
   closeAfterTransition: _propTypes.default.bool,
 
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   components: _propTypes.default.shape({
+    Backdrop: _propTypes.default.elementType,
     Root: _propTypes.default.elementType
   }),
 
@@ -202,7 +218,8 @@ process.env.NODE_ENV !== "production" ? Modal.propTypes
    * @default {}
    */
   componentsProps: _propTypes.default.shape({
-    root: _propTypes.default.object
+    backdrop: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object]),
+    root: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object])
   }),
 
   /**
@@ -214,7 +231,7 @@ process.env.NODE_ENV !== "production" ? Modal.propTypes
    */
   container: _propTypes.default
   /* @typescript-to-proptypes-ignore */
-  .oneOfType([_utils.HTMLElementType, _propTypes.default.func]),
+  .oneOfType([_utils2.HTMLElementType, _propTypes.default.func]),
 
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and

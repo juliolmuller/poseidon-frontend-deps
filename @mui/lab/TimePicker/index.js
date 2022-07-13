@@ -1,1 +1,2 @@
-export { TimePicker as default } from '@mui/x-date-pickers/TimePicker';
+export { default } from './TimePicker';
+export * from './TimePicker';

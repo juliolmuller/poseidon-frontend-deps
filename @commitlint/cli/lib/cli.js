@@ -10,6 +10,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const execa_1 = __importDefault(require("execa"));
 const load_1 = __importDefault(require("@commitlint/load"));
 const lint_1 = __importDefault(require("@commitlint/lint"));
 const read_1 = __importDefault(require("@commitlint/read"));
@@ -20,6 +21,7 @@ const yargs_1 = __importDefault(require("yargs"));
 const util_1 = __importDefault(require("util"));
 const cli_error_1 = require("./cli-error");
 const pkg = require('../package');
+const gitDefaultCommentChar = '#';
 const cli = yargs_1.default
     .options({
     color: {
@@ -196,11 +198,22 @@ async function main(args) {
         opts.defaultIgnores = false;
     }
     const format = loadFormatter(loaded, flags);
-    // Strip comments if reading from `.git/COMMIT_EDIT_MSG` using the
-    // commentChar from the parser preset falling back to a `#` if that is not
-    // set
-    if (flags.edit && typeof opts.parserOpts.commentChar !== 'string') {
-        opts.parserOpts.commentChar = '#';
+    // If reading from `.git/COMMIT_EDIT_MSG`, strip comments using
+    // core.commentChar from git configuration, falling back to '#'.
+    if (flags.edit) {
+        try {
+            const { stdout } = await (0, execa_1.default)('git', ['config', 'core.commentChar']);
+            opts.parserOpts.commentChar = stdout.trim() || gitDefaultCommentChar;
+        }
+        catch (e) {
+            const execaError = e;
+            // git config returns exit code 1 when the setting is unset,
+            // don't warn in this case.
+            if (!execaError.failed || execaError.exitCode !== 1) {
+                console.warn('Could not determine core.commentChar git configuration', e);
+            }
+            opts.parserOpts.commentChar = gitDefaultCommentChar;
+        }
     }
     const results = await Promise.all(messages.map((message) => (0, lint_1.default)(message, loaded.rules, opts)));
     if (Object.keys(loaded.rules).length === 0) {
@@ -217,8 +230,8 @@ async function main(args) {
                     name: 'empty-rules',
                     message: [
                         'Please add rules to your `commitlint.config.js`',
-                        '    - Getting started guide: https://git.io/fhHij',
-                        '    - Example config: https://git.io/fhHip',
+                        '    - Getting started guide: https://commitlint.js.org/#/?id=getting-started',
+                        '    - Example config: https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/index.js',
                     ].join('\n'),
                 },
             ],

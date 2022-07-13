@@ -1,6 +1,6 @@
 {
   "name": "react-hotkeys-hook",
-  "version": "3.4.4",
+  "version": "3.4.6",
   "repository": "https://JohannesKlauss@github.com/JohannesKlauss/react-keymap-hook.git",
   "homepage": "https://johannesklauss.github.io/react-hotkeys-hook/",
   "author": "Johannes Klauss",
@@ -54,29 +54,29 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "hotkeys-js": "3.8.7"
+    "hotkeys-js": "3.9.3"
   },
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/plugin-proposal-class-properties": "7.14.5",
-    "@babel/preset-env": "7.15.8",
-    "@babel/preset-react": "7.14.5",
-    "@babel/preset-typescript": "7.15.0",
-    "@testing-library/react": "12.1.2",
-    "@testing-library/react-hooks": "7.0.2",
-    "@testing-library/user-event": "13.4.1",
-    "@types/jest": "27.0.1",
-    "@types/react": "17.0.30",
-    "@types/react-dom": "17.0.9",
+    "@babel/core": "7.17.10",
+    "@babel/plugin-proposal-class-properties": "7.16.7",
+    "@babel/preset-env": "7.17.10",
+    "@babel/preset-react": "7.16.7",
+    "@babel/preset-typescript": "7.16.7",
+    "@testing-library/react": "13.2.0",
+    "@testing-library/react-hooks": "8.0.0",
+    "@testing-library/user-event": "13.5.0",
+    "@types/jest": "27.5.1",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.3",
     "eslint-plugin-prettier": "4.0.0",
     "jest": "26.6.3",
-    "prettier": "2.4.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-test-renderer": "17.0.2",
+    "prettier": "2.6.2",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-test-renderer": "18.1.0",
     "tsdx": "0.14.1",
-    "tslib": "2.3.1",
-    "typescript": "4.4.4"
+    "tslib": "2.4.0",
+    "typescript": "4.6.4"
   },
   "peerDependencies": {
     "react": ">=16.8.1",

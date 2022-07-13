@@ -1,4 +1,4 @@
-/** @license MUI v5.6.3
+/** @license MUI v5.9.0
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -560,6 +560,7 @@
   }
 
   var StyleSheet = /*#__PURE__*/function () {
+    // Using Node instead of HTMLElement since container may be a ShadowRoot
     function StyleSheet(options) {
       var _this = this;
 
@@ -658,7 +659,7 @@
     return StyleSheet;
   }();
 
-  var e="-ms-";var r="-moz-";var a="-webkit-";var c="comm";var n="rule";var t="decl";var i="@import";var p="@keyframes";var k=Math.abs;var d=String.fromCharCode;var g=Object.assign;function m(e,r){return (((r<<2^z(e,0))<<2^z(e,1))<<2^z(e,2))<<2^z(e,3)}function x$1(e){return e.trim()}function y(e,r){return (e=r.exec(e))?e[0]:e}function j(e,r,a){return e.replace(r,a)}function C(e,r){return e.indexOf(r)}function z(e,r){return e.charCodeAt(r)|0}function A(e,r,a){return e.slice(r,a)}function O(e){return e.length}function M(e){return e.length}function S(e,r){return r.push(e),e}function q(e,r){return e.map(r).join("")}var B=1;var D=1;var E=0;var F=0;var G=0;var H="";function I(e,r,a,c,n,t,s){return {value:e,root:r,parent:a,type:c,props:n,children:t,line:B,column:D,length:s,return:""}}function J(e,r){return g(I("",null,null,"",null,null,0),e,{length:-e.length},r)}function K(){return G}function L(){G=F>0?z(H,--F):0;if(D--,G===10)D=1,B--;return G}function N(){G=F<E?z(H,F++):0;if(D++,G===10)D=1,B++;return G}function P(){return z(H,F)}function Q(){return F}function R(e,r){return A(H,e,r)}function T(e){switch(e){case 0:case 9:case 10:case 13:case 32:return 5;case 33:case 43:case 44:case 47:case 62:case 64:case 126:case 59:case 123:case 125:return 4;case 58:return 3;case 34:case 39:case 40:case 91:return 2;case 41:case 93:return 1}return 0}function U(e){return B=D=1,E=O(H=e),F=0,[]}function V(e){return H="",e}function W(e){return x$1(R(F-1,ee(e===91?e+2:e===40?e+1:e)))}function Y(e){while(G=P())if(G<33)N();else break;return T(e)>2||T(G)>3?"":" "}function _$4(e,r){while(--r&&N())if(G<48||G>102||G>57&&G<65||G>70&&G<97)break;return R(e,Q()+(r<6&&P()==32&&N()==32))}function ee(e){while(N())switch(G){case e:return F;case 34:case 39:if(e!==34&&e!==39)ee(G);break;case 40:if(e===41)ee(e);break;case 92:N();break}return F}function re(e,r){while(N())if(e+G===47+10)break;else if(e+G===42+42&&P()===47)break;return "/*"+R(r,F-1)+"*"+d(e===47?e:N())}function ae(e){while(!T(P()))N();return R(e,F)}function ce(e){return V(ne("",null,null,null,[""],e=U(e),0,[0],e))}function ne(e,r,a,c,n,t,s,u,i){var f=0;var o=0;var l=s;var v=0;var h=0;var p=0;var b=1;var w=1;var $=1;var k=0;var g="";var m=n;var x=t;var y=c;var z=g;while(w)switch(p=k,k=N()){case 40:if(p!=108&&z.charCodeAt(l-1)==58){if(C(z+=j(W(k),"&","&\f"),"&\f")!=-1)$=-1;break}case 34:case 39:case 91:z+=W(k);break;case 9:case 10:case 13:case 32:z+=Y(p);break;case 92:z+=_$4(Q()-1,7);continue;case 47:switch(P()){case 42:case 47:S(se(re(N(),Q()),r,a),i);break;default:z+="/";}break;case 123*b:u[f++]=O(z)*$;case 125*b:case 59:case 0:switch(k){case 0:case 125:w=0;case 59+o:if(h>0&&O(z)-l)S(h>32?ue(z+";",c,a,l-1):ue(j(z," ","")+";",c,a,l-2),i);break;case 59:z+=";";default:S(y=te(z,r,a,f,o,n,u,g,m=[],x=[],l),t);if(k===123)if(o===0)ne(z,r,y,y,m,t,l,u,x);else switch(v){case 100:case 109:case 115:ne(e,y,y,c&&S(te(e,y,y,0,0,n,u,g,n,m=[],l),x),n,x,l,u,c?m:x);break;default:ne(z,y,y,y,[""],x,0,u,x);}}f=o=h=0,b=$=1,g=z="",l=s;break;case 58:l=1+O(z),h=p;default:if(b<1)if(k==123)--b;else if(k==125&&b++==0&&L()==125)continue;switch(z+=d(k),k*b){case 38:$=o>0?1:(z+="\f",-1);break;case 44:u[f++]=(O(z)-1)*$,$=1;break;case 64:if(P()===45)z+=W(N());v=P(),o=l=O(g=z+=ae(Q())),k++;break;case 45:if(p===45&&O(z)==2)b=0;}}return t}function te(e,r,a,c,t,s,u,i,f,o,l){var v=t-1;var h=t===0?s:[""];var p=M(h);for(var b=0,w=0,$=0;b<c;++b)for(var d=0,g=A(e,v+1,v=k(w=u[b])),m=e;d<p;++d)if(m=x$1(w>0?h[d]+" "+g:j(g,/&\f/g,h[d])))f[$++]=m;return I(e,r,a,t===0?n:i,f,o,l)}function se(e,r,a){return I(e,r,a,c,d(K()),A(e,2,-2),0)}function ue(e,r,a,c){return I(e,r,a,t,A(e,0,c),A(e,c+1,-1),c)}function ie(c,n){switch(m(c,n)){case 5103:return a+"print-"+c+c;case 5737:case 4201:case 3177:case 3433:case 1641:case 4457:case 2921:case 5572:case 6356:case 5844:case 3191:case 6645:case 3005:case 6391:case 5879:case 5623:case 6135:case 4599:case 4855:case 4215:case 6389:case 5109:case 5365:case 5621:case 3829:return a+c+c;case 5349:case 4246:case 4810:case 6968:case 2756:return a+c+r+c+e+c+c;case 6828:case 4268:return a+c+e+c+c;case 6165:return a+c+e+"flex-"+c+c;case 5187:return a+c+j(c,/(\w+).+(:[^]+)/,a+"box-$1$2"+e+"flex-$1$2")+c;case 5443:return a+c+e+"flex-item-"+j(c,/flex-|-self/,"")+c;case 4675:return a+c+e+"flex-line-pack"+j(c,/align-content|flex-|-self/,"")+c;case 5548:return a+c+e+j(c,"shrink","negative")+c;case 5292:return a+c+e+j(c,"basis","preferred-size")+c;case 6060:return a+"box-"+j(c,"-grow","")+a+c+e+j(c,"grow","positive")+c;case 4554:return a+j(c,/([^-])(transform)/g,"$1"+a+"$2")+c;case 6187:return j(j(j(c,/(zoom-|grab)/,a+"$1"),/(image-set)/,a+"$1"),c,"")+c;case 5495:case 3959:return j(c,/(image-set\([^]*)/,a+"$1"+"$`$1");case 4968:return j(j(c,/(.+:)(flex-)?(.*)/,a+"box-pack:$3"+e+"flex-pack:$3"),/s.+-b[^;]+/,"justify")+a+c+c;case 4095:case 3583:case 4068:case 2532:return j(c,/(.+)-inline(.+)/,a+"$1$2")+c;case 8116:case 7059:case 5753:case 5535:case 5445:case 5701:case 4933:case 4677:case 5533:case 5789:case 5021:case 4765:if(O(c)-1-n>6)switch(z(c,n+1)){case 109:if(z(c,n+4)!==45)break;case 102:return j(c,/(.+:)(.+)-([^]+)/,"$1"+a+"$2-$3"+"$1"+r+(z(c,n+3)==108?"$3":"$2-$3"))+c;case 115:return ~C(c,"stretch")?ie(j(c,"stretch","fill-available"),n)+c:c}break;case 4949:if(z(c,n+1)!==115)break;case 6444:switch(z(c,O(c)-3-(~C(c,"!important")&&10))){case 107:return j(c,":",":"+a)+c;case 101:return j(c,/(.+:)([^;!]+)(;|!.+)?/,"$1"+a+(z(c,14)===45?"inline-":"")+"box$3"+"$1"+a+"$2$3"+"$1"+e+"$2box$3")+c}break;case 5936:switch(z(c,n+11)){case 114:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"tb")+c;case 108:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"tb-rl")+c;case 45:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"lr")+c}return a+c+e+c+c}return c}function fe(e,r){var a="";var c=M(e);for(var n=0;n<c;n++)a+=r(e[n],n,e,r)||"";return a}function oe(e,r,a,s){switch(e.type){case i:case t:return e.return=e.return||e.value;case c:return "";case p:return e.return=e.value+"{"+fe(e.children,s)+"}";case n:e.value=e.props.join(",");}return O(a=fe(e.children,s))?e.return=e.value+"{"+a+"}":""}function le(e){var r=M(e);return function(a,c,n,t){var s="";for(var u=0;u<r;u++)s+=e[u](a,c,n,t)||"";return s}}function he(c,s,u,i){if(c.length>-1)if(!c.return)switch(c.type){case t:c.return=ie(c.value,c.length);break;case p:return fe([J(c,{value:j(c.value,"@","@"+a)})],i);case n:if(c.length)return q(c.props,(function(n){switch(y(n,/(::plac\w+|:read-\w+)/)){case":read-only":case":read-write":return fe([J(c,{props:[j(n,/:(read-\w+)/,":"+r+"$1")]})],i);case"::placeholder":return fe([J(c,{props:[j(n,/:(plac\w+)/,":"+a+"input-$1")]}),J(c,{props:[j(n,/:(plac\w+)/,":"+r+"$1")]}),J(c,{props:[j(n,/:(plac\w+)/,e+"input-$1")]})],i)}return ""}))}}
+  var e="-ms-";var r$1="-moz-";var a="-webkit-";var c="comm";var n="rule";var t="decl";var i="@import";var p="@keyframes";var k=Math.abs;var d=String.fromCharCode;var g=Object.assign;function m(e,r){return (((r<<2^z(e,0))<<2^z(e,1))<<2^z(e,2))<<2^z(e,3)}function x(e){return e.trim()}function y(e,r){return (e=r.exec(e))?e[0]:e}function j(e,r,a){return e.replace(r,a)}function C(e,r){return e.indexOf(r)}function z(e,r){return e.charCodeAt(r)|0}function A(e,r,a){return e.slice(r,a)}function O(e){return e.length}function M(e){return e.length}function S(e,r){return r.push(e),e}function q(e,r){return e.map(r).join("")}var B=1;var D=1;var E=0;var F=0;var G=0;var H="";function I(e,r,a,c,n,t,s){return {value:e,root:r,parent:a,type:c,props:n,children:t,line:B,column:D,length:s,return:""}}function J(e,r){return g(I("",null,null,"",null,null,0),e,{length:-e.length},r)}function K(){return G}function L(){G=F>0?z(H,--F):0;if(D--,G===10)D=1,B--;return G}function N(){G=F<E?z(H,F++):0;if(D++,G===10)D=1,B++;return G}function P(){return z(H,F)}function Q(){return F}function R(e,r){return A(H,e,r)}function T(e){switch(e){case 0:case 9:case 10:case 13:case 32:return 5;case 33:case 43:case 44:case 47:case 62:case 64:case 126:case 59:case 123:case 125:return 4;case 58:return 3;case 34:case 39:case 40:case 91:return 2;case 41:case 93:return 1}return 0}function U(e){return B=D=1,E=O(H=e),F=0,[]}function V(e){return H="",e}function W(e){return x(R(F-1,ee(e===91?e+2:e===40?e+1:e)))}function Y(e){while(G=P())if(G<33)N();else break;return T(e)>2||T(G)>3?"":" "}function _$4(e,r){while(--r&&N())if(G<48||G>102||G>57&&G<65||G>70&&G<97)break;return R(e,Q()+(r<6&&P()==32&&N()==32))}function ee(e){while(N())switch(G){case e:return F;case 34:case 39:if(e!==34&&e!==39)ee(G);break;case 40:if(e===41)ee(e);break;case 92:N();break}return F}function re(e,r){while(N())if(e+G===47+10)break;else if(e+G===42+42&&P()===47)break;return "/*"+R(r,F-1)+"*"+d(e===47?e:N())}function ae(e){while(!T(P()))N();return R(e,F)}function ce(e){return V(ne("",null,null,null,[""],e=U(e),0,[0],e))}function ne(e,r,a,c,n,t,s,u,i){var f=0;var o=0;var l=s;var v=0;var h=0;var p=0;var b=1;var w=1;var $=1;var k=0;var g="";var m=n;var x=t;var y=c;var z=g;while(w)switch(p=k,k=N()){case 40:if(p!=108&&z.charCodeAt(l-1)==58){if(C(z+=j(W(k),"&","&\f"),"&\f")!=-1)$=-1;break}case 34:case 39:case 91:z+=W(k);break;case 9:case 10:case 13:case 32:z+=Y(p);break;case 92:z+=_$4(Q()-1,7);continue;case 47:switch(P()){case 42:case 47:S(se(re(N(),Q()),r,a),i);break;default:z+="/";}break;case 123*b:u[f++]=O(z)*$;case 125*b:case 59:case 0:switch(k){case 0:case 125:w=0;case 59+o:if(h>0&&O(z)-l)S(h>32?ue(z+";",c,a,l-1):ue(j(z," ","")+";",c,a,l-2),i);break;case 59:z+=";";default:S(y=te(z,r,a,f,o,n,u,g,m=[],x=[],l),t);if(k===123)if(o===0)ne(z,r,y,y,m,t,l,u,x);else switch(v){case 100:case 109:case 115:ne(e,y,y,c&&S(te(e,y,y,0,0,n,u,g,n,m=[],l),x),n,x,l,u,c?m:x);break;default:ne(z,y,y,y,[""],x,0,u,x);}}f=o=h=0,b=$=1,g=z="",l=s;break;case 58:l=1+O(z),h=p;default:if(b<1)if(k==123)--b;else if(k==125&&b++==0&&L()==125)continue;switch(z+=d(k),k*b){case 38:$=o>0?1:(z+="\f",-1);break;case 44:u[f++]=(O(z)-1)*$,$=1;break;case 64:if(P()===45)z+=W(N());v=P(),o=l=O(g=z+=ae(Q())),k++;break;case 45:if(p===45&&O(z)==2)b=0;}}return t}function te(e,r,a,c,t,s,u,i,f,o,l){var v=t-1;var h=t===0?s:[""];var p=M(h);for(var b=0,w=0,$=0;b<c;++b)for(var d=0,g=A(e,v+1,v=k(w=u[b])),m=e;d<p;++d)if(m=x(w>0?h[d]+" "+g:j(g,/&\f/g,h[d])))f[$++]=m;return I(e,r,a,t===0?n:i,f,o,l)}function se(e,r,a){return I(e,r,a,c,d(K()),A(e,2,-2),0)}function ue(e,r,a,c){return I(e,r,a,t,A(e,0,c),A(e,c+1,-1),c)}function ie(c,n){switch(m(c,n)){case 5103:return a+"print-"+c+c;case 5737:case 4201:case 3177:case 3433:case 1641:case 4457:case 2921:case 5572:case 6356:case 5844:case 3191:case 6645:case 3005:case 6391:case 5879:case 5623:case 6135:case 4599:case 4855:case 4215:case 6389:case 5109:case 5365:case 5621:case 3829:return a+c+c;case 5349:case 4246:case 4810:case 6968:case 2756:return a+c+r$1+c+e+c+c;case 6828:case 4268:return a+c+e+c+c;case 6165:return a+c+e+"flex-"+c+c;case 5187:return a+c+j(c,/(\w+).+(:[^]+)/,a+"box-$1$2"+e+"flex-$1$2")+c;case 5443:return a+c+e+"flex-item-"+j(c,/flex-|-self/,"")+c;case 4675:return a+c+e+"flex-line-pack"+j(c,/align-content|flex-|-self/,"")+c;case 5548:return a+c+e+j(c,"shrink","negative")+c;case 5292:return a+c+e+j(c,"basis","preferred-size")+c;case 6060:return a+"box-"+j(c,"-grow","")+a+c+e+j(c,"grow","positive")+c;case 4554:return a+j(c,/([^-])(transform)/g,"$1"+a+"$2")+c;case 6187:return j(j(j(c,/(zoom-|grab)/,a+"$1"),/(image-set)/,a+"$1"),c,"")+c;case 5495:case 3959:return j(c,/(image-set\([^]*)/,a+"$1"+"$`$1");case 4968:return j(j(c,/(.+:)(flex-)?(.*)/,a+"box-pack:$3"+e+"flex-pack:$3"),/s.+-b[^;]+/,"justify")+a+c+c;case 4095:case 3583:case 4068:case 2532:return j(c,/(.+)-inline(.+)/,a+"$1$2")+c;case 8116:case 7059:case 5753:case 5535:case 5445:case 5701:case 4933:case 4677:case 5533:case 5789:case 5021:case 4765:if(O(c)-1-n>6)switch(z(c,n+1)){case 109:if(z(c,n+4)!==45)break;case 102:return j(c,/(.+:)(.+)-([^]+)/,"$1"+a+"$2-$3"+"$1"+r$1+(z(c,n+3)==108?"$3":"$2-$3"))+c;case 115:return ~C(c,"stretch")?ie(j(c,"stretch","fill-available"),n)+c:c}break;case 4949:if(z(c,n+1)!==115)break;case 6444:switch(z(c,O(c)-3-(~C(c,"!important")&&10))){case 107:return j(c,":",":"+a)+c;case 101:return j(c,/(.+:)([^;!]+)(;|!.+)?/,"$1"+a+(z(c,14)===45?"inline-":"")+"box$3"+"$1"+a+"$2$3"+"$1"+e+"$2box$3")+c}break;case 5936:switch(z(c,n+11)){case 114:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"tb")+c;case 108:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"tb-rl")+c;case 45:return a+c+e+j(c,/[svh]\w+-[tblr]{2}/,"lr")+c}return a+c+e+c+c}return c}function fe(e,r){var a="";var c=M(e);for(var n=0;n<c;n++)a+=r(e[n],n,e,r)||"";return a}function oe(e,r,a,s){switch(e.type){case i:case t:return e.return=e.return||e.value;case c:return "";case p:return e.return=e.value+"{"+fe(e.children,s)+"}";case n:e.value=e.props.join(",");}return O(a=fe(e.children,s))?e.return=e.value+"{"+a+"}":""}function le(e){var r=M(e);return function(a,c,n,t){var s="";for(var u=0;u<r;u++)s+=e[u](a,c,n,t)||"";return s}}function he(c,s,u,i){if(c.length>-1)if(!c.return)switch(c.type){case t:c.return=ie(c.value,c.length);break;case p:return fe([J(c,{value:j(c.value,"@","@"+a)})],i);case n:if(c.length)return q(c.props,(function(n){switch(y(n,/(::plac\w+|:read-\w+)/)){case":read-only":case":read-write":return fe([J(c,{props:[j(n,/:(read-\w+)/,":"+r$1+"$1")]})],i);case"::placeholder":return fe([J(c,{props:[j(n,/:(plac\w+)/,":"+a+"input-$1")]}),J(c,{props:[j(n,/:(plac\w+)/,":"+r$1+"$1")]}),J(c,{props:[j(n,/:(plac\w+)/,e+"input-$1")]})],i)}return ""}))}}
 
   var weakMemoize = function weakMemoize(func) {
     // $FlowFixMe flow doesn't include all non-primitive types as allowed for weakmaps
@@ -918,8 +919,7 @@
       }
     }
 
-    var inserted = {}; // $FlowFixMe
-
+    var inserted = {};
     var container;
     var nodesToHydrate = [];
 
@@ -1066,16 +1066,6 @@
 
   var createCache$1 = createCache;
 
-  /** @license React v17.0.2
-   * react-is.production.min.js
-   *
-   * Copyright (c) Facebook, Inc. and its affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   */
-  if("function"===typeof Symbol&&Symbol.for){var x=Symbol.for;x("react.element");x("react.portal");x("react.fragment");x("react.strict_mode");x("react.profiler");x("react.provider");x("react.context");x("react.forward_ref");x("react.suspense");x("react.suspense_list");x("react.memo");x("react.lazy");x("react.block");x("react.server.block");x("react.fundamental");x("react.debug_trace_mode");x("react.legacy_hidden");}
-
   var reactIs_development = createCommonjsModule(function (module, exports) {
 
   {
@@ -1084,53 +1074,39 @@
   // ATTENTION
   // When adding new symbols to this file,
   // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-  // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-  // nor polyfill, then a plain number is used for performance.
-  var REACT_ELEMENT_TYPE = 0xeac7;
-  var REACT_PORTAL_TYPE = 0xeaca;
-  var REACT_FRAGMENT_TYPE = 0xeacb;
-  var REACT_STRICT_MODE_TYPE = 0xeacc;
-  var REACT_PROFILER_TYPE = 0xead2;
-  var REACT_PROVIDER_TYPE = 0xeacd;
-  var REACT_CONTEXT_TYPE = 0xeace;
-  var REACT_FORWARD_REF_TYPE = 0xead0;
-  var REACT_SUSPENSE_TYPE = 0xead1;
-  var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-  var REACT_MEMO_TYPE = 0xead3;
-  var REACT_LAZY_TYPE = 0xead4;
-  var REACT_BLOCK_TYPE = 0xead9;
-  var REACT_SERVER_BLOCK_TYPE = 0xeada;
-  var REACT_FUNDAMENTAL_TYPE = 0xead5;
-  var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
-  var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
+  // The Symbol used to tag the ReactElement-like types.
+  var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+  var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+  var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+  var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+  var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+  var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+  var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+  var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
+  var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+  var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+  var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+  var REACT_MEMO_TYPE = Symbol.for('react.memo');
+  var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+  var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
 
-  if (typeof Symbol === 'function' && Symbol.for) {
-    var symbolFor = Symbol.for;
-    REACT_ELEMENT_TYPE = symbolFor('react.element');
-    REACT_PORTAL_TYPE = symbolFor('react.portal');
-    REACT_FRAGMENT_TYPE = symbolFor('react.fragment');
-    REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
-    REACT_PROFILER_TYPE = symbolFor('react.profiler');
-    REACT_PROVIDER_TYPE = symbolFor('react.provider');
-    REACT_CONTEXT_TYPE = symbolFor('react.context');
-    REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
-    REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
-    REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
-    REACT_MEMO_TYPE = symbolFor('react.memo');
-    REACT_LAZY_TYPE = symbolFor('react.lazy');
-    REACT_BLOCK_TYPE = symbolFor('react.block');
-    REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
-    REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
-    symbolFor('react.scope');
-    symbolFor('react.opaque.id');
-    REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
-    symbolFor('react.offscreen');
-    REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
-  }
-
-  // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+  // -----------------------------------------------------------------------------
 
   var enableScopeAPI = false; // Experimental Create Event Handle API.
+  var enableCacheElement = false;
+  var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+  var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+  // stuff. Intended to enable React core members to more easily debug scheduling
+  // issues in DEV builds.
+
+  var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+  var REACT_MODULE_REFERENCE;
+
+  {
+    REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+  }
 
   function isValidElementType(type) {
     if (typeof type === 'string' || typeof type === 'function') {
@@ -1138,12 +1114,16 @@
     } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
-    if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+    if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
       return true;
     }
 
     if (typeof type === 'object' && type !== null) {
-      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+      // types supported by any Flight configuration anywhere since
+      // we don't know which Flight build this will end up being used
+      // with.
+      type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
         return true;
       }
     }
@@ -1171,6 +1151,7 @@
               var $$typeofType = type && type.$$typeof;
 
               switch ($$typeofType) {
+                case REACT_SERVER_CONTEXT_TYPE:
                 case REACT_CONTEXT_TYPE:
                 case REACT_FORWARD_REF_TYPE:
                 case REACT_LAZY_TYPE:
@@ -1202,6 +1183,7 @@
   var Profiler = REACT_PROFILER_TYPE;
   var StrictMode = REACT_STRICT_MODE_TYPE;
   var Suspense = REACT_SUSPENSE_TYPE;
+  var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
   var hasWarnedAboutDeprecatedIsAsyncMode = false;
   var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
 
@@ -1260,6 +1242,9 @@
   function isSuspense(object) {
     return typeOf(object) === REACT_SUSPENSE_TYPE;
   }
+  function isSuspenseList(object) {
+    return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+  }
 
   exports.ContextConsumer = ContextConsumer;
   exports.ContextProvider = ContextProvider;
@@ -1272,6 +1257,7 @@
   exports.Profiler = Profiler;
   exports.StrictMode = StrictMode;
   exports.Suspense = Suspense;
+  exports.SuspenseList = SuspenseList;
   exports.isAsyncMode = isAsyncMode;
   exports.isConcurrentMode = isConcurrentMode;
   exports.isContextConsumer = isContextConsumer;
@@ -1285,6 +1271,7 @@
   exports.isProfiler = isProfiler;
   exports.isStrictMode = isStrictMode;
   exports.isSuspense = isSuspense;
+  exports.isSuspenseList = isSuspenseList;
   exports.isValidElementType = isValidElementType;
   exports.typeOf = typeOf;
     })();
@@ -1301,6 +1288,7 @@
   reactIs_development.Profiler;
   reactIs_development.StrictMode;
   reactIs_development.Suspense;
+  reactIs_development.SuspenseList;
   reactIs_development.isAsyncMode;
   reactIs_development.isConcurrentMode;
   reactIs_development.isContextConsumer;
@@ -1314,6 +1302,7 @@
   reactIs_development.isProfiler;
   reactIs_development.isStrictMode;
   reactIs_development.isSuspense;
+  reactIs_development.isSuspenseList;
   reactIs_development.isValidElementType;
   reactIs_development.typeOf;
 
@@ -1330,32 +1319,6 @@
   var reactIs_5 = reactIs.Memo;
   reactIs.isValidElementType;
 
-  /**
-   * Copyright 2015, Yahoo! Inc.
-   * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
-   */
-  var REACT_STATICS = {
-    childContextTypes: true,
-    contextType: true,
-    contextTypes: true,
-    defaultProps: true,
-    displayName: true,
-    getDefaultProps: true,
-    getDerivedStateFromError: true,
-    getDerivedStateFromProps: true,
-    mixins: true,
-    propTypes: true,
-    type: true
-  };
-  var KNOWN_STATICS = {
-    name: true,
-    length: true,
-    prototype: true,
-    caller: true,
-    callee: true,
-    arguments: true,
-    arity: true
-  };
   var FORWARD_REF_STATICS = {
     '$$typeof': true,
     render: true,
@@ -1374,61 +1337,6 @@
   var TYPE_STATICS = {};
   TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
   TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
-
-  function getStatics(component) {
-    // React v16.11 and below
-    if (reactIs.isMemo(component)) {
-      return MEMO_STATICS;
-    } // React v16.12 and above
-
-
-    return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
-  }
-
-  var defineProperty = Object.defineProperty;
-  var getOwnPropertyNames = Object.getOwnPropertyNames;
-  var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
-  var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-  var getPrototypeOf = Object.getPrototypeOf;
-  var objectPrototype = Object.prototype;
-  function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-    if (typeof sourceComponent !== 'string') {
-      // don't hoist over string (html) components
-      if (objectPrototype) {
-        var inheritedComponent = getPrototypeOf(sourceComponent);
-
-        if (inheritedComponent && inheritedComponent !== objectPrototype) {
-          hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-        }
-      }
-
-      var keys = getOwnPropertyNames(sourceComponent);
-
-      if (getOwnPropertySymbols$1) {
-        keys = keys.concat(getOwnPropertySymbols$1(sourceComponent));
-      }
-
-      var targetStatics = getStatics(targetComponent);
-      var sourceStatics = getStatics(sourceComponent);
-
-      for (var i = 0; i < keys.length; ++i) {
-        var key = keys[i];
-
-        if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-          var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-
-          try {
-            // Avoid failures from read-only properties
-            defineProperty(targetComponent, key, descriptor);
-          } catch (e) {}
-        }
-      }
-    }
-
-    return targetComponent;
-  }
-
-  var hoistNonReactStatics_cjs = hoistNonReactStatics;
 
   var isBrowser$4 = typeof document !== 'undefined';
   function getRegisteredStyles(registered, registeredStyles, classNames) {
@@ -1655,6 +1563,8 @@
     };
   }
 
+  var noComponentSelectorMessage = 'Component selectors can only be used in conjunction with ' + '@emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware ' + 'compiler transform.';
+
   function handleInterpolation(mergedProps, registered, interpolation) {
     if (interpolation == null) {
       return '';
@@ -1662,7 +1572,7 @@
 
     if (interpolation.__emotion_styles !== undefined) {
       if (interpolation.toString() === 'NO_COMPONENT_SELECTOR') {
-        throw new Error('Component selectors can only be used in conjunction with @emotion/babel-plugin.');
+        throw new Error(noComponentSelectorMessage);
       }
 
       return interpolation;
@@ -1772,7 +1682,7 @@
           }
         } else {
           if (_key === 'NO_COMPONENT_SELECTOR' && "development" !== 'production') {
-            throw new Error('Component selectors can only be used in conjunction with @emotion/babel-plugin.');
+            throw new Error(noComponentSelectorMessage);
           }
 
           if (Array.isArray(value) && typeof value[0] === 'string' && (registered == null || registered[value[0]] === undefined)) {
@@ -2042,7 +1952,7 @@
 
   var pkg = {
   	name: "@emotion/react",
-  	version: "11.9.0",
+  	version: "11.9.3",
   	main: "dist/emotion-react.cjs.js",
   	module: "dist/emotion-react.esm.js",
   	browser: {
@@ -2070,8 +1980,8 @@
   	dependencies: {
   		"@babel/runtime": "^7.13.10",
   		"@emotion/babel-plugin": "^11.7.1",
-  		"@emotion/cache": "^11.7.1",
-  		"@emotion/serialize": "^1.0.3",
+  		"@emotion/cache": "^11.9.3",
+  		"@emotion/serialize": "^1.0.4",
   		"@emotion/utils": "^1.1.0",
   		"@emotion/weak-memoize": "^0.2.5",
   		"hoist-non-react-statics": "^3.3.1"
@@ -2090,12 +2000,11 @@
   	},
   	devDependencies: {
   		"@babel/core": "^7.13.10",
+  		"@definitelytyped/dtslint": "0.0.112",
   		"@emotion/css": "11.9.0",
   		"@emotion/css-prettifier": "1.0.1",
   		"@emotion/server": "11.4.0",
-  		"@emotion/styled": "11.8.1",
-  		"@types/react": "^16.9.11",
-  		dtslint: "^4.2.1",
+  		"@emotion/styled": "11.9.3",
   		"html-tag-names": "^1.1.2",
   		react: "16.14.0",
   		"svg-tag-names": "^1.1.1",
@@ -3447,13 +3356,7 @@
   propTypes.oneOfType;
   propTypes.element;
 
-  var reactJsxRuntime_production_min = createCommonjsModule(function (module, exports) {
-  var g=60103;exports.Fragment=60107;if("function"===typeof Symbol&&Symbol.for){var h=Symbol.for;g=h("react.element");exports.Fragment=h("react.fragment");}var m=React__default["default"].__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,n=Object.prototype.hasOwnProperty,p={key:!0,ref:!0,__self:!0,__source:!0};
-  function q(c,a,k){var b,d={},e=null,l=null;void 0!==k&&(e=""+k);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(l=a.ref);for(b in a)n.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return {$$typeof:g,type:c,key:e,ref:l,props:d,_owner:m.current}}exports.jsx=q;exports.jsxs=q;
-  });
-  reactJsxRuntime_production_min.Fragment;
-  reactJsxRuntime_production_min.jsx;
-  reactJsxRuntime_production_min.jsxs;
+  React__default["default"].__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
 
   var reactJsxRuntime_development = createCommonjsModule(function (module, exports) {
 
@@ -3461,56 +3364,25 @@
     (function() {
 
   var React = React__default["default"];
-  var _assign = objectAssign;
 
   // ATTENTION
   // When adding new symbols to this file,
   // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-  // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-  // nor polyfill, then a plain number is used for performance.
-  var REACT_ELEMENT_TYPE = 0xeac7;
-  var REACT_PORTAL_TYPE = 0xeaca;
-  exports.Fragment = 0xeacb;
-  var REACT_STRICT_MODE_TYPE = 0xeacc;
-  var REACT_PROFILER_TYPE = 0xead2;
-  var REACT_PROVIDER_TYPE = 0xeacd;
-  var REACT_CONTEXT_TYPE = 0xeace;
-  var REACT_FORWARD_REF_TYPE = 0xead0;
-  var REACT_SUSPENSE_TYPE = 0xead1;
-  var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-  var REACT_MEMO_TYPE = 0xead3;
-  var REACT_LAZY_TYPE = 0xead4;
-  var REACT_BLOCK_TYPE = 0xead9;
-  var REACT_SERVER_BLOCK_TYPE = 0xeada;
-  var REACT_FUNDAMENTAL_TYPE = 0xead5;
-  var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
-  var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
-
-  if (typeof Symbol === 'function' && Symbol.for) {
-    var symbolFor = Symbol.for;
-    REACT_ELEMENT_TYPE = symbolFor('react.element');
-    REACT_PORTAL_TYPE = symbolFor('react.portal');
-    exports.Fragment = symbolFor('react.fragment');
-    REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
-    REACT_PROFILER_TYPE = symbolFor('react.profiler');
-    REACT_PROVIDER_TYPE = symbolFor('react.provider');
-    REACT_CONTEXT_TYPE = symbolFor('react.context');
-    REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
-    REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
-    REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
-    REACT_MEMO_TYPE = symbolFor('react.memo');
-    REACT_LAZY_TYPE = symbolFor('react.lazy');
-    REACT_BLOCK_TYPE = symbolFor('react.block');
-    REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
-    REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
-    symbolFor('react.scope');
-    symbolFor('react.opaque.id');
-    REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
-    symbolFor('react.offscreen');
-    REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
-  }
-
-  var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  // The Symbol used to tag the ReactElement-like types.
+  var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+  var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+  var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+  var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+  var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+  var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+  var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+  var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+  var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+  var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+  var REACT_MEMO_TYPE = Symbol.for('react.memo');
+  var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+  var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
+  var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
   var FAUX_ITERATOR_SYMBOL = '@@iterator';
   function getIteratorFn(maybeIterable) {
     if (maybeIterable === null || typeof maybeIterable !== 'object') {
@@ -3530,11 +3402,13 @@
 
   function error(format) {
     {
-      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        args[_key2 - 1] = arguments[_key2];
-      }
+      {
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
 
-      printWarning('error', format, args);
+        printWarning('error', format, args);
+      }
     }
   }
 
@@ -3548,10 +3422,11 @@
       if (stack !== '') {
         format += '%s';
         args = args.concat([stack]);
-      }
+      } // eslint-disable-next-line react-internal/safe-string-coercion
+
 
       var argsWithFormat = args.map(function (item) {
-        return '' + item;
+        return String(item);
       }); // Careful: RN currently depends on this prefix
 
       argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
@@ -3562,9 +3437,23 @@
     }
   }
 
-  // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+  // -----------------------------------------------------------------------------
 
   var enableScopeAPI = false; // Experimental Create Event Handle API.
+  var enableCacheElement = false;
+  var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+  var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+  // stuff. Intended to enable React core members to more easily debug scheduling
+  // issues in DEV builds.
+
+  var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+  var REACT_MODULE_REFERENCE;
+
+  {
+    REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+  }
 
   function isValidElementType(type) {
     if (typeof type === 'string' || typeof type === 'function') {
@@ -3572,12 +3461,16 @@
     } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
-    if (type === exports.Fragment || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+    if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
       return true;
     }
 
     if (typeof type === 'object' && type !== null) {
-      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+      // types supported by any Flight configuration anywhere since
+      // we don't know which Flight build this will end up being used
+      // with.
+      type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
         return true;
       }
     }
@@ -3586,15 +3479,23 @@
   }
 
   function getWrappedName(outerType, innerType, wrapperName) {
+    var displayName = outerType.displayName;
+
+    if (displayName) {
+      return displayName;
+    }
+
     var functionName = innerType.displayName || innerType.name || '';
-    return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
-  }
+    return functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName;
+  } // Keep in sync with react-reconciler/getComponentNameFromFiber
+
 
   function getContextName(type) {
     return type.displayName || 'Context';
-  }
+  } // Note that the reconciler package should generally prefer to use getComponentNameFromFiber() instead.
 
-  function getComponentName(type) {
+
+  function getComponentNameFromType(type) {
     if (type == null) {
       // Host root, text node or just invalid type.
       return null;
@@ -3602,7 +3503,7 @@
 
     {
       if (typeof type.tag === 'number') {
-        error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
+        error('Received an unexpected object in getComponentNameFromType(). ' + 'This is likely a bug in React. Please file an issue.');
       }
     }
 
@@ -3615,7 +3516,7 @@
     }
 
     switch (type) {
-      case exports.Fragment:
+      case REACT_FRAGMENT_TYPE:
         return 'Fragment';
 
       case REACT_PORTAL_TYPE:
@@ -3632,6 +3533,7 @@
 
       case REACT_SUSPENSE_LIST_TYPE:
         return 'SuspenseList';
+
     }
 
     if (typeof type === 'object') {
@@ -3648,10 +3550,13 @@
           return getWrappedName(type, type.render, 'ForwardRef');
 
         case REACT_MEMO_TYPE:
-          return getComponentName(type.type);
+          var outerName = type.displayName || null;
 
-        case REACT_BLOCK_TYPE:
-          return getComponentName(type._render);
+          if (outerName !== null) {
+            return outerName;
+          }
+
+          return getComponentNameFromType(type.type) || 'Memo';
 
         case REACT_LAZY_TYPE:
           {
@@ -3660,16 +3565,20 @@
             var init = lazyComponent._init;
 
             try {
-              return getComponentName(init(payload));
+              return getComponentNameFromType(init(payload));
             } catch (x) {
               return null;
             }
           }
+
+        // eslint-disable-next-line no-fallthrough
       }
     }
 
     return null;
   }
+
+  var assign = Object.assign;
 
   // Helpers to patch console.logs to avoid logging during side-effect free
   // replaying on render function. This currently only patches the object
@@ -3734,25 +3643,25 @@
         }; // $FlowFixMe Flow thinks console is immutable.
 
         Object.defineProperties(console, {
-          log: _assign({}, props, {
+          log: assign({}, props, {
             value: prevLog
           }),
-          info: _assign({}, props, {
+          info: assign({}, props, {
             value: prevInfo
           }),
-          warn: _assign({}, props, {
+          warn: assign({}, props, {
             value: prevWarn
           }),
-          error: _assign({}, props, {
+          error: assign({}, props, {
             value: prevError
           }),
-          group: _assign({}, props, {
+          group: assign({}, props, {
             value: prevGroup
           }),
-          groupCollapsed: _assign({}, props, {
+          groupCollapsed: assign({}, props, {
             value: prevGroupCollapsed
           }),
-          groupEnd: _assign({}, props, {
+          groupEnd: assign({}, props, {
             value: prevGroupEnd
           })
         });
@@ -3793,7 +3702,7 @@
 
   function describeNativeComponentFrame(fn, construct) {
     // If something asked for a stack inside a fake render, it should get ignored.
-    if (!fn || reentry) {
+    if ( !fn || reentry) {
       return '';
     }
 
@@ -3902,7 +3811,14 @@
 
                 if (c < 0 || sampleLines[s] !== controlLines[c]) {
                   // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
-                  var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
+                  var _frame = '\n' + sampleLines[s].replace(' at new ', ' at '); // If our component frame is labeled "<anonymous>"
+                  // but we have a user-provided "displayName"
+                  // splice it in to make the stack more readable.
+
+
+                  if (fn.displayName && _frame.includes('<anonymous>')) {
+                    _frame = _frame.replace('<anonymous>', fn.displayName);
+                  }
 
                   {
                     if (typeof fn === 'function') {
@@ -3987,9 +3903,6 @@
           // Memo may contain any component type so we recursively resolve it.
           return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
 
-        case REACT_BLOCK_TYPE:
-          return describeFunctionComponentFrame(type._render);
-
         case REACT_LAZY_TYPE:
           {
             var lazyComponent = type;
@@ -4006,6 +3919,8 @@
 
     return '';
   }
+
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
 
   var loggedTypeFailures = {};
   var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
@@ -4025,7 +3940,7 @@
   function checkPropTypes(typeSpecs, values, location, componentName, element) {
     {
       // $FlowFixMe This is okay but Flow doesn't know it.
-      var has = Function.call.bind(Object.prototype.hasOwnProperty);
+      var has = Function.call.bind(hasOwnProperty);
 
       for (var typeSpecName in typeSpecs) {
         if (has(typeSpecs, typeSpecName)) {
@@ -4037,6 +3952,7 @@
             // This is intentionally an invariant that gets caught. It's the same
             // behavior as without this statement except with a better message.
             if (typeof typeSpecs[typeSpecName] !== 'function') {
+              // eslint-disable-next-line react-internal/prod-error-codes
               var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
               err.name = 'Invariant Violation';
               throw err;
@@ -4070,8 +3986,80 @@
     }
   }
 
+  var isArrayImpl = Array.isArray; // eslint-disable-next-line no-redeclare
+
+  function isArray(a) {
+    return isArrayImpl(a);
+  }
+
+  /*
+   * The `'' + value` pattern (used in in perf-sensitive code) throws for Symbol
+   * and Temporal.* types. See https://github.com/facebook/react/pull/22064.
+   *
+   * The functions in this module will throw an easier-to-understand,
+   * easier-to-debug exception with a clear errors message message explaining the
+   * problem. (Instead of a confusing exception thrown inside the implementation
+   * of the `value` object).
+   */
+  // $FlowFixMe only called in DEV, so void return is not possible.
+  function typeName(value) {
+    {
+      // toStringTag is needed for namespaced types like Temporal.Instant
+      var hasToStringTag = typeof Symbol === 'function' && Symbol.toStringTag;
+      var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || 'Object';
+      return type;
+    }
+  } // $FlowFixMe only called in DEV, so void return is not possible.
+
+
+  function willCoercionThrow(value) {
+    {
+      try {
+        testStringCoercion(value);
+        return false;
+      } catch (e) {
+        return true;
+      }
+    }
+  }
+
+  function testStringCoercion(value) {
+    // If you ended up here by following an exception call stack, here's what's
+    // happened: you supplied an object or symbol value to React (as a prop, key,
+    // DOM attribute, CSS property, string ref, etc.) and when React tried to
+    // coerce it to a string using `'' + value`, an exception was thrown.
+    //
+    // The most common types that will cause this exception are `Symbol` instances
+    // and Temporal objects like `Temporal.Instant`. But any object that has a
+    // `valueOf` or `[Symbol.toPrimitive]` method that throws will also cause this
+    // exception. (Library authors do this to prevent users from using built-in
+    // numeric operators like `+` or comparison operators like `>=` because custom
+    // methods are needed to perform accurate arithmetic or comparison.)
+    //
+    // To fix the problem, coerce this object or symbol value to a string before
+    // passing it to React. The most reliable way is usually `String(value)`.
+    //
+    // To find which value is throwing, check the browser or debugger console.
+    // Before this exception was thrown, there should be `console.error` output
+    // that shows the type (Symbol, Temporal.PlainDate, etc.) that caused the
+    // problem and how that type was used: key, atrribute, input value prop, etc.
+    // In most cases, this console output also shows the component and its
+    // ancestor components where the exception happened.
+    //
+    // eslint-disable-next-line react-internal/safe-string-coercion
+    return '' + value;
+  }
+  function checkKeyStringCoercion(value) {
+    {
+      if (willCoercionThrow(value)) {
+        error('The provided key is an unsupported type %s.' + ' This value must be coerced to a string before before using it here.', typeName(value));
+
+        return testStringCoercion(value); // throw (to help callers find troubleshooting comments)
+      }
+    }
+  }
+
   var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
   var RESERVED_PROPS = {
     key: true,
     ref: true,
@@ -4117,10 +4105,10 @@
   function warnIfStringRefCannotBeAutoConverted(config, self) {
     {
       if (typeof config.ref === 'string' && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
-        var componentName = getComponentName(ReactCurrentOwner.current.type);
+        var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
 
         if (!didWarnAboutStringRefs[componentName]) {
-          error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentName(ReactCurrentOwner.current.type), config.ref);
+          error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
 
           didWarnAboutStringRefs[componentName] = true;
         }
@@ -4259,10 +4247,18 @@
       // key is explicitly declared to be undefined or not.
 
       if (maybeKey !== undefined) {
+        {
+          checkKeyStringCoercion(maybeKey);
+        }
+
         key = '' + maybeKey;
       }
 
       if (hasValidKey(config)) {
+        {
+          checkKeyStringCoercion(config.key);
+        }
+
         key = '' + config.key;
       }
 
@@ -4333,6 +4329,7 @@
    * @final
    */
 
+
   function isValidElement(object) {
     {
       return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
@@ -4342,7 +4339,7 @@
   function getDeclarationErrorAddendum() {
     {
       if (ReactCurrentOwner$1.current) {
-        var name = getComponentName(ReactCurrentOwner$1.current.type);
+        var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
 
         if (name) {
           return '\n\nCheck the render method of `' + name + '`.';
@@ -4422,7 +4419,7 @@
 
       if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
         // Give the component that originally created this child.
-        childOwner = " It was passed a child from " + getComponentName(element._owner.type) + ".";
+        childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
       }
 
       setCurrentlyValidatingElement$1(element);
@@ -4449,7 +4446,7 @@
         return;
       }
 
-      if (Array.isArray(node)) {
+      if (isArray(node)) {
         for (var i = 0; i < node.length; i++) {
           var child = node[i];
 
@@ -4512,12 +4509,12 @@
 
       if (propTypes) {
         // Intentionally inside to avoid triggering lazy initializers:
-        var name = getComponentName(type);
+        var name = getComponentNameFromType(type);
         checkPropTypes(propTypes, element.props, 'prop', name, element);
       } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
         propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
 
-        var _name = getComponentName(type);
+        var _name = getComponentNameFromType(type);
 
         error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
       }
@@ -4584,10 +4581,10 @@
 
         if (type === null) {
           typeString = 'null';
-        } else if (Array.isArray(type)) {
+        } else if (isArray(type)) {
           typeString = 'array';
         } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
-          typeString = "<" + (getComponentName(type.type) || 'Unknown') + " />";
+          typeString = "<" + (getComponentNameFromType(type.type) || 'Unknown') + " />";
           info = ' Did you accidentally export a JSX literal instead of a component?';
         } else {
           typeString = typeof type;
@@ -4613,7 +4610,7 @@
 
         if (children !== undefined) {
           if (isStaticChildren) {
-            if (Array.isArray(children)) {
+            if (isArray(children)) {
               for (var i = 0; i < children.length; i++) {
                 validateChildKeys(children[i], type);
               }
@@ -4630,7 +4627,7 @@
         }
       }
 
-      if (type === exports.Fragment) {
+      if (type === REACT_FRAGMENT_TYPE) {
         validateFragmentProps(element);
       } else {
         validatePropTypes(element);
@@ -4659,6 +4656,7 @@
 
   var jsxs =  jsxWithValidationStatic ;
 
+  exports.Fragment = REACT_FRAGMENT_TYPE;
   exports.jsx = jsx;
   exports.jsxs = jsxs;
     })();
@@ -4705,7 +4703,7 @@
     injectFirst: PropTypes.bool
   } ;
 
-  function isEmpty$3(obj) {
+  function isEmpty$4(obj) {
     return obj === undefined || obj === null || Object.keys(obj).length === 0;
   }
 
@@ -4714,7 +4712,7 @@
       styles,
       defaultTheme = {}
     } = props;
-    const globalStyles = typeof styles === 'function' ? themeInput => styles(isEmpty$3(themeInput) ? defaultTheme : themeInput) : styles;
+    const globalStyles = typeof styles === 'function' ? themeInput => styles(isEmpty$4(themeInput) ? defaultTheme : themeInput) : styles;
     return /*#__PURE__*/jsxRuntime_1(Global, {
       styles: globalStyles
     });
@@ -4724,7 +4722,7 @@
     styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func])
   } ;
 
-  function styled$2(tag, options) {
+  function styled$3(tag, options) {
     const stylesFactory = emStyled(tag, options);
 
     {
@@ -4793,7 +4791,7 @@
 
     if (element == null || // When server-side rendering React doesn't warn either.
     // This is not an accurate check for SSR.
-    // This is only in place for emotion compat.
+    // This is only in place for Emotion compat.
     // TODO: Revisit once https://github.com/facebook/react/issues/20047 is resolved.
     typeof window === 'undefined') {
       return null;
@@ -5545,7 +5543,12 @@
     return requiredInteger(props, propName, ...other);
   }
 
+  function validatorNoop() {
+    return null;
+  }
+
   validator.isRequired = requiredInteger;
+  validatorNoop.isRequired = validatorNoop;
   var integerPropType = validator;
 
   /**
@@ -5563,6 +5566,74 @@
       }
     });
     return output;
+  }
+
+  function composeClasses(slots, getUtilityClass, classes) {
+    const output = {};
+    Object.keys(slots).forEach( // `Objet.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
+    // @ts-expect-error https://github.com/microsoft/TypeScript/pull/12253#issuecomment-263132208
+    slot => {
+      output[slot] = slots[slot].reduce((acc, key) => {
+        if (key) {
+          if (classes && classes[key]) {
+            acc.push(classes[key]);
+          }
+
+          acc.push(getUtilityClass(key));
+        }
+
+        return acc;
+      }, []).join(' ');
+    });
+    return output;
+  }
+
+  const defaultGenerator = componentName => componentName;
+
+  const createClassNameGenerator = () => {
+    let generate = defaultGenerator;
+    return {
+      configure(generator) {
+        generate = generator;
+      },
+
+      generate(componentName) {
+        return generate(componentName);
+      },
+
+      reset() {
+        generate = defaultGenerator;
+      }
+
+    };
+  };
+
+  const ClassNameGenerator = createClassNameGenerator();
+  var ClassNameGenerator$1 = ClassNameGenerator;
+
+  const globalStateClassesMapping = {
+    active: 'active',
+    checked: 'checked',
+    completed: 'completed',
+    disabled: 'disabled',
+    error: 'error',
+    expanded: 'expanded',
+    focused: 'focused',
+    focusVisible: 'focusVisible',
+    required: 'required',
+    selected: 'selected'
+  };
+  function generateUtilityClass(componentName, slot, globalStatePrefix = 'Mui') {
+    const globalStateClass = globalStateClassesMapping[slot];
+    return globalStateClass ? `${globalStatePrefix}-${globalStateClass}` : `${ClassNameGenerator$1.generate(componentName)}-${slot}`;
+  }
+
+  function generateUtilityClasses(componentName, slots, globalStatePrefix = 'Mui') {
+    const result = {};
+    slots.forEach(slot => {
+      result[slot] = generateUtilityClass(componentName, slot, globalStatePrefix);
+    });
+    return result;
   }
 
   function merge(acc, item) {
@@ -5694,22 +5765,24 @@
       if (Array.isArray(breakpointValues)) {
         acc[breakpoint] = breakpointValues[i] != null ? breakpointValues[i] : breakpointValues[previous];
         previous = i;
-      } else {
-        acc[breakpoint] = breakpointValues[breakpoint] != null ? breakpointValues[breakpoint] : breakpointValues[previous] || breakpointValues;
+      } else if (typeof breakpointValues === 'object') {
+        acc[breakpoint] = breakpointValues[breakpoint] != null ? breakpointValues[breakpoint] : breakpointValues[previous];
         previous = breakpoint;
+      } else {
+        acc[breakpoint] = breakpointValues;
       }
 
       return acc;
     }, {});
   }
 
-  function getPath(obj, path) {
+  function getPath(obj, path, checkVars = true) {
     if (!path || typeof path !== 'string') {
       return null;
     } // Check if CSS variables are used
 
 
-    if (obj && obj.vars) {
+    if (obj && obj.vars && checkVars) {
       const val = `vars.${path}`.split('.').reduce((acc, item) => acc && acc[item] ? acc[item] : null, obj);
 
       if (val != null) {
@@ -5864,7 +5937,7 @@
   function createUnaryUnit(theme, themeKey, defaultValue, propName) {
     var _getPath;
 
-    const themeSpacing = (_getPath = getPath(theme, themeKey)) != null ? _getPath : defaultValue;
+    const themeSpacing = (_getPath = getPath(theme, themeKey, false)) != null ? _getPath : defaultValue;
 
     if (typeof themeSpacing === 'number') {
       return abs => {
@@ -6400,7 +6473,7 @@
       } = props || {};
 
       if (!sx) {
-        return null; // emotion & styled-components will neglect null
+        return null; // Emotion & styled-components will neglect null
       }
       /*
        * Receive `sxInput` as object or callback
@@ -6466,7 +6539,7 @@
   styleFunctionSx.filterProps = ['sx'];
   var defaultStyleFunctionSx = styleFunctionSx;
 
-  const _excluded$2l = ["sx"];
+  const _excluded$2n = ["sx"];
 
   const splitProps = props => {
     const result = {
@@ -6487,7 +6560,7 @@
     const {
       sx: inSx
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2l);
+          other = _objectWithoutPropertiesLoose(props, _excluded$2n);
 
     const {
       systemProps,
@@ -6525,48 +6598,9 @@
     });
   }
 
-  function toVal(mix) {
-  	var k, y, str='';
+  function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e))for(t=0;t<e.length;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);else for(t in e)e[t]&&(n&&(n+=" "),n+=t);return n}function clsx(){for(var e,t,f=0,n="";f<arguments.length;)(e=arguments[f++])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
 
-  	if (typeof mix === 'string' || typeof mix === 'number') {
-  		str += mix;
-  	} else if (typeof mix === 'object') {
-  		if (Array.isArray(mix)) {
-  			for (k=0; k < mix.length; k++) {
-  				if (mix[k]) {
-  					if (y = toVal(mix[k])) {
-  						str && (str += ' ');
-  						str += y;
-  					}
-  				}
-  			}
-  		} else {
-  			for (k in mix) {
-  				if (mix[k]) {
-  					str && (str += ' ');
-  					str += k;
-  				}
-  			}
-  		}
-  	}
-
-  	return str;
-  }
-
-  function clsx () {
-  	var i=0, tmp, x, str='';
-  	while (i < arguments.length) {
-  		if (tmp = arguments[i++]) {
-  			if (x = toVal(tmp)) {
-  				str && (str += ' ');
-  				str += x;
-  			}
-  		}
-  	}
-  	return str;
-  }
-
-  const _excluded$2k = ["values", "unit", "step"];
+  const _excluded$2m = ["values", "unit", "step"];
 
   const sortBreakpointsValues = values => {
     const breakpointsAsArray = Object.keys(values).map(key => ({
@@ -6602,7 +6636,7 @@
       unit = 'px',
       step = 5
     } = breakpoints,
-          other = _objectWithoutPropertiesLoose(breakpoints, _excluded$2k);
+          other = _objectWithoutPropertiesLoose(breakpoints, _excluded$2m);
 
     const sortedValues = sortBreakpointsValues(values);
     const keys = Object.keys(sortedValues);
@@ -6694,16 +6728,16 @@
     return spacing;
   }
 
-  const _excluded$2j = ["breakpoints", "palette", "spacing", "shape"];
+  const _excluded$2l = ["breakpoints", "palette", "spacing", "shape"];
 
-  function createTheme$2(options = {}, ...args) {
+  function createTheme$1(options = {}, ...args) {
     const {
       breakpoints: breakpointsInput = {},
       palette: paletteInput = {},
       spacing: spacingInput,
       shape: shapeInput = {}
     } = options,
-          other = _objectWithoutPropertiesLoose(options, _excluded$2j);
+          other = _objectWithoutPropertiesLoose(options, _excluded$2l);
 
     const breakpoints = createBreakpoints(breakpointsInput);
     const spacing = createSpacing(spacingInput);
@@ -6819,13 +6853,13 @@
     return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
   }
 
-  const systemDefaultTheme$1 = createTheme$2();
+  const systemDefaultTheme$1 = createTheme$1();
 
   function useTheme$1(defaultTheme = systemDefaultTheme$1) {
     return useTheme$2(defaultTheme);
   }
 
-  const _excluded$2i = ["className", "component"];
+  const _excluded$2k = ["className", "component"];
   function createBox(options = {}) {
     const {
       defaultTheme,
@@ -6833,7 +6867,7 @@
       generateClassName,
       styleFunctionSx = defaultStyleFunctionSx
     } = options;
-    const BoxRoot = styled$2('div')(styleFunctionSx);
+    const BoxRoot = styled$3('div')(styleFunctionSx);
     const Box = /*#__PURE__*/React__namespace.forwardRef(function Box(inProps, ref) {
       const theme = useTheme$1(defaultTheme);
 
@@ -6842,7 +6876,7 @@
         className,
         component = 'div'
       } = _extendSxProp,
-            other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$2i);
+            other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$2k);
 
       return /*#__PURE__*/jsxRuntime_1(BoxRoot, _extends({
         as: component,
@@ -6854,9 +6888,9 @@
     return Box;
   }
 
-  const _excluded$2h = ["variant"];
+  const _excluded$2j = ["variant"];
 
-  function isEmpty$2(string) {
+  function isEmpty$3(string) {
     return string.length === 0;
   }
   /**
@@ -6870,24 +6904,24 @@
     const {
       variant
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2h);
+          other = _objectWithoutPropertiesLoose(props, _excluded$2j);
 
     let classKey = variant || '';
     Object.keys(other).sort().forEach(key => {
       if (key === 'color') {
-        classKey += isEmpty$2(classKey) ? props[key] : capitalize(props[key]);
+        classKey += isEmpty$3(classKey) ? props[key] : capitalize(props[key]);
       } else {
-        classKey += `${isEmpty$2(classKey) ? key : capitalize(key)}${capitalize(props[key].toString())}`;
+        classKey += `${isEmpty$3(classKey) ? key : capitalize(key)}${capitalize(props[key].toString())}`;
       }
     });
     return classKey;
   }
 
-  const _excluded$2g = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
-        _excluded2$d = ["theme"],
-        _excluded3$2 = ["theme"];
+  const _excluded$2i = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
+        _excluded2$c = ["theme"],
+        _excluded3$1 = ["theme"];
 
-  function isEmpty$1(obj) {
+  function isEmpty$2(obj) {
     return Object.keys(obj).length === 0;
   }
 
@@ -6945,7 +6979,7 @@
   function shouldForwardProp(prop) {
     return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
   }
-  const systemDefaultTheme = createTheme$2();
+  const systemDefaultTheme = createTheme$1();
 
   const lowercaseFirstLetter = string => {
     return string.charAt(0).toLowerCase() + string.slice(1);
@@ -6966,7 +7000,7 @@
         skipSx: inputSkipSx,
         overridesResolver
       } = inputOptions,
-            options = _objectWithoutPropertiesLoose(inputOptions, _excluded$2g); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
+            options = _objectWithoutPropertiesLoose(inputOptions, _excluded$2i); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
 
 
       const skipVariantsResolver = inputSkipVariantsResolver !== undefined ? inputSkipVariantsResolver : componentSlot && componentSlot !== 'Root' || false;
@@ -6988,14 +7022,14 @@
         shouldForwardPropOption = slotShouldForwardProp;
       }
 
-      const defaultStyledResolver = styled$2(tag, _extends({
+      const defaultStyledResolver = styled$3(tag, _extends({
         shouldForwardProp: shouldForwardPropOption,
         label
       }, options));
 
       const muiStyledResolver = (styleArg, ...expressions) => {
         const expressionsWithDefaultTheme = expressions ? expressions.map(stylesArg => {
-          // On the server emotion doesn't use React.forwardRef for creating components, so the created
+          // On the server Emotion doesn't use React.forwardRef for creating components, so the created
           // component stays as a function. This condition makes sure that we do not interpolate functions
           // which are basically components used as a selectors.
           // eslint-disable-next-line no-underscore-dangle
@@ -7003,10 +7037,10 @@
             let {
               theme: themeInput
             } = _ref,
-                other = _objectWithoutPropertiesLoose(_ref, _excluded2$d);
+                other = _objectWithoutPropertiesLoose(_ref, _excluded2$c);
 
             return stylesArg(_extends({
-              theme: isEmpty$1(themeInput) ? defaultTheme : themeInput
+              theme: isEmpty$2(themeInput) ? defaultTheme : themeInput
             }, other));
           } : stylesArg;
         }) : [];
@@ -7014,13 +7048,15 @@
 
         if (componentName && overridesResolver) {
           expressionsWithDefaultTheme.push(props => {
-            const theme = isEmpty$1(props.theme) ? defaultTheme : props.theme;
+            const theme = isEmpty$2(props.theme) ? defaultTheme : props.theme;
             const styleOverrides = getStyleOverrides(componentName, theme);
 
             if (styleOverrides) {
               const resolvedStyleOverrides = {};
               Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-                resolvedStyleOverrides[slotKey] = typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
+                resolvedStyleOverrides[slotKey] = typeof slotStyle === 'function' ? slotStyle(_extends({}, props, {
+                  theme
+                })) : slotStyle;
               });
               return overridesResolver(props, resolvedStyleOverrides);
             }
@@ -7031,14 +7067,14 @@
 
         if (componentName && !skipVariantsResolver) {
           expressionsWithDefaultTheme.push(props => {
-            const theme = isEmpty$1(props.theme) ? defaultTheme : props.theme;
+            const theme = isEmpty$2(props.theme) ? defaultTheme : props.theme;
             return variantsResolver(props, getVariantStyles(componentName, theme), theme, componentName);
           });
         }
 
         if (!skipSx) {
           expressionsWithDefaultTheme.push(props => {
-            const theme = isEmpty$1(props.theme) ? defaultTheme : props.theme;
+            const theme = isEmpty$2(props.theme) ? defaultTheme : props.theme;
             return styleFunctionSx(_extends({}, props, {
               theme
             }));
@@ -7052,7 +7088,7 @@
 
           transformedStyleArg = [...styleArg, ...placeholders];
           transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-        } else if (typeof styleArg === 'function' && // On the server emotion doesn't use React.forwardRef for creating components, so the created
+        } else if (typeof styleArg === 'function' && // On the server Emotion doesn't use React.forwardRef for creating components, so the created
         // component stays as a function. This condition makes sure that we do not interpolate functions
         // which are basically components used as a selectors.
         // eslint-disable-next-line no-underscore-dangle
@@ -7062,10 +7098,10 @@
             let {
               theme: themeInput
             } = _ref2,
-                other = _objectWithoutPropertiesLoose(_ref2, _excluded3$2);
+                other = _objectWithoutPropertiesLoose(_ref2, _excluded3$1);
 
             return styleArg(_extends({
-              theme: isEmpty$1(themeInput) ? defaultTheme : themeInput
+              theme: isEmpty$2(themeInput) ? defaultTheme : themeInput
             }, other));
           };
         }
@@ -7096,6 +7132,9 @@
       return muiStyledResolver;
     };
   }
+
+  const styled$2 = createStyled();
+  var systemStyled = styled$2;
 
   function getThemeProps(params) {
     const {
@@ -7170,7 +7209,7 @@
    * Returns an object with the type and values of a color.
    *
    * Note: Does not support rgb % values.
-   * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+   * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
    * @returns {object} - A MUI color object: {type: string, values: number[]}
    */
 
@@ -7222,7 +7261,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   /**
    * Returns a channel created from the input color.
    *
-   * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+   * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
    * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
    */
 
@@ -7233,7 +7272,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   /**
    * Converts a color object with type and values to a string.
    * @param {object} color - Decomposed color
-   * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+   * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
    * @param {array} color.values - [n,n,n] or [n,n,n,n]
    * @returns {string} A CSS color string
    */
@@ -7501,16 +7540,18 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
    * assignNestedKeys(source, ['palette', 'secondary'], 'var(--palette-secondary)')
    * console.log(source) // { palette: { primary: 'var(--palette-primary)', secondary: 'var(--palette-secondary)' } }
    */
-  const assignNestedKeys = (obj, keys, value) => {
+  const assignNestedKeys = (obj, keys, value, arrayKeys = []) => {
     let temp = obj;
     keys.forEach((k, index) => {
       if (index === keys.length - 1) {
-        if (temp && typeof temp === 'object') {
+        if (Array.isArray(temp)) {
+          temp[Number(k)] = value;
+        } else if (temp && typeof temp === 'object') {
           temp[k] = value;
         }
       } else if (temp && typeof temp === 'object') {
         if (!temp[k]) {
-          temp[k] = {};
+          temp[k] = arrayKeys.includes(k) ? [] : {};
         }
 
         temp = temp[k];
@@ -7530,14 +7571,14 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
    */
 
   const walkObjectDeep = (obj, callback, shouldSkipPaths) => {
-    function recurse(object, parentKeys = []) {
+    function recurse(object, parentKeys = [], arrayKeys = []) {
       Object.entries(object).forEach(([key, value]) => {
         if (!shouldSkipPaths || shouldSkipPaths && !shouldSkipPaths([...parentKeys, key])) {
           if (value !== undefined && value !== null) {
             if (typeof value === 'object' && Object.keys(value).length > 0) {
-              recurse(value, [...parentKeys, key]);
+              recurse(value, [...parentKeys, key], Array.isArray(value) ? [...arrayKeys, key] : arrayKeys);
             } else {
-              callback([...parentKeys, key], value, object);
+              callback([...parentKeys, key], value, arrayKeys);
             }
           }
         }
@@ -7572,13 +7613,9 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
    * @param {Object} theme
    * @param {{
    *  prefix?: string,
-   *  basePrefix?: string,
    *  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
    * }} options.
-   *  `basePrefix`: defined by design system.
-   *  `prefix`: defined by application
-   *
-   *   the CSS variable value will be adjusted based on the provided `basePrefix` & `prefix` which can be found in `parsedTheme`.
+   *  `prefix`: The prefix of the generated CSS variables. This function does not change the value.
    *
    * @returns {{ css: Object, vars: Object, parsedTheme: typeof theme }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme), and `parsedTheme` is the cloned version of theme.
    *
@@ -7589,44 +7626,33 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
    *   palette: { primary: { 500: 'var(--color)' } }
    * }, { prefix: 'foo' })
    *
-   * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--foo-color)' }
-   * console.log(vars) // { fontSize: '--foo-fontSize', lineHeight: '--foo-lineHeight', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
-   * console.log(parsedTheme) // { fontSize: 12, lineHeight: 1.2, palette: { primary: { 500: 'var(--foo-color)' } } }
+   * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--color)' }
+   * console.log(vars) // { fontSize: 'var(--foo-fontSize)', lineHeight: 'var(--foo-lineHeight)', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
+   * console.log(parsedTheme) // { fontSize: 12, lineHeight: 1.2, palette: { primary: { 500: 'var(--color)' } } }
    */
 
 
   function cssVarsParser(theme, options) {
     const {
       prefix,
-      basePrefix = '',
       shouldSkipGeneratingVar
     } = options || {};
     const css = {};
     const vars = {};
     const parsedTheme = {};
-    walkObjectDeep(theme, (keys, value) => {
+    walkObjectDeep(theme, (keys, value, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
-        if (typeof value === 'string' && value.match(/var\(\s*--/)) {
-          // for CSS variable, apply prefix or remove basePrefix from the variable
-          if (!basePrefix && prefix) {
-            value = value.replace(/var\(\s*--/g, `var(--${prefix}-`);
-          } else {
-            value = prefix ? value.replace(new RegExp(`var\\(\\s*--${basePrefix}`, 'g'), `var(--${prefix}`) // removing spaces
-            : value.replace(new RegExp(`var\\(\\s*--${basePrefix}-`, 'g'), 'var(--');
-          }
-        }
-
         if (!shouldSkipGeneratingVar || shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, {
             [cssVar]: getCssValue(keys, value)
           });
-          assignNestedKeys(vars, keys, `var(${cssVar})`);
+          assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
         }
       }
 
-      assignNestedKeys(parsedTheme, keys, value);
+      assignNestedKeys(parsedTheme, keys, value, arrayKeys);
     }, keys => keys[0] === 'vars' // skip 'vars/*' paths
     );
     return {
@@ -7636,30 +7662,35 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
   }
 
-  const DEFAULT_MODE_STORAGE_KEY = 'mui-mode';
-  const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
-  const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
+  const DEFAULT_MODE_STORAGE_KEY = 'mode';
+  const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
+  const DEFAULT_ATTRIBUTE = 'data-color-scheme';
   function getInitColorSchemeScript$1(options) {
     const {
-      enableSystem,
+      enableColorScheme = true,
+      enableSystem = false,
       defaultLightColorScheme = 'light',
       defaultDarkColorScheme = 'dark',
       modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
       colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-      attribute = DEFAULT_ATTRIBUTE
+      attribute = DEFAULT_ATTRIBUTE,
+      colorSchemeNode = 'document.documentElement'
     } = options || {};
     return /*#__PURE__*/jsxRuntime_1("script", {
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML: {
         __html: `(function() { try {
         var mode = localStorage.getItem('${modeStorageKey}');
+        var cssColorScheme = mode;
         var colorScheme = '';
         if (mode === 'system' || (!mode && !!${enableSystem})) {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {
+            cssColorScheme = 'dark';
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
           } else {
+            cssColorScheme = 'light';
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
           }
         }
@@ -7670,7 +7701,10 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
           colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
         }
         if (colorScheme) {
-          document.documentElement.setAttribute('${attribute}', colorScheme);
+          ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
+        }
+        if (${enableColorScheme} && !!cssColorScheme) {
+          ${colorSchemeNode}.style.setProperty('color-scheme', cssColorScheme);
         }
       } catch (e) {} })();`
       }
@@ -7739,7 +7773,8 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       defaultDarkColorScheme,
       supportedColorSchemes = [],
       modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-      colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY
+      colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
+      storageWindow = typeof window === 'undefined' ? undefined : window
     } = options;
     const joinedColorSchemes = supportedColorSchemes.join(',');
     const [state, setState] = React__namespace.useState(() => {
@@ -7756,6 +7791,10 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       setState(currentState => {
         const newMode = !mode ? defaultMode : mode;
 
+        if (mode === currentState.mode) {
+          return currentState;
+        }
+
         if (typeof localStorage !== 'undefined') {
           localStorage.setItem(modeStorageKey, newMode);
         }
@@ -7768,7 +7807,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     }, [modeStorageKey, defaultMode]);
     const setColorScheme = React__namespace.useCallback(value => {
       if (!value || typeof value === 'string') {
-        if (value && !supportedColorSchemes.includes(value)) {
+        if (value && !joinedColorSchemes.includes(value)) {
           console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
         } else {
           setState(currentState => {
@@ -7795,7 +7834,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
             return newState;
           });
         }
-      } else if (value.light && !supportedColorSchemes.includes(value.light) || value.dark && !supportedColorSchemes.includes(value.dark)) {
+      } else if (value.light && !joinedColorSchemes.includes(value.light) || value.dark && !joinedColorSchemes.includes(value.dark)) {
         console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
       } else {
         setState(currentState => {
@@ -7820,11 +7859,11 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
           localStorage.setItem(`${colorSchemeStorageKey}-dark`, value.dark);
         }
       }
-    }, [colorSchemeStorageKey, supportedColorSchemes, defaultLightColorScheme, defaultDarkColorScheme]);
+    }, [joinedColorSchemes, colorSchemeStorageKey, defaultLightColorScheme, defaultDarkColorScheme]);
     const handleMediaQuery = React__namespace.useCallback(e => {
       if (state.mode === 'system') {
         setState(currentState => _extends({}, currentState, {
-          systemMode: e.matches ? 'dark' : 'light'
+          systemMode: e != null && e.matches ? 'dark' : 'light'
         }));
       }
     }, [state.mode]); // Ref hack to avoid adding handleMediaQuery as a dep
@@ -7882,9 +7921,14 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         }
       };
 
-      window.addEventListener('storage', handleStorage);
-      return () => window.removeEventListener('storage', handleStorage);
-    }, [setColorScheme, setMode, modeStorageKey, colorSchemeStorageKey, joinedColorSchemes, defaultMode]);
+      if (storageWindow) {
+        // For syncing color-scheme changes between iframes
+        storageWindow.addEventListener('storage', handleStorage);
+        return () => storageWindow.removeEventListener('storage', handleStorage);
+      }
+
+      return undefined;
+    }, [setColorScheme, setMode, modeStorageKey, colorSchemeStorageKey, joinedColorSchemes, defaultMode, storageWindow]);
     return _extends({}, state, {
       colorScheme,
       setMode,
@@ -7892,54 +7936,23 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     });
   }
 
-  /**
-   * The benefit of this function is to help developers get CSS var from theme without specifying the whole variable
-   * and they does not need to remember the prefix (defined once).
-   */
-  function createGetCssVar(prefix = '') {
-    function appendVar(...vars) {
-      if (!vars.length) {
-        return '';
-      }
-
-      const value = vars[0];
-
-      if (typeof value === 'string' && !value.match(/(#|\(|\)|(-?(\d*\.)?\d+)(px|em|%|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc))/)) {
-        return `, var(--${prefix ? `${prefix}-` : ''}${value}${appendVar(...vars.slice(1))})`;
-      }
-
-      return `, ${value}`;
-    } // AdditionalVars makes `getCssVar` less strict, so it can be use like this `getCssVar('non-mui-variable')` without type error.
-
-
-    const getCssVar = (field, ...vars) => {
-      return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...vars)})`;
-    };
-
-    return getCssVar;
-  }
-
-  const _excluded$2f = ["colorSchemes"],
-        _excluded2$c = ["colorSchemes"],
-        _excluded3$1 = ["components"];
+  const _excluded$2h = ["colorSchemes", "components", "cssVarPrefix"];
   const DISABLE_CSS_TRANSITION = '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
   function createCssVarsProvider(options) {
-    var _baseTheme$breakpoint;
-
     const {
-      theme: baseTheme = {},
+      theme: defaultTheme = {},
+      attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
+      modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
+      colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
       defaultMode: desisgnSystemMode = 'light',
       defaultColorScheme: designSystemColorScheme,
       disableTransitionOnChange: designSystemTransitionOnChange = false,
       enableColorScheme: designSystemEnableColorScheme = true,
-      prefix: designSystemPrefix = '',
-      shouldSkipGeneratingVar,
+      shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
       resolveTheme
     } = options;
-    const systemSpacing = createSpacing(baseTheme.spacing);
-    const systemBreakpoints = createBreakpoints((_baseTheme$breakpoint = baseTheme.breakpoints) != null ? _baseTheme$breakpoint : {});
 
-    if (!baseTheme.colorSchemes || typeof designSystemColorScheme === 'string' && !baseTheme.colorSchemes[designSystemColorScheme] || typeof designSystemColorScheme === 'object' && !baseTheme.colorSchemes[designSystemColorScheme == null ? void 0 : designSystemColorScheme.light] || typeof designSystemColorScheme === 'object' && !baseTheme.colorSchemes[designSystemColorScheme == null ? void 0 : designSystemColorScheme.dark]) {
+    if (!defaultTheme.colorSchemes || typeof designSystemColorScheme === 'string' && !defaultTheme.colorSchemes[designSystemColorScheme] || typeof designSystemColorScheme === 'object' && !defaultTheme.colorSchemes[designSystemColorScheme == null ? void 0 : designSystemColorScheme.light] || typeof designSystemColorScheme === 'object' && !defaultTheme.colorSchemes[designSystemColorScheme == null ? void 0 : designSystemColorScheme.dark]) {
       console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
     }
 
@@ -7957,34 +7970,29 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
     function CssVarsProvider({
       children,
-      theme: themeProp = {},
-      prefix = designSystemPrefix,
-      modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-      attribute = DEFAULT_ATTRIBUTE,
+      theme: themeProp = defaultTheme,
+      modeStorageKey = defaultModeStorageKey,
+      colorSchemeStorageKey = defaultColorSchemeStorageKey,
+      attribute = defaultAttribute,
       defaultMode = desisgnSystemMode,
       defaultColorScheme = designSystemColorScheme,
       disableTransitionOnChange = designSystemTransitionOnChange,
-      enableColorScheme = designSystemEnableColorScheme
+      enableColorScheme = designSystemEnableColorScheme,
+      storageWindow = typeof window === 'undefined' ? undefined : window,
+      documentNode = typeof document === 'undefined' ? undefined : document,
+      colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
+      colorSchemeSelector = ':root',
+      shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar
     }) {
-      const {
-        colorSchemes: baseColorSchemes = {}
-      } = baseTheme,
-            restBaseTheme = _objectWithoutPropertiesLoose(baseTheme, _excluded$2f);
+      const hasMounted = React__namespace.useRef(false);
 
       const {
-        colorSchemes: colorSchemesProp = {}
+        colorSchemes = {},
+        components = {},
+        cssVarPrefix
       } = themeProp,
-            restThemeProp = _objectWithoutPropertiesLoose(themeProp, _excluded2$c);
+            restThemeProp = _objectWithoutPropertiesLoose(themeProp, _excluded$2h);
 
-      const hasMounted = React__namespace.useRef(false); // eslint-disable-next-line prefer-const
-
-      let _deepmerge = deepmerge(restBaseTheme, restThemeProp),
-          {
-        components = {}
-      } = _deepmerge,
-          mergedTheme = _objectWithoutPropertiesLoose(_deepmerge, _excluded3$1);
-
-      const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
       const allColorSchemes = Object.keys(colorSchemes);
       const defaultLightColorScheme = typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
       const defaultDarkColorScheme = typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
@@ -8001,7 +8009,9 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         defaultLightColorScheme,
         defaultDarkColorScheme,
         modeStorageKey,
-        defaultMode
+        colorSchemeStorageKey,
+        defaultMode,
+        storageWindow
       });
 
       const resolvedColorScheme = (() => {
@@ -8018,39 +8028,43 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         return colorScheme;
       })();
 
+      let theme = restThemeProp;
       const {
         css: rootCss,
         vars: rootVars,
         parsedTheme
-      } = cssVarsParser(mergedTheme, {
-        prefix,
-        basePrefix: designSystemPrefix,
+      } = cssVarsParser(theme, {
+        prefix: cssVarPrefix,
         shouldSkipGeneratingVar
       });
-      mergedTheme = _extends({}, parsedTheme, {
+      theme = _extends({}, parsedTheme, {
         components,
         colorSchemes,
-        prefix,
+        cssVarPrefix,
         vars: rootVars,
-        spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
-        breakpoints: themeProp.breakpoints ? createBreakpoints(themeProp.breakpoints) : systemBreakpoints,
-        getCssVar: createGetCssVar(prefix)
+        getColorSchemeSelector: targetColorScheme => `[${attribute}="${targetColorScheme}"] &`
       });
-      const styleSheet = {};
+      const defaultColorSchemeStyleSheet = {};
+      const otherColorSchemesStyleSheet = {};
       Object.entries(colorSchemes).forEach(([key, scheme]) => {
         const {
           css,
           vars,
           parsedTheme: parsedScheme
         } = cssVarsParser(scheme, {
-          prefix,
-          basePrefix: designSystemPrefix,
+          prefix: cssVarPrefix,
           shouldSkipGeneratingVar
         });
-        mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
+        theme.vars = deepmerge(theme.vars, vars);
 
         if (key === resolvedColorScheme) {
-          mergedTheme = _extends({}, mergedTheme, parsedScheme);
+          theme = _extends({}, theme, parsedScheme);
+
+          if (theme.palette) {
+            // assign runtime mode & colorScheme
+            theme.palette.mode = mode;
+            theme.palette.colorScheme = resolvedColorScheme;
+          }
         }
 
         const resolvedDefaultColorScheme = (() => {
@@ -8066,54 +8080,54 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         })();
 
         if (key === resolvedDefaultColorScheme) {
-          styleSheet[':root'] = css;
+          defaultColorSchemeStyleSheet[colorSchemeSelector] = css;
         } else {
-          styleSheet[`[${attribute}="${key}"]`] = css;
+          otherColorSchemesStyleSheet[`${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`] = css;
         }
       });
       React__namespace.useEffect(() => {
-        if (colorScheme) {
+        if (colorScheme && colorSchemeNode) {
           // attaches attribute to <html> because the css variables are attached to :root (html)
-          document.documentElement.setAttribute(attribute, colorScheme);
+          colorSchemeNode.setAttribute(attribute, colorScheme);
         }
-      }, [colorScheme, attribute]);
+      }, [colorScheme, attribute, colorSchemeNode]);
       useEnhancedEffect$1(() => {
-        if (!mode || !enableColorScheme) {
+        if (!mode || !enableColorScheme || !colorSchemeNode) {
           return undefined;
         }
 
-        const priorColorScheme = document.documentElement.style.getPropertyValue('color-scheme'); // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
+        const priorColorScheme = colorSchemeNode.style.getPropertyValue('color-scheme'); // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
 
         if (mode === 'system') {
-          document.documentElement.style.setProperty('color-scheme', systemMode);
+          colorSchemeNode.style.setProperty('color-scheme', systemMode);
         } else {
-          document.documentElement.style.setProperty('color-scheme', mode);
+          colorSchemeNode.style.setProperty('color-scheme', mode);
         }
 
         return () => {
-          document.documentElement.style.setProperty('color-scheme', priorColorScheme);
+          colorSchemeNode.style.setProperty('color-scheme', priorColorScheme);
         };
-      }, [mode, systemMode, enableColorScheme]);
+      }, [mode, systemMode, enableColorScheme, colorSchemeNode]);
       React__namespace.useEffect(() => {
         let timer;
 
-        if (disableTransitionOnChange && hasMounted.current) {
+        if (disableTransitionOnChange && hasMounted.current && documentNode) {
           // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
-          const css = document.createElement('style');
-          css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
-          document.head.appendChild(css); // Force browser repaint
+          const css = documentNode.createElement('style');
+          css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
+          documentNode.head.appendChild(css); // Force browser repaint
 
-          (() => window.getComputedStyle(document.body))();
+          (() => window.getComputedStyle(documentNode.body))();
 
           timer = setTimeout(() => {
-            document.head.removeChild(css);
+            documentNode.head.removeChild(css);
           }, 1);
         }
 
         return () => {
           clearTimeout(timer);
         };
-      }, [colorScheme, disableTransitionOnChange]);
+      }, [colorScheme, disableTransitionOnChange, documentNode]);
       React__namespace.useEffect(() => {
         hasMounted.current = true;
         return () => {
@@ -8132,12 +8146,14 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         },
         children: [/*#__PURE__*/jsxRuntime_1(GlobalStyles$1, {
           styles: {
-            ':root': rootCss
+            [colorSchemeSelector]: rootCss
           }
         }), /*#__PURE__*/jsxRuntime_1(GlobalStyles$1, {
-          styles: styleSheet
+          styles: defaultColorSchemeStyleSheet
+        }), /*#__PURE__*/jsxRuntime_1(GlobalStyles$1, {
+          styles: otherColorSchemesStyleSheet
         }), /*#__PURE__*/jsxRuntime_1(ThemeProvider, {
-          theme: resolveTheme ? resolveTheme(mergedTheme) : mergedTheme,
+          theme: resolveTheme ? resolveTheme(theme) : theme,
           children: children
         })]
       });
@@ -8155,6 +8171,21 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       children: PropTypes.node,
 
       /**
+       * The node used to attach the color-scheme attribute
+       */
+      colorSchemeNode: PropTypes.any,
+
+      /**
+       * The CSS selector for attaching the generated custom properties
+       */
+      colorSchemeSelector: PropTypes.string,
+
+      /**
+       * localStorage key used to store `colorScheme`
+       */
+      colorSchemeStorageKey: PropTypes.string,
+
+      /**
        * The initial color scheme used.
        */
       defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -8170,6 +8201,11 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       disableTransitionOnChange: PropTypes.bool,
 
       /**
+       * The document to attach the attribute to
+       */
+      documentNode: PropTypes.any,
+
+      /**
        * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
        */
       enableColorScheme: PropTypes.bool,
@@ -8180,20 +8216,573 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       modeStorageKey: PropTypes.string,
 
       /**
-       * CSS variable prefix.
+       * A function to determine if the key, value should be attached as CSS Variable
        */
-      prefix: PropTypes.string,
+      shouldSkipGeneratingVar: PropTypes.func,
+
+      /**
+       * The window that attaches the 'storage' event listener
+       * @default window
+       */
+      storageWindow: PropTypes.any,
 
       /**
        * The calculated theme object that will be passed through context.
        */
       theme: PropTypes.object
     } ;
+
+    const getInitColorSchemeScript = params => getInitColorSchemeScript$1(_extends({
+      attribute: defaultAttribute,
+      colorSchemeStorageKey: defaultColorSchemeStorageKey,
+      modeStorageKey: defaultModeStorageKey,
+      enableColorScheme: designSystemEnableColorScheme
+    }, params));
+
     return {
       CssVarsProvider,
       useColorScheme,
-      getInitColorSchemeScript: getInitColorSchemeScript$1
+      getInitColorSchemeScript
     };
+  }
+
+  /**
+   * The benefit of this function is to help developers get CSS var from theme without specifying the whole variable
+   * and they does not need to remember the prefix (defined once).
+   */
+  function createGetCssVar$1(prefix = '') {
+    function appendVar(...vars) {
+      if (!vars.length) {
+        return '';
+      }
+
+      const value = vars[0];
+
+      if (typeof value === 'string' && !value.match(/(#|\(|\)|(-?(\d*\.)?\d+)(px|em|%|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc))/)) {
+        return `, var(--${prefix ? `${prefix}-` : ''}${value}${appendVar(...vars.slice(1))})`;
+      }
+
+      return `, ${value}`;
+    } // AdditionalVars makes `getCssVar` less strict, so it can be use like this `getCssVar('non-mui-variable')` without type error.
+
+
+    const getCssVar = (field, ...fallbacks) => {
+      return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...fallbacks)})`;
+    };
+
+    return getCssVar;
+  }
+
+  const _excluded$2g = ["className", "component", "disableGutters", "fixed", "maxWidth", "classes"];
+  const defaultTheme$5 = createTheme$1();
+  const defaultCreateStyledComponent$1 = systemStyled('div', {
+    name: 'MuiContainer',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const {
+        ownerState
+      } = props;
+      return [styles.root, styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`], ownerState.fixed && styles.fixed, ownerState.disableGutters && styles.disableGutters];
+    }
+  });
+
+  const useThemePropsDefault$1 = inProps => useThemeProps$1({
+    props: inProps,
+    name: 'MuiContainer',
+    defaultTheme: defaultTheme$5
+  });
+
+  const useUtilityClasses$1P = (ownerState, componentName) => {
+    const getContainerUtilityClass = slot => {
+      return generateUtilityClass(componentName, slot);
+    };
+
+    const {
+      classes,
+      fixed,
+      disableGutters,
+      maxWidth
+    } = ownerState;
+    const slots = {
+      root: ['root', maxWidth && `maxWidth${capitalize(String(maxWidth))}`, fixed && 'fixed', disableGutters && 'disableGutters']
+    };
+    return composeClasses(slots, getContainerUtilityClass, classes);
+  };
+
+  function createContainer(options = {}) {
+    const {
+      // This will allow adding custom styled fn (for example for custom sx style function)
+      createStyledComponent = defaultCreateStyledComponent$1,
+      useThemeProps = useThemePropsDefault$1,
+      componentName = 'MuiContainer'
+    } = options;
+    const ContainerRoot = createStyledComponent(({
+      theme,
+      ownerState
+    }) => _extends({
+      width: '100%',
+      marginLeft: 'auto',
+      boxSizing: 'border-box',
+      marginRight: 'auto',
+      display: 'block'
+    }, !ownerState.disableGutters && {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      // @ts-ignore module augmentation fails if custom breakpoints are used
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3)
+      }
+    }), ({
+      theme,
+      ownerState
+    }) => ownerState.fixed && Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {
+      const breakpoint = breakpointValueKey;
+      const value = theme.breakpoints.values[breakpoint];
+
+      if (value !== 0) {
+        // @ts-ignore
+        acc[theme.breakpoints.up(breakpoint)] = {
+          maxWidth: `${value}${theme.breakpoints.unit}`
+        };
+      }
+
+      return acc;
+    }, {}), ({
+      theme,
+      ownerState
+    }) => _extends({}, ownerState.maxWidth === 'xs' && {
+      // @ts-ignore module augmentation fails if custom breakpoints are used
+      [theme.breakpoints.up('xs')]: {
+        // @ts-ignore module augmentation fails if custom breakpoints are used
+        maxWidth: Math.max(theme.breakpoints.values.xs, 444)
+      }
+    }, ownerState.maxWidth && // @ts-ignore module augmentation fails if custom breakpoints are used
+    ownerState.maxWidth !== 'xs' && {
+      // @ts-ignore module augmentation fails if custom breakpoints are used
+      [theme.breakpoints.up(ownerState.maxWidth)]: {
+        // @ts-ignore module augmentation fails if custom breakpoints are used
+        maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`
+      }
+    }));
+    const Container = /*#__PURE__*/React__namespace.forwardRef(function Container(inProps, ref) {
+      const props = useThemeProps(inProps);
+
+      const {
+        className,
+        component = 'div',
+        disableGutters = false,
+        fixed = false,
+        maxWidth = 'lg'
+      } = props,
+            other = _objectWithoutPropertiesLoose(props, _excluded$2g);
+
+      const ownerState = _extends({}, props, {
+        component,
+        disableGutters,
+        fixed,
+        maxWidth
+      }); // @ts-ignore module augmentation fails if custom breakpoints are used
+
+
+      const classes = useUtilityClasses$1P(ownerState, componentName);
+      return (
+        /*#__PURE__*/
+        // @ts-ignore theme is injected by the styled util
+        jsxRuntime_1(ContainerRoot, _extends({
+          as: component // @ts-ignore module augmentation fails if custom breakpoints are used
+          ,
+          ownerState: ownerState,
+          className: clsx(classes.root, className),
+          ref: ref
+        }, other))
+      );
+    });
+    Container.propTypes
+    /* remove-proptypes */
+    = {
+      children: PropTypes.node,
+      classes: PropTypes.object,
+      className: PropTypes.string,
+      component: PropTypes.elementType,
+      disableGutters: PropTypes.bool,
+      fixed: PropTypes.bool,
+      maxWidth: PropTypes
+      /* @typescript-to-proptypes-ignore */
+      .oneOfType([PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]), PropTypes.string]),
+      sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object])
+    } ;
+    return Container;
+  }
+
+  const traverseBreakpoints = (breakpoints, responsize, iterator) => {
+    const smallestBreakpoint = breakpoints.keys[0]; // the keys is sorted from smallest to largest by `createBreakpoints`.
+
+    if (Array.isArray(responsize)) {
+      responsize.forEach((breakpointValue, index) => {
+        iterator((responsizeStyles, style) => {
+          if (index <= breakpoints.keys.length - 1) {
+            if (index === 0) {
+              Object.assign(responsizeStyles, style);
+            } else {
+              responsizeStyles[breakpoints.up(breakpoints.keys[index])] = style;
+            }
+          }
+        }, breakpointValue);
+      });
+    } else if (responsize && typeof responsize === 'object') {
+      // prevent null
+      // responsize could be a very big object, pick the smallest responsive values
+      const keys = Object.keys(responsize).length > breakpoints.keys.length ? breakpoints.keys : Object.keys(responsize);
+      keys.forEach(key => {
+        if (breakpoints.keys.indexOf(key) !== -1) {
+          // @ts-ignore already checked that responsize is an object
+          const breakpointValue = responsize[key];
+
+          if (breakpointValue !== undefined) {
+            iterator((responsizeStyles, style) => {
+              if (smallestBreakpoint === key) {
+                Object.assign(responsizeStyles, style);
+              } else {
+                responsizeStyles[breakpoints.up(key)] = style;
+              }
+            }, breakpointValue);
+          }
+        }
+      });
+    } else if (typeof responsize === 'number' || typeof responsize === 'string') {
+      iterator((responsizeStyles, style) => {
+        Object.assign(responsizeStyles, style);
+      }, responsize);
+    }
+  };
+  const generateGridSizeStyles = ({
+    theme,
+    ownerState
+  }) => {
+    const styles = {};
+    traverseBreakpoints(theme.breakpoints, ownerState.gridSize, (appendStyle, value) => {
+      let style = {};
+
+      if (value === true) {
+        style = {
+          flexBasis: 0,
+          flexGrow: 1,
+          maxWidth: '100%'
+        };
+      }
+
+      if (value === 'auto') {
+        style = {
+          flexBasis: 'auto',
+          flexGrow: 0,
+          flexShrink: 0,
+          maxWidth: 'none',
+          width: 'auto'
+        };
+      }
+
+      if (typeof value === 'number') {
+        style = {
+          flexGrow: 0,
+          flexBasis: 'auto',
+          width: `calc(100% * ${value} / var(--Grid-columns)${ownerState.nested && ownerState.container ? ` + var(--Grid-columnSpacing)` : ''})`
+        };
+      }
+
+      appendStyle(styles, style);
+    });
+    return styles;
+  };
+  const generateGridOffsetStyles = ({
+    theme,
+    ownerState
+  }) => {
+    const styles = {};
+    traverseBreakpoints(theme.breakpoints, ownerState.gridOffset, (appendStyle, value) => {
+      let style = {};
+
+      if (value === 'auto') {
+        style = {
+          marginLeft: 'auto'
+        };
+      }
+
+      if (typeof value === 'number') {
+        style = {
+          marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`
+        };
+      }
+
+      appendStyle(styles, style);
+    });
+    return styles;
+  };
+  const generateGridColumnsStyles = ({
+    theme,
+    ownerState
+  }) => {
+    if (!ownerState.container) {
+      return {};
+    }
+
+    const styles = {
+      '--Grid-columns': 12
+    };
+    traverseBreakpoints(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
+      appendStyle(styles, {
+        '--Grid-columns': value
+      });
+    });
+    return styles;
+  };
+  const generateGridRowSpacingStyles = ({
+    theme,
+    ownerState
+  }) => {
+    if (!ownerState.container) {
+      return {};
+    }
+
+    const styles = {};
+    traverseBreakpoints(theme.breakpoints, ownerState.rowSpacing, (appendStyle, value) => {
+      var _theme$spacing;
+
+      appendStyle(styles, {
+        '--Grid-rowSpacing': typeof value === 'string' ? value : (_theme$spacing = theme.spacing) == null ? void 0 : _theme$spacing.call(theme, value)
+      });
+    });
+    return styles;
+  };
+  const generateGridColumnSpacingStyles = ({
+    theme,
+    ownerState
+  }) => {
+    if (!ownerState.container) {
+      return {};
+    }
+
+    const styles = {};
+    traverseBreakpoints(theme.breakpoints, ownerState.columnSpacing, (appendStyle, value) => {
+      var _theme$spacing2;
+
+      appendStyle(styles, {
+        '--Grid-columnSpacing': typeof value === 'string' ? value : (_theme$spacing2 = theme.spacing) == null ? void 0 : _theme$spacing2.call(theme, value)
+      });
+    });
+    return styles;
+  };
+  const generateGridDirectionStyles = ({
+    theme,
+    ownerState
+  }) => {
+    if (!ownerState.container) {
+      return {};
+    }
+
+    const styles = {};
+    traverseBreakpoints(theme.breakpoints, ownerState.direction, (appendStyle, value) => {
+      appendStyle(styles, {
+        flexDirection: value
+      });
+    });
+    return styles;
+  };
+  const generateGridStyles = ({
+    ownerState
+  }) => {
+    return _extends({
+      minWidth: 0,
+      boxSizing: 'border-box'
+    }, ownerState.container ? _extends({
+      display: 'flex',
+      flexWrap: 'wrap'
+    }, ownerState.wrap && ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap
+    }, {
+      margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`
+    }, ownerState.nested ? {
+      padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`
+    } : {
+      '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
+      '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)'
+    }) : {
+      padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`
+    });
+  };
+  const generateSizeClassNames = gridSize => {
+    const classNames = [];
+    Object.entries(gridSize).forEach(([key, value]) => {
+      if (value !== false && value !== undefined) {
+        classNames.push(`grid-${key}-${String(value)}`);
+      }
+    });
+    return classNames;
+  };
+  const generateSpacingClassNames = (spacing, smallestBreakpoint = 'xs') => {
+    function isValidSpacing(val) {
+      if (val === undefined) {
+        return false;
+      }
+
+      return typeof val === 'string' && !Number.isNaN(Number(val)) || typeof val === 'number' && val > 0;
+    }
+
+    if (isValidSpacing(spacing)) {
+      return [`spacing-${smallestBreakpoint}-${String(spacing)}`];
+    }
+
+    if (typeof spacing === 'object' && !Array.isArray(spacing)) {
+      const classNames = [];
+      Object.entries(spacing).forEach(([key, value]) => {
+        if (isValidSpacing(value)) {
+          classNames.push(`spacing-${key}-${String(value)}`);
+        }
+      });
+      return classNames;
+    }
+
+    return [];
+  };
+
+  const _excluded$2f = ["className", "columns", "container", "component", "direction", "wrap", "spacing", "rowSpacing", "columnSpacing"];
+  const defaultTheme$4 = createTheme$1(); // widening Theme to any so that the consumer can own the theme structure.
+
+  const defaultCreateStyledComponent = systemStyled('div', {
+    name: 'MuiGrid',
+    slot: 'Root',
+    overridesResolver: (props, styles) => styles.root
+  });
+
+  function useThemePropsDefault(props) {
+    return useThemeProps$1({
+      props,
+      name: 'MuiGrid',
+      defaultTheme: defaultTheme$4
+    });
+  }
+
+  function createGrid(options = {}) {
+    const {
+      // This will allow adding custom styled fn (for example for custom sx style function)
+      createStyledComponent = defaultCreateStyledComponent,
+      useThemeProps = useThemePropsDefault,
+      componentName = 'MuiGrid'
+    } = options;
+    const NestedContext = /*#__PURE__*/React__namespace.createContext(false);
+
+    const useUtilityClasses = (ownerState, theme) => {
+      const {
+        container,
+        direction,
+        spacing,
+        wrap,
+        gridSize
+      } = ownerState;
+      const slots = {
+        root: ['root', container && 'container', direction !== 'row' && `direction-xs-${String(direction)}`, wrap !== 'wrap' && `wrap-xs-${String(wrap)}`, ...generateSizeClassNames(gridSize), ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : [])]
+      };
+      return composeClasses(slots, slot => generateUtilityClass(componentName, slot), {});
+    };
+
+    const GridRoot = createStyledComponent(generateGridColumnsStyles, generateGridColumnSpacingStyles, generateGridRowSpacingStyles, generateGridSizeStyles, generateGridDirectionStyles, generateGridStyles, generateGridOffsetStyles);
+    const Grid = /*#__PURE__*/React__namespace.forwardRef(function Grid(inProps, ref) {
+      var _inProps$columns, _inProps$spacing, _ref, _inProps$rowSpacing, _ref2, _inProps$columnSpacin;
+
+      const theme = useTheme$1();
+      const themeProps = useThemeProps(inProps);
+      const props = extendSxProp(themeProps); // `color` type conflicts with html color attribute.
+
+      const nested = React__namespace.useContext(NestedContext);
+
+      const {
+        className,
+        columns: columnsProp = 12,
+        container = false,
+        component = 'div',
+        direction = 'row',
+        wrap = 'wrap',
+        spacing: spacingProp = 0,
+        rowSpacing: rowSpacingProp = spacingProp,
+        columnSpacing: columnSpacingProp = spacingProp
+      } = props,
+            rest = _objectWithoutPropertiesLoose(props, _excluded$2f); // collect breakpoints related props because they can be custom from the theme.
+
+
+      const gridSize = {};
+      const gridOffset = {};
+      const other = {};
+      Object.entries(rest).forEach(([key, val]) => {
+        if (theme.breakpoints.values[key] !== undefined) {
+          gridSize[key] = val;
+        } else if (theme.breakpoints.values[key.replace('Offset', '')] !== undefined) {
+          gridOffset[key.replace('Offset', '')] = val;
+        } else {
+          other[key] = val;
+        }
+      });
+      const columns = (_inProps$columns = inProps.columns) != null ? _inProps$columns : nested ? undefined : columnsProp;
+      const spacing = (_inProps$spacing = inProps.spacing) != null ? _inProps$spacing : nested ? undefined : spacingProp;
+      const rowSpacing = (_ref = (_inProps$rowSpacing = inProps.rowSpacing) != null ? _inProps$rowSpacing : inProps.spacing) != null ? _ref : nested ? undefined : rowSpacingProp;
+      const columnSpacing = (_ref2 = (_inProps$columnSpacin = inProps.columnSpacing) != null ? _inProps$columnSpacin : inProps.spacing) != null ? _ref2 : nested ? undefined : columnSpacingProp;
+
+      const ownerState = _extends({}, props, {
+        nested,
+        columns,
+        container,
+        direction,
+        wrap,
+        spacing,
+        rowSpacing,
+        columnSpacing,
+        gridSize,
+        gridOffset
+      });
+
+      const classes = useUtilityClasses(ownerState, theme);
+
+      let result = /*#__PURE__*/jsxRuntime_1(GridRoot, _extends({
+        ref: ref,
+        as: component,
+        ownerState: ownerState,
+        className: clsx(classes.root, className)
+      }, other));
+
+      if (!nested) {
+        result = /*#__PURE__*/jsxRuntime_1(NestedContext.Provider, {
+          value: true,
+          children: result
+        });
+      }
+
+      return result;
+    });
+    Grid.propTypes
+    /* remove-proptypes */
+    = {
+      children: PropTypes.node,
+      className: PropTypes.string,
+      columns: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number, PropTypes.object]),
+      columnSpacing: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])), PropTypes.number, PropTypes.object, PropTypes.string]),
+      component: PropTypes.elementType,
+      container: PropTypes.bool,
+      direction: PropTypes.oneOfType([PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']), PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])), PropTypes.object]),
+      lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+      lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+      md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+      mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+      rowSpacing: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])), PropTypes.number, PropTypes.object, PropTypes.string]),
+      sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+      smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+      spacing: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])), PropTypes.number, PropTypes.object, PropTypes.string]),
+      sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object]),
+      wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
+      xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+      xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+      xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+      xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number])
+    } ;
+    return Grid;
   }
 
   const _excluded$2e = ["defaultProps", "mixins", "overrides", "palette", "props", "styleOverrides"],
@@ -8284,21 +8873,184 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   }
 
   /**
-   * Appends the ownerState object to the props, merging with the existing one if necessary.
-   *
-   * @param elementType Type of the element that owns the `existingProps`. If the element is a DOM node, `ownerState` are not applied.
-   * @param existingProps Props of the element.
-   * @param ownerState
+   * Type of the ownerState based on the type of an element it applies to.
+   * This resolves to the provided OwnerState for React components and `undefined` for host components.
+   * Falls back to `OwnerState | undefined` when the exact type can't be determined in development time.
    */
 
-  function appendOwnerState(elementType, existingProps = {}, ownerState) {
+  /**
+   * Appends the ownerState object to the props, merging with the existing one if necessary.
+   *
+   * @param elementType Type of the element that owns the `existingProps`. If the element is a DOM node, `ownerState` is not applied.
+   * @param otherProps Props of the element.
+   * @param ownerState
+   */
+  function appendOwnerState(elementType, otherProps = {}, ownerState) {
     if (isHostComponent(elementType)) {
-      return existingProps;
+      return otherProps;
     }
 
-    return _extends({}, existingProps, {
-      ownerState: _extends({}, existingProps.ownerState, ownerState)
+    return _extends({}, otherProps, {
+      ownerState: _extends({}, otherProps.ownerState, ownerState)
     });
+  }
+
+  /**
+   * Extracts event handlers from a given object.
+   * A prop is considered an event handler if it is a function and its name starts with `on`.
+   *
+   * @param object An object to extract event handlers from.
+   * @param excludeKeys An array of keys to exclude from the returned object.
+   */
+  function extractEventHandlers(object, excludeKeys = []) {
+    if (object === undefined) {
+      return {};
+    }
+
+    const result = {};
+    Object.keys(object).filter(prop => prop.match(/^on[A-Z]/) && typeof object[prop] === 'function' && !excludeKeys.includes(prop)).forEach(prop => {
+      result[prop] = object[prop];
+    });
+    return result;
+  }
+
+  /**
+   * If `componentProps` is a function, calls it with the provided `ownerState`.
+   * Otherwise, just returns `componentProps`.
+   */
+  function resolveComponentProps(componentProps, ownerState) {
+    if (typeof componentProps === 'function') {
+      return componentProps(ownerState);
+    }
+
+    return componentProps;
+  }
+
+  /**
+   * Removes event handlers from the given object.
+   * A field is considered an event handler if it is a function with a name beginning with `on`.
+   *
+   * @param object Object to remove event handlers from.
+   * @returns Object with event handlers removed.
+   */
+  function omitEventHandlers(object) {
+    if (object === undefined) {
+      return {};
+    }
+
+    const result = {};
+    Object.keys(object).filter(prop => !(prop.match(/^on[A-Z]/) && typeof object[prop] === 'function')).forEach(prop => {
+      result[prop] = object[prop];
+    });
+    return result;
+  }
+
+  /**
+   * Merges the slot component internal props (usually coming from a hook)
+   * with the externally provided ones.
+   *
+   * The merge order is (the latter overrides the former):
+   * 1. The internal props (specified as a getter function to work with get*Props hook result)
+   * 2. Additional props (specified internally on an unstyled component)
+   * 3. External props specified on the owner component. These should only be used on a root slot.
+   * 4. External props specified in the `componentsProps.*` prop.
+   * 5. The `className` prop - combined from all the above.
+   * @param parameters
+   * @returns
+   */
+  function mergeSlotProps(parameters) {
+    const {
+      getSlotProps,
+      additionalProps,
+      externalSlotProps,
+      externalForwardedProps,
+      className
+    } = parameters;
+
+    if (!getSlotProps) {
+      // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
+      // so we can simply merge all the props without having to worry about extracting event handlers.
+      const joinedClasses = clsx(externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className, className, additionalProps == null ? void 0 : additionalProps.className);
+
+      const mergedStyle = _extends({}, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
+
+      const props = _extends({}, additionalProps, externalForwardedProps, externalSlotProps);
+
+      if (joinedClasses.length > 0) {
+        props.className = joinedClasses;
+      }
+
+      if (Object.keys(mergedStyle).length > 0) {
+        props.style = mergedStyle;
+      }
+
+      return {
+        props,
+        internalRef: undefined
+      };
+    } // In this case, getSlotProps is responsible for calling the external event handlers.
+    // We don't need to include them in the merged props because of this.
+
+
+    const eventHandlers = extractEventHandlers(_extends({}, externalForwardedProps, externalSlotProps));
+    const componentsPropsWithoutEventHandlers = omitEventHandlers(externalSlotProps);
+    const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
+    const internalSlotProps = getSlotProps(eventHandlers); // The order of classes is important here.
+    // Emotion (that we use in libraries consuming MUI Base) depends on this order
+    // to properly override style. It requires the most important classes to be last
+    // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
+
+    const joinedClasses = clsx(internalSlotProps == null ? void 0 : internalSlotProps.className, additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
+
+    const mergedStyle = _extends({}, internalSlotProps == null ? void 0 : internalSlotProps.style, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
+
+    const props = _extends({}, internalSlotProps, additionalProps, otherPropsWithoutEventHandlers, componentsPropsWithoutEventHandlers);
+
+    if (joinedClasses.length > 0) {
+      props.className = joinedClasses;
+    }
+
+    if (Object.keys(mergedStyle).length > 0) {
+      props.style = mergedStyle;
+    }
+
+    return {
+      props,
+      internalRef: internalSlotProps.ref
+    };
+  }
+
+  const _excluded$2d = ["elementType", "externalSlotProps", "ownerState"];
+
+  /**
+   * Builds the props to be passed into the slot of an unstyled component.
+   * It merges the internal props of the component with the ones supplied by the user, allowing to customize the behavior.
+   * If the slot component is not a host component, it also merges in the `ownerState`.
+   *
+   * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
+   */
+  function useSlotProps(parameters) {
+    var _parameters$additiona;
+
+    const {
+      elementType,
+      externalSlotProps,
+      ownerState
+    } = parameters,
+          rest = _objectWithoutPropertiesLoose(parameters, _excluded$2d);
+
+    const resolvedComponentsProps = resolveComponentProps(externalSlotProps, ownerState);
+    const {
+      props: mergedProps,
+      internalRef
+    } = mergeSlotProps(_extends({}, rest, {
+      externalSlotProps: resolvedComponentsProps
+    }));
+    const ref = useForkRef(internalRef, useForkRef(resolvedComponentsProps == null ? void 0 : resolvedComponentsProps.ref, (_parameters$additiona = parameters.additionalProps) == null ? void 0 : _parameters$additiona.ref));
+    const props = appendOwnerState(elementType, _extends({}, mergedProps, {
+      ref
+    }), ownerState);
+    return props;
   }
 
   // Give up on IE11 support for this feature
@@ -8366,13 +9118,13 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       autoHighlight = false,
       autoSelect = false,
       blurOnSelect = false,
-      disabled: disabledProp,
       clearOnBlur = !props.freeSolo,
       clearOnEscape = false,
       componentName = 'useAutocomplete',
       defaultValue = props.multiple ? [] : null,
       disableClearable = false,
       disableCloseOnSelect = false,
+      disabled: disabledProp,
       disabledItemsFocusable = false,
       disableListWrap = false,
       filterOptions = defaultFilterOptions,
@@ -8384,12 +9136,12 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
         return (_option$label = option.label) != null ? _option$label : option;
       },
-      isOptionEqualToValue = (option, value) => option === value,
       groupBy,
       handleHomeEndKeys = !props.freeSolo,
       id: idProp,
       includeInputInList = false,
       inputValue: inputValueProp,
+      isOptionEqualToValue = (option, value) => option === value,
       multiple = false,
       onChange,
       onClose,
@@ -8611,7 +9363,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       if (reason === 'keyboard') {
         option.classList.add('Mui-focusVisible');
       } // Scroll active descendant into view.
-      // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+      // Logic copied from https://www.w3.org/WAI/ARIA/apg/example-index/combobox/js/select-only.js
       //
       // Consider this API instead once it has a better browser support:
       // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
@@ -8817,7 +9569,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
 
     const handleValue = (event, newValue, reason, details) => {
-      if (Array.isArray(value)) {
+      if (multiple) {
         if (value.length === newValue.length && value.every((val, i) => val === newValue[i])) {
           return;
         }
@@ -8901,7 +9653,10 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         return;
       }
 
-      handleClose(event, 'toggleInput');
+      if (inputValue === '') {
+        handleClose(event, 'toggleInput');
+      }
+
       let nextTag = focusedTag;
 
       if (focusedTag === -1) {
@@ -9336,33 +10091,13 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
   }
 
-  function composeClasses(slots, getUtilityClass, classes) {
-    const output = {};
-    Object.keys(slots).forEach( // `Objet.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
-    // @ts-expect-error https://github.com/microsoft/TypeScript/pull/12253#issuecomment-263132208
-    slot => {
-      output[slot] = slots[slot].reduce((acc, key) => {
-        if (key) {
-          if (classes && classes[key]) {
-            acc.push(classes[key]);
-          }
-
-          acc.push(getUtilityClass(key));
-        }
-
-        return acc;
-      }, []).join(' ');
-    });
-    return output;
-  }
-
-  function useBadge(props) {
+  function useBadge(parameters) {
     const {
       badgeContent: badgeContentProp,
       invisible: invisibleProp = false,
       max: maxProp = 99,
       showZero = false
-    } = props;
+    } = parameters;
     const prevProps = usePreviousProps$1({
       badgeContent: badgeContentProp,
       max: maxProp
@@ -9376,7 +10111,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     const {
       badgeContent,
       max = maxProp
-    } = invisible ? prevProps : props;
+    } = invisible ? prevProps : parameters;
     const displayValue = badgeContent && Number(badgeContent) > max ? `${max}+` : badgeContent;
     return {
       badgeContent,
@@ -9386,62 +10121,14 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
   }
 
-  const defaultGenerator = componentName => componentName;
-
-  const createClassNameGenerator = () => {
-    let generate = defaultGenerator;
-    return {
-      configure(generator) {
-        generate = generator;
-      },
-
-      generate(componentName) {
-        return generate(componentName);
-      },
-
-      reset() {
-        generate = defaultGenerator;
-      }
-
-    };
-  };
-
-  const ClassNameGenerator = createClassNameGenerator();
-  var ClassNameGenerator$1 = ClassNameGenerator;
-
-  const globalStateClassesMapping = {
-    active: 'Mui-active',
-    checked: 'Mui-checked',
-    completed: 'Mui-completed',
-    disabled: 'Mui-disabled',
-    error: 'Mui-error',
-    expanded: 'Mui-expanded',
-    focused: 'Mui-focused',
-    focusVisible: 'Mui-focusVisible',
-    required: 'Mui-required',
-    selected: 'Mui-selected'
-  };
-  function generateUtilityClass(componentName, slot) {
-    const globalStateClass = globalStateClassesMapping[slot];
-    return globalStateClass || `${ClassNameGenerator$1.generate(componentName)}-${slot}`;
-  }
-
-  function generateUtilityClasses(componentName, slots) {
-    const result = {};
-    slots.forEach(slot => {
-      result[slot] = generateUtilityClass(componentName, slot);
-    });
-    return result;
-  }
-
   function getBadgeUnstyledUtilityClass(slot) {
     return generateUtilityClass('BaseBadge', slot);
   }
   generateUtilityClasses('BaseBadge', ['root', 'badge', 'invisible']);
 
-  const _excluded$2d = ["badgeContent", "component", "children", "className", "components", "componentsProps", "invisible", "max", "showZero"];
+  const _excluded$2c = ["badgeContent", "component", "children", "components", "componentsProps", "invisible", "max", "showZero"];
 
-  const useUtilityClasses$1P = ownerState => {
+  const useUtilityClasses$1O = ownerState => {
     const {
       invisible
     } = ownerState;
@@ -9451,18 +10138,28 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
     return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
   };
+  /**
+   *
+   * Demos:
+   *
+   * - [Badge](https://mui.com/base/react-badge/)
+   *
+   * API:
+   *
+   * - [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
+   */
+
 
   const BadgeUnstyled = /*#__PURE__*/React__namespace.forwardRef(function BadgeUnstyled(props, ref) {
     const {
       component,
       children,
-      className,
       components = {},
       componentsProps = {},
       max: maxProp = 99,
       showZero = false
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2d);
+          other = _objectWithoutPropertiesLoose(props, _excluded$2c);
 
     const {
       badgeContent,
@@ -9480,17 +10177,27 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       showZero
     });
 
-    const classes = useUtilityClasses$1P(ownerState);
+    const classes = useUtilityClasses$1O(ownerState);
     const Root = component || components.Root || 'span';
-    const rootProps = appendOwnerState(Root, _extends({}, other, componentsProps.root), ownerState);
+    const rootProps = useSlotProps({
+      elementType: Root,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
+      additionalProps: {
+        ref
+      },
+      ownerState,
+      className: classes.root
+    });
     const Badge = components.Badge || 'span';
-    const badgeProps = appendOwnerState(Badge, componentsProps.badge, ownerState);
+    const badgeProps = useSlotProps({
+      elementType: Badge,
+      externalSlotProps: componentsProps.badge,
+      ownerState,
+      className: classes.badge
+    });
     return /*#__PURE__*/jsxRuntime_2(Root, _extends({}, rootProps, {
-      ref: ref
-    }, other, {
-      className: clsx(classes.root, rootProps.className, className),
       children: [children, /*#__PURE__*/jsxRuntime_1(Badge, _extends({}, badgeProps, {
-        className: clsx(classes.badge, badgeProps.className),
         children: displayValue
       }))]
     }));
@@ -9500,7 +10207,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   = {
     // ----------------------------- Warning --------------------------------
     // | These PropTypes are generated from the TypeScript type definitions |
-    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // |     To update them edit TypeScript types and run "yarn proptypes"  |
     // ----------------------------------------------------------------------
 
     /**
@@ -9512,11 +10219,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * The badge will be added relative to this node.
      */
     children: PropTypes.node,
-
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
 
     /**
      * The component used for the root node.
@@ -9539,8 +10241,8 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      badge: PropTypes.object,
-      root: PropTypes.object
+      badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
 
     /**
@@ -9729,7 +10431,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * The mouse event to listen to. You can disable the listener by providing `false`.
      * @default 'onClick'
      */
-    mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
+    mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', 'onPointerDown', 'onPointerUp', false]),
 
     /**
      * Callback fired when a "click away" event is detected.
@@ -11794,7 +12496,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
   var Portal$1 = Portal;
 
-  const _excluded$2c = ["anchorEl", "children", "direction", "disablePortal", "modifiers", "open", "ownerState", "placement", "popperOptions", "popperRef", "TransitionProps"],
+  const _excluded$2b = ["anchorEl", "children", "direction", "disablePortal", "modifiers", "open", "ownerState", "placement", "popperOptions", "popperRef", "TransitionProps"],
         _excluded2$a = ["anchorEl", "children", "container", "direction", "disablePortal", "keepMounted", "modifiers", "open", "placement", "popperOptions", "popperRef", "style", "transition"];
 
   function flipPlacement(placement, direction) {
@@ -11840,7 +12542,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       popperRef: popperRefProp,
       TransitionProps
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2c);
+          other = _objectWithoutPropertiesLoose(props, _excluded$2b);
 
     const tooltipRef = React__namespace.useRef(null);
     const ownRef = useForkRef(tooltipRef, ref);
@@ -12166,11 +12868,23 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
   }
 
+  function isAriaHiddenForbiddenOnElement(element) {
+    // The forbidden HTML tags are the ones from ARIA specification that
+    // can be children of body and can't have aria-hidden attribute.
+    // cf. https://www.w3.org/TR/html-aria/#docconformance
+    const forbiddenTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE', 'LINK', 'MAP', 'META', 'NOSCRIPT', 'PICTURE', 'COL', 'COLGROUP', 'PARAM', 'SLOT', 'SOURCE', 'TRACK'];
+    const isForbiddenTagName = forbiddenTagNames.indexOf(element.tagName) !== -1;
+    const isInputHidden = element.tagName === 'INPUT' && element.getAttribute('type') === 'hidden';
+    return isForbiddenTagName || isInputHidden;
+  }
+
   function ariaHiddenSiblings(container, mountElement, currentElement, elementsToExclude = [], show) {
     const blacklist = [mountElement, currentElement, ...elementsToExclude];
-    const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
     [].forEach.call(container.children, element => {
-      if (blacklist.indexOf(element) === -1 && blacklistTagNames.indexOf(element.tagName) === -1) {
+      const isNotExcludedElement = blacklist.indexOf(element) === -1;
+      const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
+
+      if (isNotExcludedElement && isNotForbiddenElement) {
         ariaHidden(element, show);
       }
     });
@@ -12214,14 +12928,21 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
           });
           element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
         });
-      } // Improve Gatsby support
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+      }
 
+      let scrollContainer;
 
-      const parent = container.parentElement;
-      const containerWindow = ownerWindow(container);
-      const scrollContainer = (parent == null ? void 0 : parent.nodeName) === 'HTML' && containerWindow.getComputedStyle(parent).overflowY === 'scroll' ? parent : container; // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+      if (container.parentNode instanceof DocumentFragment) {
+        scrollContainer = ownerDocument(container).body;
+      } else {
+        // Improve Gatsby support
+        // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+        const parent = container.parentElement;
+        const containerWindow = ownerWindow(container);
+        scrollContainer = (parent == null ? void 0 : parent.nodeName) === 'HTML' && containerWindow.getComputedStyle(parent).overflowY === 'scroll' ? parent : container;
+      } // Block the scroll even if no scrollbar is visible to account for mobile keyboard
       // screensize shrink.
+
 
       restoreStyle.push({
         value: scrollContainer.style.overflow,
@@ -12322,7 +13043,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       }
     }
 
-    remove(modal) {
+    remove(modal, ariaHiddenState = true) {
       const modalIndex = this.modals.indexOf(modal);
 
       if (modalIndex === -1) {
@@ -12342,7 +13063,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
         if (modal.modalRef) {
           // In case the modal wasn't in the DOM yet.
-          ariaHidden(modal.modalRef, true);
+          ariaHidden(modal.modalRef, ariaHiddenState);
         }
 
         ariaHiddenSiblings(containerInfo.container, modal.mount, modal.modalRef, containerInfo.hiddenSiblings, false);
@@ -12730,9 +13451,9 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   const modalUnstyledClasses = generateUtilityClasses('MuiModal', ['root', 'hidden']);
   var modalUnstyledClasses$1 = modalUnstyledClasses;
 
-  const _excluded$2b = ["BackdropComponent", "BackdropProps", "children", "classes", "className", "closeAfterTransition", "component", "components", "componentsProps", "container", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "manager", "onBackdropClick", "onClose", "onKeyDown", "open", "theme", "onTransitionEnter", "onTransitionExited"];
+  const _excluded$2a = ["children", "classes", "closeAfterTransition", "component", "components", "componentsProps", "container", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "manager", "onBackdropClick", "onClose", "onKeyDown", "open", "onTransitionEnter", "onTransitionExited"];
 
-  const useUtilityClasses$1O = ownerState => {
+  const useUtilityClasses$1N = ownerState => {
     const {
       open,
       exited,
@@ -12770,12 +13491,11 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
    */
 
   const ModalUnstyled = /*#__PURE__*/React__namespace.forwardRef(function ModalUnstyled(props, ref) {
+    var _props$ariaHidden;
+
     const {
-      BackdropComponent,
-      BackdropProps,
       children,
       classes: classesProp,
-      className,
       closeAfterTransition = false,
       component = 'div',
       components = {},
@@ -12798,11 +13518,10 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       open,
 
       /* eslint-disable react/prop-types */
-      theme,
       onTransitionEnter,
       onTransitionExited
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2b);
+          other = _objectWithoutPropertiesLoose(props, _excluded$2a);
 
     const [exited, setExited] = React__namespace.useState(true);
     const modal = React__namespace.useRef({});
@@ -12810,6 +13529,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     const modalRef = React__namespace.useRef(null);
     const handleRef = useForkRef(modalRef, ref);
     const hasTransition = getHasTransition(props);
+    const ariaHiddenProp = (_props$ariaHidden = props['aria-hidden']) != null ? _props$ariaHidden : true;
 
     const getDoc = () => ownerDocument(mountNodeRef.current);
 
@@ -12846,12 +13566,12 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       if (open && isTopModal()) {
         handleMounted();
       } else {
-        ariaHidden(modalRef.current, true);
+        ariaHidden(modalRef.current, ariaHiddenProp);
       }
     });
     const handleClose = React__namespace.useCallback(() => {
-      manager.remove(getModal());
-    }, [manager]);
+      manager.remove(getModal(), ariaHiddenProp);
+    }, [manager, ariaHiddenProp]);
     React__namespace.useEffect(() => {
       return () => {
         handleClose();
@@ -12879,11 +13599,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       keepMounted
     });
 
-    const classes = useUtilityClasses$1O(ownerState);
-
-    if (!keepMounted && !open && (!hasTransition || exited)) {
-      return null;
-    }
+    const classes = useUtilityClasses$1N(ownerState);
 
     const handleEnter = () => {
       setExited(false);
@@ -12957,26 +13673,40 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     }
 
     const Root = components.Root || component;
-    const rootProps = componentsProps.root || {};
+    const rootProps = useSlotProps({
+      elementType: Root,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
+      additionalProps: {
+        ref: handleRef,
+        role: 'presentation',
+        onKeyDown: handleKeyDown
+      },
+      className: classes.root,
+      ownerState
+    });
+    const BackdropComponent = components.Backdrop;
+    const backdropProps = useSlotProps({
+      elementType: BackdropComponent,
+      externalSlotProps: componentsProps.backdrop,
+      additionalProps: {
+        'aria-hidden': true,
+        onClick: handleBackdropClick,
+        open
+      },
+      ownerState
+    });
+
+    if (!keepMounted && !open && (!hasTransition || exited)) {
+      return null;
+    }
+
     return /*#__PURE__*/jsxRuntime_1(Portal$1, {
       ref: handlePortalRef,
       container: container,
       disablePortal: disablePortal,
-      children: /*#__PURE__*/jsxRuntime_2(Root, _extends({
-        role: "presentation"
-      }, rootProps, !isHostComponent(Root) && {
-        as: component,
-        ownerState: _extends({}, ownerState, rootProps.ownerState),
-        theme
-      }, other, {
-        ref: handleRef,
-        onKeyDown: handleKeyDown,
-        className: clsx(classes.root, rootProps.className, className),
-        children: [!hideBackdrop && BackdropComponent ? /*#__PURE__*/jsxRuntime_1(BackdropComponent, _extends({
-          "aria-hidden": true,
-          open: open,
-          onClick: handleBackdropClick
-        }, BackdropProps)) : null, /*#__PURE__*/jsxRuntime_1(TrapFocus, {
+      children: /*#__PURE__*/jsxRuntime_2(Root, _extends({}, rootProps, {
+        children: [!hideBackdrop && BackdropComponent ? /*#__PURE__*/jsxRuntime_1(BackdropComponent, _extends({}, backdropProps)) : null, /*#__PURE__*/jsxRuntime_1(TrapFocus, {
           disableEnforceFocus: disableEnforceFocus,
           disableAutoFocus: disableAutoFocus,
           disableRestoreFocus: disableRestoreFocus,
@@ -12996,16 +13726,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     // ----------------------------------------------------------------------
 
     /**
-     * A backdrop component. This prop enables custom backdrop rendering.
-     */
-    BackdropComponent: PropTypes.elementType,
-
-    /**
-     * Props applied to the backdrop element.
-     */
-    BackdropProps: PropTypes.object,
-
-    /**
      * A single child content element.
      */
     children: elementAcceptingRef$1.isRequired,
@@ -13014,11 +13734,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * Override or extend the styles applied to the component.
      */
     classes: PropTypes.object,
-
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
 
     /**
      * When set to true the Modal waits until a nested Transition is completed before closing.
@@ -13038,6 +13753,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * @default {}
      */
     components: PropTypes.shape({
+      Backdrop: PropTypes.elementType,
       Root: PropTypes.elementType
     }),
 
@@ -13046,7 +13762,8 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      root: PropTypes.object
+      backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
 
     /**
@@ -13248,7 +13965,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       })]
     }));
   }
-
   SliderValueLabelUnstyled.propTypes = {
     children: PropTypes.element.isRequired,
     className: PropTypes.string,
@@ -13423,13 +14139,13 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     return cachedSupportsTouchActionNone;
   }
 
-  function useSlider(props) {
+  function useSlider(parameters) {
     const {
-      ref,
       'aria-labelledby': ariaLabelledby,
       defaultValue,
-      disableSwap = false,
       disabled = false,
+      disableSwap = false,
+      isRtl = false,
       marks: marksProp = false,
       max = 100,
       min = 0,
@@ -13437,12 +14153,12 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       onChange,
       onChangeCommitted,
       orientation = 'horizontal',
+      ref,
       scale = Identity$1,
       step = 1,
       tabIndex,
-      value: valueProp,
-      isRtl = false
-    } = props;
+      value: valueProp
+    } = parameters;
     const touchId = React__namespace.useRef(); // We can't use the :active browser pseudo-classes.
     // - The active state isn't triggered when clicking on the rail.
     // - The active state isn't transferred when inversing a range slider.
@@ -13488,7 +14204,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       onFocus: handleFocusVisible,
       ref: focusVisibleRef
     } = useIsFocusVisible();
-    const [focusVisible, setFocusVisible] = React__namespace.useState(-1);
+    const [focusedThumbIndex, setFocusedThumbIndex] = React__namespace.useState(-1);
     const sliderRef = React__namespace.useRef();
     const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
     const handleRef = useForkRef(ref, handleFocusRef);
@@ -13500,7 +14216,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       handleFocusVisible(event);
 
       if (isFocusVisibleRef.current === true) {
-        setFocusVisible(index);
+        setFocusedThumbIndex(index);
       }
 
       setOpen(index);
@@ -13513,7 +14229,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       handleBlurVisible(event);
 
       if (isFocusVisibleRef.current === false) {
-        setFocusVisible(-1);
+        setFocusedThumbIndex(-1);
       }
 
       setOpen(-1);
@@ -13536,8 +14252,8 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       setActive(-1);
     }
 
-    if (disabled && focusVisible !== -1) {
-      setFocusVisible(-1);
+    if (disabled && focusedThumbIndex !== -1) {
+      setFocusedThumbIndex(-1);
     }
 
     const createHandleHiddenInputChange = otherHandlers => event => {
@@ -13586,7 +14302,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       }
 
       setValueState(newValue);
-      setFocusVisible(index);
+      setFocusedThumbIndex(index);
 
       if (handleChange) {
         handleChange(event, newValue, index);
@@ -13725,6 +14441,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         newValue
       } = getFingerNewValue({
         finger,
+        move: true,
         values
       });
       setActive(-1);
@@ -13864,7 +14581,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     const trackOffset = valueToPercent(range ? values[0] : min, min, max);
     const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-    const getRootProps = otherHandlers => {
+    const getRootProps = (otherHandlers = {}) => {
       const ownEventHandlers = {
         onMouseDown: createHandleMouseDown(otherHandlers || {})
       };
@@ -13891,18 +14608,17 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       setOpen(-1);
     };
 
-    const getThumbProps = otherHandlers => {
+    const getThumbProps = (otherHandlers = {}) => {
       const ownEventHandlers = {
         onMouseOver: createHandleMouseOver(otherHandlers || {}),
         onMouseLeave: createHandleMouseLeave(otherHandlers || {})
       };
-
-      const mergedEventHandlers = _extends({}, otherHandlers, ownEventHandlers);
-
-      return _extends({}, mergedEventHandlers);
+      return _extends({}, otherHandlers, ownEventHandlers);
     };
 
-    const getHiddenInputProps = otherHandlers => {
+    const getHiddenInputProps = (otherHandlers = {}) => {
+      var _parameters$step;
+
       const ownEventHandlers = {
         onChange: createHandleHiddenInputChange(otherHandlers || {}),
         onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
@@ -13919,9 +14635,9 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
         'aria-valuemin': scale(min),
         name,
         type: 'range',
-        min: props.min,
-        max: props.max,
-        step: props.step,
+        min: parameters.min,
+        max: parameters.max,
+        step: (_parameters$step = parameters.step) != null ? _parameters$step : undefined,
         disabled
       }, mergedEventHandlers, {
         style: _extends({}, visuallyHidden$1, {
@@ -13934,28 +14650,28 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     };
 
     return {
-      axis,
-      axisProps,
-      getRootProps,
-      getHiddenInputProps,
-      getThumbProps,
-      dragging,
-      marks,
-      values,
       active,
-      focusVisible,
+      axis: axis,
+      axisProps,
+      dragging,
+      focusedThumbIndex,
+      getHiddenInputProps,
+      getRootProps,
+      getThumbProps,
+      marks: marks,
       open,
       range,
+      trackLeap,
       trackOffset,
-      trackLeap
+      values
     };
   }
 
-  const _excluded$2a = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
+  const _excluded$29 = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
 
   const Identity = x => x;
 
-  const useUtilityClasses$1N = ownerState => {
+  const useUtilityClasses$1M = ownerState => {
     const {
       disabled,
       dragging,
@@ -14001,7 +14717,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       marks: marksProp = false,
       max = 100,
       min = 0,
-      onMouseDown,
       orientation = 'horizontal',
       scale = Identity,
       step = 1,
@@ -14012,12 +14727,12 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       components = {},
       componentsProps = {}
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$2a); // all props with defaults
+          other = _objectWithoutPropertiesLoose(props, _excluded$29); // all props with defaults
     // consider extracting to hook an reusing the lint rule for the varints
 
 
     const ownerState = _extends({}, props, {
-      mark: marksProp,
+      marks: marksProp,
       classes: classesProp,
       disabled,
       isRtl,
@@ -14040,7 +14755,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       active,
       axis,
       range,
-      focusVisible,
+      focusedThumbIndex,
       dragging,
       marks,
       values,
@@ -14051,37 +14766,69 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     }));
     ownerState.marked = marks.length > 0 && marks.some(mark => mark.label);
     ownerState.dragging = dragging;
+    ownerState.focusedThumbIndex = focusedThumbIndex;
+    const classes = useUtilityClasses$1M(ownerState);
     const Root = (_ref = component != null ? component : components.Root) != null ? _ref : 'span';
-    const rootProps = appendOwnerState(Root, _extends({}, other, componentsProps.root), ownerState);
+    const rootProps = useSlotProps({
+      elementType: Root,
+      getSlotProps: getRootProps,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
+      ownerState,
+      className: [classes.root, className]
+    });
     const Rail = (_components$Rail = components.Rail) != null ? _components$Rail : 'span';
-    const railProps = appendOwnerState(Rail, componentsProps.rail, ownerState);
+    const railProps = useSlotProps({
+      elementType: Rail,
+      externalSlotProps: componentsProps.rail,
+      ownerState,
+      className: classes.rail
+    });
     const Track = (_components$Track = components.Track) != null ? _components$Track : 'span';
-    const trackProps = appendOwnerState(Track, componentsProps.track, ownerState);
-
-    const trackStyle = _extends({}, axisProps[axis].offset(trackOffset), axisProps[axis].leap(trackLeap));
-
+    const trackProps = useSlotProps({
+      elementType: Track,
+      externalSlotProps: componentsProps.track,
+      additionalProps: {
+        style: _extends({}, axisProps[axis].offset(trackOffset), axisProps[axis].leap(trackLeap))
+      },
+      ownerState,
+      className: classes.track
+    });
     const Thumb = (_components$Thumb = components.Thumb) != null ? _components$Thumb : 'span';
-    const thumbProps = appendOwnerState(Thumb, componentsProps.thumb, ownerState);
+    const thumbProps = useSlotProps({
+      elementType: Thumb,
+      getSlotProps: getThumbProps,
+      externalSlotProps: componentsProps.thumb,
+      ownerState
+    });
     const ValueLabel = (_components$ValueLabe = components.ValueLabel) != null ? _components$ValueLabe : SliderValueLabelUnstyled;
-    const valueLabelProps = appendOwnerState(ValueLabel, componentsProps.valueLabel, ownerState);
+    const valueLabelProps = useSlotProps({
+      elementType: ValueLabel,
+      externalSlotProps: componentsProps.valueLabel,
+      ownerState
+    });
     const Mark = (_components$Mark = components.Mark) != null ? _components$Mark : 'span';
-    const markProps = appendOwnerState(Mark, componentsProps.mark, ownerState);
+    const markProps = useSlotProps({
+      elementType: Mark,
+      externalSlotProps: componentsProps.mark,
+      ownerState,
+      className: classes.mark
+    });
     const MarkLabel = (_components$MarkLabel = components.MarkLabel) != null ? _components$MarkLabel : 'span';
-    const markLabelProps = appendOwnerState(MarkLabel, componentsProps.markLabel, ownerState);
+    const markLabelProps = useSlotProps({
+      elementType: MarkLabel,
+      externalSlotProps: componentsProps.markLabel,
+      ownerState
+    });
     const Input = components.Input || 'input';
-    const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
-    const hiddenInputProps = getHiddenInputProps();
-    const classes = useUtilityClasses$1N(ownerState);
-    return /*#__PURE__*/jsxRuntime_2(Root, _extends({}, rootProps, getRootProps({
-      onMouseDown
-    }), {
-      className: clsx(classes.root, rootProps.className, className),
-      children: [/*#__PURE__*/jsxRuntime_1(Rail, _extends({}, railProps, {
-        className: clsx(classes.rail, railProps.className)
-      })), /*#__PURE__*/jsxRuntime_1(Track, _extends({}, trackProps, {
-        className: clsx(classes.track, trackProps.className),
-        style: _extends({}, trackStyle, trackProps.style)
-      })), marks.map((mark, index) => {
+    const inputProps = useSlotProps({
+      elementType: Input,
+      getSlotProps: getHiddenInputProps,
+      externalSlotProps: componentsProps.input,
+      ownerState
+    });
+    return /*#__PURE__*/jsxRuntime_2(Root, _extends({}, rootProps, {
+      children: [/*#__PURE__*/jsxRuntime_1(Rail, _extends({}, railProps)), /*#__PURE__*/jsxRuntime_1(Track, _extends({}, trackProps)), marks.filter(mark => mark.value >= min && mark.value <= max).map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
         let markActive;
@@ -14099,7 +14846,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
             markActive
           }, {
             style: _extends({}, style, markProps.style),
-            className: clsx(classes.mark, markProps.className, markActive && classes.markActive)
+            className: clsx(markProps.className, markActive && classes.markActive)
           })), mark.label != null ? /*#__PURE__*/jsxRuntime_1(MarkLabel, _extends({
             "aria-hidden": true,
             "data-index": index
@@ -14126,26 +14873,20 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
           }, valueLabelProps, {
             className: clsx(classes.valueLabel, valueLabelProps.className),
             children: /*#__PURE__*/jsxRuntime_1(Thumb, _extends({
-              "data-index": index
-            }, thumbProps, getThumbProps(), {
-              className: clsx(classes.thumb, thumbProps.className, active === index && classes.active, focusVisible === index && classes.focusVisible)
-            }, !isHostComponent(Thumb) && {
-              ownerState: _extends({}, ownerState, thumbProps.ownerState)
-            }, {
+              "data-index": index,
+              "data-focusvisible": focusedThumbIndex === index
+            }, thumbProps, {
+              className: clsx(classes.thumb, thumbProps.className, active === index && classes.active, focusedThumbIndex === index && classes.focusVisible),
               style: _extends({}, style, {
                 pointerEvents: disableSwap && active !== index ? 'none' : undefined
               }, thumbProps.style),
-              children: /*#__PURE__*/jsxRuntime_1(Input, _extends({}, hiddenInputProps, {
+              children: /*#__PURE__*/jsxRuntime_1(Input, _extends({
                 "data-index": index,
                 "aria-label": getAriaLabel ? getAriaLabel(index) : ariaLabel,
                 "aria-valuenow": scale(value),
                 "aria-valuetext": getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext,
                 value: values[index]
-              }, !isHostComponent(Input) && {
-                ownerState: _extends({}, ownerState, inputProps.ownerState)
-              }, inputProps, {
-                style: _extends({}, hiddenInputProps.style, inputProps.style)
-              }))
+              }, inputProps))
             }))
           }))
         }, index);
@@ -14233,22 +14974,24 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      input: PropTypes.object,
-      mark: PropTypes.object,
-      markLabel: PropTypes.object,
-      rail: PropTypes.object,
-      root: PropTypes.object,
-      thumb: PropTypes.object,
-      track: PropTypes.object,
-      valueLabel: PropTypes.shape({
+      input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({
+        children: PropTypes.element,
         className: PropTypes.string,
         components: PropTypes.shape({
           Root: PropTypes.elementType
         }),
+        open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+        value: PropTypes.number,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on'])
-      })
+      })])
     }),
 
     /**
@@ -14341,11 +15084,6 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     onChangeCommitted: PropTypes.func,
 
     /**
-     * @ignore
-     */
-    onMouseDown: PropTypes.func,
-
-    /**
      * The component orientation.
      * @default 'horizontal'
      */
@@ -14411,7 +15149,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   } ;
   var SliderUnstyled$1 = SliderUnstyled;
 
-  const _excluded$29 = ["onChange", "maxRows", "minRows", "style", "value"];
+  const _excluded$28 = ["onChange", "maxRows", "minRows", "style", "value"];
 
   function getStyleValue(computedStyle, property) {
     return parseInt(computedStyle[property], 10) || 0;
@@ -14432,6 +15170,11 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       transform: 'translateZ(0)'
     }
   };
+
+  function isEmpty$1(obj) {
+    return obj === undefined || obj === null || Object.keys(obj).length === 0;
+  }
+
   const TextareaAutosize = /*#__PURE__*/React__namespace.forwardRef(function TextareaAutosize(props, ref) {
     const {
       onChange,
@@ -14440,7 +15183,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       style,
       value
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$29);
+          other = _objectWithoutPropertiesLoose(props, _excluded$28);
 
     const {
       current: isControlled
@@ -14450,13 +15193,13 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     const shadowRef = React__namespace.useRef(null);
     const renders = React__namespace.useRef(0);
     const [state, setState] = React__namespace.useState({});
-    const syncHeight = React__namespace.useCallback(() => {
+    const getUpdatedState = React__namespace.useCallback(() => {
       const input = inputRef.current;
       const containerWindow = ownerWindow(input);
       const computedStyle = containerWindow.getComputedStyle(input); // If input's width is shrunk and it's not visible, don't sync height.
 
       if (computedStyle.width === '0px') {
-        return;
+        return {};
       }
 
       const inputShallow = shadowRef.current;
@@ -14493,30 +15236,77 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
       const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
       const overflow = Math.abs(outerHeight - innerHeight) <= 1;
-      setState(prevState => {
-        // Need a large enough difference to update the height.
-        // This prevents infinite rendering loop.
-        if (renders.current < 20 && (outerHeightStyle > 0 && Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1 || prevState.overflow !== overflow)) {
-          renders.current += 1;
-          return {
-            overflow,
-            outerHeightStyle
-          };
-        }
-
-        {
-          if (renders.current === 20) {
-            console.error(['MUI: Too many re-renders. The layout is unstable.', 'TextareaAutosize limits the number of renders to prevent an infinite loop.'].join('\n'));
-          }
-        }
-
-        return prevState;
-      });
+      return {
+        outerHeightStyle,
+        overflow
+      };
     }, [maxRows, minRows, props.placeholder]);
+
+    const updateState = (prevState, newState) => {
+      const {
+        outerHeightStyle,
+        overflow
+      } = newState; // Need a large enough difference to update the height.
+      // This prevents infinite rendering loop.
+
+      if (renders.current < 20 && (outerHeightStyle > 0 && Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1 || prevState.overflow !== overflow)) {
+        renders.current += 1;
+        return {
+          overflow,
+          outerHeightStyle
+        };
+      }
+
+      {
+        if (renders.current === 20) {
+          console.error(['MUI: Too many re-renders. The layout is unstable.', 'TextareaAutosize limits the number of renders to prevent an infinite loop.'].join('\n'));
+        }
+      }
+
+      return prevState;
+    };
+
+    const syncHeight = React__namespace.useCallback(() => {
+      const newState = getUpdatedState();
+
+      if (isEmpty$1(newState)) {
+        return;
+      }
+
+      setState(prevState => {
+        return updateState(prevState, newState);
+      });
+    }, [getUpdatedState]);
+
+    const syncHeightWithFlushSycn = () => {
+      const newState = getUpdatedState();
+
+      if (isEmpty$1(newState)) {
+        return;
+      } // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+
+
+      ReactDOM.flushSync(() => {
+        setState(prevState => {
+          return updateState(prevState, newState);
+        });
+      });
+    };
+
     React__namespace.useEffect(() => {
       const handleResize = debounce$1(() => {
-        renders.current = 0;
-        syncHeight();
+        renders.current = 0; // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
+        // ResizeObserver's handler that runs because of the change in the layout is trying to
+        // access a dom node that is no longer there (as the fallback component is being shown instead).
+        // See https://github.com/mui/material-ui/issues/32640
+        // TODO: Add tests that will ensure the component is not failing when
+        // replaced by Suspense with a fallback, once React is updated to version 18
+
+        if (inputRef.current) {
+          syncHeightWithFlushSycn();
+        }
       });
       const containerWindow = ownerWindow(inputRef.current);
       containerWindow.addEventListener('resize', handleResize);
@@ -14535,7 +15325,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
           resizeObserver.disconnect();
         }
       };
-    }, [syncHeight]);
+    });
     useEnhancedEffect$1(() => {
       syncHeight();
     });
@@ -14626,12 +15416,14 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   } ;
   var TextareaAutosize$1 = TextareaAutosize;
 
-  function createMixins(breakpoints, spacing, mixins) {
+  function createMixins(breakpoints, mixins) {
     return _extends({
       toolbar: {
         minHeight: 56,
-        [`${breakpoints.up('xs')} and (orientation: landscape)`]: {
-          minHeight: 48
+        [breakpoints.up('xs')]: {
+          '@media (orientation: landscape)': {
+            minHeight: 48
+          }
         },
         [breakpoints.up('sm')]: {
           minHeight: 64
@@ -14640,7 +15432,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     }, mixins);
   }
 
-  const _excluded$28 = ["mode", "contrastThreshold", "tonalOffset"];
+  const _excluded$27 = ["mode", "contrastThreshold", "tonalOffset"];
   const light = {
     // The colors used to style the text.
     text: {
@@ -14824,7 +15616,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       contrastThreshold = 3,
       tonalOffset = 0.2
     } = palette,
-          other = _objectWithoutPropertiesLoose(palette, _excluded$28);
+          other = _objectWithoutPropertiesLoose(palette, _excluded$27);
 
     const primary = palette.primary || getDefaultPrimary(mode);
     const secondary = palette.secondary || getDefaultSecondary(mode);
@@ -14907,7 +15699,8 @@ const theme2 = createTheme({ palette: {
 
     const paletteOutput = deepmerge(_extends({
       // A collection of common colors.
-      common: common$1,
+      common: _extends({}, common$1),
+      // prevent mutable object.
       // The palette mode, can be light or dark.
       mode,
       // The colors used to represent primary interface elements for a user.
@@ -14960,7 +15753,7 @@ const theme2 = createTheme({ palette: {
     return paletteOutput;
   }
 
-  const _excluded$27 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+  const _excluded$26 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
 
   function round$1(value) {
     return Math.round(value * 1e5) / 1e5;
@@ -14993,7 +15786,7 @@ const theme2 = createTheme({ palette: {
       allVariants,
       pxToRem: pxToRem2
     } = _ref,
-          other = _objectWithoutPropertiesLoose(_ref, _excluded$27);
+          other = _objectWithoutPropertiesLoose(_ref, _excluded$26);
 
     {
       if (typeof fontSize !== 'number') {
@@ -15061,7 +15854,7 @@ const theme2 = createTheme({ palette: {
   const shadows = ['none', createShadow(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
   var shadows$1 = shadows;
 
-  const _excluded$26 = ["duration", "easing", "delay"];
+  const _excluded$25 = ["duration", "easing", "delay"];
   // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
   // to learn the context in which each easing should be used.
   const easing = {
@@ -15116,7 +15909,7 @@ const theme2 = createTheme({ palette: {
         easing: easingOption = mergedEasing.easeInOut,
         delay = 0
       } = options,
-            other = _objectWithoutPropertiesLoose(options, _excluded$26);
+            other = _objectWithoutPropertiesLoose(options, _excluded$25);
 
       {
         const isString = value => typeof value === 'string'; // IE11 support, replace with Number.isNaN
@@ -15172,21 +15965,21 @@ const theme2 = createTheme({ palette: {
   };
   var zIndex$1 = zIndex;
 
-  const _excluded$25 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+  const _excluded$24 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
 
-  function createTheme$1(options = {}, ...args) {
+  function createTheme(options = {}, ...args) {
     const {
       mixins: mixinsInput = {},
       palette: paletteInput = {},
       transitions: transitionsInput = {},
       typography: typographyInput = {}
     } = options,
-          other = _objectWithoutPropertiesLoose(options, _excluded$25);
+          other = _objectWithoutPropertiesLoose(options, _excluded$24);
 
     const palette = createPalette(paletteInput);
-    const systemTheme = createTheme$2(options);
+    const systemTheme = createTheme$1(options);
     let muiTheme = deepmerge(systemTheme, {
-      mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
+      mixins: createMixins(systemTheme.breakpoints, mixinsInput),
       palette,
       // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
       shadows: shadows$1.slice(),
@@ -15243,11 +16036,11 @@ const theme2 = createTheme({ palette: {
       }
     }
 
-    return createTheme$1(...args);
+    return createTheme(...args);
   }
 
   function createMuiStrictModeTheme(options, ...args) {
-    return createTheme$1(deepmerge({
+    return createTheme(deepmerge({
       unstable_strictMode: true
     }, options), ...args);
   }
@@ -15454,7 +16247,7 @@ Use unitless line heights instead.` );
     return theme;
   }
 
-  const defaultTheme$2 = createTheme$1();
+  const defaultTheme$2 = createTheme();
   var defaultTheme$3 = defaultTheme$2;
 
   function useTheme() {
@@ -15505,52 +16298,396 @@ You have to import it from @mui/styles.
 See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }
 
-  const _excluded$24 = ["colorSchemes", "opacity"],
-        _excluded2$9 = ["palette"];
-  const defaultOpacity = {
-    active: 0.54,
-    hover: 0.04,
-    selected: 0.08,
-    disabled: 0.26,
-    focus: 0.12
+  function getPaperUtilityClass(slot) {
+    return generateUtilityClass('MuiPaper', slot);
+  }
+  const paperClasses = generateUtilityClasses('MuiPaper', ['root', 'rounded', 'outlined', 'elevation', 'elevation0', 'elevation1', 'elevation2', 'elevation3', 'elevation4', 'elevation5', 'elevation6', 'elevation7', 'elevation8', 'elevation9', 'elevation10', 'elevation11', 'elevation12', 'elevation13', 'elevation14', 'elevation15', 'elevation16', 'elevation17', 'elevation18', 'elevation19', 'elevation20', 'elevation21', 'elevation22', 'elevation23', 'elevation24']);
+  var paperClasses$1 = paperClasses;
+
+  const _excluded$23 = ["className", "component", "elevation", "square", "variant"];
+  const getOverlayAlpha = elevation => {
+    let alphaValue;
+
+    if (elevation < 1) {
+      alphaValue = 5.11916 * elevation ** 2;
+    } else {
+      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+    }
+
+    return (alphaValue / 100).toFixed(2);
   };
 
-  function createTheme(options = {}, ...args) {
-    var _colorSchemesInput$li, _colorSchemesInput$da;
+  const useUtilityClasses$1L = ownerState => {
+    const {
+      square,
+      elevation,
+      variant,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ['root', variant, !square && 'rounded', variant === 'elevation' && `elevation${elevation}`]
+    };
+    return composeClasses(slots, getPaperUtilityClass, classes);
+  };
+
+  const PaperRoot = styled$1('div', {
+    name: 'MuiPaper',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const {
+        ownerState
+      } = props;
+      return [styles.root, styles[ownerState.variant], !ownerState.square && styles.rounded, ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => {
+    var _theme$vars$overlays;
+
+    return _extends({
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      color: (theme.vars || theme).palette.text.primary,
+      transition: theme.transitions.create('box-shadow')
+    }, !ownerState.square && {
+      borderRadius: theme.shape.borderRadius
+    }, ownerState.variant === 'outlined' && {
+      border: `1px solid ${(theme.vars || theme).palette.divider}`
+    }, ownerState.variant === 'elevation' && _extends({
+      boxShadow: (theme.vars || theme).shadows[ownerState.elevation]
+    }, !theme.vars && theme.palette.mode === 'dark' && {
+      backgroundImage: `linear-gradient(${alpha('#fff', getOverlayAlpha(ownerState.elevation))}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`
+    }, theme.vars && {
+      backgroundImage: (_theme$vars$overlays = theme.vars.overlays) == null ? void 0 : _theme$vars$overlays[ownerState.elevation]
+    }));
+  });
+  const Paper = /*#__PURE__*/React__namespace.forwardRef(function Paper(inProps, ref) {
+    const props = useThemeProps({
+      props: inProps,
+      name: 'MuiPaper'
+    });
+
+    const {
+      className,
+      component = 'div',
+      elevation = 1,
+      square = false,
+      variant = 'elevation'
+    } = props,
+          other = _objectWithoutPropertiesLoose(props, _excluded$23);
+
+    const ownerState = _extends({}, props, {
+      component,
+      elevation,
+      square,
+      variant
+    });
+
+    const classes = useUtilityClasses$1L(ownerState);
+
+    {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const theme = useTheme();
+
+      if (theme.shadows[elevation] === undefined) {
+        console.error([`MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`, `Please make sure that \`theme.shadows[${elevation}]\` is defined.`].join('\n'));
+      }
+    }
+
+    return /*#__PURE__*/jsxRuntime_1(PaperRoot, _extends({
+      as: component,
+      ownerState: ownerState,
+      className: clsx(classes.root, className),
+      ref: ref
+    }, other));
+  });
+  Paper.propTypes
+  /* remove-proptypes */
+  = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+
+    /**
+     * The content of the component.
+     */
+    children: PropTypes.node,
+
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: PropTypes.object,
+
+    /**
+     * @ignore
+     */
+    className: PropTypes.string,
+
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: PropTypes.elementType,
+
+    /**
+     * Shadow depth, corresponds to `dp` in the spec.
+     * It accepts values between 0 and 24 inclusive.
+     * @default 1
+     */
+    elevation: chainPropTypes(integerPropType, props => {
+      const {
+        elevation,
+        variant
+      } = props;
+
+      if (elevation > 0 && variant === 'outlined') {
+        return new Error(`MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`);
+      }
+
+      return null;
+    }),
+
+    /**
+     * If `true`, rounded corners are disabled.
+     * @default false
+     */
+    square: PropTypes.bool,
+
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object]),
+
+    /**
+     * The variant to use.
+     * @default 'elevation'
+     */
+    variant: PropTypes
+    /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['elevation', 'outlined']), PropTypes.string])
+  } ;
+  var Paper$1 = Paper;
+
+  const _excluded$22 = ["colorSchemes", "cssVarPrefix"],
+        _excluded2$9 = ["palette"];
+  const defaultDarkOverlays = [...Array(25)].map((_, index) => {
+    if (index === 0) {
+      return undefined;
+    }
+
+    const overlay = getOverlayAlpha(index);
+    return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
+  });
+
+  function assignNode(obj, keys) {
+    keys.forEach(k => {
+      if (!obj[k]) {
+        obj[k] = {};
+      }
+    });
+  }
+
+  function setColor(obj, key, defaultValue) {
+    obj[key] = obj[key] || defaultValue;
+  }
+
+  const createGetCssVar = (cssVarPrefix = 'mui') => createGetCssVar$1(cssVarPrefix);
+  function extendTheme(options = {}, ...args) {
+    var _colorSchemesInput$li, _colorSchemesInput$da, _colorSchemesInput$li2, _colorSchemesInput$li3, _colorSchemesInput$da2, _colorSchemesInput$da3;
 
     const {
       colorSchemes: colorSchemesInput = {},
-      opacity: opacityInput = {}
+      cssVarPrefix = 'mui'
     } = options,
-          input = _objectWithoutPropertiesLoose(options, _excluded$24); // eslint-disable-next-line prefer-const
+          input = _objectWithoutPropertiesLoose(options, _excluded$22);
 
+    const getCssVar = createGetCssVar(cssVarPrefix);
 
-    let _createThemeWithoutVa = createTheme$1(_extends({}, input, colorSchemesInput.light && {
+    const _createThemeWithoutVa = createTheme(_extends({}, input, colorSchemesInput.light && {
       palette: (_colorSchemesInput$li = colorSchemesInput.light) == null ? void 0 : _colorSchemesInput$li.palette
     })),
-        {
+          {
       palette: lightPalette
     } = _createThemeWithoutVa,
-        muiTheme = _objectWithoutPropertiesLoose(_createThemeWithoutVa, _excluded2$9);
+          muiTheme = _objectWithoutPropertiesLoose(_createThemeWithoutVa, _excluded2$9);
 
     const {
       palette: darkPalette
-    } = createTheme$1({
+    } = createTheme({
       palette: _extends({
         mode: 'dark'
       }, (_colorSchemesInput$da = colorSchemesInput.dark) == null ? void 0 : _colorSchemesInput$da.palette)
     });
-    colorSchemesInput.light = {
-      palette: lightPalette
-    };
-    colorSchemesInput.dark = {
-      palette: darkPalette
-    };
-    const colorSchemes = {};
-    Object.keys(colorSchemesInput).forEach(key => {
-      const palette = createPalette(colorSchemesInput[key].palette);
+
+    let theme = _extends({}, muiTheme, {
+      cssVarPrefix,
+      getCssVar,
+      colorSchemes: _extends({}, colorSchemesInput, {
+        light: _extends({}, colorSchemesInput.light, {
+          palette: lightPalette,
+          opacity: _extends({
+            inputPlaceholder: 0.42,
+            inputUnderline: 0.42,
+            switchTrackDisabled: 0.12,
+            switchTrack: 0.38
+          }, (_colorSchemesInput$li2 = colorSchemesInput.light) == null ? void 0 : _colorSchemesInput$li2.opacity),
+          overlays: ((_colorSchemesInput$li3 = colorSchemesInput.light) == null ? void 0 : _colorSchemesInput$li3.overlays) || []
+        }),
+        dark: _extends({}, colorSchemesInput.dark, {
+          palette: darkPalette,
+          opacity: _extends({
+            inputPlaceholder: 0.5,
+            inputUnderline: 0.7,
+            switchTrackDisabled: 0.2,
+            switchTrack: 0.3
+          }, (_colorSchemesInput$da2 = colorSchemesInput.dark) == null ? void 0 : _colorSchemesInput$da2.opacity),
+          overlays: ((_colorSchemesInput$da3 = colorSchemesInput.dark) == null ? void 0 : _colorSchemesInput$da3.overlays) || defaultDarkOverlays
+        })
+      })
+    });
+
+    Object.keys(theme.colorSchemes).forEach(key => {
+      const palette = theme.colorSchemes[key].palette; // attach black & white channels to common node
+
+      if (key === 'light') {
+        setColor(palette.common, 'background', '#fff');
+        setColor(palette.common, 'onBackground', '#000');
+      } else {
+        setColor(palette.common, 'background', '#000');
+        setColor(palette.common, 'onBackground', '#fff');
+      } // assign component variables
+
+
+      assignNode(palette, ['Alert', 'AppBar', 'Avatar', 'Chip', 'FilledInput', 'LinearProgress', 'Skeleton', 'Slider', 'SnackbarContent', 'SpeedDialAction', 'StepConnector', 'StepContent', 'Switch', 'TableCell', 'Tooltip']);
+
+      if (key === 'light') {
+        setColor(palette.Alert, 'errorColor', darken(palette.error.light, 0.6));
+        setColor(palette.Alert, 'infoColor', darken(palette.info.light, 0.6));
+        setColor(palette.Alert, 'successColor', darken(palette.success.light, 0.6));
+        setColor(palette.Alert, 'warningColor', darken(palette.warning.light, 0.6));
+        setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-main'));
+        setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-main'));
+        setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-main'));
+        setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-main'));
+        setColor(palette.Alert, 'errorFilledColor', lightPalette.getContrastText(palette.error.main));
+        setColor(palette.Alert, 'infoFilledColor', lightPalette.getContrastText(palette.info.main));
+        setColor(palette.Alert, 'successFilledColor', lightPalette.getContrastText(palette.success.main));
+        setColor(palette.Alert, 'warningFilledColor', lightPalette.getContrastText(palette.warning.main));
+        setColor(palette.Alert, 'errorStandardBg', lighten(palette.error.light, 0.9));
+        setColor(palette.Alert, 'infoStandardBg', lighten(palette.info.light, 0.9));
+        setColor(palette.Alert, 'successStandardBg', lighten(palette.success.light, 0.9));
+        setColor(palette.Alert, 'warningStandardBg', lighten(palette.warning.light, 0.9));
+        setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-light'));
+        setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-light'));
+        setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-light'));
+        setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-light'));
+        setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
+        setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
+        setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
+        setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
+        setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
+        setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
+        setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
+        setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
+        setColor(palette.LinearProgress, 'primaryBg', lighten(palette.primary.main, 0.62));
+        setColor(palette.LinearProgress, 'secondaryBg', lighten(palette.secondary.main, 0.62));
+        setColor(palette.LinearProgress, 'errorBg', lighten(palette.error.main, 0.62));
+        setColor(palette.LinearProgress, 'infoBg', lighten(palette.info.main, 0.62));
+        setColor(palette.LinearProgress, 'successBg', lighten(palette.success.main, 0.62));
+        setColor(palette.LinearProgress, 'warningBg', lighten(palette.warning.main, 0.62));
+        setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.11)`);
+        setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
+        setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
+        setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
+        setColor(palette.Slider, 'infoTrack', lighten(palette.info.main, 0.62));
+        setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
+        setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
+        const snackbarContentBackground = emphasize(palette.background.default, 0.8);
+        setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
+        setColor(palette.SnackbarContent, 'color', lightPalette.getContrastText(snackbarContentBackground));
+        setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
+        setColor(palette.StepConnector, 'border', getCssVar('palette-grey-400'));
+        setColor(palette.StepContent, 'border', getCssVar('palette-grey-400'));
+        setColor(palette.Switch, 'defaultColor', getCssVar('palette-common-white'));
+        setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-100'));
+        setColor(palette.Switch, 'primaryDisabledColor', lighten(palette.primary.main, 0.62));
+        setColor(palette.Switch, 'secondaryDisabledColor', lighten(palette.secondary.main, 0.62));
+        setColor(palette.Switch, 'errorDisabledColor', lighten(palette.error.main, 0.62));
+        setColor(palette.Switch, 'infoDisabledColor', lighten(palette.info.main, 0.62));
+        setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
+        setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
+        setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
+        setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
+      } else {
+        setColor(palette.Alert, 'errorColor', lighten(palette.error.light, 0.6));
+        setColor(palette.Alert, 'infoColor', lighten(palette.info.light, 0.6));
+        setColor(palette.Alert, 'successColor', lighten(palette.success.light, 0.6));
+        setColor(palette.Alert, 'warningColor', lighten(palette.warning.light, 0.6));
+        setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-dark'));
+        setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-dark'));
+        setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-dark'));
+        setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-dark'));
+        setColor(palette.Alert, 'errorFilledColor', darkPalette.getContrastText(palette.error.dark));
+        setColor(palette.Alert, 'infoFilledColor', darkPalette.getContrastText(palette.info.dark));
+        setColor(palette.Alert, 'successFilledColor', darkPalette.getContrastText(palette.success.dark));
+        setColor(palette.Alert, 'warningFilledColor', darkPalette.getContrastText(palette.warning.dark));
+        setColor(palette.Alert, 'errorStandardBg', darken(palette.error.light, 0.9));
+        setColor(palette.Alert, 'infoStandardBg', darken(palette.info.light, 0.9));
+        setColor(palette.Alert, 'successStandardBg', darken(palette.success.light, 0.9));
+        setColor(palette.Alert, 'warningStandardBg', darken(palette.warning.light, 0.9));
+        setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
+        setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
+        setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
+        setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
+        setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-900'));
+        setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
+
+        setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
+
+        setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
+        setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
+        setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
+        setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
+        setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
+        setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
+        setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
+        setColor(palette.LinearProgress, 'primaryBg', darken(palette.primary.main, 0.5));
+        setColor(palette.LinearProgress, 'secondaryBg', darken(palette.secondary.main, 0.5));
+        setColor(palette.LinearProgress, 'errorBg', darken(palette.error.main, 0.5));
+        setColor(palette.LinearProgress, 'infoBg', darken(palette.info.main, 0.5));
+        setColor(palette.LinearProgress, 'successBg', darken(palette.success.main, 0.5));
+        setColor(palette.LinearProgress, 'warningBg', darken(palette.warning.main, 0.5));
+        setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.13)`);
+        setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
+        setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
+        setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
+        setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
+        setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
+        setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
+        const snackbarContentBackground = emphasize(palette.background.default, 0.98);
+        setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
+        setColor(palette.SnackbarContent, 'color', darkPalette.getContrastText(snackbarContentBackground));
+        setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
+        setColor(palette.StepConnector, 'border', getCssVar('palette-grey-600'));
+        setColor(palette.StepContent, 'border', getCssVar('palette-grey-600'));
+        setColor(palette.Switch, 'defaultColor', getCssVar('palette-grey-300'));
+        setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-600'));
+        setColor(palette.Switch, 'primaryDisabledColor', darken(palette.primary.main, 0.55));
+        setColor(palette.Switch, 'secondaryDisabledColor', darken(palette.secondary.main, 0.55));
+        setColor(palette.Switch, 'errorDisabledColor', darken(palette.error.main, 0.55));
+        setColor(palette.Switch, 'infoDisabledColor', darken(palette.info.main, 0.55));
+        setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
+        setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
+        setColor(palette.TableCell, 'border', darken(alpha(palette.divider, 1), 0.68));
+        setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
+      }
+
+      palette.common.backgroundChannel = colorChannel(palette.common.background);
+      palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
+      palette.dividerChannel = colorChannel(palette.divider);
       Object.keys(palette).forEach(color => {
-        const colors = palette[color];
+        const colors = palette[color]; // Color palettes: primary, secondary, error, info, success, and warning
 
         if (colors.main) {
           palette[color].mainChannel = colorChannel(colors.main);
@@ -15564,43 +16701,53 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
           palette[color].darkChannel = colorChannel(colors.dark);
         }
 
+        if (colors.contrastText) {
+          palette[color].contrastTextChannel = colorChannel(colors.contrastText);
+        } // Text colors: text.primary, text.secondary
+
+
         if (colors.primary) {
           palette[color].primaryChannel = colorChannel(colors.primary);
         }
 
         if (colors.secondary) {
           palette[color].secondaryChannel = colorChannel(colors.secondary);
+        } // Action colors: action.active, action.selected
+
+
+        if (colors.active) {
+          palette[color].activeChannel = colorChannel(colors.active);
         }
 
-        if (colors.disabled) {
-          palette[color].disabledChannel = colorChannel(colors.disabled);
+        if (colors.selected) {
+          palette[color].selectedChannel = colorChannel(colors.selected);
         }
       });
-      colorSchemes[key] = {
-        palette
-      };
     });
-
-    const opacity = _extends({}, defaultOpacity, opacityInput);
-
-    muiTheme.colorSchemes = colorSchemes;
-    muiTheme.opacity = opacity;
-    muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
-    return muiTheme;
+    theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+    return theme;
   }
 
-  const defaultTheme$1 = createTheme();
+  const shouldSkipGeneratingVar = keys => {
+    var _keys$;
+
+    return !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) || keys[0] === 'palette' && !!((_keys$ = keys[1]) != null && _keys$.match(/(mode|contrastThreshold|tonalOffset)/));
+  };
+
+  const defaultTheme$1 = extendTheme();
   const {
-    CssVarsProvider: Experimental_CssVarsProvider,
+    CssVarsProvider,
     useColorScheme,
     getInitColorSchemeScript
   } = createCssVarsProvider({
     theme: defaultTheme$1,
+    attribute: 'data-mui-color-scheme',
+    modeStorageKey: 'mui-mode',
+    colorSchemeStorageKey: 'mui-color-scheme',
     defaultColorScheme: {
       light: 'light',
       dark: 'dark'
     },
-    prefix: 'md',
     resolveTheme: theme => {
       const newTheme = _extends({}, theme, {
         typography: createTypography(theme.palette, theme.typography)
@@ -15608,7 +16755,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
       return newTheme;
     },
-    shouldSkipGeneratingVar: keys => !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/)
+    shouldSkipGeneratingVar
   });
 
   function getSvgIconUtilityClass(slot) {
@@ -15617,9 +16764,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const svgIconClasses = generateUtilityClasses('MuiSvgIcon', ['root', 'colorPrimary', 'colorSecondary', 'colorAction', 'colorError', 'colorDisabled', 'fontSizeInherit', 'fontSizeSmall', 'fontSizeMedium', 'fontSizeLarge']);
   var svgIconClasses$1 = svgIconClasses;
 
-  const _excluded$23 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
+  const _excluded$21 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
 
-  const useUtilityClasses$1M = ownerState => {
+  const useUtilityClasses$1K = ownerState => {
     const {
       color,
       fontSize,
@@ -15644,7 +16791,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => {
-    var _theme$transitions, _theme$transitions$cr, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _theme$palette$ownerS, _theme$palette, _theme$palette$ownerS2, _theme$palette2, _theme$palette2$actio, _theme$palette3, _theme$palette3$actio;
+    var _theme$transitions, _theme$transitions$cr, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
 
     return {
       userSelect: 'none',
@@ -15663,9 +16810,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         large: ((_theme$typography3 = theme.typography) == null ? void 0 : (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875'
       }[ownerState.fontSize],
       // TODO v5 deprecate, v6 remove for sx
-      color: (_theme$palette$ownerS = (_theme$palette = theme.palette) == null ? void 0 : (_theme$palette$ownerS2 = _theme$palette[ownerState.color]) == null ? void 0 : _theme$palette$ownerS2.main) != null ? _theme$palette$ownerS : {
-        action: (_theme$palette2 = theme.palette) == null ? void 0 : (_theme$palette2$actio = _theme$palette2.action) == null ? void 0 : _theme$palette2$actio.active,
-        disabled: (_theme$palette3 = theme.palette) == null ? void 0 : (_theme$palette3$actio = _theme$palette3.action) == null ? void 0 : _theme$palette3$actio.disabled,
+      color: (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
+        action: (_palette2 = (theme.vars || theme).palette) == null ? void 0 : (_palette2$action = _palette2.action) == null ? void 0 : _palette2$action.active,
+        disabled: (_palette3 = (theme.vars || theme).palette) == null ? void 0 : (_palette3$action = _palette3.action) == null ? void 0 : _palette3$action.disabled,
         inherit: undefined
       }[ownerState.color]
     };
@@ -15687,7 +16834,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       titleAccess,
       viewBox = '0 0 24 24'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$23);
+          other = _objectWithoutPropertiesLoose(props, _excluded$21);
 
     const ownerState = _extends({}, props, {
       color,
@@ -15704,7 +16851,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       more.viewBox = viewBox;
     }
 
-    const classes = useUtilityClasses$1M(ownerState);
+    const classes = useUtilityClasses$1K(ownerState);
     return /*#__PURE__*/jsxRuntime_2(SvgIconRoot, _extends({
       as: component,
       className: clsx(classes.root, className),
@@ -16839,9 +17986,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const collapseClasses = generateUtilityClasses('MuiCollapse', ['root', 'horizontal', 'vertical', 'entered', 'hidden', 'wrapper', 'wrapperInner']);
   var collapseClasses$1 = collapseClasses;
 
-  const _excluded$22 = ["addEndListener", "children", "className", "collapsedSize", "component", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "orientation", "style", "timeout", "TransitionComponent"];
+  const _excluded$20 = ["addEndListener", "children", "className", "collapsedSize", "component", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "orientation", "style", "timeout", "TransitionComponent"];
 
-  const useUtilityClasses$1L = ownerState => {
+  const useUtilityClasses$1J = ownerState => {
     const {
       orientation,
       classes
@@ -16942,14 +18089,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       // eslint-disable-next-line react/prop-types
       TransitionComponent = Transition$1
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$22);
+          other = _objectWithoutPropertiesLoose(props, _excluded$20);
 
     const ownerState = _extends({}, props, {
       orientation,
       collapsedSize: collapsedSizeProp
     });
 
-    const classes = useUtilityClasses$1L(ownerState);
+    const classes = useUtilityClasses$1J(ownerState);
     const theme = useTheme();
     const timer = React__namespace.useRef();
     const wrapperRef = React__namespace.useRef(null);
@@ -17243,172 +18390,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   Collapse.muiSupportAuto = true;
   var Collapse$1 = Collapse;
 
-  function getPaperUtilityClass(slot) {
-    return generateUtilityClass('MuiPaper', slot);
-  }
-  const paperClasses = generateUtilityClasses('MuiPaper', ['root', 'rounded', 'outlined', 'elevation', 'elevation0', 'elevation1', 'elevation2', 'elevation3', 'elevation4', 'elevation5', 'elevation6', 'elevation7', 'elevation8', 'elevation9', 'elevation10', 'elevation11', 'elevation12', 'elevation13', 'elevation14', 'elevation15', 'elevation16', 'elevation17', 'elevation18', 'elevation19', 'elevation20', 'elevation21', 'elevation22', 'elevation23', 'elevation24']);
-  var paperClasses$1 = paperClasses;
-
-  const _excluded$21 = ["className", "component", "elevation", "square", "variant"];
-
-  const getOverlayAlpha = elevation => {
-    let alphaValue;
-
-    if (elevation < 1) {
-      alphaValue = 5.11916 * elevation ** 2;
-    } else {
-      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
-    }
-
-    return (alphaValue / 100).toFixed(2);
-  };
-
-  const useUtilityClasses$1K = ownerState => {
-    const {
-      square,
-      elevation,
-      variant,
-      classes
-    } = ownerState;
-    const slots = {
-      root: ['root', variant, !square && 'rounded', variant === 'elevation' && `elevation${elevation}`]
-    };
-    return composeClasses(slots, getPaperUtilityClass, classes);
-  };
-
-  const PaperRoot = styled$1('div', {
-    name: 'MuiPaper',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const {
-        ownerState
-      } = props;
-      return [styles.root, styles[ownerState.variant], !ownerState.square && styles.rounded, ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`]];
-    }
-  })(({
-    theme,
-    ownerState
-  }) => _extends({
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    transition: theme.transitions.create('box-shadow')
-  }, !ownerState.square && {
-    borderRadius: theme.shape.borderRadius
-  }, ownerState.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.divider}`
-  }, ownerState.variant === 'elevation' && _extends({
-    boxShadow: theme.shadows[ownerState.elevation]
-  }, theme.palette.mode === 'dark' && {
-    backgroundImage: `linear-gradient(${alpha('#fff', getOverlayAlpha(ownerState.elevation))}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`
-  })));
-  const Paper = /*#__PURE__*/React__namespace.forwardRef(function Paper(inProps, ref) {
-    const props = useThemeProps({
-      props: inProps,
-      name: 'MuiPaper'
-    });
-
-    const {
-      className,
-      component = 'div',
-      elevation = 1,
-      square = false,
-      variant = 'elevation'
-    } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$21);
-
-    const ownerState = _extends({}, props, {
-      component,
-      elevation,
-      square,
-      variant
-    });
-
-    const classes = useUtilityClasses$1K(ownerState);
-
-    {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const theme = useTheme();
-
-      if (theme.shadows[elevation] === undefined) {
-        console.error([`MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`, `Please make sure that \`theme.shadows[${elevation}]\` is defined.`].join('\n'));
-      }
-    }
-
-    return /*#__PURE__*/jsxRuntime_1(PaperRoot, _extends({
-      as: component,
-      ownerState: ownerState,
-      className: clsx(classes.root, className),
-      ref: ref
-    }, other));
-  });
-  Paper.propTypes
-  /* remove-proptypes */
-  = {
-    // ----------------------------- Warning --------------------------------
-    // | These PropTypes are generated from the TypeScript type definitions |
-    // |     To update them edit the d.ts file and run "yarn proptypes"     |
-    // ----------------------------------------------------------------------
-
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes: PropTypes.object,
-
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-
-    /**
-     * The component used for the root node.
-     * Either a string to use a HTML element or a component.
-     */
-    component: PropTypes.elementType,
-
-    /**
-     * Shadow depth, corresponds to `dp` in the spec.
-     * It accepts values between 0 and 24 inclusive.
-     * @default 1
-     */
-    elevation: chainPropTypes(integerPropType, props => {
-      const {
-        elevation,
-        variant
-      } = props;
-
-      if (elevation > 0 && variant === 'outlined') {
-        return new Error(`MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`);
-      }
-
-      return null;
-    }),
-
-    /**
-     * If `true`, rounded corners are disabled.
-     * @default false
-     */
-    square: PropTypes.bool,
-
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object]),
-
-    /**
-     * The variant to use.
-     * @default 'elevation'
-     */
-    variant: PropTypes
-    /* @typescript-to-proptypes-ignore */
-    .oneOfType([PropTypes.oneOf(['elevation', 'outlined']), PropTypes.string])
-  } ;
-  var Paper$1 = Paper;
-
   /**
    * @ignore - internal component.
    * @type {React.Context<{} | {expanded: boolean, disabled: boolean, toggle: () => void}>}
@@ -17428,9 +18409,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const accordionClasses = generateUtilityClasses('MuiAccordion', ['root', 'rounded', 'expanded', 'disabled', 'gutters', 'region']);
   var accordionClasses$1 = accordionClasses;
 
-  const _excluded$20 = ["children", "className", "defaultExpanded", "disabled", "disableGutters", "expanded", "onChange", "square", "TransitionComponent", "TransitionProps"];
+  const _excluded$1$ = ["children", "className", "defaultExpanded", "disabled", "disableGutters", "expanded", "onChange", "square", "TransitionComponent", "TransitionProps"];
 
-  const useUtilityClasses$1J = ownerState => {
+  const useUtilityClasses$1I = ownerState => {
     const {
       classes,
       square,
@@ -17475,7 +18456,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         height: 1,
         content: '""',
         opacity: 1,
-        backgroundColor: theme.palette.divider,
+        backgroundColor: (theme.vars || theme).palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition)
       },
       '&:first-of-type': {
@@ -17500,7 +18481,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         }
       },
       [`&.${accordionClasses$1.disabled}`]: {
-        backgroundColor: theme.palette.action.disabledBackground
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground
       }
     };
   }, ({
@@ -17509,12 +18490,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }) => _extends({}, !ownerState.square && {
     borderRadius: 0,
     '&:first-of-type': {
-      borderTopLeftRadius: theme.shape.borderRadius,
-      borderTopRightRadius: theme.shape.borderRadius
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius
     },
     '&:last-of-type': {
-      borderBottomLeftRadius: theme.shape.borderRadius,
-      borderBottomRightRadius: theme.shape.borderRadius,
+      borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
       // Fix a rendering issue on Edge
       '@supports (-ms-ime-align: auto)': {
         borderBottomLeftRadius: 0,
@@ -17544,7 +18525,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       TransitionComponent = Collapse$1,
       TransitionProps
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$20);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1$);
 
     const [expanded, setExpandedState] = useControlled({
       controlled: expandedProp,
@@ -17574,7 +18555,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       expanded
     });
 
-    const classes = useUtilityClasses$1J(ownerState);
+    const classes = useUtilityClasses$1I(ownerState);
     return /*#__PURE__*/jsxRuntime_2(AccordionRoot, _extends({
       className: clsx(classes.root, className),
       ref: ref,
@@ -17697,9 +18678,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const accordionActionsClasses = generateUtilityClasses('MuiAccordionActions', ['root', 'spacing']);
   var accordionActionsClasses$1 = accordionActionsClasses;
 
-  const _excluded$1$ = ["className", "disableSpacing"];
+  const _excluded$1_ = ["className", "disableSpacing"];
 
-  const useUtilityClasses$1I = ownerState => {
+  const useUtilityClasses$1H = ownerState => {
     const {
       classes,
       disableSpacing
@@ -17741,13 +18722,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       className,
       disableSpacing = false
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1$);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1_);
 
     const ownerState = _extends({}, props, {
       disableSpacing
     });
 
-    const classes = useUtilityClasses$1I(ownerState);
+    const classes = useUtilityClasses$1H(ownerState);
     return /*#__PURE__*/jsxRuntime_1(AccordionActionsRoot, _extends({
       className: clsx(classes.root, className),
       ref: ref,
@@ -17796,9 +18777,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const accordionDetailsClasses = generateUtilityClasses('MuiAccordionDetails', ['root']);
   var accordionDetailsClasses$1 = accordionDetailsClasses;
 
-  const _excluded$1_ = ["className"];
+  const _excluded$1Z = ["className"];
 
-  const useUtilityClasses$1H = ownerState => {
+  const useUtilityClasses$1G = ownerState => {
     const {
       classes
     } = ownerState;
@@ -17826,10 +18807,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const {
       className
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1_);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1Z);
 
     const ownerState = props;
-    const classes = useUtilityClasses$1H(ownerState);
+    const classes = useUtilityClasses$1G(ownerState);
     return /*#__PURE__*/jsxRuntime_1(AccordionDetailsRoot, _extends({
       className: clsx(classes.root, className),
       ref: ref,
@@ -17962,7 +18943,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const touchRippleClasses = generateUtilityClasses('MuiTouchRipple', ['root', 'ripple', 'rippleVisible', 'ripplePulsate', 'child', 'childLeaving', 'childPulsate']);
   var touchRippleClasses$1 = touchRippleClasses;
 
-  const _excluded$1Z = ["center", "classes", "className"];
+  const _excluded$1Y = ["center", "classes", "className"];
 
   let _$3 = t => t,
       _t$3,
@@ -18092,7 +19073,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       classes = {},
       className
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1Z);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1Y);
 
     const [ripples, setRipples] = React__namespace.useState([]);
     const nextKey = React__namespace.useRef(0);
@@ -18150,12 +19131,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
       } = options;
 
-      if (event.type === 'mousedown' && ignoringMouseDown.current) {
+      if ((event == null ? void 0 : event.type) === 'mousedown' && ignoringMouseDown.current) {
         ignoringMouseDown.current = false;
         return;
       }
 
-      if (event.type === 'touchstart') {
+      if ((event == null ? void 0 : event.type) === 'touchstart') {
         ignoringMouseDown.current = true;
       }
 
@@ -18171,7 +19152,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       let rippleY;
       let rippleSize;
 
-      if (center || event.clientX === 0 && event.clientY === 0 || !event.clientX && !event.touches) {
+      if (center || event === undefined || event.clientX === 0 && event.clientY === 0 || !event.clientX && !event.touches) {
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
@@ -18196,7 +19177,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       } // Touche devices
 
 
-      if (event.touches) {
+      if (event != null && event.touches) {
         // check that this isn't another touchstart due to multitouch
         // otherwise we will only clear a single timer when unmounting while two
         // are running
@@ -18239,7 +19220,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       clearTimeout(startTimer.current); // The touch interaction occurs too quickly.
       // We still want to show ripple effect.
 
-      if (event.type === 'touchend' && startTimerCommit.current) {
+      if ((event == null ? void 0 : event.type) === 'touchend' && startTimerCommit.current) {
         startTimerCommit.current();
         startTimerCommit.current = null;
         startTimer.current = setTimeout(() => {
@@ -18300,9 +19281,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const buttonBaseClasses = generateUtilityClasses('MuiButtonBase', ['root', 'disabled', 'focusVisible']);
   var buttonBaseClasses$1 = buttonBaseClasses;
 
-  const _excluded$1Y = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
+  const _excluded$1X = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
 
-  const useUtilityClasses$1G = ownerState => {
+  const useUtilityClasses$1F = ownerState => {
     const {
       disabled,
       focusVisible,
@@ -18407,7 +19388,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       touchRippleRef,
       type
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1Y);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1X);
 
     const buttonRef = React__namespace.useRef(null);
     const rippleRef = React__namespace.useRef(null);
@@ -18604,7 +19585,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       focusVisible
     });
 
-    const classes = useUtilityClasses$1G(ownerState);
+    const classes = useUtilityClasses$1F(ownerState);
     return /*#__PURE__*/jsxRuntime_2(ButtonBaseRoot, _extends({
       as: ComponentProp,
       className: clsx(classes.root, className),
@@ -18838,9 +19819,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const accordionSummaryClasses = generateUtilityClasses('MuiAccordionSummary', ['root', 'expanded', 'focusVisible', 'disabled', 'gutters', 'contentGutters', 'content', 'expandIconWrapper']);
   var accordionSummaryClasses$1 = accordionSummaryClasses;
 
-  const _excluded$1X = ["children", "className", "expandIcon", "focusVisibleClassName", "onClick"];
+  const _excluded$1W = ["children", "className", "expandIcon", "focusVisibleClassName", "onClick"];
 
-  const useUtilityClasses$1F = ownerState => {
+  const useUtilityClasses$1E = ownerState => {
     const {
       classes,
       expanded,
@@ -18873,10 +19854,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
       [`&.${accordionSummaryClasses$1.focusVisible}`]: {
-        backgroundColor: theme.palette.action.focus
+        backgroundColor: (theme.vars || theme).palette.action.focus
       },
       [`&.${accordionSummaryClasses$1.disabled}`]: {
-        opacity: theme.palette.action.disabledOpacity
+        opacity: (theme.vars || theme).palette.action.disabledOpacity
       },
       [`&:hover:not(.${accordionSummaryClasses$1.disabled})`]: {
         cursor: 'pointer'
@@ -18914,7 +19895,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => ({
     display: 'flex',
-    color: theme.palette.action.active,
+    color: (theme.vars || theme).palette.action.active,
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest
@@ -18936,7 +19917,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       focusVisibleClassName,
       onClick
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1X);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1W);
 
     const {
       disabled = false,
@@ -18961,7 +19942,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       disableGutters
     });
 
-    const classes = useUtilityClasses$1F(ownerState);
+    const classes = useUtilityClasses$1E(ownerState);
     return /*#__PURE__*/jsxRuntime_2(AccordionSummaryRoot, _extends({
       focusRipple: false,
       disableRipple: true,
@@ -19047,9 +20028,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const iconButtonClasses = generateUtilityClasses('MuiIconButton', ['root', 'disabled', 'colorInherit', 'colorPrimary', 'colorSecondary', 'edgeStart', 'edgeEnd', 'sizeSmall', 'sizeMedium', 'sizeLarge']);
   var iconButtonClasses$1 = iconButtonClasses;
 
-  const _excluded$1W = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
+  const _excluded$1V = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
 
-  const useUtilityClasses$1E = ownerState => {
+  const useUtilityClasses$1D = ownerState => {
     const {
       classes,
       disabled,
@@ -19083,13 +20064,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     borderRadius: '50%',
     overflow: 'visible',
     // Explicitly set the default value to solve a bug on IE11.
-    color: theme.palette.action.active,
+    color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest
     })
   }, !ownerState.disableRipple && {
     '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.active} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
@@ -19105,10 +20086,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }) => _extends({}, ownerState.color === 'inherit' && {
     color: 'inherit'
   }, ownerState.color !== 'inherit' && ownerState.color !== 'default' && _extends({
-    color: theme.palette[ownerState.color].main
+    color: (theme.vars || theme).palette[ownerState.color].main
   }, !ownerState.disableRipple && {
     '&:hover': {
-      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
@@ -19123,7 +20104,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }, {
     [`&.${iconButtonClasses$1.disabled}`]: {
       backgroundColor: 'transparent',
-      color: theme.palette.action.disabled
+      color: (theme.vars || theme).palette.action.disabled
     }
   }));
   /**
@@ -19146,7 +20127,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       disableFocusRipple = false,
       size = 'medium'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1W);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1V);
 
     const ownerState = _extends({}, props, {
       edge,
@@ -19156,7 +20137,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       size
     });
 
-    const classes = useUtilityClasses$1E(ownerState);
+    const classes = useUtilityClasses$1D(ownerState);
     return /*#__PURE__*/jsxRuntime_1(IconButtonRoot, _extends({
       className: clsx(classes.root, className),
       centerRipple: true,
@@ -19277,9 +20258,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
   var _CloseIcon;
 
-  const _excluded$1V = ["action", "children", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"];
+  const _excluded$1U = ["action", "children", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"];
 
-  const useUtilityClasses$1D = ownerState => {
+  const useUtilityClasses$1C = ownerState => {
     const {
       variant,
       color,
@@ -19316,22 +20297,30 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       display: 'flex',
       padding: '6px 16px'
     }, color && ownerState.variant === 'standard' && {
-      color: getColor(theme.palette[color].light, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
-      [`& .${alertClasses$1.icon}`]: {
+      color: theme.vars ? theme.vars.palette.Alert[`${color}Color`] : getColor(theme.palette[color].light, 0.6),
+      backgroundColor: theme.vars ? theme.vars.palette.Alert[`${color}StandardBg`] : getBackgroundColor(theme.palette[color].light, 0.9),
+      [`& .${alertClasses$1.icon}`]: theme.vars ? {
+        color: theme.vars.palette.Alert[`${color}IconColor`]
+      } : {
         color: theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light
       }
     }, color && ownerState.variant === 'outlined' && {
-      color: getColor(theme.palette[color].light, 0.6),
-      border: `1px solid ${theme.palette[color].light}`,
-      [`& .${alertClasses$1.icon}`]: {
+      color: theme.vars ? theme.vars.palette.Alert[`${color}Color`] : getColor(theme.palette[color].light, 0.6),
+      border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+      [`& .${alertClasses$1.icon}`]: theme.vars ? {
+        color: theme.vars.palette.Alert[`${color}IconColor`]
+      } : {
         color: theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light
       }
-    }, color && ownerState.variant === 'filled' && {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main
-    });
+    }, color && ownerState.variant === 'filled' && _extends({
+      fontWeight: theme.typography.fontWeightMedium
+    }, theme.vars ? {
+      color: theme.vars.palette.Alert[`${color}FilledColor`],
+      backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`]
+    } : {
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
+      color: theme.palette.getContrastText(theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main)
+    }));
   });
   const AlertIcon = styled$1('div', {
     name: 'MuiAlert',
@@ -19349,7 +20338,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     slot: 'Message',
     overridesResolver: (props, styles) => styles.message
   })({
-    padding: '8px 0'
+    padding: '8px 0',
+    minWidth: 0,
+    overflow: 'auto'
   });
   const AlertAction = styled$1('div', {
     name: 'MuiAlert',
@@ -19395,7 +20386,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       severity = 'success',
       variant = 'standard'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1V);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1U);
 
     const ownerState = _extends({}, props, {
       color,
@@ -19403,7 +20394,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1D(ownerState);
+    const classes = useUtilityClasses$1C(ownerState);
     return /*#__PURE__*/jsxRuntime_2(AlertRoot, _extends({
       role: role,
       elevation: 0,
@@ -19420,6 +20411,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         className: classes.message,
         children: children
       }), action != null ? /*#__PURE__*/jsxRuntime_1(AlertAction, {
+        ownerState: ownerState,
         className: classes.action,
         children: action
       }) : null, action == null && onClose ? /*#__PURE__*/jsxRuntime_1(AlertAction, {
@@ -19543,9 +20535,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const typographyClasses = generateUtilityClasses('MuiTypography', ['root', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'inherit', 'button', 'caption', 'overline', 'alignLeft', 'alignRight', 'alignCenter', 'alignJustify', 'noWrap', 'gutterBottom', 'paragraph']);
   var typographyClasses$1 = typographyClasses;
 
-  const _excluded$1U = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
+  const _excluded$1T = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
 
-  const useUtilityClasses$1C = ownerState => {
+  const useUtilityClasses$1B = ownerState => {
     const {
       align,
       gutterBottom,
@@ -19631,7 +20623,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant = 'body1',
       variantMapping = defaultVariantMapping
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1U);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1T);
 
     const ownerState = _extends({}, props, {
       align,
@@ -19646,7 +20638,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     });
 
     const Component = component || (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) || 'span';
-    const classes = useUtilityClasses$1C(ownerState);
+    const classes = useUtilityClasses$1B(ownerState);
     return /*#__PURE__*/jsxRuntime_1(TypographyRoot, _extends({
       as: Component,
       ref: ref,
@@ -19754,9 +20746,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const alertTitleClasses = generateUtilityClasses('MuiAlertTitle', ['root']);
   var alertTitleClasses$1 = alertTitleClasses;
 
-  const _excluded$1T = ["className"];
+  const _excluded$1S = ["className"];
 
-  const useUtilityClasses$1B = ownerState => {
+  const useUtilityClasses$1A = ownerState => {
     const {
       classes
     } = ownerState;
@@ -19787,10 +20779,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const {
       className
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1T);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1S);
 
     const ownerState = props;
-    const classes = useUtilityClasses$1B(ownerState);
+    const classes = useUtilityClasses$1A(ownerState);
     return /*#__PURE__*/jsxRuntime_1(AlertTitleRoot, _extends({
       gutterBottom: true,
       component: "div",
@@ -19835,9 +20827,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const appBarClasses = generateUtilityClasses('MuiAppBar', ['root', 'positionFixed', 'positionAbsolute', 'positionSticky', 'positionStatic', 'positionRelative', 'colorDefault', 'colorPrimary', 'colorSecondary', 'colorInherit', 'colorTransparent']);
   var appBarClasses$1 = appBarClasses;
 
-  const _excluded$1S = ["className", "color", "enableColorOnDark", "position"];
+  const _excluded$1R = ["className", "color", "enableColorOnDark", "position"];
 
-  const useUtilityClasses$1A = ownerState => {
+  const useUtilityClasses$1z = ownerState => {
     const {
       color,
       position,
@@ -19847,7 +20839,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       root: ['root', `color${capitalize(color)}`, `position${capitalize(position)}`]
     };
     return composeClasses(slots, getAppBarUtilityClass, classes);
-  };
+  }; // var2 is the fallback.
+  // Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
+
+
+  const joinVars = (var1, var2) => `${var1 == null ? void 0 : var1.replace(')', '')}, ${var2})`;
 
   const AppBarRoot = styled$1(Paper$1, {
     name: 'MuiAppBar',
@@ -19872,7 +20868,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       flexShrink: 0
     }, ownerState.position === 'fixed' && {
       position: 'fixed',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -19882,14 +20878,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       }
     }, ownerState.position === 'absolute' && {
       position: 'absolute',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0
     }, ownerState.position === 'sticky' && {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0
@@ -19897,7 +20893,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       position: 'static'
     }, ownerState.position === 'relative' && {
       position: 'relative'
-    }, ownerState.color === 'default' && {
+    }, !theme.vars && _extends({}, ownerState.color === 'default' && {
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault)
     }, ownerState.color && ownerState.color !== 'default' && ownerState.color !== 'inherit' && ownerState.color !== 'transparent' && {
@@ -19913,6 +20909,19 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       color: 'inherit'
     }, theme.palette.mode === 'dark' && {
       backgroundImage: 'none'
+    })), theme.vars && _extends({}, ownerState.color === 'default' && {
+      '--AppBar-background': ownerState.enableColorOnDark ? theme.vars.palette.AppBar.defaultBg : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette.AppBar.defaultBg),
+      '--AppBar-color': ownerState.enableColorOnDark ? theme.vars.palette.text.primary : joinVars(theme.vars.palette.AppBar.darkColor, theme.vars.palette.text.primary)
+    }, ownerState.color && !ownerState.color.match(/^(default|inherit|transparent)$/) && {
+      '--AppBar-background': ownerState.enableColorOnDark ? theme.vars.palette[ownerState.color].main : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette[ownerState.color].main),
+      '--AppBar-color': ownerState.enableColorOnDark ? theme.vars.palette[ownerState.color].contrastText : joinVars(theme.vars.palette.AppBar.darkColor, theme.vars.palette[ownerState.color].contrastText)
+    }, {
+      backgroundColor: 'var(--AppBar-background)',
+      color: ownerState.color === 'inherit' ? 'inherit' : 'var(--AppBar-color)'
+    }, ownerState.color === 'transparent' && {
+      backgroundImage: 'none',
+      backgroundColor: 'transparent',
+      color: 'inherit'
     }));
   });
   const AppBar = /*#__PURE__*/React__namespace.forwardRef(function AppBar(inProps, ref) {
@@ -19927,7 +20936,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       enableColorOnDark = false,
       position = 'fixed'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1S);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1R);
 
     const ownerState = _extends({}, props, {
       color,
@@ -19935,7 +20944,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       enableColorOnDark
     });
 
-    const classes = useUtilityClasses$1A(ownerState);
+    const classes = useUtilityClasses$1z(ownerState);
     return /*#__PURE__*/jsxRuntime_1(AppBarRoot, _extends({
       square: true,
       component: "header",
@@ -20146,9 +21155,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const listSubheaderClasses = generateUtilityClasses('MuiListSubheader', ['root', 'colorPrimary', 'colorInherit', 'gutters', 'inset', 'sticky']);
   var listSubheaderClasses$1 = listSubheaderClasses;
 
-  const _excluded$1R = ["className", "color", "component", "disableGutters", "disableSticky", "inset"];
+  const _excluded$1Q = ["className", "color", "component", "disableGutters", "disableSticky", "inset"];
 
-  const useUtilityClasses$1z = ownerState => {
+  const useUtilityClasses$1y = ownerState => {
     const {
       classes,
       color,
@@ -20178,12 +21187,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     boxSizing: 'border-box',
     lineHeight: '48px',
     listStyle: 'none',
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(14)
   }, ownerState.color === 'primary' && {
-    color: theme.palette.primary.main
+    color: (theme.vars || theme).palette.primary.main
   }, ownerState.color === 'inherit' && {
     color: 'inherit'
   }, !ownerState.disableGutters && {
@@ -20195,7 +21204,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: (theme.vars || theme).palette.background.paper
   }));
   const ListSubheader = /*#__PURE__*/React__namespace.forwardRef(function ListSubheader(inProps, ref) {
     const props = useThemeProps({
@@ -20211,7 +21220,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       disableSticky = false,
       inset = false
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1R);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1Q);
 
     const ownerState = _extends({}, props, {
       color,
@@ -20221,7 +21230,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       inset
     });
 
-    const classes = useUtilityClasses$1z(ownerState);
+    const classes = useUtilityClasses$1y(ownerState);
     return /*#__PURE__*/jsxRuntime_1(ListSubheaderRoot, _extends({
       as: component,
       className: clsx(classes.root, className),
@@ -20299,9 +21308,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const chipClasses = generateUtilityClasses('MuiChip', ['root', 'sizeSmall', 'sizeMedium', 'colorPrimary', 'colorSecondary', 'disabled', 'clickable', 'clickableColorPrimary', 'clickableColorSecondary', 'deletable', 'deletableColorPrimary', 'deletableColorSecondary', 'outlined', 'filled', 'outlinedPrimary', 'outlinedSecondary', 'avatar', 'avatarSmall', 'avatarMedium', 'avatarColorPrimary', 'avatarColorSecondary', 'icon', 'iconSmall', 'iconMedium', 'iconColorPrimary', 'iconColorSecondary', 'label', 'labelSmall', 'labelMedium', 'deleteIcon', 'deleteIconSmall', 'deleteIconMedium', 'deleteIconColorPrimary', 'deleteIconColorSecondary', 'deleteIconOutlinedColorPrimary', 'deleteIconOutlinedColorSecondary', 'focusVisible']);
   var chipClasses$1 = chipClasses;
 
-  const _excluded$1Q = ["avatar", "className", "clickable", "color", "component", "deleteIcon", "disabled", "icon", "label", "onClick", "onDelete", "onKeyDown", "onKeyUp", "size", "variant"];
+  const _excluded$1P = ["avatar", "className", "clickable", "color", "component", "deleteIcon", "disabled", "icon", "label", "onClick", "onDelete", "onKeyDown", "onKeyUp", "size", "variant"];
 
-  const useUtilityClasses$1y = ownerState => {
+  const useUtilityClasses$1x = ownerState => {
     const {
       classes,
       disabled,
@@ -20362,6 +21371,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
+    const textColor = theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
     return _extends({
       maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
@@ -20370,8 +21380,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       alignItems: 'center',
       justifyContent: 'center',
       height: 32,
-      color: theme.palette.text.primary,
-      backgroundColor: theme.palette.action.selected,
+      color: (theme.vars || theme).palette.text.primary,
+      backgroundColor: (theme.vars || theme).palette.action.selected,
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
@@ -20387,7 +21397,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses$1.disabled}`]: {
-        opacity: theme.palette.action.disabledOpacity,
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none'
       },
       [`& .${chipClasses$1.avatar}`]: {
@@ -20395,16 +21405,16 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         marginRight: -6,
         width: 24,
         height: 24,
-        color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12)
       },
       [`& .${chipClasses$1.avatarColorPrimary}`]: {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.dark
+        color: (theme.vars || theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars || theme).palette.primary.dark
       },
       [`& .${chipClasses$1.avatarColorSecondary}`]: {
-        color: theme.palette.secondary.contrastText,
-        backgroundColor: theme.palette.secondary.dark
+        color: (theme.vars || theme).palette.secondary.contrastText,
+        backgroundColor: (theme.vars || theme).palette.secondary.dark
       },
       [`& .${chipClasses$1.avatarSmall}`]: {
         marginLeft: 4,
@@ -20414,7 +21424,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         fontSize: theme.typography.pxToRem(10)
       },
       [`& .${chipClasses$1.icon}`]: _extends({
-        color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6
       }, ownerState.size === 'small' && {
@@ -20426,35 +21436,35 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       }),
       [`& .${chipClasses$1.deleteIcon}`]: _extends({
         WebkitTapHighlightColor: 'transparent',
-        color: deleteIconColor,
+        color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)` : deleteIconColor,
         fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
-          color: alpha(deleteIconColor, 0.4)
+          color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)` : alpha(deleteIconColor, 0.4)
         }
       }, ownerState.size === 'small' && {
         fontSize: 16,
         marginRight: 4,
         marginLeft: -4
       }, ownerState.color !== 'default' && {
-        color: alpha(theme.palette[ownerState.color].contrastText, 0.7),
+        color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)` : alpha(theme.palette[ownerState.color].contrastText, 0.7),
         '&:hover, &:active': {
-          color: theme.palette[ownerState.color].contrastText
+          color: (theme.vars || theme).palette[ownerState.color].contrastText
         }
       })
     }, ownerState.size === 'small' && {
       height: 24
     }, ownerState.color !== 'default' && {
-      backgroundColor: theme.palette[ownerState.color].main,
-      color: theme.palette[ownerState.color].contrastText
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].contrastText
     }, ownerState.onDelete && {
       [`&.${chipClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       }
     }, ownerState.onDelete && ownerState.color !== 'default' && {
       [`&.${chipClasses$1.focusVisible}`]: {
-        backgroundColor: theme.palette[ownerState.color].dark
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
       }
     });
   }, ({
@@ -20465,29 +21475,29 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     WebkitTapHighlightColor: 'transparent',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
     },
     [`&.${chipClasses$1.focusVisible}`]: {
-      backgroundColor: alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
     },
     '&:active': {
-      boxShadow: theme.shadows[1]
+      boxShadow: (theme.vars || theme).shadows[1]
     }
   }, ownerState.clickable && ownerState.color !== 'default' && {
     [`&:hover, &.${chipClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette[ownerState.color].dark
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
     }
   }), ({
     theme,
     ownerState
   }) => _extends({}, ownerState.variant === 'outlined' && {
     backgroundColor: 'transparent',
-    border: `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]}`,
+    border: theme.vars ? `1px solid ${theme.vars.palette.Chip.defaultBorder}` : `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]}`,
     [`&.${chipClasses$1.clickable}:hover`]: {
-      backgroundColor: theme.palette.action.hover
+      backgroundColor: (theme.vars || theme).palette.action.hover
     },
     [`&.${chipClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     [`& .${chipClasses$1.avatar}`]: {
       marginLeft: 4
@@ -20508,18 +21518,18 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       marginRight: 3
     }
   }, ownerState.variant === 'outlined' && ownerState.color !== 'default' && {
-    color: theme.palette[ownerState.color].main,
-    border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.7)}`,
+    color: (theme.vars || theme).palette[ownerState.color].main,
+    border: `1px solid ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : alpha(theme.palette[ownerState.color].main, 0.7)}`,
     [`&.${chipClasses$1.clickable}:hover`]: {
-      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity)
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity)
     },
     [`&.${chipClasses$1.focusVisible}`]: {
-      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity)
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.focusOpacity})` : alpha(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity)
     },
     [`& .${chipClasses$1.deleteIcon}`]: {
-      color: alpha(theme.palette[ownerState.color].main, 0.7),
+      color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : alpha(theme.palette[ownerState.color].main, 0.7),
       '&:hover, &:active': {
-        color: theme.palette[ownerState.color].main
+        color: (theme.vars || theme).palette[ownerState.color].main
       }
     }
   }));
@@ -20579,7 +21589,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       size = 'medium',
       variant = 'filled'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1Q);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1P);
 
     const chipRef = React__namespace.useRef(null);
     const handleRef = useForkRef(chipRef, ref);
@@ -20635,7 +21645,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1y(ownerState);
+    const classes = useUtilityClasses$1x(ownerState);
     const moreProps = component === ButtonBase$1 ? _extends({
       component: ComponentProp || 'div',
       focusVisibleClassName: classes.focusVisible
@@ -20905,7 +21915,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const inputBaseClasses = generateUtilityClasses('MuiInputBase', ['root', 'formControl', 'focused', 'disabled', 'adornedStart', 'adornedEnd', 'error', 'sizeSmall', 'multiline', 'colorSecondary', 'fullWidth', 'hiddenLabel', 'input', 'inputSizeSmall', 'inputMultiline', 'inputTypeSearch', 'inputAdornedStart', 'inputAdornedEnd', 'inputHiddenLabel']);
   var inputBaseClasses$1 = inputBaseClasses;
 
-  const _excluded$1P = ["aria-describedby", "autoComplete", "autoFocus", "className", "color", "components", "componentsProps", "defaultValue", "disabled", "disableInjectingGlobalStyles", "endAdornment", "error", "fullWidth", "id", "inputComponent", "inputProps", "inputRef", "margin", "maxRows", "minRows", "multiline", "name", "onBlur", "onChange", "onClick", "onFocus", "onKeyDown", "onKeyUp", "placeholder", "readOnly", "renderSuffix", "rows", "size", "startAdornment", "type", "value"];
+  const _excluded$1O = ["aria-describedby", "autoComplete", "autoFocus", "className", "color", "components", "componentsProps", "defaultValue", "disabled", "disableInjectingGlobalStyles", "endAdornment", "error", "fullWidth", "id", "inputComponent", "inputProps", "inputRef", "margin", "maxRows", "minRows", "multiline", "name", "onBlur", "onChange", "onClick", "onFocus", "onKeyDown", "onKeyUp", "placeholder", "readOnly", "renderSuffix", "rows", "size", "startAdornment", "type", "value"];
   const rootOverridesResolver = (props, styles) => {
     const {
       ownerState
@@ -20919,7 +21929,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     return [styles.input, ownerState.size === 'small' && styles.inputSizeSmall, ownerState.multiline && styles.inputMultiline, ownerState.type === 'search' && styles.inputTypeSearch, ownerState.startAdornment && styles.inputAdornedStart, ownerState.endAdornment && styles.inputAdornedEnd, ownerState.hiddenLabel && styles.inputHiddenLabel];
   };
 
-  const useUtilityClasses$1x = ownerState => {
+  const useUtilityClasses$1w = ownerState => {
     const {
       classes,
       color,
@@ -20950,7 +21960,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({}, theme.typography.body1, {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     lineHeight: '1.4375em',
     // 23px
     boxSizing: 'border-box',
@@ -20960,7 +21970,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     display: 'inline-flex',
     alignItems: 'center',
     [`&.${inputBaseClasses$1.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
       cursor: 'default'
     }
   }, ownerState.multiline && _extends({
@@ -20979,17 +21989,25 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => {
     const light = theme.palette.mode === 'light';
-    const placeholder = {
-      color: 'currentColor',
-      opacity: light ? 0.42 : 0.5,
+
+    const placeholder = _extends({
+      color: 'currentColor'
+    }, theme.vars ? {
+      opacity: theme.vars.opacity.inputPlaceholder
+    } : {
+      opacity: light ? 0.42 : 0.5
+    }, {
       transition: theme.transitions.create('opacity', {
         duration: theme.transitions.duration.shorter
       })
-    };
+    });
+
     const placeholderHidden = {
       opacity: '0 !important'
     };
-    const placeholderVisible = {
+    const placeholderVisible = theme.vars ? {
+      opacity: theme.vars.opacity.inputPlaceholder
+    } : {
       opacity: light ? 0.42 : 0.5
     };
     return _extends({
@@ -21050,7 +22068,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       [`&.${inputBaseClasses$1.disabled}`]: {
         opacity: 1,
         // Reset iOS opacity
-        WebkitTextFillColor: theme.palette.text.disabled // Fix opacity Safari bug
+        WebkitTextFillColor: (theme.vars || theme).palette.text.disabled // Fix opacity Safari bug
 
       },
       '&:-webkit-autofill': {
@@ -21131,7 +22149,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       type = 'text',
       value: valueProp
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1P);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1O);
 
     const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
     const {
@@ -21331,7 +22349,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       type
     });
 
-    const classes = useUtilityClasses$1x(ownerState);
+    const classes = useUtilityClasses$1w(ownerState);
     const Root = components.Root || InputBaseRoot;
     const rootProps = componentsProps.root || {};
     const Input = components.Input || InputBaseComponent;
@@ -21659,9 +22677,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
   var _ClearIcon, _ArrowDropDownIcon;
 
-  const _excluded$1O = ["autoComplete", "autoHighlight", "autoSelect", "blurOnSelect", "ChipProps", "className", "clearIcon", "clearOnBlur", "clearOnEscape", "clearText", "closeText", "componentsProps", "defaultValue", "disableClearable", "disableCloseOnSelect", "disabled", "disabledItemsFocusable", "disableListWrap", "disablePortal", "filterOptions", "filterSelectedOptions", "forcePopupIcon", "freeSolo", "fullWidth", "getLimitTagsText", "getOptionDisabled", "getOptionLabel", "isOptionEqualToValue", "groupBy", "handleHomeEndKeys", "id", "includeInputInList", "inputValue", "limitTags", "ListboxComponent", "ListboxProps", "loading", "loadingText", "multiple", "noOptionsText", "onChange", "onClose", "onHighlightChange", "onInputChange", "onOpen", "open", "openOnFocus", "openText", "options", "PaperComponent", "PopperComponent", "popupIcon", "readOnly", "renderGroup", "renderInput", "renderOption", "renderTags", "selectOnFocus", "size", "value"];
+  const _excluded$1N = ["autoComplete", "autoHighlight", "autoSelect", "blurOnSelect", "ChipProps", "className", "clearIcon", "clearOnBlur", "clearOnEscape", "clearText", "closeText", "componentsProps", "defaultValue", "disableClearable", "disableCloseOnSelect", "disabled", "disabledItemsFocusable", "disableListWrap", "disablePortal", "filterOptions", "filterSelectedOptions", "forcePopupIcon", "freeSolo", "fullWidth", "getLimitTagsText", "getOptionDisabled", "getOptionLabel", "isOptionEqualToValue", "groupBy", "handleHomeEndKeys", "id", "includeInputInList", "inputValue", "limitTags", "ListboxComponent", "ListboxProps", "loading", "loadingText", "multiple", "noOptionsText", "onChange", "onClose", "onHighlightChange", "onInputChange", "onOpen", "open", "openOnFocus", "openText", "options", "PaperComponent", "PopperComponent", "popupIcon", "readOnly", "renderGroup", "renderInput", "renderOption", "renderTags", "selectOnFocus", "size", "value"];
 
-  const useUtilityClasses$1w = ownerState => {
+  const useUtilityClasses$1v = ownerState => {
     const {
       classes,
       disablePortal,
@@ -21869,7 +22887,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    zIndex: theme.zIndex.modal
+    zIndex: (theme.vars || theme).zIndex.modal
   }, ownerState.disablePortal && {
     position: 'absolute'
   }));
@@ -21889,7 +22907,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     padding: '14px 16px'
   }));
   const AutocompleteNoOptions = styled$1('div', {
@@ -21899,7 +22917,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     padding: '14px 16px'
   }));
   const AutocompleteListbox = styled$1('div', {
@@ -21932,30 +22950,30 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         minHeight: 'auto'
       },
       [`&.${autocompleteClasses$1.focused}`]: {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: (theme.vars || theme).palette.action.hover,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
         }
       },
       '&[aria-disabled="true"]': {
-        opacity: theme.palette.action.disabledOpacity,
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none'
       },
       [`&.${autocompleteClasses$1.focusVisible}`]: {
-        backgroundColor: theme.palette.action.focus
+        backgroundColor: (theme.vars || theme).palette.action.focus
       },
       '&[aria-selected="true"]': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
         [`&.${autocompleteClasses$1.focused}`]: {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+          backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: theme.palette.action.selected
+            backgroundColor: (theme.vars || theme).palette.action.selected
           }
         },
         [`&.${autocompleteClasses$1.focusVisible}`]: {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+          backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
         }
       }
     }
@@ -21967,7 +22985,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     top: -8
   }));
   const AutocompleteGroupUl = styled$1('ul', {
@@ -21981,7 +22999,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }
   });
   const Autocomplete = /*#__PURE__*/React__namespace.forwardRef(function Autocomplete(inProps, ref) {
-    var _componentsProps$clea, _componentsProps$pape;
+    var _componentsProps$clea, _componentsProps$popu, _componentsProps$popp, _componentsProps$pape;
 
     const props = useThemeProps({
       props: inProps,
@@ -22044,7 +23062,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       selectOnFocus = !props.freeSolo,
       size = 'medium'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1O);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1N);
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
 
@@ -22071,7 +23089,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       componentName: 'Autocomplete'
     }));
     const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
-    const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+    const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false; // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
 
     const ownerState = _extends({}, props, {
       disablePortal,
@@ -22084,17 +23102,17 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       size
     });
 
-    const classes = useUtilityClasses$1w(ownerState);
+    const classes = useUtilityClasses$1v(ownerState);
     let startAdornment;
 
     if (multiple && value.length > 0) {
       const getCustomizedTagProps = params => _extends({
-        className: clsx(classes.tag),
+        className: classes.tag,
         disabled
       }, getTagProps(params));
 
       if (renderTags) {
-        startAdornment = renderTags(value, getCustomizedTagProps);
+        startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
       } else {
         startAdornment = value.map((option, index) => /*#__PURE__*/jsxRuntime_1(Chip$1, _extends({
           label: getOptionLabel(option),
@@ -22163,10 +23181,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
           fullWidth: true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
-          InputProps: {
+          InputProps: _extends({
             ref: setAnchorEl,
             className: classes.inputRoot,
-            startAdornment,
+            startAdornment
+          }, (hasClearIcon || hasPopupIcon) && {
             endAdornment: /*#__PURE__*/jsxRuntime_2(AutocompleteEndAdornment, {
               className: classes.endAdornment,
               ownerState: ownerState,
@@ -22181,21 +23200,21 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
                 disabled: disabled,
                 "aria-label": popupOpen ? closeText : openText,
                 title: popupOpen ? closeText : openText,
-                className: clsx(classes.popupIndicator),
-                ownerState: ownerState,
+                ownerState: ownerState
+              }, componentsProps.popupIndicator, {
+                className: clsx(classes.popupIndicator, (_componentsProps$popu = componentsProps.popupIndicator) == null ? void 0 : _componentsProps$popu.className),
                 children: popupIcon
               })) : null]
             })
-          },
+          }),
           inputProps: _extends({
-            className: clsx(classes.input),
+            className: classes.input,
             disabled,
             readOnly
           }, getInputProps())
         })
-      })), popupOpen && anchorEl ? /*#__PURE__*/jsxRuntime_1(AutocompletePopper, {
+      })), popupOpen && anchorEl ? /*#__PURE__*/jsxRuntime_1(AutocompletePopper, _extends({
         as: PopperComponent,
-        className: clsx(classes.popper),
         disablePortal: disablePortal,
         style: {
           width: anchorEl ? anchorEl.clientWidth : null
@@ -22203,7 +23222,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         ownerState: ownerState,
         role: "presentation",
         anchorEl: anchorEl,
-        open: true,
+        open: true
+      }, componentsProps.popper, {
+        className: clsx(classes.popper, (_componentsProps$popp = componentsProps.popper) == null ? void 0 : _componentsProps$popp.className),
         children: /*#__PURE__*/jsxRuntime_2(AutocompletePaper, _extends({
           ownerState: ownerState,
           as: PaperComponent
@@ -22240,7 +23261,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
             })
           })) : null]
         }))
-      }) : null]
+      })) : null]
     });
   });
   Autocomplete.propTypes
@@ -22342,7 +23363,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      */
     componentsProps: PropTypes.shape({
       clearIndicator: PropTypes.object,
-      paper: PropTypes.object
+      paper: PropTypes.object,
+      popper: PropTypes.object,
+      popupIndicator: PropTypes.object
     }),
 
     /**
@@ -22670,6 +23693,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      *
      * @param {T[]} value The `value` provided to the component.
      * @param {function} getTagProps A tag props getter.
+     * @param {object} ownerState The state of the Autocomplete component.
      * @returns {ReactNode}
      */
     renderTags: PropTypes.func,
@@ -22720,9 +23744,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const avatarClasses = generateUtilityClasses('MuiAvatar', ['root', 'colorDefault', 'circular', 'rounded', 'square', 'img', 'fallback']);
   var avatarClasses$1 = avatarClasses;
 
-  const _excluded$1N = ["alt", "children", "className", "component", "imgProps", "sizes", "src", "srcSet", "variant"];
+  const _excluded$1M = ["alt", "children", "className", "component", "imgProps", "sizes", "src", "srcSet", "variant"];
 
-  const useUtilityClasses$1v = ownerState => {
+  const useUtilityClasses$1u = ownerState => {
     const {
       classes,
       variant,
@@ -22763,13 +23787,16 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     overflow: 'hidden',
     userSelect: 'none'
   }, ownerState.variant === 'rounded' && {
-    borderRadius: theme.shape.borderRadius
+    borderRadius: (theme.vars || theme).shape.borderRadius
   }, ownerState.variant === 'square' && {
     borderRadius: 0
-  }, ownerState.colorDefault && {
-    color: theme.palette.background.default,
+  }, ownerState.colorDefault && _extends({
+    color: (theme.vars || theme).palette.background.default
+  }, theme.vars ? {
+    backgroundColor: theme.vars.palette.Avatar.defaultBg
+  } : {
     backgroundColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-  }));
+  })));
   const AvatarImg = styled$1('img', {
     name: 'MuiAvatar',
     slot: 'Img',
@@ -22858,7 +23885,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       srcSet,
       variant = 'circular'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1N);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1M);
 
     let children = null; // Use a hook instead of onError on the img element to support server-side rendering.
 
@@ -22875,7 +23902,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1v(ownerState);
+    const classes = useUtilityClasses$1u(ownerState);
 
     if (hasImgNotFailing) {
       children = /*#__PURE__*/jsxRuntime_1(AvatarImg, _extends({
@@ -22984,13 +24011,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const avatarGroupClasses = generateUtilityClasses('MuiAvatarGroup', ['root', 'avatar']);
   var avatarGroupClasses$1 = avatarGroupClasses;
 
-  const _excluded$1M = ["children", "className", "componentsProps", "max", "spacing", "total", "variant"];
-  const SPACINGS$1 = {
+  const _excluded$1L = ["children", "className", "componentsProps", "max", "spacing", "total", "variant"];
+  const SPACINGS$2 = {
     small: -16,
     medium: null
   };
 
-  const useUtilityClasses$1u = ownerState => {
+  const useUtilityClasses$1t = ownerState => {
     const {
       classes
     } = ownerState;
@@ -23011,7 +24038,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => ({
     [`& .${avatarClasses$1.root}`]: {
-      border: `2px solid ${theme.palette.background.default}`,
+      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
       boxSizing: 'content-box',
       marginLeft: -8,
       '&:last-child': {
@@ -23028,7 +24055,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    border: `2px solid ${theme.palette.background.default}`,
+    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
     marginLeft: -8,
     '&:last-child': {
@@ -23052,7 +24079,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       total,
       variant = 'circular'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1M);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1L);
 
     let clampedMax = max < 2 ? 2 : max;
 
@@ -23062,7 +24089,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1u(ownerState);
+    const classes = useUtilityClasses$1t(ownerState);
     const children = React__namespace.Children.toArray(childrenProp).filter(child => {
       {
         if (reactIs_2(child)) {
@@ -23081,7 +24108,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     clampedMax = Math.min(totalAvatars + 1, clampedMax);
     const maxAvatars = Math.min(children.length, clampedMax - 1);
     const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
-    const marginLeft = spacing && SPACINGS$1[spacing] !== undefined ? SPACINGS$1[spacing] : -spacing;
+    const marginLeft = spacing && SPACINGS$2[spacing] !== undefined ? SPACINGS$2[spacing] : -spacing;
     return /*#__PURE__*/jsxRuntime_2(AvatarGroupRoot, _extends({
       ownerState: ownerState,
       className: clsx(classes.root, className),
@@ -23179,7 +24206,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   } ;
   var AvatarGroup$1 = AvatarGroup;
 
-  const _excluded$1L = ["addEndListener", "appear", "children", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"];
+  const _excluded$1K = ["addEndListener", "appear", "children", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"];
   const styles$4 = {
     entering: {
       opacity: 1
@@ -23217,7 +24244,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       // eslint-disable-next-line react/prop-types
       TransitionComponent = Transition$1
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1L);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1K);
     const nodeRef = React__namespace.useRef(null);
     const foreignRef = useForkRef(children.ref, ref);
     const handleRef = useForkRef(nodeRef, foreignRef);
@@ -23400,9 +24427,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const backdropClasses = generateUtilityClasses('MuiBackdrop', ['root', 'invisible']);
   var backdropClasses$1 = backdropClasses;
 
-  const _excluded$1K = ["children", "component", "components", "componentsProps", "className", "invisible", "open", "transitionDuration", "TransitionComponent"];
+  const _excluded$1J = ["children", "component", "components", "componentsProps", "className", "invisible", "open", "transitionDuration", "TransitionComponent"];
 
-  const useUtilityClasses$1t = ownerState => {
+  const useUtilityClasses$1s = ownerState => {
     const {
       classes,
       invisible
@@ -23458,14 +24485,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       // eslint-disable-next-line react/prop-types
       TransitionComponent = Fade$1
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1K);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1J);
 
     const ownerState = _extends({}, props, {
       component,
       invisible
     });
 
-    const classes = useUtilityClasses$1t(ownerState);
+    const classes = useUtilityClasses$1s(ownerState);
     return /*#__PURE__*/jsxRuntime_1(TransitionComponent, _extends({
       in: open,
       timeout: transitionDuration
@@ -23569,11 +24596,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   'anchorOriginTopLeftCircular', 'anchorOriginTopLeftRectangular', 'anchorOriginTopRightCircular', 'anchorOriginTopRightRectangular', 'anchorOriginBottomLeftCircular', 'anchorOriginBottomLeftRectangular', 'anchorOriginBottomRightCircular', 'anchorOriginBottomRightRectangular']);
   var badgeClasses$1 = badgeClasses;
 
-  const _excluded$1J = ["anchorOrigin", "className", "component", "components", "componentsProps", "overlap", "color", "invisible", "max", "badgeContent", "showZero", "variant"];
+  const _excluded$1I = ["anchorOrigin", "className", "component", "components", "componentsProps", "overlap", "color", "invisible", "max", "badgeContent", "showZero", "variant"];
   const RADIUS_STANDARD = 10;
   const RADIUS_DOT = 4;
 
-  const useUtilityClasses$1s = ownerState => {
+  const useUtilityClasses$1r = ownerState => {
     const {
       color,
       anchorOrigin,
@@ -23636,8 +24663,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       duration: theme.transitions.duration.enteringScreen
     })
   }, ownerState.color !== 'default' && {
-    backgroundColor: theme.palette[ownerState.color].main,
-    color: theme.palette[ownerState.color].contrastText
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].contrastText
   }, ownerState.variant === 'dot' && {
     borderRadius: RADIUS_DOT,
     height: RADIUS_DOT * 2,
@@ -23738,7 +24765,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       showZero = false,
       variant: variantProp = 'standard'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1J);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1I);
 
     const prevProps = usePreviousProps$1({
       anchorOrigin: anchorOriginProp,
@@ -23767,7 +24794,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1s(ownerState);
+    const classes = useUtilityClasses$1r(ownerState);
     let displayValue;
 
     if (variant !== 'dot') {
@@ -23880,8 +24907,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      badge: PropTypes.object,
-      root: PropTypes.object
+      badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
 
     /**
@@ -23929,9 +24956,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const bottomNavigationClasses = generateUtilityClasses('MuiBottomNavigation', ['root']);
   var bottomNavigationClasses$1 = bottomNavigationClasses;
 
-  const _excluded$1I = ["children", "className", "component", "onChange", "showLabels", "value"];
+  const _excluded$1H = ["children", "className", "component", "onChange", "showLabels", "value"];
 
-  const useUtilityClasses$1r = ownerState => {
+  const useUtilityClasses$1q = ownerState => {
     const {
       classes
     } = ownerState;
@@ -23951,7 +24978,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     display: 'flex',
     justifyContent: 'center',
     height: 56,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: (theme.vars || theme).palette.background.paper
   }));
   const BottomNavigation = /*#__PURE__*/React__namespace.forwardRef(function BottomNavigation(inProps, ref) {
     const props = useThemeProps({
@@ -23967,14 +24994,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       showLabels = false,
       value
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1I);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1H);
 
     const ownerState = _extends({}, props, {
       component,
       showLabels
     });
 
-    const classes = useUtilityClasses$1r(ownerState);
+    const classes = useUtilityClasses$1q(ownerState);
     return /*#__PURE__*/jsxRuntime_1(BottomNavigationRoot, _extends({
       as: component,
       className: clsx(classes.root, className),
@@ -24064,9 +25091,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const bottomNavigationActionClasses = generateUtilityClasses('MuiBottomNavigationAction', ['root', 'iconOnly', 'selected', 'label']);
   var bottomNavigationActionClasses$1 = bottomNavigationActionClasses;
 
-  const _excluded$1H = ["className", "icon", "label", "onChange", "onClick", "selected", "showLabel", "value"];
+  const _excluded$1G = ["className", "icon", "label", "onChange", "onClick", "selected", "showLabel", "value"];
 
-  const useUtilityClasses$1q = ownerState => {
+  const useUtilityClasses$1p = ownerState => {
     const {
       classes,
       showLabel,
@@ -24098,7 +25125,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     padding: '0px 12px',
     minWidth: 80,
     maxWidth: 168,
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     flexDirection: 'column',
     flex: '1'
   }, !ownerState.showLabel && !ownerState.selected && {
@@ -24107,7 +25134,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     paddingTop: 0
   }, {
     [`&.${bottomNavigationActionClasses$1.selected}`]: {
-      color: theme.palette.primary.main
+      color: (theme.vars || theme).palette.primary.main
     }
   }));
   const BottomNavigationActionLabel = styled$1('span', {
@@ -24145,10 +25172,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       onClick,
       value
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1H);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1G);
 
     const ownerState = props;
-    const classes = useUtilityClasses$1q(ownerState);
+    const classes = useUtilityClasses$1p(ownerState);
 
     const handleChange = event => {
       if (onChange) {
@@ -24239,7 +25266,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   } ;
   var BottomNavigationAction$1 = BottomNavigationAction;
 
-  const defaultTheme = createTheme$1();
+  const defaultTheme = createTheme();
   const Box = createBox({
     defaultTheme,
     defaultClassName: 'MuiBox-root',
@@ -24337,9 +25364,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const breadcrumbsClasses = generateUtilityClasses('MuiBreadcrumbs', ['root', 'ol', 'li', 'separator']);
   var breadcrumbsClasses$1 = breadcrumbsClasses;
 
-  const _excluded$1G = ["children", "className", "component", "expandText", "itemsAfterCollapse", "itemsBeforeCollapse", "maxItems", "separator"];
+  const _excluded$1F = ["children", "className", "component", "expandText", "itemsAfterCollapse", "itemsBeforeCollapse", "maxItems", "separator"];
 
-  const useUtilityClasses$1p = ownerState => {
+  const useUtilityClasses$1o = ownerState => {
     const {
       classes
     } = ownerState;
@@ -24417,7 +25444,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       maxItems = 8,
       separator = '/'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1G);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1F);
 
     const [expanded, setExpanded] = React__namespace.useState(false);
 
@@ -24431,7 +25458,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       separator
     });
 
-    const classes = useUtilityClasses$1p(ownerState);
+    const classes = useUtilityClasses$1o(ownerState);
     const listRef = React__namespace.useRef(null);
 
     const renderItemsBeforeAndAfter = allItems => {
@@ -24564,7 +25591,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   function getButtonUtilityClass(slot) {
     return generateUtilityClass('MuiButton', slot);
   }
-  const buttonClasses = generateUtilityClasses('MuiButton', ['root', 'text', 'textInherit', 'textPrimary', 'textSecondary', 'outlined', 'outlinedInherit', 'outlinedPrimary', 'outlinedSecondary', 'contained', 'containedInherit', 'containedPrimary', 'containedSecondary', 'disableElevation', 'focusVisible', 'disabled', 'colorInherit', 'textSizeSmall', 'textSizeMedium', 'textSizeLarge', 'outlinedSizeSmall', 'outlinedSizeMedium', 'outlinedSizeLarge', 'containedSizeSmall', 'containedSizeMedium', 'containedSizeLarge', 'sizeMedium', 'sizeSmall', 'sizeLarge', 'fullWidth', 'startIcon', 'endIcon', 'iconSizeSmall', 'iconSizeMedium', 'iconSizeLarge']);
+  const buttonClasses = generateUtilityClasses('MuiButton', ['root', 'text', 'textInherit', 'textPrimary', 'textSecondary', 'textSuccess', 'textError', 'textInfo', 'textWarning', 'outlined', 'outlinedInherit', 'outlinedPrimary', 'outlinedSecondary', 'outlinedSuccess', 'outlinedError', 'outlinedInfo', 'outlinedWarning', 'contained', 'containedInherit', 'containedPrimary', 'containedSecondary', 'containedSuccess', 'containedError', 'containedInfo', 'containedWarning', 'disableElevation', 'focusVisible', 'disabled', 'colorInherit', 'textSizeSmall', 'textSizeMedium', 'textSizeLarge', 'outlinedSizeSmall', 'outlinedSizeMedium', 'outlinedSizeLarge', 'containedSizeSmall', 'containedSizeMedium', 'containedSizeLarge', 'sizeMedium', 'sizeSmall', 'sizeLarge', 'fullWidth', 'startIcon', 'endIcon', 'iconSizeSmall', 'iconSizeMedium', 'iconSizeLarge']);
   var buttonClasses$1 = buttonClasses;
 
   /**
@@ -24578,9 +25605,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
   var ButtonGroupContext$1 = ButtonGroupContext;
 
-  const _excluded$1F = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
+  const _excluded$1E = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
 
-  const useUtilityClasses$1o = ownerState => {
+  const useUtilityClasses$1n = ownerState => {
     const {
       color,
       disableElevation,
@@ -24808,7 +25835,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       type,
       variant = 'text'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1F);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1E);
 
     const ownerState = _extends({}, props, {
       color,
@@ -24822,7 +25849,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1o(ownerState);
+    const classes = useUtilityClasses$1n(ownerState);
 
     const startIcon = startIconProp && /*#__PURE__*/jsxRuntime_1(ButtonStartIcon, {
       className: classes.startIcon,
@@ -24978,7 +26005,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const buttonGroupClasses = generateUtilityClasses('MuiButtonGroup', ['root', 'contained', 'outlined', 'text', 'disableElevation', 'disabled', 'fullWidth', 'vertical', 'grouped', 'groupedHorizontal', 'groupedVertical', 'groupedText', 'groupedTextHorizontal', 'groupedTextVertical', 'groupedTextPrimary', 'groupedTextSecondary', 'groupedOutlined', 'groupedOutlinedHorizontal', 'groupedOutlinedVertical', 'groupedOutlinedPrimary', 'groupedOutlinedSecondary', 'groupedContained', 'groupedContainedHorizontal', 'groupedContainedVertical', 'groupedContainedPrimary', 'groupedContainedSecondary']);
   var buttonGroupClasses$1 = buttonGroupClasses;
 
-  const _excluded$1E = ["children", "className", "color", "component", "disabled", "disableElevation", "disableFocusRipple", "disableRipple", "fullWidth", "orientation", "size", "variant"];
+  const _excluded$1D = ["children", "className", "color", "component", "disabled", "disableElevation", "disableFocusRipple", "disableRipple", "fullWidth", "orientation", "size", "variant"];
 
   const overridesResolver$6 = (props, styles) => {
     const {
@@ -24997,7 +26024,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }, styles.root, styles[ownerState.variant], ownerState.disableElevation === true && styles.disableElevation, ownerState.fullWidth && styles.fullWidth, ownerState.orientation === 'vertical' && styles.vertical];
   };
 
-  const useUtilityClasses$1n = ownerState => {
+  const useUtilityClasses$1m = ownerState => {
     const {
       classes,
       color,
@@ -25023,9 +26050,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => _extends({
     display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius
+    borderRadius: (theme.vars || theme).shape.borderRadius
   }, ownerState.variant === 'contained' && {
-    boxShadow: theme.shadows[2]
+    boxShadow: (theme.vars || theme).shadows[2]
   }, ownerState.disableElevation && {
     boxShadow: 'none'
   }, ownerState.fullWidth && {
@@ -25053,27 +26080,27 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0
       }, ownerState.variant === 'text' && ownerState.orientation === 'horizontal' && {
-        borderRight: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`
+        borderRight: theme.vars ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`
       }, ownerState.variant === 'text' && ownerState.orientation === 'vertical' && {
-        borderBottom: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`
+        borderBottom: theme.vars ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`
       }, ownerState.variant === 'text' && ownerState.color !== 'inherit' && {
-        borderColor: alpha(theme.palette[ownerState.color].main, 0.5)
+        borderColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)` : alpha(theme.palette[ownerState.color].main, 0.5)
       }, ownerState.variant === 'outlined' && ownerState.orientation === 'horizontal' && {
         borderRightColor: 'transparent'
       }, ownerState.variant === 'outlined' && ownerState.orientation === 'vertical' && {
         borderBottomColor: 'transparent'
       }, ownerState.variant === 'contained' && ownerState.orientation === 'horizontal' && {
-        borderRight: `1px solid ${theme.palette.grey[400]}`,
+        borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
         [`&.${buttonGroupClasses$1.disabled}`]: {
-          borderRight: `1px solid ${theme.palette.action.disabled}`
+          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`
         }
       }, ownerState.variant === 'contained' && ownerState.orientation === 'vertical' && {
-        borderBottom: `1px solid ${theme.palette.grey[400]}`,
+        borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
         [`&.${buttonGroupClasses$1.disabled}`]: {
-          borderBottom: `1px solid ${theme.palette.action.disabled}`
+          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`
         }
       }, ownerState.variant === 'contained' && ownerState.color !== 'inherit' && {
-        borderColor: theme.palette[ownerState.color].dark
+        borderColor: (theme.vars || theme).palette[ownerState.color].dark
       }, {
         '&:hover': _extends({}, ownerState.variant === 'outlined' && ownerState.orientation === 'horizontal' && {
           borderRightColor: 'currentColor'
@@ -25108,7 +26135,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       size = 'medium',
       variant = 'outlined'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1E);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1D);
 
     const ownerState = _extends({}, props, {
       color,
@@ -25123,7 +26150,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1n(ownerState);
+    const classes = useUtilityClasses$1m(ownerState);
     const context = React__namespace.useMemo(() => ({
       className: classes.grouped,
       color,
@@ -25253,9 +26280,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardClasses = generateUtilityClasses('MuiCard', ['root']);
   var cardClasses$1 = cardClasses;
 
-  const _excluded$1D = ["className", "raised"];
+  const _excluded$1C = ["className", "raised"];
 
-  const useUtilityClasses$1m = ownerState => {
+  const useUtilityClasses$1l = ownerState => {
     const {
       classes
     } = ownerState;
@@ -25284,13 +26311,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       className,
       raised = false
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1D);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1C);
 
     const ownerState = _extends({}, props, {
       raised
     });
 
-    const classes = useUtilityClasses$1m(ownerState);
+    const classes = useUtilityClasses$1l(ownerState);
     return /*#__PURE__*/jsxRuntime_1(CardRoot, _extends({
       className: clsx(classes.root, className),
       elevation: raised ? 8 : undefined,
@@ -25346,9 +26373,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardActionAreaClasses = generateUtilityClasses('MuiCardActionArea', ['root', 'focusVisible', 'focusHighlight']);
   var cardActionAreaClasses$1 = cardActionAreaClasses;
 
-  const _excluded$1C = ["children", "className", "focusVisibleClassName"];
+  const _excluded$1B = ["children", "className", "focusVisibleClassName"];
 
-  const useUtilityClasses$1l = ownerState => {
+  const useUtilityClasses$1k = ownerState => {
     const {
       classes
     } = ownerState;
@@ -25370,13 +26397,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     textAlign: 'inherit',
     width: '100%',
     [`&:hover .${cardActionAreaClasses$1.focusHighlight}`]: {
-      opacity: theme.palette.action.hoverOpacity,
+      opacity: (theme.vars || theme).palette.action.hoverOpacity,
       '@media (hover: none)': {
         opacity: 0
       }
     },
     [`&.${cardActionAreaClasses$1.focusVisible} .${cardActionAreaClasses$1.focusHighlight}`]: {
-      opacity: theme.palette.action.focusOpacity
+      opacity: (theme.vars || theme).palette.action.focusOpacity
     }
   }));
   const CardActionAreaFocusHighlight = styled$1('span', {
@@ -25411,10 +26438,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       className,
       focusVisibleClassName
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1C);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1B);
 
     const ownerState = props;
-    const classes = useUtilityClasses$1l(ownerState);
+    const classes = useUtilityClasses$1k(ownerState);
     return /*#__PURE__*/jsxRuntime_2(CardActionAreaRoot, _extends({
       className: clsx(classes.root, className),
       focusVisibleClassName: clsx(focusVisibleClassName, classes.focusVisible),
@@ -25468,9 +26495,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardActionsClasses = generateUtilityClasses('MuiCardActions', ['root', 'spacing']);
   var cardActionsClasses$1 = cardActionsClasses;
 
-  const _excluded$1B = ["disableSpacing", "className"];
+  const _excluded$1A = ["disableSpacing", "className"];
 
-  const useUtilityClasses$1k = ownerState => {
+  const useUtilityClasses$1j = ownerState => {
     const {
       classes,
       disableSpacing
@@ -25511,13 +26538,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       disableSpacing = false,
       className
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1B);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1A);
 
     const ownerState = _extends({}, props, {
       disableSpacing
     });
 
-    const classes = useUtilityClasses$1k(ownerState);
+    const classes = useUtilityClasses$1j(ownerState);
     return /*#__PURE__*/jsxRuntime_1(CardActionsRoot, _extends({
       className: clsx(classes.root, className),
       ownerState: ownerState,
@@ -25566,9 +26593,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardContentClasses = generateUtilityClasses('MuiCardContent', ['root']);
   var cardContentClasses$1 = cardContentClasses;
 
-  const _excluded$1A = ["className", "component"];
+  const _excluded$1z = ["className", "component"];
 
-  const useUtilityClasses$1j = ownerState => {
+  const useUtilityClasses$1i = ownerState => {
     const {
       classes
     } = ownerState;
@@ -25600,13 +26627,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       className,
       component = 'div'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1A);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1z);
 
     const ownerState = _extends({}, props, {
       component
     });
 
-    const classes = useUtilityClasses$1j(ownerState);
+    const classes = useUtilityClasses$1i(ownerState);
     return /*#__PURE__*/jsxRuntime_1(CardContentRoot, _extends({
       as: component,
       className: clsx(classes.root, className),
@@ -25656,9 +26683,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardHeaderClasses = generateUtilityClasses('MuiCardHeader', ['root', 'avatar', 'action', 'content', 'title', 'subheader']);
   var cardHeaderClasses$1 = cardHeaderClasses;
 
-  const _excluded$1z = ["action", "avatar", "className", "component", "disableTypography", "subheader", "subheaderTypographyProps", "title", "titleTypographyProps"];
+  const _excluded$1y = ["action", "avatar", "className", "component", "disableTypography", "subheader", "subheaderTypographyProps", "title", "titleTypographyProps"];
 
-  const useUtilityClasses$1i = ownerState => {
+  const useUtilityClasses$1h = ownerState => {
     const {
       classes
     } = ownerState;
@@ -25729,14 +26756,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       title: titleProp,
       titleTypographyProps
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1z);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1y);
 
     const ownerState = _extends({}, props, {
       component,
       disableTypography
     });
 
-    const classes = useUtilityClasses$1i(ownerState);
+    const classes = useUtilityClasses$1h(ownerState);
     let title = titleProp;
 
     if (title != null && title.type !== Typography$1 && !disableTypography) {
@@ -25870,9 +26897,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const cardMediaClasses = generateUtilityClasses('MuiCardMedia', ['root', 'media', 'img']);
   var cardMediaClasses$1 = cardMediaClasses;
 
-  const _excluded$1y = ["children", "className", "component", "image", "src", "style"];
+  const _excluded$1x = ["children", "className", "component", "image", "src", "style"];
 
-  const useUtilityClasses$1h = ownerState => {
+  const useUtilityClasses$1g = ownerState => {
     const {
       classes,
       isMediaComponent,
@@ -25926,7 +26953,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       src,
       style
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1y);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1x);
 
     const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;
     const composedStyle = !isMediaComponent && image ? _extends({
@@ -25939,7 +26966,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1
     });
 
-    const classes = useUtilityClasses$1h(ownerState);
+    const classes = useUtilityClasses$1g(ownerState);
     return /*#__PURE__*/jsxRuntime_1(CardMediaRoot, _extends({
       className: clsx(classes.root, className),
       as: component,
@@ -26018,9 +27045,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }
   generateUtilityClasses('PrivateSwitchBase', ['root', 'checked', 'disabled', 'input', 'edgeStart', 'edgeEnd']);
 
-  const _excluded$1x = ["autoFocus", "checked", "checkedIcon", "className", "defaultChecked", "disabled", "disableFocusRipple", "edge", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"];
+  const _excluded$1w = ["autoFocus", "checked", "checkedIcon", "className", "defaultChecked", "disabled", "disableFocusRipple", "edge", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"];
 
-  const useUtilityClasses$1g = ownerState => {
+  const useUtilityClasses$1f = ownerState => {
     const {
       classes,
       checked,
@@ -26084,7 +27111,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       type,
       value
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1x);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1w);
 
     const [checked, setCheckedState] = useControlled({
       controlled: checkedProp,
@@ -26146,7 +27173,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       edge
     });
 
-    const classes = useUtilityClasses$1g(ownerState);
+    const classes = useUtilityClasses$1f(ownerState);
     return /*#__PURE__*/jsxRuntime_2(SwitchBaseRoot, _extends({
       component: "span",
       className: clsx(classes.root, className),
@@ -26328,9 +27355,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const checkboxClasses = generateUtilityClasses('MuiCheckbox', ['root', 'checked', 'disabled', 'indeterminate', 'colorPrimary', 'colorSecondary']);
   var checkboxClasses$1 = checkboxClasses;
 
-  const _excluded$1w = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size"];
+  const _excluded$1v = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size"];
 
-  const useUtilityClasses$1f = ownerState => {
+  const useUtilityClasses$1e = ownerState => {
     const {
       classes,
       indeterminate,
@@ -26357,10 +27384,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    color: theme.palette.text.secondary
+    color: (theme.vars || theme).palette.text.secondary
   }, !ownerState.disableRipple && {
     '&:hover': {
-      backgroundColor: alpha(ownerState.color === 'default' ? theme.palette.action.active : theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${ownerState.color === 'default' ? theme.vars.palette.action.activeChannel : theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(ownerState.color === 'default' ? theme.palette.action.active : theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
@@ -26368,10 +27395,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }
   }, ownerState.color !== 'default' && {
     [`&.${checkboxClasses$1.checked}, &.${checkboxClasses$1.indeterminate}`]: {
-      color: theme.palette[ownerState.color].main
+      color: (theme.vars || theme).palette[ownerState.color].main
     },
     [`&.${checkboxClasses$1.disabled}`]: {
-      color: theme.palette.action.disabled
+      color: (theme.vars || theme).palette.action.disabled
     }
   }));
 
@@ -26398,7 +27425,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       inputProps,
       size = 'medium'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1w);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1v);
 
     const icon = indeterminate ? indeterminateIconProp : iconProp;
     const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
@@ -26409,7 +27436,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       size
     });
 
-    const classes = useUtilityClasses$1f(ownerState);
+    const classes = useUtilityClasses$1e(ownerState);
     return /*#__PURE__*/jsxRuntime_1(CheckboxRoot, _extends({
       type: "checkbox",
       inputProps: _extends({
@@ -26553,7 +27580,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const circularProgressClasses = generateUtilityClasses('MuiCircularProgress', ['root', 'determinate', 'indeterminate', 'colorPrimary', 'colorSecondary', 'svg', 'circle', 'circleDeterminate', 'circleIndeterminate', 'circleDisableShrink']);
   var circularProgressClasses$1 = circularProgressClasses;
 
-  const _excluded$1v = ["className", "color", "disableShrink", "size", "style", "thickness", "value", "variant"];
+  const _excluded$1u = ["className", "color", "disableShrink", "size", "style", "thickness", "value", "variant"];
 
   let _$2 = t => t,
       _t$2,
@@ -26587,7 +27614,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }
 `));
 
-  const useUtilityClasses$1e = ownerState => {
+  const useUtilityClasses$1d = ownerState => {
     const {
       classes,
       variant,
@@ -26619,7 +27646,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }, ownerState.variant === 'determinate' && {
     transition: theme.transitions.create('transform')
   }, ownerState.color !== 'inherit' && {
-    color: theme.palette[ownerState.color].main
+    color: (theme.vars || theme).palette[ownerState.color].main
   }), ({
     ownerState
   }) => ownerState.variant === 'indeterminate' && css(_t3$2 || (_t3$2 = _$2`
@@ -26683,7 +27710,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       value = 0,
       variant = 'indeterminate'
     } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1v);
+          other = _objectWithoutPropertiesLoose(props, _excluded$1u);
 
     const ownerState = _extends({}, props, {
       color,
@@ -26694,7 +27721,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       variant
     });
 
-    const classes = useUtilityClasses$1e(ownerState);
+    const classes = useUtilityClasses$1d(ownerState);
     const circleStyle = {};
     const rootStyle = {};
     const rootProps = {};
@@ -26815,106 +27842,21 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   } ;
   var CircularProgress$1 = CircularProgress;
 
-  function getContainerUtilityClass(slot) {
-    return generateUtilityClass('MuiContainer', slot);
-  }
-  const containerClasses = generateUtilityClasses('MuiContainer', ['root', 'disableGutters', 'fixed', 'maxWidthXs', 'maxWidthSm', 'maxWidthMd', 'maxWidthLg', 'maxWidthXl']);
-  var containerClasses$1 = containerClasses;
-
-  const _excluded$1u = ["className", "component", "disableGutters", "fixed", "maxWidth"];
-
-  const useUtilityClasses$1d = ownerState => {
-    const {
-      classes,
-      fixed,
-      disableGutters,
-      maxWidth
-    } = ownerState;
-    const slots = {
-      root: ['root', maxWidth && `maxWidth${capitalize(String(maxWidth))}`, fixed && 'fixed', disableGutters && 'disableGutters']
-    };
-    return composeClasses(slots, getContainerUtilityClass, classes);
-  };
-
-  const ContainerRoot = styled$1('div', {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const {
-        ownerState
-      } = props;
-      return [styles.root, styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`], ownerState.fixed && styles.fixed, ownerState.disableGutters && styles.disableGutters];
-    }
-  })(({
-    theme,
-    ownerState
-  }) => _extends({
-    width: '100%',
-    marginLeft: 'auto',
-    boxSizing: 'border-box',
-    marginRight: 'auto',
-    display: 'block'
-  }, !ownerState.disableGutters && {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3)
-    }
-  }), ({
-    theme,
-    ownerState
-  }) => ownerState.fixed && Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-    const value = theme.breakpoints.values[breakpoint];
-
-    if (value !== 0) {
-      acc[theme.breakpoints.up(breakpoint)] = {
-        maxWidth: `${value}${theme.breakpoints.unit}`
-      };
-    }
-
-    return acc;
-  }, {}), ({
-    theme,
-    ownerState
-  }) => _extends({}, ownerState.maxWidth === 'xs' && {
-    [theme.breakpoints.up('xs')]: {
-      maxWidth: Math.max(theme.breakpoints.values.xs, 444)
-    }
-  }, ownerState.maxWidth && ownerState.maxWidth !== 'xs' && {
-    [theme.breakpoints.up(ownerState.maxWidth)]: {
-      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`
-    }
-  }));
-  const Container = /*#__PURE__*/React__namespace.forwardRef(function Container(inProps, ref) {
-    const props = useThemeProps({
+  const Container = createContainer({
+    createStyledComponent: styled$1('div', {
+      name: 'MuiContainer',
+      slot: 'Root',
+      overridesResolver: (props, styles) => {
+        const {
+          ownerState
+        } = props;
+        return [styles.root, styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`], ownerState.fixed && styles.fixed, ownerState.disableGutters && styles.disableGutters];
+      }
+    }),
+    useThemeProps: inProps => useThemeProps({
       props: inProps,
       name: 'MuiContainer'
-    });
-
-    const {
-      className,
-      component = 'div',
-      disableGutters = false,
-      fixed = false,
-      maxWidth = 'lg'
-    } = props,
-          other = _objectWithoutPropertiesLoose(props, _excluded$1u);
-
-    const ownerState = _extends({}, props, {
-      component,
-      disableGutters,
-      fixed,
-      maxWidth
-    });
-
-    const classes = useUtilityClasses$1d(ownerState);
-    return /*#__PURE__*/jsxRuntime_1(ContainerRoot, _extends({
-      as: component,
-      ownerState: ownerState,
-      className: clsx(classes.root, className),
-      ref: ref
-    }, other));
+    })
   });
   Container.propTypes
   /* remove-proptypes */
@@ -26933,11 +27875,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * Override or extend the styles applied to the component.
      */
     classes: PropTypes.object,
-
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
 
     /**
      * The component used for the root node.
@@ -26977,6 +27914,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   } ;
   var Container$1 = Container;
 
+  function getContainerUtilityClass(slot) {
+    return generateUtilityClass('MuiContainer', slot);
+  }
+  const containerClasses = generateUtilityClasses('MuiContainer', ['root', 'disableGutters', 'fixed', 'maxWidthXs', 'maxWidthSm', 'maxWidthMd', 'maxWidthLg', 'maxWidthXl']);
+  var containerClasses$1 = containerClasses;
+
   const html = (theme, enableColorScheme) => _extends({
     WebkitFontSmoothing: 'antialiased',
     // Antialiasing.
@@ -26991,12 +27934,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     colorScheme: theme.palette.mode
   });
   const body = theme => _extends({
-    color: theme.palette.text.primary
+    color: (theme.vars || theme).palette.text.primary
   }, theme.typography.body1, {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: (theme.vars || theme).palette.background.default,
     '@media print': {
       // Save printer ink.
-      backgroundColor: theme.palette.common.white
+      backgroundColor: (theme.vars || theme).palette.common.white
     }
   });
   const styles$3 = (theme, enableColorScheme = false) => {
@@ -27016,7 +27959,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         // Add support for document.body.requestFullScreen().
         // Other elements, if background transparent, are not supported.
         '&::backdrop': {
-          backgroundColor: theme.palette.background.default
+          backgroundColor: (theme.vars || theme).palette.background.default
         }
       })
     };
@@ -27103,7 +28046,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     };
   }
 
-  const _excluded$1t = ["BackdropComponent", "closeAfterTransition", "children", "components", "componentsProps", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted"];
+  const _excluded$1t = ["BackdropComponent", "BackdropProps", "closeAfterTransition", "children", "component", "components", "componentsProps", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "theme"];
   const modalClasses = modalUnstyledClasses$1;
 
   const extendUtilityClasses$1 = ownerState => {
@@ -27124,7 +28067,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => _extends({
     position: 'fixed',
-    zIndex: theme.zIndex.modal,
+    zIndex: (theme.vars || theme).zIndex.modal,
     right: 0,
     bottom: 0,
     top: 0,
@@ -27156,7 +28099,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
    */
 
   const Modal = /*#__PURE__*/React__namespace.forwardRef(function Modal(inProps, ref) {
-    var _componentsProps$root;
+    var _ref, _components$Root;
 
     const props = useThemeProps({
       name: 'MuiModal',
@@ -27165,8 +28108,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     const {
       BackdropComponent = ModalBackdrop,
+      BackdropProps,
       closeAfterTransition = false,
       children,
+      component,
       components = {},
       componentsProps = {},
       disableAutoFocus = false,
@@ -27176,7 +28121,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       disableRestoreFocus = false,
       disableScrollLock = false,
       hideBackdrop = false,
-      keepMounted = false
+      keepMounted = false,
+      // eslint-disable-next-line react/prop-types
+      theme
     } = props,
           other = _objectWithoutPropertiesLoose(props, _excluded$1t);
 
@@ -27198,16 +28145,19 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     });
 
     const classes = extendUtilityClasses$1(ownerState);
+    const Root = (_ref = (_components$Root = components.Root) != null ? _components$Root : component) != null ? _ref : ModalRoot;
     return /*#__PURE__*/jsxRuntime_1(ModalUnstyled$1, _extends({
       components: _extends({
-        Root: ModalRoot
+        Root,
+        Backdrop: BackdropComponent
       }, components),
       componentsProps: {
-        root: _extends({}, componentsProps.root, (!components.Root || !isHostComponent(components.Root)) && {
-          ownerState: _extends({}, (_componentsProps$root = componentsProps.root) == null ? void 0 : _componentsProps$root.ownerState)
-        })
+        root: () => _extends({}, resolveComponentProps(componentsProps.root, ownerState), !isHostComponent(Root) && {
+          as: component,
+          theme
+        }),
+        backdrop: () => _extends({}, BackdropProps, resolveComponentProps(componentsProps.backdrop, ownerState))
       },
-      BackdropComponent: BackdropComponent,
       onTransitionEnter: () => setExited(false),
       onTransitionExited: () => setExited(true),
       ref: ref
@@ -27227,6 +28177,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
+     * @deprecated Use `components.Backdrop` instead.
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
      *   slot: 'Backdrop',
@@ -27241,6 +28192,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     /**
      * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+     * @deprecated Use `componentsProps.backdrop` instead.
      */
     BackdropProps: PropTypes.object,
 
@@ -27261,11 +28213,18 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     closeAfterTransition: PropTypes.bool,
 
     /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: PropTypes.elementType,
+
+    /**
      * The components used for each slot inside the Modal.
      * Either a string to use a HTML element or a component.
      * @default {}
      */
     components: PropTypes.shape({
+      Backdrop: PropTypes.elementType,
       Root: PropTypes.elementType
     }),
 
@@ -27274,7 +28233,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      root: PropTypes.object
+      backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
 
     /**
@@ -27497,7 +28457,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         maxWidth: 'calc(100% - 64px)'
       }
     }
-  }, ownerState.maxWidth !== 'xs' && {
+  }, ownerState.maxWidth && ownerState.maxWidth !== 'xs' && {
     maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
     [`&.${dialogClasses$1.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
@@ -27598,12 +28558,16 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }, [ariaLabelledby]);
     return /*#__PURE__*/jsxRuntime_1(DialogRoot, _extends({
       className: clsx(classes.root, className),
-      BackdropProps: _extends({
-        transitionDuration,
-        as: BackdropComponent
-      }, BackdropProps),
       closeAfterTransition: true,
-      BackdropComponent: DialogBackdrop,
+      components: {
+        Backdrop: DialogBackdrop
+      },
+      componentsProps: {
+        backdrop: _extends({
+          transitionDuration,
+          as: BackdropComponent
+        }, BackdropProps)
+      },
       disableEscapeKeyDown: disableEscapeKeyDown,
       onClose: onClose,
       open: open,
@@ -27659,6 +28623,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
+     * @deprecated Use `components.Backdrop` instead.
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
      *   slot: 'Backdrop',
@@ -27937,8 +28902,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     padding: '20px 24px'
   }, ownerState.dividers ? {
     padding: '16px 24px',
-    borderTop: `1px solid ${theme.palette.divider}`,
-    borderBottom: `1px solid ${theme.palette.divider}`
+    borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`
   } : {
     [`.${dialogTitleClasses$1.root} + &`]: {
       paddingTop: 0
@@ -28197,7 +29162,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
-    borderColor: theme.palette.divider,
+    borderColor: (theme.vars || theme).palette.divider,
     borderBottomWidth: 'thin'
   }, ownerState.absolute && {
     position: 'absolute',
@@ -28205,7 +29170,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     left: 0,
     width: '100%'
   }, ownerState.light && {
-    borderColor: alpha(theme.palette.divider, 0.08)
+    borderColor: theme.vars ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)` : alpha(theme.palette.divider, 0.08)
   }, ownerState.variant === 'inset' && {
     marginLeft: 72
   }, ownerState.variant === 'middle' && ownerState.orientation === 'horizontal' && {
@@ -28232,7 +29197,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     '&::before, &::after': {
       position: 'relative',
       width: '100%',
-      borderTop: `thin solid ${theme.palette.divider}`,
+      borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
       top: '50%',
       content: '""',
       transform: 'translateY(50%)'
@@ -28247,7 +29212,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       top: '0%',
       left: '50%',
       borderTop: 0,
-      borderLeft: `thin solid ${theme.palette.divider}`,
+      borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
       transform: 'translateX(0%)'
     }
   }), ({
@@ -28811,7 +29776,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    zIndex: theme.zIndex.drawer
+    zIndex: (theme.vars || theme).zIndex.drawer
   }));
   const DrawerDockedRoot = styled$1('div', {
     shouldForwardProp: rootShouldForwardProp,
@@ -28840,7 +29805,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     flexDirection: 'column',
     height: '100%',
     flex: '1 0 auto',
-    zIndex: theme.zIndex.drawer,
+    zIndex: (theme.vars || theme).zIndex.drawer,
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
     // temporary style
@@ -28868,13 +29833,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     height: 'auto',
     maxHeight: '100%'
   }, ownerState.anchor === 'left' && ownerState.variant !== 'temporary' && {
-    borderRight: `1px solid ${theme.palette.divider}`
+    borderRight: `1px solid ${(theme.vars || theme).palette.divider}`
   }, ownerState.anchor === 'top' && ownerState.variant !== 'temporary' && {
-    borderBottom: `1px solid ${theme.palette.divider}`
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`
   }, ownerState.anchor === 'right' && ownerState.variant !== 'temporary' && {
-    borderLeft: `1px solid ${theme.palette.divider}`
+    borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`
   }, ownerState.anchor === 'bottom' && ownerState.variant !== 'temporary' && {
-    borderTop: `1px solid ${theme.palette.divider}`
+    borderTop: `1px solid ${(theme.vars || theme).palette.divider}`
   }));
   const oppositeDirection = {
     left: 'right',
@@ -29134,77 +30099,81 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme,
     ownerState
-  }) => _extends({}, theme.typography.button, {
-    minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
-      duration: theme.transitions.duration.short
-    }),
-    borderRadius: '50%',
-    padding: 0,
-    minWidth: 0,
-    width: 56,
-    height: 56,
-    zIndex: theme.zIndex.fab,
-    boxShadow: theme.shadows[6],
-    '&:active': {
-      boxShadow: theme.shadows[12]
-    },
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
-    '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300]
+  }) => {
+    var _theme$palette$getCon, _theme$palette;
+
+    return _extends({}, theme.typography.button, {
+      minHeight: 36,
+      transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+        duration: theme.transitions.duration.short
+      }),
+      borderRadius: '50%',
+      padding: 0,
+      minWidth: 0,
+      width: 56,
+      height: 56,
+      zIndex: (theme.vars || theme).zIndex.fab,
+      boxShadow: (theme.vars || theme).shadows[6],
+      '&:active': {
+        boxShadow: (theme.vars || theme).shadows[12]
       },
-      textDecoration: 'none'
-    },
-    [`&.${fabClasses$1.focusVisible}`]: {
-      boxShadow: theme.shadows[6]
-    },
-    [`&.${fabClasses$1.disabled}`]: {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground
-    }
-  }, ownerState.size === 'small' && {
-    width: 40,
-    height: 40
-  }, ownerState.size === 'medium' && {
-    width: 48,
-    height: 48
-  }, ownerState.variant === 'extended' && {
-    borderRadius: 48 / 2,
-    padding: '0 16px',
-    width: 'auto',
-    minHeight: 'auto',
-    minWidth: 48,
-    height: 48
-  }, ownerState.variant === 'extended' && ownerState.size === 'small' && {
-    width: 'auto',
-    padding: '0 8px',
-    borderRadius: 34 / 2,
-    minWidth: 34,
-    height: 34
-  }, ownerState.variant === 'extended' && ownerState.size === 'medium' && {
-    width: 'auto',
-    padding: '0 16px',
-    borderRadius: 40 / 2,
-    minWidth: 40,
-    height: 40
-  }, ownerState.color === 'inherit' && {
-    color: 'inherit'
-  }), ({
+      color: theme.vars ? theme.vars.palette.text.primary : (_theme$palette$getCon = (_theme$palette = theme.palette).getContrastText) == null ? void 0 : _theme$palette$getCon.call(_theme$palette, theme.palette.grey[300]),
+      backgroundColor: (theme.vars || theme).palette.grey[300],
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.grey.A100,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: (theme.vars || theme).palette.grey[300]
+        },
+        textDecoration: 'none'
+      },
+      [`&.${fabClasses$1.focusVisible}`]: {
+        boxShadow: (theme.vars || theme).shadows[6]
+      },
+      [`&.${fabClasses$1.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled,
+        boxShadow: (theme.vars || theme).shadows[0],
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground
+      }
+    }, ownerState.size === 'small' && {
+      width: 40,
+      height: 40
+    }, ownerState.size === 'medium' && {
+      width: 48,
+      height: 48
+    }, ownerState.variant === 'extended' && {
+      borderRadius: 48 / 2,
+      padding: '0 16px',
+      width: 'auto',
+      minHeight: 'auto',
+      minWidth: 48,
+      height: 48
+    }, ownerState.variant === 'extended' && ownerState.size === 'small' && {
+      width: 'auto',
+      padding: '0 8px',
+      borderRadius: 34 / 2,
+      minWidth: 34,
+      height: 34
+    }, ownerState.variant === 'extended' && ownerState.size === 'medium' && {
+      width: 'auto',
+      padding: '0 16px',
+      borderRadius: 40 / 2,
+      minWidth: 40,
+      height: 40
+    }, ownerState.color === 'inherit' && {
+      color: 'inherit'
+    });
+  }, ({
     theme,
     ownerState
-  }) => _extends({}, ownerState.color !== 'inherit' && ownerState.color !== 'default' && theme.palette[ownerState.color] != null && {
-    color: theme.palette[ownerState.color].contrastText,
-    backgroundColor: theme.palette[ownerState.color].main,
+  }) => _extends({}, ownerState.color !== 'inherit' && ownerState.color !== 'default' && (theme.vars || theme).palette[ownerState.color] != null && {
+    color: (theme.vars || theme).palette[ownerState.color].contrastText,
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
     '&:hover': {
-      backgroundColor: theme.palette[ownerState.color].dark,
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.palette[ownerState.color].main
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main
       }
     }
   }));
@@ -29278,7 +30247,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'default'
      */
-    color: PropTypes.oneOf(['default', 'error', 'info', 'inherit', 'primary', 'secondary', 'success', 'warning']),
+    color: PropTypes
+    /* @typescript-to-proptypes-ignore */
+    .oneOfType([PropTypes.oneOf(['default', 'error', 'info', 'inherit', 'primary', 'secondary', 'success', 'warning']), PropTypes.string]),
 
     /**
      * The component used for the root node.
@@ -29367,34 +30338,38 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => {
+    var _palette;
+
     const light = theme.palette.mode === 'light';
     const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
     const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
+    const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
+    const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
     return _extends({
       position: 'relative',
-      backgroundColor,
-      borderTopLeftRadius: theme.shape.borderRadius,
-      borderTopRightRadius: theme.shape.borderRadius,
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
       transition: theme.transitions.create('background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut
       }),
       '&:hover': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)',
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor
+          backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor
         }
       },
       [`&.${filledInputClasses$1.focused}`]: {
-        backgroundColor
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor
       },
       [`&.${filledInputClasses$1.disabled}`]: {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)'
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground
       }
     }, !ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${(_palette = (theme.vars || theme).palette[ownerState.color || 'primary']) == null ? void 0 : _palette.main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -29415,12 +30390,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         transform: 'scaleX(1) translateX(0)'
       },
       [`&.${filledInputClasses$1.error}:after`]: {
-        borderBottomColor: theme.palette.error.main,
+        borderBottomColor: (theme.vars || theme).palette.error.main,
         transform: 'scaleX(1)' // error is always underlined in red
 
       },
       '&:before': {
-        borderBottom: `1px solid ${bottomLineColor}`,
+        borderBottom: `1px solid ${theme.vars ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})` : bottomLineColor}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -29434,7 +30409,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
       },
       [`&:hover:not(.${filledInputClasses$1.disabled}):before`]: {
-        borderBottom: `1px solid ${theme.palette.text.primary}`
+        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`
       },
       [`&.${filledInputClasses$1.disabled}:before`]: {
         borderBottomStyle: 'dotted'
@@ -29464,13 +30439,26 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     paddingTop: 25,
     paddingRight: 12,
     paddingBottom: 8,
-    paddingLeft: 12,
+    paddingLeft: 12
+  }, !theme.vars && {
     '&:-webkit-autofill': {
       WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
       WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
       caretColor: theme.palette.mode === 'light' ? null : '#fff',
       borderTopLeftRadius: 'inherit',
       borderTopRightRadius: 'inherit'
+    }
+  }, theme.vars && {
+    '&:-webkit-autofill': {
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit'
+    },
+    [theme.getColorSchemeSelector('dark')]: {
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: '#fff',
+        caretColor: '#fff'
+      }
     }
   }, ownerState.size === 'small' && {
     paddingTop: 21,
@@ -30123,7 +31111,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }, {
     [`& .${formControlLabelClasses$1.label}`]: {
       [`&.${formControlLabelClasses$1.disabled}`]: {
-        color: theme.palette.text.disabled
+        color: (theme.vars || theme).palette.text.disabled
       }
     }
   }));
@@ -30438,7 +31426,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    color: theme.palette.text.secondary
+    color: (theme.vars || theme).palette.text.secondary
   }, theme.typography.caption, {
     textAlign: 'left',
     marginTop: 3,
@@ -30446,10 +31434,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     marginBottom: 0,
     marginLeft: 0,
     [`&.${formHelperTextClasses$1.disabled}`]: {
-      color: theme.palette.text.disabled
+      color: (theme.vars || theme).palette.text.disabled
     },
     [`&.${formHelperTextClasses$1.error}`]: {
-      color: theme.palette.error.main
+      color: (theme.vars || theme).palette.error.main
     }
   }, ownerState.size === 'small' && {
     marginTop: 4
@@ -30614,19 +31602,19 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    color: theme.palette.text.secondary
+    color: (theme.vars || theme).palette.text.secondary
   }, theme.typography.body1, {
     lineHeight: '1.4375em',
     padding: 0,
     position: 'relative',
     [`&.${formLabelClasses$1.focused}`]: {
-      color: theme.palette[ownerState.color].main
+      color: (theme.vars || theme).palette[ownerState.color].main
     },
     [`&.${formLabelClasses$1.disabled}`]: {
-      color: theme.palette.text.disabled
+      color: (theme.vars || theme).palette.text.disabled
     },
     [`&.${formLabelClasses$1.error}`]: {
-      color: theme.palette.error.main
+      color: (theme.vars || theme).palette.error.main
     }
   }));
   const AsteriskComponent = styled$1('span', {
@@ -30637,7 +31625,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => ({
     [`&.${formLabelClasses$1.error}`]: {
-      color: theme.palette.error.main
+      color: (theme.vars || theme).palette.error.main
     }
   }));
   const FormLabel = /*#__PURE__*/React__namespace.forwardRef(function FormLabel(inProps, ref) {
@@ -30770,18 +31758,18 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   function getGridUtilityClass(slot) {
     return generateUtilityClass('MuiGrid', slot);
   }
-  const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'];
-  const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'];
-  const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const SPACINGS$1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const DIRECTIONS$1 = ['column-reverse', 'column', 'row-reverse', 'row'];
+  const WRAPS$1 = ['nowrap', 'wrap-reverse', 'wrap'];
+  const GRID_SIZES$1 = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const gridClasses = generateUtilityClasses('MuiGrid', ['root', 'container', 'item', 'zeroMinWidth', // spacings
-  ...SPACINGS.map(spacing => `spacing-xs-${spacing}`), // direction values
-  ...DIRECTIONS.map(direction => `direction-xs-${direction}`), // wrap values
-  ...WRAPS.map(wrap => `wrap-xs-${wrap}`), // grid sizes for all breakpoints
-  ...GRID_SIZES.map(size => `grid-xs-${size}`), ...GRID_SIZES.map(size => `grid-sm-${size}`), ...GRID_SIZES.map(size => `grid-md-${size}`), ...GRID_SIZES.map(size => `grid-lg-${size}`), ...GRID_SIZES.map(size => `grid-xl-${size}`)]);
+  ...SPACINGS$1.map(spacing => `spacing-xs-${spacing}`), // direction values
+  ...DIRECTIONS$1.map(direction => `direction-xs-${direction}`), // wrap values
+  ...WRAPS$1.map(wrap => `wrap-xs-${wrap}`), // grid sizes for all breakpoints
+  ...GRID_SIZES$1.map(size => `grid-xs-${size}`), ...GRID_SIZES$1.map(size => `grid-sm-${size}`), ...GRID_SIZES$1.map(size => `grid-md-${size}`), ...GRID_SIZES$1.map(size => `grid-lg-${size}`), ...GRID_SIZES$1.map(size => `grid-xl-${size}`)]);
   var gridClasses$1 = gridClasses;
 
-  const _excluded$1d = ["className", "columns", "columnSpacing", "component", "container", "direction", "item", "lg", "md", "rowSpacing", "sm", "spacing", "wrap", "xl", "xs", "zeroMinWidth"];
+  const _excluded$1d = ["className", "columns", "columnSpacing", "component", "container", "direction", "item", "rowSpacing", "spacing", "wrap", "zeroMinWidth"];
 
   function getOffset(val) {
     const parse = parseFloat(val);
@@ -30961,26 +31949,27 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     return styles;
   }
-  function resolveSpacingClasses(spacing, container, styles = {}) {
-    // in case of grid item or undefined/null or `spacing` <= 0
-    if (!container || !spacing || spacing <= 0) {
+  function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
+    // undefined/null or `spacing` <= 0
+    if (!spacing || spacing <= 0) {
       return [];
     } // in case of string/number `spacing`
 
 
     if (typeof spacing === 'string' && !Number.isNaN(Number(spacing)) || typeof spacing === 'number') {
-      return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+      return [styles[`spacing-xs-${String(spacing)}`]];
     } // in case of object `spacing`
 
 
-    const {
-      xs,
-      sm,
-      md,
-      lg,
-      xl
-    } = spacing;
-    return [Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`), Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`), Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`), Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`), Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`)];
+    const spacingStyles = [];
+    breakpoints.forEach(breakpoint => {
+      const value = spacing[breakpoint];
+
+      if (Number(value) > 0) {
+        spacingStyles.push(styles[`spacing-${breakpoint}-${String(value)}`]);
+      }
+    });
+    return spacingStyles;
   } // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',
@@ -30993,19 +31982,32 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     slot: 'Root',
     overridesResolver: (props, styles) => {
       const {
+        ownerState
+      } = props;
+      const {
         container,
         direction,
         item,
-        lg,
-        md,
-        sm,
         spacing,
         wrap,
-        xl,
-        xs,
-        zeroMinWidth
-      } = props.ownerState;
-      return [styles.root, container && styles.container, item && styles.item, zeroMinWidth && styles.zeroMinWidth, ...resolveSpacingClasses(spacing, container, styles), direction !== 'row' && styles[`direction-xs-${String(direction)}`], wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`], xs !== false && styles[`grid-xs-${String(xs)}`], sm !== false && styles[`grid-sm-${String(sm)}`], md !== false && styles[`grid-md-${String(md)}`], lg !== false && styles[`grid-lg-${String(lg)}`], xl !== false && styles[`grid-xl-${String(xl)}`]];
+        zeroMinWidth,
+        breakpoints
+      } = ownerState;
+      let spacingStyles = []; // in case of grid item
+
+      if (container) {
+        spacingStyles = resolveSpacingStyles(spacing, breakpoints, styles);
+      }
+
+      const breakpointsStyles = [];
+      breakpoints.forEach(breakpoint => {
+        const value = ownerState[breakpoint];
+
+        if (value) {
+          breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
+        }
+      });
+      return [styles.root, container && styles.container, item && styles.item, zeroMinWidth && styles.zeroMinWidth, ...spacingStyles, direction !== 'row' && styles[`direction-xs-${String(direction)}`], wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`], ...breakpointsStyles];
     }
   })(({
     ownerState
@@ -31023,6 +32025,29 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }, ownerState.wrap !== 'wrap' && {
     flexWrap: ownerState.wrap
   }), generateDirection, generateRowGap, generateColumnGap, generateGrid);
+  function resolveSpacingClasses(spacing, breakpoints) {
+    // undefined/null or `spacing` <= 0
+    if (!spacing || spacing <= 0) {
+      return [];
+    } // in case of string/number `spacing`
+
+
+    if (typeof spacing === 'string' && !Number.isNaN(Number(spacing)) || typeof spacing === 'number') {
+      return [`spacing-xs-${String(spacing)}`];
+    } // in case of object `spacing`
+
+
+    const classes = [];
+    breakpoints.forEach(breakpoint => {
+      const value = spacing[breakpoint];
+
+      if (Number(value) > 0) {
+        const className = `spacing-${breakpoint}-${String(value)}`;
+        classes.push(className);
+      }
+    });
+    return classes;
+  }
 
   const useUtilityClasses$_ = ownerState => {
     const {
@@ -31030,17 +32055,27 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       container,
       direction,
       item,
-      lg,
-      md,
-      sm,
       spacing,
       wrap,
-      xl,
-      xs,
-      zeroMinWidth
+      zeroMinWidth,
+      breakpoints
     } = ownerState;
+    let spacingClasses = []; // in case of grid item
+
+    if (container) {
+      spacingClasses = resolveSpacingClasses(spacing, breakpoints);
+    }
+
+    const breakpointsClasses = [];
+    breakpoints.forEach(breakpoint => {
+      const value = ownerState[breakpoint];
+
+      if (value) {
+        breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
+      }
+    });
     const slots = {
-      root: ['root', container && 'container', item && 'item', zeroMinWidth && 'zeroMinWidth', ...resolveSpacingClasses(spacing, container), direction !== 'row' && `direction-xs-${String(direction)}`, wrap !== 'wrap' && `wrap-xs-${String(wrap)}`, xs !== false && `grid-xs-${String(xs)}`, sm !== false && `grid-sm-${String(sm)}`, md !== false && `grid-md-${String(md)}`, lg !== false && `grid-lg-${String(lg)}`, xl !== false && `grid-xl-${String(xl)}`]
+      root: ['root', container && 'container', item && 'item', zeroMinWidth && 'zeroMinWidth', ...spacingClasses, direction !== 'row' && `direction-xs-${String(direction)}`, wrap !== 'wrap' && `wrap-xs-${String(wrap)}`, ...breakpointsClasses]
     };
     return composeClasses(slots, getGridUtilityClass, classes);
   };
@@ -31050,6 +32085,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       props: inProps,
       name: 'MuiGrid'
     });
+    const {
+      breakpoints
+    } = useTheme();
     const props = extendSxProp(themeProps);
 
     const {
@@ -31060,14 +32098,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       container = false,
       direction = 'row',
       item = false,
-      lg = false,
-      md = false,
       rowSpacing: rowSpacingProp,
-      sm = false,
       spacing = 0,
       wrap = 'wrap',
-      xl = false,
-      xs = false,
       zeroMinWidth = false
     } = props,
           other = _objectWithoutPropertiesLoose(props, _excluded$1d);
@@ -31077,21 +32110,29 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const columnsContext = React__namespace.useContext(GridContext$1); // columns set with default breakpoint unit of 12
 
     const columns = container ? columnsProp || 12 : columnsContext;
+    const breakpointsValues = {};
+
+    const otherFiltered = _extends({}, other);
+
+    breakpoints.keys.forEach(breakpoint => {
+      if (other[breakpoint] != null) {
+        breakpointsValues[breakpoint] = other[breakpoint];
+        delete otherFiltered[breakpoint];
+      }
+    });
 
     const ownerState = _extends({}, props, {
       columns,
       container,
       direction,
       item,
-      lg,
-      md,
-      sm,
       rowSpacing,
       columnSpacing,
       wrap,
-      xl,
-      xs,
-      zeroMinWidth
+      zeroMinWidth,
+      spacing
+    }, breakpointsValues, {
+      breakpoints: breakpoints.keys
     });
 
     const classes = useUtilityClasses$_(ownerState);
@@ -31102,7 +32143,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         className: clsx(classes.root, className),
         as: component,
         ref: ref
-      }, other))
+      }, otherFiltered))
     });
   });
   Grid.propTypes
@@ -31272,6 +32313,52 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
   var Grid$1 = Grid;
 
+  const Grid2 = createGrid({
+    createStyledComponent: styled$1('div', {
+      name: 'MuiGrid2',
+      overridesResolver: (props, styles) => styles.root
+    }),
+    componentName: 'MuiGrid2',
+    // eslint-disable-next-line material-ui/mui-name-matches-component-name
+    useThemeProps: inProps => useThemeProps({
+      props: inProps,
+      name: 'MuiGrid2'
+    })
+  });
+  Grid2.propTypes
+  /* remove-proptypes */
+  = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit TypeScript types and run "yarn proptypes"  |
+    // ----------------------------------------------------------------------
+
+    /**
+     * The content of the component.
+     */
+    children: PropTypes.node,
+
+    /**
+     * @ignore
+     */
+    sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object])
+  } ;
+  var Grid2$1 = Grid2;
+
+  function getGrid2UtilityClass(slot) {
+    return generateUtilityClass('MuiGrid2', slot);
+  }
+  const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'];
+  const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'];
+  const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const grid2Classes = generateUtilityClasses('MuiGrid2', ['root', 'container', 'item', 'zeroMinWidth', // spacings
+  ...SPACINGS.map(spacing => `spacing-xs-${spacing}`), // direction values
+  ...DIRECTIONS.map(direction => `direction-xs-${direction}`), // wrap values
+  ...WRAPS.map(wrap => `wrap-xs-${wrap}`), // grid sizes for all breakpoints
+  ...GRID_SIZES.map(size => `grid-xs-${size}`), ...GRID_SIZES.map(size => `grid-sm-${size}`), ...GRID_SIZES.map(size => `grid-md-${size}`), ...GRID_SIZES.map(size => `grid-lg-${size}`), ...GRID_SIZES.map(size => `grid-xl-${size}`)]);
+  var grid2Classes$1 = grid2Classes;
+
   const _excluded$1c = ["addEndListener", "appear", "children", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"];
 
   function getScale(value) {
@@ -31288,12 +32375,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       transform: 'none'
     }
   };
-  /**
-   * Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
-   * Remove this workaround once the WebKit bug fix is released.
+  /*
+   TODO v6: remove
+   Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
    */
 
-  const isWebKit154 = typeof navigator !== 'undefined' && /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) && /(os |version\/)15(.|_)[4-9]/i.test(navigator.userAgent);
+  const isWebKit154 = typeof navigator !== 'undefined' && /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) && /(os |version\/)15(.|_)4/i.test(navigator.userAgent);
   /**
    * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
    * [Popover](/material-ui/react-popover/) components.
@@ -31775,7 +32862,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
     }
 
-    hoistNonReactStatics_cjs(WithWidth, Component);
     return WithWidth;
   };
 
@@ -32326,14 +33412,14 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }[ownerState.fontSize],
     // TODO v5 deprecate, v6 remove for sx
     color: {
-      primary: theme.palette.primary.main,
-      secondary: theme.palette.secondary.main,
-      info: theme.palette.info.main,
-      success: theme.palette.success.main,
-      warning: theme.palette.warning.main,
-      action: theme.palette.action.active,
-      error: theme.palette.error.main,
-      disabled: theme.palette.action.disabled,
+      primary: (theme.vars || theme).palette.primary.main,
+      secondary: (theme.vars || theme).palette.secondary.main,
+      info: (theme.vars || theme).palette.info.main,
+      success: (theme.vars || theme).palette.success.main,
+      warning: (theme.vars || theme).palette.warning.main,
+      action: (theme.vars || theme).palette.action.active,
+      error: (theme.vars || theme).palette.error.main,
+      disabled: (theme.vars || theme).palette.action.disabled,
       inherit: undefined
     }[ownerState.color]
   }));
@@ -32870,7 +33956,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     return _extends({
       flexGrow: 1,
       padding: '12px 16px',
-      color: theme.palette.common.white,
+      color: (theme.vars || theme).palette.common.white,
       overflow: 'hidden'
     }, ownerState.position === 'below' && {
       padding: '6px 0 12px',
@@ -33059,7 +34145,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => {
     const light = theme.palette.mode === 'light';
-    const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+    let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+
+    if (theme.vars) {
+      bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
+    }
+
     return _extends({
       position: 'relative'
     }, ownerState.formControl && {
@@ -33068,7 +34159,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       }
     }, !ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -33089,7 +34180,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         transform: 'scaleX(1) translateX(0)'
       },
       [`&.${inputClasses$1.error}:after`]: {
-        borderBottomColor: theme.palette.error.main,
+        borderBottomColor: (theme.vars || theme).palette.error.main,
         transform: 'scaleX(1)' // error is always underlined in red
 
       },
@@ -33108,7 +34199,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
       },
       [`&:hover:not(.${inputClasses$1.disabled}):before`]: {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
+        borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`
@@ -33404,7 +34495,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     maxHeight: '2em',
     alignItems: 'center',
     whiteSpace: 'nowrap',
-    color: theme.palette.action.active
+    color: (theme.vars || theme).palette.action.active
   }, ownerState.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
     [`&.${inputAdornmentClasses$1.positionStart}&:not(.${inputAdornmentClasses$1.hiddenLabel})`]: {
@@ -33750,6 +34841,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     shrink: PropTypes.bool,
 
     /**
+     * The size of the component.
+     * @default 'normal'
+     */
+    size: PropTypes.oneOf(['normal', 'small']),
+
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object]),
@@ -33847,6 +34944,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       return 'currentColor';
     }
 
+    if (theme.vars) {
+      return theme.vars.palette.LinearProgress[`${color}Bg`];
+    }
+
     return theme.palette.mode === 'light' ? lighten(theme.palette[color].main, 0.62) : darken(theme.palette[color].main, 0.5);
   };
 
@@ -33939,7 +35040,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    backgroundColor: ownerState.color === 'inherit' ? 'currentColor' : theme.palette[ownerState.color].main
+    backgroundColor: ownerState.color === 'inherit' ? 'currentColor' : (theme.vars || theme).palette[ownerState.color].main
   }, ownerState.variant === 'determinate' && {
     transition: `transform .${TRANSITION_DURATION}s linear`
   }, ownerState.variant === 'buffer' && {
@@ -33972,7 +35073,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     transition: 'transform 0.2s linear',
     transformOrigin: 'left'
   }, ownerState.variant !== 'buffer' && {
-    backgroundColor: ownerState.color === 'inherit' ? 'currentColor' : theme.palette[ownerState.color].main
+    backgroundColor: ownerState.color === 'inherit' ? 'currentColor' : (theme.vars || theme).palette[ownerState.color].main
   }, ownerState.color === 'inherit' && {
     opacity: 0.3
   }, ownerState.variant === 'buffer' && {
@@ -34132,7 +35233,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const linkClasses = generateUtilityClasses('MuiLink', ['root', 'underlineNone', 'underlineHover', 'underlineAlways', 'button', 'focusVisible']);
   var linkClasses$1 = linkClasses;
 
-  const _excluded$10 = ["className", "color", "component", "onBlur", "onFocus", "TypographyClasses", "underline", "variant", "sx"];
   const colorTransformations = {
     primary: 'primary.main',
     textPrimary: 'text.primary',
@@ -34144,6 +35244,25 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   const transformDeprecatedColors = color => {
     return colorTransformations[color] || color;
   };
+
+  const getTextDecoration = ({
+    theme,
+    ownerState
+  }) => {
+    const transformedColor = transformDeprecatedColors(ownerState.color);
+    const color = getPath(theme, `palette.${transformedColor}`, false) || ownerState.color;
+    const channelColor = getPath(theme, `palette.${transformedColor}Channel`);
+
+    if ('vars' in theme && channelColor) {
+      return `rgba(${channelColor} / 0.4)`;
+    }
+
+    return alpha(color, 0.4);
+  };
+
+  var getTextDecoration$1 = getTextDecoration;
+
+  const _excluded$10 = ["className", "color", "component", "onBlur", "onFocus", "TypographyClasses", "underline", "variant", "sx"];
 
   const useUtilityClasses$Q = ownerState => {
     const {
@@ -34171,7 +35290,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => {
-    const color = getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
     return _extends({}, ownerState.underline === 'none' && {
       textDecoration: 'none'
     }, ownerState.underline === 'hover' && {
@@ -34179,13 +35297,18 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       '&:hover': {
         textDecoration: 'underline'
       }
-    }, ownerState.underline === 'always' && {
-      textDecoration: 'underline',
-      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+    }, ownerState.underline === 'always' && _extends({
+      textDecoration: 'underline'
+    }, ownerState.color !== 'inherit' && {
+      textDecorationColor: getTextDecoration$1({
+        theme,
+        ownerState
+      })
+    }, {
       '&:hover': {
         textDecorationColor: 'inherit'
       }
-    }, ownerState.component === 'button' && {
+    }), ownerState.component === 'button' && {
       position: 'relative',
       WebkitTapHighlightColor: 'transparent',
       backgroundColor: 'transparent',
@@ -34215,7 +35338,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     });
   });
   const Link = /*#__PURE__*/React__namespace.forwardRef(function Link(inProps, ref) {
-    const theme = useTheme();
     const props = useThemeProps({
       props: inProps,
       name: 'MuiLink'
@@ -34234,7 +35356,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     } = props,
           other = _objectWithoutPropertiesLoose(props, _excluded$10);
 
-    const sxColor = typeof sx === 'function' ? sx(theme).color : sx == null ? void 0 : sx.color;
     const {
       isFocusVisibleRef,
       onBlur: handleBlurVisible,
@@ -34269,9 +35390,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     };
 
     const ownerState = _extends({}, props, {
-      // It is too complex to support any types of `sx`.
-      // Need to find a better way to get rid of the color manipulation for `textDecorationColor`.
-      color: (typeof sxColor === 'function' ? sxColor(theme) : sxColor) || color,
+      color,
       component,
       focusVisible,
       underline,
@@ -34289,8 +35408,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       ref: handlerRef,
       ownerState: ownerState,
       variant: variant,
-      sx: [...(inProps.color ? [{
-        color: colorTransformations[color] || color
+      sx: [...(!Object.keys(colorTransformations).includes(color) ? [{
+        color
       }] : []), ...(Array.isArray(sx) ? sx : [sx])]
     }, other));
   });
@@ -34578,33 +35697,33 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
       }
     },
     [`&.${listItemButtonClasses$1.selected}`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${listItemButtonClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       }
     },
     [`&.${listItemButtonClasses$1.selected}:hover`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
       }
     },
     [`&.${listItemButtonClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     [`&.${listItemButtonClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     }
   }, ownerState.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box'
   }, ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start'
@@ -34665,7 +35784,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       value: childContext,
       children: /*#__PURE__*/jsxRuntime_1(ListItemButtonRoot, _extends({
         ref: handleRef,
-        component: component,
+        href: other.href || other.to,
+        component: (other.href || other.to) && component === 'div' ? 'a' : component,
         focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
         ownerState: ownerState
       }, other, {
@@ -34746,6 +35866,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * if needed.
      */
     focusVisibleClassName: PropTypes.string,
+
+    /**
+     * @ignore
+     */
+    href: PropTypes.string,
 
     /**
      * Use to apply selected styling.
@@ -34921,21 +36046,21 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }
   }, {
     [`&.${listItemClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     [`&.${listItemClasses$1.selected}`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${listItemClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       }
     },
     [`&.${listItemClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     }
   }, ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start'
   }, ownerState.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box'
   }, ownerState.button && {
     transition: theme.transitions.create('background-color', {
@@ -34943,17 +36068,17 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
       }
     },
     [`&.${listItemClasses$1.selected}:hover`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
       }
     }
   }, ownerState.hasSecondaryAction && {
@@ -35386,7 +36511,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => _extends({
     minWidth: 56,
-    color: theme.palette.action.active,
+    color: (theme.vars || theme).palette.action.active,
     flexShrink: 0,
     display: 'inline-flex'
   }, ownerState.alignItems === 'flex-start' && {
@@ -35713,7 +36838,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     return false;
   }
   /**
-   * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
+   * A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/.
    * It's exposed to help customization of the [`Menu`](/material-ui/api/menu/) component if you
    * use it separately you need to move focus into the component manually. Once
    * the focus is placed inside the component it is fully keyboard accessible.
@@ -36766,35 +37891,35 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     paddingLeft: 16,
     paddingRight: 16
   }, ownerState.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box'
   }, {
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
       }
     },
     [`&.${menuItemClasses$1.selected}`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${menuItemClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       }
     },
     [`&.${menuItemClasses$1.selected}:hover`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)
       }
     },
     [`&.${menuItemClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     [`&.${menuItemClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     },
     [`& + .${dividerClasses$1.root}`]: {
       marginTop: theme.spacing(1),
@@ -37018,20 +38143,20 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    background: theme.palette.background.default,
+    background: (theme.vars || theme).palette.background.default,
     padding: 8
   }, ownerState.position === 'bottom' && {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper
+    zIndex: (theme.vars || theme).zIndex.mobileStepper
   }, ownerState.position === 'top' && {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper
+    zIndex: (theme.vars || theme).zIndex.mobileStepper
   }));
   const MobileStepperDots = styled$1('div', {
     name: 'MuiMobileStepper',
@@ -37061,13 +38186,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest
     }),
-    backgroundColor: theme.palette.action.disabled,
+    backgroundColor: (theme.vars || theme).palette.action.disabled,
     borderRadius: '50%',
     width: 8,
     height: 8,
     margin: '0 2px'
   }, dotActive && {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: (theme.vars || theme).palette.primary.main
   })));
   const MobileStepperProgress = styled$1(LinearProgress$1, {
     name: 'MuiMobileStepper',
@@ -37706,25 +38831,25 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const borderColor = theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return _extends({
       position: 'relative',
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
       [`&:hover .${outlinedInputClasses$1.notchedOutline}`]: {
-        borderColor: theme.palette.text.primary
+        borderColor: (theme.vars || theme).palette.text.primary
       },
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses$1.notchedOutline}`]: {
-          borderColor
+          borderColor: theme.vars ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : borderColor
         }
       },
       [`&.${outlinedInputClasses$1.focused} .${outlinedInputClasses$1.notchedOutline}`]: {
-        borderColor: theme.palette[ownerState.color].main,
+        borderColor: (theme.vars || theme).palette[ownerState.color].main,
         borderWidth: 2
       },
       [`&.${outlinedInputClasses$1.error} .${outlinedInputClasses$1.notchedOutline}`]: {
-        borderColor: theme.palette.error.main
+        borderColor: (theme.vars || theme).palette.error.main
       },
       [`&.${outlinedInputClasses$1.disabled} .${outlinedInputClasses$1.notchedOutline}`]: {
-        borderColor: theme.palette.action.disabled
+        borderColor: (theme.vars || theme).palette.action.disabled
       }
     }, ownerState.startAdornment && {
       paddingLeft: 14
@@ -37742,9 +38867,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     overridesResolver: (props, styles) => styles.notchedOutline
   })(({
     theme
-  }) => ({
-    borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-  }));
+  }) => {
+    const borderColor = theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+    return {
+      borderColor: theme.vars ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : borderColor
+    };
+  });
   const OutlinedInputInput = styled$1(InputBaseComponent, {
     name: 'MuiOutlinedInput',
     slot: 'Input',
@@ -37753,12 +38881,24 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    padding: '16.5px 14px',
+    padding: '16.5px 14px'
+  }, !theme.vars && {
     '&:-webkit-autofill': {
       WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
       WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
       caretColor: theme.palette.mode === 'light' ? null : '#fff',
       borderRadius: 'inherit'
+    }
+  }, theme.vars && {
+    '&:-webkit-autofill': {
+      borderRadius: 'inherit'
+    },
+    [theme.getColorSchemeSelector('dark')]: {
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: '#fff',
+        caretColor: '#fff'
+      }
     }
   }, ownerState.size === 'small' && {
     padding: '8.5px 14px'
@@ -37795,12 +38935,27 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       muiFormControl,
       states: ['required']
     });
+
+    const ownerState = _extends({}, props, {
+      color: fcs.color || 'primary',
+      disabled: fcs.disabled,
+      error: fcs.error,
+      focused: fcs.focused,
+      formControl: muiFormControl,
+      fullWidth,
+      hiddenLabel: fcs.hiddenLabel,
+      multiline,
+      size: fcs.size,
+      type
+    });
+
     return /*#__PURE__*/jsxRuntime_1(InputBase$1, _extends({
       components: _extends({
         Root: OutlinedInputRoot,
         Input: OutlinedInputInput
       }, components),
       renderSuffix: state => /*#__PURE__*/jsxRuntime_1(NotchedOutlineRoot, {
+        ownerState: ownerState,
         className: classes.notchedOutline,
         label: label != null && label !== '' && fcs.required ? _React$Fragment || (_React$Fragment = /*#__PURE__*/jsxRuntime_2(React__namespace.Fragment, {
           children: [label, "\xA0", '*']
@@ -38192,10 +39347,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     minWidth: 32,
     padding: '0 6px',
     margin: '0 3px',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     height: 'auto',
     [`&.${paginationItemClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     }
   }, ownerState.size === 'small' && {
     minWidth: 26,
@@ -38223,39 +39378,39 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     height: 32,
     padding: '0 6px',
     margin: '0 3px',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     [`&.${paginationItemClasses$1.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     [`&.${paginationItemClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     },
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short
     }),
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
       }
     },
     [`&.${paginationItemClasses$1.selected}`]: {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected
+          backgroundColor: (theme.vars || theme).palette.action.selected
         }
       },
       [`&.${paginationItemClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       },
       [`&.${paginationItemClasses$1.disabled}`]: {
         opacity: 1,
-        color: theme.palette.action.disabled,
-        backgroundColor: theme.palette.action.selected
+        color: (theme.vars || theme).palette.action.disabled,
+        backgroundColor: (theme.vars || theme).palette.action.selected
       }
     }
   }, ownerState.size === 'small' && {
@@ -38271,49 +39426,49 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     padding: '0 10px',
     fontSize: theme.typography.pxToRem(15)
   }, ownerState.shape === 'rounded' && {
-    borderRadius: theme.shape.borderRadius
+    borderRadius: (theme.vars || theme).shape.borderRadius
   }), ({
     theme,
     ownerState
   }) => _extends({}, ownerState.variant === 'text' && {
     [`&.${paginationItemClasses$1.selected}`]: _extends({}, ownerState.color !== 'standard' && {
-      color: theme.palette[ownerState.color].contrastText,
-      backgroundColor: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].contrastText,
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
       '&:hover': {
-        backgroundColor: theme.palette[ownerState.color].dark,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette[ownerState.color].main
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].main
         }
       },
       [`&.${paginationItemClasses$1.focusVisible}`]: {
-        backgroundColor: theme.palette[ownerState.color].dark
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
       }
     }, {
       [`&.${paginationItemClasses$1.disabled}`]: {
-        color: theme.palette.action.disabled
+        color: (theme.vars || theme).palette.action.disabled
       }
     })
   }, ownerState.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    border: theme.vars ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
     [`&.${paginationItemClasses$1.selected}`]: _extends({}, ownerState.color !== 'standard' && {
-      color: theme.palette[ownerState.color].main,
-      border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
-      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity),
+      color: (theme.vars || theme).palette[ownerState.color].main,
+      border: `1px solid ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)` : alpha(theme.palette[ownerState.color].main, 0.5)}`,
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})` : alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity),
       '&:hover': {
-        backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
         }
       },
       [`&.${paginationItemClasses$1.focusVisible}`]: {
-        backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity)
       }
     }, {
       [`&.${paginationItemClasses$1.disabled}`]: {
-        borderColor: theme.palette.action.disabledBackground,
-        color: theme.palette.action.disabled
+        borderColor: (theme.vars || theme).palette.action.disabledBackground,
+        color: (theme.vars || theme).palette.action.disabled
       }
     })
   }));
@@ -38901,9 +40056,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     '&:hover': {
-      backgroundColor: alpha(ownerState.color === 'default' ? theme.palette.action.active : theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${ownerState.color === 'default' ? theme.vars.palette.action.activeChannel : theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(ownerState.color === 'default' ? theme.palette.action.active : theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
@@ -38911,11 +40066,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }
   }, ownerState.color !== 'default' && {
     [`&.${radioClasses$1.checked}`]: {
-      color: theme.palette[ownerState.color].main
+      color: (theme.vars || theme).palette[ownerState.color].main
     }
   }, {
     [`&.${radioClasses$1.disabled}`]: {
-      color: theme.palette.action.disabled
+      color: (theme.vars || theme).palette.action.disabled
     }
   }));
 
@@ -39285,7 +40440,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     textAlign: 'left',
     WebkitTapHighlightColor: 'transparent',
     [`&.${ratingClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none'
     },
     [`&.${ratingClasses$1.focusVisible} .${ratingClasses$1.iconActive}`]: {
@@ -39338,7 +40493,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }, ownerState.iconActive && {
     transform: 'scale(1.2)'
   }, ownerState.iconEmpty && {
-    color: theme.palette.action.disabled
+    color: (theme.vars || theme).palette.action.disabled
   }));
   const RatingDecimal = styled$1('span', {
     name: 'MuiRating',
@@ -40005,7 +41160,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
      * For browser support, check out https://caniuse.com/?search=color-scheme
      */
-    enableColorScheme: PropTypes.bool
+    enableColorScheme: PropTypes.bool,
+
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object])
   } ;
   var ScopedCssBaseline$1 = ScopedCssBaseline;
 
@@ -40307,8 +41467,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     const handleKeyDown = event => {
       if (!readOnly) {
-        const validKeys = [' ', 'ArrowUp', 'ArrowDown', // The native select doesn't respond to enter on MacOS, but it's recommended by
-        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        const validKeys = [' ', 'ArrowUp', 'ArrowDown', // The native select doesn't respond to enter on macOS, but it's recommended by
+        // https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
         'Enter'];
 
         if (validKeys.indexOf(event.key) !== -1) {
@@ -41003,7 +42163,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * If the value is an object it must have reference equality with the option in order to be selected.
      * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
      */
-    value: PropTypes.any,
+    value: PropTypes.oneOfType([PropTypes.oneOf(['']), PropTypes.any]),
 
     /**
      * The variant to use.
@@ -41088,7 +42248,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     return _extends({
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+      backgroundColor: theme.vars ? theme.vars.palette.Skeleton.bg : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em'
     }, ownerState.variant === 'text' && {
       marginTop: 0,
@@ -41127,7 +42287,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
       &::after {
         animation: ${0} 1.6s linear 0.5s infinite;
-        background: linear-gradient(90deg, transparent, ${0}, transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          ${0},
+          transparent
+        );
         content: '';
         position: absolute;
         transform: translateX(-100%); /* Avoid flash during server-side hydration */
@@ -41136,7 +42301,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         right: 0;
         top: 0;
       }
-    `), waveKeyframe, theme.palette.action.hover));
+    `), waveKeyframe, (theme.vars || theme).palette.action.hover));
   const Skeleton = /*#__PURE__*/React__namespace.forwardRef(function Skeleton(inProps, ref) {
     const props = useThemeProps({
       props: inProps,
@@ -41251,11 +42416,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       const {
         ownerState
       } = props;
-      const marks = ownerState.marksProp === true && ownerState.step !== null ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map((_, index) => ({
-        value: ownerState.min + ownerState.step * index
-      })) : ownerState.marksProp || [];
-      const marked = marks.length > 0 && marks.some(mark => mark.label);
-      return [styles.root, styles[`color${capitalize(ownerState.color)}`], ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`], marked && styles.marked, ownerState.orientation === 'vertical' && styles.vertical, ownerState.track === 'inverted' && styles.trackInverted, ownerState.track === false && styles.trackFalse];
+      return [styles.root, styles[`color${capitalize(ownerState.color)}`], ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`], ownerState.marked && styles.marked, ownerState.orientation === 'vertical' && styles.vertical, ownerState.track === 'inverted' && styles.trackInverted, ownerState.track === false && styles.trackFalse];
     }
   })(({
     theme,
@@ -41267,7 +42428,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     position: 'relative',
     cursor: 'pointer',
     touchAction: 'none',
-    color: theme.palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].main,
     WebkitTapHighlightColor: 'transparent'
   }, ownerState.orientation === 'horizontal' && _extends({
     height: 4,
@@ -41302,7 +42463,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     [`&.${sliderClasses.disabled}`]: {
       pointerEvents: 'none',
       cursor: 'default',
-      color: theme.palette.grey[400]
+      color: (theme.vars || theme).palette.grey[400]
     },
     [`&.${sliderClasses.dragging}`]: {
       [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -41393,8 +42554,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }, ownerState.track === false && {
       display: 'none'
     }, ownerState.track === 'inverted' && {
-      backgroundColor: color,
-      borderColor: color
+      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
+      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color
     });
   });
   SliderTrack.propTypes
@@ -41452,7 +42613,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       borderRadius: 'inherit',
       width: '100%',
       height: '100%',
-      boxShadow: theme.shadows[2]
+      boxShadow: (theme.vars || theme).shadows[2]
     }, ownerState.size === 'small' && {
       boxShadow: 'none'
     }),
@@ -41468,13 +42629,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       transform: 'translate(-50%, -50%)'
     },
     [`&:hover, &.${sliderClasses.focusVisible}`]: {
-      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)` : alpha(theme.palette[ownerState.color].main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none'
       }
     },
     [`&.${sliderClasses.active}`]: {
-      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`
+      boxShadow: `0px 0px 0px 14px ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)` : alpha(theme.palette[ownerState.color].main, 0.16)}`
     },
     [`&.${sliderClasses.disabled}`]: {
       '&:hover': {
@@ -41513,31 +42674,44 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     transition: theme.transitions.create(['transform'], {
       duration: theme.transitions.duration.shortest
     }),
-    top: -10,
     transformOrigin: 'bottom center',
     transform: 'translateY(-100%) scale(0)',
     position: 'absolute',
-    backgroundColor: theme.palette.grey[600],
+    backgroundColor: (theme.vars || theme).palette.grey[600],
     borderRadius: 2,
-    color: theme.palette.common.white,
+    color: (theme.vars || theme).palette.common.white,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '0.25rem 0.75rem'
-  }, ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(12),
-    padding: '0.25rem 0.5rem'
-  }, {
+  }, ownerState.orientation === 'horizontal' && {
+    top: '-10px',
     '&:before': {
       position: 'absolute',
       content: '""',
       width: 8,
       height: 8,
-      bottom: 0,
-      left: '50%',
       transform: 'translate(-50%, 50%) rotate(45deg)',
-      backgroundColor: 'inherit'
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%'
     }
+  }, ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '25px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%'
+    }
+  }, ownerState.size === 'small' && {
+    fontSize: theme.typography.pxToRem(12),
+    padding: '0.25rem 0.5rem'
   }));
   SliderValueLabel.propTypes
   /* remove-proptypes */
@@ -41574,7 +42748,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     left: '50%',
     transform: 'translate(-50%, 1px)'
   }, markActive && {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     opacity: 0.8
   }));
   SliderMark.propTypes
@@ -41600,7 +42774,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState,
     markLabelActive
   }) => _extends({}, theme.typography.body2, {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     position: 'absolute',
     whiteSpace: 'nowrap'
   }, ownerState.orientation === 'horizontal' && {
@@ -41616,7 +42790,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       left: 44
     }
   }, markLabelActive && {
-    color: theme.palette.text.primary
+    color: (theme.vars || theme).palette.text.primary
   }));
   SliderMarkLabel.propTypes
   /* remove-proptypes */
@@ -41792,22 +42966,24 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
      * @default {}
      */
     componentsProps: PropTypes.shape({
-      input: PropTypes.object,
-      mark: PropTypes.object,
-      markLabel: PropTypes.object,
-      rail: PropTypes.object,
-      root: PropTypes.object,
-      thumb: PropTypes.object,
-      track: PropTypes.object,
-      valueLabel: PropTypes.shape({
+      input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({
+        children: PropTypes.element,
         className: PropTypes.string,
         components: PropTypes.shape({
           Root: PropTypes.elementType
         }),
+        open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+        value: PropTypes.number,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on'])
-      })
+      })])
     }),
 
     /**
@@ -42008,13 +43184,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
     const backgroundColor = emphasize(theme.palette.background.default, emphasis);
     return _extends({}, theme.typography.body2, {
-      color: theme.palette.getContrastText(backgroundColor),
-      backgroundColor,
+      color: theme.vars ? theme.vars.palette.SnackbarContent.color : theme.palette.getContrastText(backgroundColor),
+      backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
       padding: '6px 16px',
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
         flexGrow: 'initial',
@@ -42151,18 +43327,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => {
-    const center = _extends({}, !ownerState.isRtl && {
+    const center = {
       left: '50%',
       right: 'auto',
       transform: 'translateX(-50%)'
-    }, ownerState.isRtl && {
-      right: '50%',
-      left: 'auto',
-      transform: 'translateX(50%)'
-    });
-
+    };
     return _extends({
-      zIndex: theme.zIndex.snackbar,
+      zIndex: (theme.vars || theme).zIndex.snackbar,
       position: 'fixed',
       display: 'flex',
       left: 8,
@@ -42182,19 +43353,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         top: 24
       } : {
         bottom: 24
-      }, ownerState.anchorOrigin.horizontal === 'center' && center, ownerState.anchorOrigin.horizontal === 'left' && _extends({}, !ownerState.isRtl && {
+      }, ownerState.anchorOrigin.horizontal === 'center' && center, ownerState.anchorOrigin.horizontal === 'left' && {
         left: 24,
         right: 'auto'
-      }, ownerState.isRtl && {
+      }, ownerState.anchorOrigin.horizontal === 'right' && {
         right: 24,
         left: 'auto'
-      }), ownerState.anchorOrigin.horizontal === 'right' && _extends({}, !ownerState.isRtl && {
-        right: 24,
-        left: 'auto'
-      }, ownerState.isRtl && {
-        left: 24,
-        right: 'auto'
-      }))
+      })
     });
   });
   const Snackbar = /*#__PURE__*/React__namespace.forwardRef(function Snackbar(inProps, ref) {
@@ -42241,14 +43406,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
           TransitionProps = _objectWithoutPropertiesLoose(props.TransitionProps, _excluded$z),
           other = _objectWithoutPropertiesLoose(props, _excluded2$2);
 
-    const isRtl = theme.direction === 'rtl';
-
     const ownerState = _extends({}, props, {
       anchorOrigin: {
         vertical,
         horizontal
-      },
-      isRtl
+      }
     });
 
     const classes = useUtilityClasses$s(ownerState);
@@ -42858,7 +44020,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    zIndex: theme.zIndex.speedDial,
+    zIndex: (theme.vars || theme).zIndex.speedDial,
     display: 'flex',
     alignItems: 'center',
     pointerEvents: 'none'
@@ -43388,7 +44550,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState,
     open
   }) => _extends({
-    zIndex: theme.zIndex.tooltip,
+    zIndex: (theme.vars || theme).zIndex.tooltip,
     pointerEvents: 'none'
   }, !ownerState.disableInteractive && {
     pointerEvents: 'auto'
@@ -43449,9 +44611,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => _extends({
-    backgroundColor: alpha(theme.palette.grey[700], 0.92),
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.common.white,
+    backgroundColor: theme.vars ? theme.vars.palette.Tooltip.bg : alpha(theme.palette.grey[700], 0.92),
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    color: (theme.vars || theme).palette.common.white,
     fontFamily: theme.typography.fontFamily,
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(11),
@@ -43517,7 +44679,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     /* = width / sqrt(2) = (length of the hypotenuse) */
     ,
     boxSizing: 'border-box',
-    color: alpha(theme.palette.grey[700], 0.9),
+    color: theme.vars ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.9)` : alpha(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
@@ -43666,12 +44828,15 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     const handleEnter = event => {
       if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
         return;
+      } // Workaround for https://github.com/facebook/react/issues/7769
+
+
+      if (!childNode) {
+        setChildNode(event.currentTarget);
       } // Remove the title ahead of time.
       // We don't want to wait for the next render commit.
       // We would risk displaying two tooltips at the same time (native + this one).
-
-
-      if (childNode) {
+      else {
         childNode.removeAttribute('title');
       }
 
@@ -43716,8 +44881,6 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
 
     const handleFocus = event => {
       // Workaround for https://github.com/facebook/react/issues/7769
-      // The autoFocus of React might trigger the event before the componentDidMount.
-      // We need to account for this eventuality.
       if (!childNode) {
         setChildNode(event.currentTarget);
       }
@@ -44193,10 +45356,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => _extends({
     margin: 8,
-    color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.background.paper,
+    color: (theme.vars || theme).palette.text.secondary,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     '&:hover': {
-      backgroundColor: emphasize(theme.palette.background.paper, 0.15)
+      backgroundColor: theme.vars ? theme.vars.palette.SpeedDialAction.fabHoverBg : emphasize(theme.palette.background.paper, 0.15)
     },
     transition: `${theme.transitions.create('transform', {
     duration: theme.transitions.duration.shorter
@@ -44249,10 +45412,10 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   }) => _extends({
     position: 'absolute'
   }, theme.typography.body1, {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[1],
-    color: theme.palette.text.secondary,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    boxShadow: (theme.vars || theme).shadows[1],
+    color: (theme.vars || theme).palette.text.secondary,
     padding: '4px 16px',
     wordBreak: 'keep-all'
   }));
@@ -44610,7 +45773,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     if (ownerState.spacing) {
       const transformer = createUnarySpacing(theme);
       const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-        if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+        if (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null || typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null) {
           acc[breakpoint] = true;
         }
 
@@ -44721,15 +45884,22 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   var Stack$1 = Stack;
 
   /**
-   * @ignore - internal component.
+   * Provides information about the current step in Stepper.
    */
-
   const StepperContext = /*#__PURE__*/React__namespace.createContext({});
 
   {
     StepperContext.displayName = 'StepperContext';
   }
+  /**
+   * Returns the current StepperContext or an empty object if no StepperContext
+   * has been defined in the component tree.
+   */
 
+
+  function useStepperContext() {
+    return React__namespace.useContext(StepperContext);
+  }
   var StepperContext$1 = StepperContext;
 
   /**
@@ -44968,15 +46138,15 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     transition: theme.transitions.create('color', {
       duration: theme.transitions.duration.shortest
     }),
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
     [`&.${stepIconClasses$1.completed}`]: {
-      color: theme.palette.primary.main
+      color: (theme.vars || theme).palette.primary.main
     },
     [`&.${stepIconClasses$1.active}`]: {
-      color: theme.palette.primary.main
+      color: (theme.vars || theme).palette.primary.main
     },
     [`&.${stepIconClasses$1.error}`]: {
-      color: theme.palette.error.main
+      color: (theme.vars || theme).palette.error.main
     }
   }));
   const StepIconText = styled$1('text', {
@@ -44986,7 +46156,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    fill: theme.palette.primary.contrastText,
+    fill: (theme.vars || theme).palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
     fontFamily: theme.typography.fontFamily
   }));
@@ -45046,8 +46216,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         })), /*#__PURE__*/jsxRuntime_1(StepIconText, {
           className: classes.text,
           x: "12",
-          y: "16",
+          y: "12",
           textAnchor: "middle",
+          dominantBaseline: "central",
           ownerState: ownerState,
           children: icon
         })]
@@ -45167,11 +46338,11 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       duration: theme.transitions.duration.shortest
     }),
     [`&.${stepLabelClasses$1.active}`]: {
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
       fontWeight: 500
     },
     [`&.${stepLabelClasses$1.completed}`]: {
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
       fontWeight: 500
     },
     [`&.${stepLabelClasses$1.alternativeLabel}`]: {
@@ -45179,7 +46350,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       marginTop: 16
     },
     [`&.${stepLabelClasses$1.error}`]: {
-      color: theme.palette.error.main
+      color: (theme.vars || theme).palette.error.main
     }
   }));
   const StepLabelIconContainer = styled$1('span', {
@@ -45203,7 +46374,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => ({
     width: '100%',
-    color: theme.palette.text.secondary
+    color: (theme.vars || theme).palette.text.secondary
   }));
   const StepLabel = /*#__PURE__*/React__namespace.forwardRef(function StepLabel(inProps, ref) {
     const props = useThemeProps({
@@ -45532,17 +46703,20 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     ownerState,
     theme
-  }) => _extends({
-    display: 'block',
-    borderColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-  }, ownerState.orientation === 'horizontal' && {
-    borderTopStyle: 'solid',
-    borderTopWidth: 1
-  }, ownerState.orientation === 'vertical' && {
-    borderLeftStyle: 'solid',
-    borderLeftWidth: 1,
-    minHeight: 24
-  }));
+  }) => {
+    const borderColor = theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
+    return _extends({
+      display: 'block',
+      borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor
+    }, ownerState.orientation === 'horizontal' && {
+      borderTopStyle: 'solid',
+      borderTopWidth: 1
+    }, ownerState.orientation === 'vertical' && {
+      borderLeftStyle: 'solid',
+      borderLeftWidth: 1,
+      minHeight: 24
+    });
+  });
   const StepConnector = /*#__PURE__*/React__namespace.forwardRef(function StepConnector(inProps, ref) {
     const props = useThemeProps({
       props: inProps,
@@ -45647,7 +46821,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     paddingLeft: 8 + 12,
     // margin + half icon
     paddingRight: 8,
-    borderLeft: `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]}`
+    borderLeft: theme.vars ? `1px solid ${theme.vars.palette.StepContent.border}` : `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]}`
   }, ownerState.last && {
     borderLeft: 'none'
   }));
@@ -46701,7 +47875,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     left: 0,
     zIndex: 1,
     // Render above the focus ripple.
-    color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
+    color: theme.vars ? theme.vars.palette.Switch.defaultColor : `${theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300]}`,
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest
     }),
@@ -46709,13 +47883,13 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       transform: 'translateX(20px)'
     },
     [`&.${switchClasses$1.disabled}`]: {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]
+      color: theme.vars ? theme.vars.palette.Switch.defaultDisabledColor : `${theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]}`
     },
     [`&.${switchClasses$1.checked} + .${switchClasses$1.track}`]: {
       opacity: 0.5
     },
     [`&.${switchClasses$1.disabled} + .${switchClasses$1.track}`]: {
-      opacity: theme.palette.mode === 'light' ? 0.12 : 0.2
+      opacity: theme.vars ? theme.vars.opacity.switchTrackDisabled : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`
     },
     [`& .${switchClasses$1.input}`]: {
       left: '-100%',
@@ -46726,7 +47900,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     ownerState
   }) => _extends({
     '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
@@ -46734,19 +47908,19 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     }
   }, ownerState.color !== 'default' && {
     [`&.${switchClasses$1.checked}`]: {
-      color: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].main,
       '&:hover': {
-        backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent'
         }
       },
       [`&.${switchClasses$1.disabled}`]: {
-        color: theme.palette.mode === 'light' ? lighten(theme.palette[ownerState.color].main, 0.62) : darken(theme.palette[ownerState.color].main, 0.55)
+        color: theme.vars ? theme.vars.palette.Switch[`${ownerState.color}DisabledColor`] : `${theme.palette.mode === 'light' ? lighten(theme.palette[ownerState.color].main, 0.62) : darken(theme.palette[ownerState.color].main, 0.55)}`
       }
     },
     [`&.${switchClasses$1.checked} + .${switchClasses$1.track}`]: {
-      backgroundColor: theme.palette[ownerState.color].main
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].main
     }
   }));
   const SwitchTrack = styled$1('span', {
@@ -46763,8 +47937,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest
     }),
-    backgroundColor: theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
-    opacity: theme.palette.mode === 'light' ? 0.38 : 0.3
+    backgroundColor: theme.vars ? theme.vars.palette.common.onBackground : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+    opacity: theme.vars ? theme.vars.opacity.switchTrack : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`
   }));
   const SwitchThumb = styled$1('span', {
     name: 'MuiSwitch',
@@ -46773,7 +47947,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })(({
     theme
   }) => ({
-    boxShadow: theme.shadows[1],
+    boxShadow: (theme.vars || theme).shadows[1],
     backgroundColor: 'currentColor',
     width: 20,
     height: 20,
@@ -47018,23 +48192,23 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
       opacity: 1
     },
     [`&.${tabClasses$1.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: (theme.vars || theme).palette.action.disabledOpacity
     }
   }, ownerState.textColor === 'primary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses$1.selected}`]: {
-      color: theme.palette.primary.main
+      color: (theme.vars || theme).palette.primary.main
     },
     [`&.${tabClasses$1.disabled}`]: {
-      color: theme.palette.text.disabled
+      color: (theme.vars || theme).palette.text.disabled
     }
   }, ownerState.textColor === 'secondary' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`&.${tabClasses$1.selected}`]: {
-      color: theme.palette.secondary.main
+      color: (theme.vars || theme).palette.secondary.main
     },
     [`&.${tabClasses$1.disabled}`]: {
-      color: theme.palette.text.disabled
+      color: (theme.vars || theme).palette.text.disabled
     }
   }, ownerState.fullWidth && {
     flexShrink: 1,
@@ -47276,7 +48450,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     borderSpacing: 0,
     '& caption': _extends({}, theme.typography.body2, {
       padding: theme.spacing(2),
-      color: theme.palette.text.secondary,
+      color: (theme.vars || theme).palette.text.secondary,
       textAlign: 'left',
       captionSide: 'bottom'
     })
@@ -47526,18 +48700,18 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     verticalAlign: 'inherit',
     // Workaround for a rendering bug with spanned columns in Chrome 62.0.
     // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-    borderBottom: `1px solid
+    borderBottom: theme.vars ? `1px solid ${theme.vars.palette.TableCell.border}` : `1px solid
     ${theme.palette.mode === 'light' ? lighten(alpha(theme.palette.divider, 1), 0.88) : darken(alpha(theme.palette.divider, 1), 0.68)}`,
     textAlign: 'left',
     padding: 16
   }, ownerState.variant === 'head' && {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium
   }, ownerState.variant === 'body' && {
-    color: theme.palette.text.primary
+    color: (theme.vars || theme).palette.text.primary
   }, ownerState.variant === 'footer' && {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     lineHeight: theme.typography.pxToRem(21),
     fontSize: theme.typography.pxToRem(12)
   }, ownerState.size === 'small' && {
@@ -47569,7 +48743,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     position: 'sticky',
     top: 0,
     zIndex: 2,
-    backgroundColor: theme.palette.background.default
+    backgroundColor: (theme.vars || theme).palette.background.default
   }));
   /**
    * The component renders a `<th>` element when the parent context is a header
@@ -48263,7 +49437,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => ({
     overflow: 'auto',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     fontSize: theme.typography.pxToRem(14),
     // Increase the specificity to override TableCell.
     '&:last-child': {
@@ -48694,12 +49868,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
     [`&.${tableRowClasses$1.hover}:hover`]: {
-      backgroundColor: theme.palette.action.hover
+      backgroundColor: (theme.vars || theme).palette.action.hover
     },
     [`&.${tableRowClasses$1.selected}`]: {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
       }
     }
   }));
@@ -48833,19 +50007,19 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     flexDirection: 'inherit',
     alignItems: 'center',
     '&:focus': {
-      color: theme.palette.text.secondary
+      color: (theme.vars || theme).palette.text.secondary
     },
     '&:hover': {
-      color: theme.palette.text.secondary,
+      color: (theme.vars || theme).palette.text.secondary,
       [`& .${tableSortLabelClasses$1.icon}`]: {
         opacity: 0.5
       }
     },
     [`&.${tableSortLabelClasses$1.active}`]: {
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
       [`& .${tableSortLabelClasses$1.icon}`]: {
         opacity: 1,
-        color: theme.palette.text.secondary
+        color: (theme.vars || theme).palette.text.secondary
       }
     }
   }));
@@ -49337,7 +50511,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     overflowX: 'hidden',
     width: '100%'
   }, ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none',
     // Firefox
     '&::-webkit-scrollbar': {
@@ -49383,9 +50557,9 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     width: '100%',
     transition: theme.transitions.create()
   }, ownerState.indicatorColor === 'primary' && {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: (theme.vars || theme).palette.primary.main
   }, ownerState.indicatorColor === 'secondary' && {
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: (theme.vars || theme).palette.secondary.main
   }, ownerState.vertical && {
     height: '100%',
     width: 2,
@@ -49397,7 +50571,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   })({
     overflowX: 'auto',
     overflowY: 'hidden',
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none',
     // Firefox
     '&::-webkit-scrollbar': {
@@ -49616,6 +50790,12 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
         const tab = children[i];
 
         if (totalSize + tab[clientSize] > containerSize) {
+          // If the first item is longer than the container size, then only scroll
+          // by the container size.
+          if (i === 0) {
+            totalSize = containerSize;
+          }
+
           break;
         }
 
@@ -49725,8 +50905,16 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     });
     React__namespace.useEffect(() => {
       const handleResize = debounce$1(() => {
-        updateIndicatorState();
-        updateScrollButtonState();
+        // If the Tabs component is replaced by Suspense with a fallback, the last
+        // ResizeObserver's handler that runs because of the change in the layout is trying to
+        // access a dom node that is no longer there (as the fallback component is being shown instead).
+        // See https://github.com/mui/material-ui/issues/33276
+        // TODO: Add tests that will ensure the component is not failing when
+        // replaced by Suspense with a fallback, once React is updated to version 18
+        if (tabsRef.current) {
+          updateIndicatorState();
+          updateScrollButtonState();
+        }
       });
       const win = ownerWindow(tabsRef.current);
       win.addEventListener('resize', handleResize);
@@ -50496,35 +51684,42 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme,
     ownerState
   }) => {
-    const selectedColor = ownerState.color === 'standard' ? theme.palette.text.primary : theme.palette[ownerState.color].main;
+    let selectedColor = ownerState.color === 'standard' ? theme.palette.text.primary : theme.palette[ownerState.color].main;
+    let selectedColorChannel;
+
+    if (theme.vars) {
+      selectedColor = ownerState.color === 'standard' ? theme.vars.palette.text.primary : theme.vars.palette[ownerState.color].main;
+      selectedColorChannel = ownerState.color === 'standard' ? theme.vars.palette.text.primaryChannel : theme.vars.palette[ownerState.color].mainChannel;
+    }
+
     return _extends({}, theme.typography.button, {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
       padding: 11,
-      border: `1px solid ${theme.palette.divider}`,
-      color: theme.palette.action.active
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      color: (theme.vars || theme).palette.action.active
     }, ownerState.fullWidth && {
       width: '100%'
     }, {
       [`&.${toggleButtonClasses$1.disabled}`]: {
-        color: theme.palette.action.disabled,
-        border: `1px solid ${theme.palette.action.disabledBackground}`
+        color: (theme.vars || theme).palette.action.disabled,
+        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`
       },
       '&:hover': {
         textDecoration: 'none',
         // Reset on mouse devices
-        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent'
         }
       },
       [`&.${toggleButtonClasses$1.selected}`]: {
         color: selectedColor,
-        backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(selectedColor, theme.palette.action.selectedOpacity),
         '&:hover': {
-          backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+          backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : alpha(selectedColor, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity)
+            backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : alpha(selectedColor, theme.palette.action.selectedOpacity)
           }
         }
       }
@@ -50752,7 +51947,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
     theme
   }) => _extends({
     display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius
+    borderRadius: (theme.vars || theme).shape.borderRadius
   }, ownerState.orientation === 'vertical' && {
     flexDirection: 'column'
   }, ownerState.fullWidth && {
@@ -51055,7 +52250,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.DialogTitle = DialogTitle$1;
   exports.Divider = Divider$1;
   exports.Drawer = Drawer$1;
-  exports.Experimental_CssVarsProvider = Experimental_CssVarsProvider;
+  exports.Experimental_CssVarsProvider = CssVarsProvider;
   exports.Fab = Fab$1;
   exports.Fade = Fade$1;
   exports.FilledInput = FilledInput$1;
@@ -51132,6 +52327,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.StepIcon = StepIcon$1;
   exports.StepLabel = StepLabel$1;
   exports.Stepper = Stepper$1;
+  exports.StepperContext = StepperContext$1;
   exports.StyledEngineProvider = StyledEngineProvider;
   exports.SvgIcon = SvgIcon$1;
   exports.SwipeableDrawer = SwipeableDrawer$1;
@@ -51156,6 +52352,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.Toolbar = Toolbar$1;
   exports.Tooltip = Tooltip$1;
   exports.Typography = Typography$1;
+  exports.Unstable_Grid2 = Grid2$1;
   exports.Zoom = Zoom$1;
   exports.accordionActionsClasses = accordionActionsClasses$1;
   exports.accordionClasses = accordionClasses$1;
@@ -51195,7 +52392,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.createMuiTheme = createMuiTheme;
   exports.createStyles = createStyles;
   exports.createSvgIcon = createSvgIcon;
-  exports.createTheme = createTheme$1;
+  exports.createTheme = createTheme;
   exports.css = css;
   exports.darkScrollbar = darkScrollbar;
   exports.darken = darken;
@@ -51213,7 +52410,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.easing = easing;
   exports.emphasize = emphasize;
   exports.experimentalStyled = styled$1;
-  exports.experimental_extendTheme = createTheme;
+  exports.experimental_extendTheme = extendTheme;
   exports.experimental_sx = sx;
   exports.fabClasses = fabClasses$1;
   exports.filledInputClasses = filledInputClasses$1;
@@ -51268,6 +52465,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.getFormGroupUtilityClass = getFormGroupUtilityClass;
   exports.getFormHelperTextUtilityClasses = getFormHelperTextUtilityClasses;
   exports.getFormLabelUtilityClasses = getFormLabelUtilityClasses;
+  exports.getGrid2UtilityClass = getGrid2UtilityClass;
   exports.getGridUtilityClass = getGridUtilityClass;
   exports.getIconButtonUtilityClass = getIconButtonUtilityClass;
   exports.getIconUtilityClass = getIconUtilityClass;
@@ -51295,6 +52493,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.getMobileStepperUtilityClass = getMobileStepperUtilityClass;
   exports.getModalUtilityClass = getModalUtilityClass;
   exports.getNativeSelectUtilityClasses = getNativeSelectUtilityClasses;
+  exports.getOffsetLeft = getOffsetLeft;
+  exports.getOffsetTop = getOffsetTop;
   exports.getOutlinedInputUtilityClass = getOutlinedInputUtilityClass;
   exports.getPaginationItemUtilityClass = getPaginationItemUtilityClass;
   exports.getPaginationUtilityClass = getPaginationUtilityClass;
@@ -51338,6 +52538,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.getTooltipUtilityClass = getTooltipUtilityClass;
   exports.getTouchRippleUtilityClass = getTouchRippleUtilityClass;
   exports.getTypographyUtilityClass = getTypographyUtilityClass;
+  exports.grid2Classes = grid2Classes$1;
   exports.gridClasses = gridClasses$1;
   exports.hexToRgb = hexToRgb;
   exports.hslToRgb = hslToRgb;
@@ -51386,6 +52587,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.scopedCssBaselineClasses = scopedCssBaselineClasses$1;
   exports.selectClasses = selectClasses$1;
   exports.setRef = setRef;
+  exports.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   exports.skeletonClasses = skeletonClasses$1;
   exports.sliderClasses = sliderClasses;
   exports.snackbarClasses = snackbarClasses$1;
@@ -51442,6 +52644,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` );
   exports.useRadioGroup = useRadioGroup;
   exports.useScrollTrigger = useScrollTrigger;
   exports.useStepContext = useStepContext;
+  exports.useStepperContext = useStepperContext;
   exports.useTheme = useTheme;
   exports.useThemeProps = useThemeProps;
   exports.withStyles = withStyles;

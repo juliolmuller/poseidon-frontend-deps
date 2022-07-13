@@ -3,6 +3,7 @@ import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutPr
 import _typeof from "@babel/runtime/helpers/esm/typeof";
 import _extends from "@babel/runtime/helpers/esm/extends";
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { flushSync } from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { createUnarySpacing, getValue, handleBreakpoints, unstable_resolveBreakpointValues as resolveBreakpointValues } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -14,6 +15,12 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 export var parseToNumber = function parseToNumber(val) {
   return Number(val.replace('px', ''));
+};
+var lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0
 };
 
 var useUtilityClasses = function useUtilityClasses(ownerState) {
@@ -31,17 +38,17 @@ export var getStyle = function getStyle(_ref) {
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box'
     }
   };
-  var stylesSSR = {};
+  var stylesSSR = {}; // Only applicable for Server-Side Rendering
 
   if (ownerState.isSSR) {
     var orderStyleSSR = {};
-    var defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    var defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
 
     for (var i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR["&:nth-of-type(".concat(ownerState.defaultColumns, "n+").concat(i % ownerState.defaultColumns, ")")] = {
@@ -65,15 +72,22 @@ export var getStyle = function getStyle(_ref) {
   var transformer = createUnarySpacing(theme);
 
   var spacingStyleFromPropValue = function spacingStyleFromPropValue(propValue) {
-    var themeSpacingValue = Number(propValue);
-    var spacing = Number(getValue(transformer, themeSpacingValue).replace('px', ''));
+    var spacing; // in case of string/number value
+
+    if (typeof propValue === 'string' && !Number.isNaN(Number(propValue)) || typeof propValue === 'number') {
+      var themeSpacingValue = Number(propValue);
+      spacing = getValue(transformer, themeSpacingValue);
+    } else {
+      spacing = propValue;
+    }
+
     return _extends({
-      margin: -(spacing / 2),
+      margin: "calc(0px - (".concat(spacing, " / 2))"),
       '& > *': {
-        margin: spacing / 2
+        margin: "calc(".concat(spacing, " / 2)")
       }
     }, ownerState.maxColumnHeight && {
-      height: Math.ceil(ownerState.maxColumnHeight + spacing)
+      height: typeof spacing === 'number' ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing)) : "calc(".concat(ownerState.maxColumnHeight, "px + ").concat(spacing, ")")
     });
   };
 
@@ -88,7 +102,7 @@ export var getStyle = function getStyle(_ref) {
   var columnStyleFromPropValue = function columnStyleFromPropValue(propValue) {
     var columnValue = Number(propValue);
     var width = "".concat((100 / columnValue).toFixed(2), "%");
-    var spacing = _typeof(spacingValues) !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
+    var spacing = typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues)) || typeof spacingValues === 'number' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
       '& > *': {
         width: "calc(".concat(width, " - ").concat(spacing, ")")
@@ -229,9 +243,13 @@ var Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
     });
 
     if (!skip) {
-      setMaxColumnHeight(Math.max.apply(Math, _toConsumableArray(columnHeights)));
-      var numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      flushSync(function () {
+        setMaxColumnHeight(Math.max.apply(Math, _toConsumableArray(columnHeights)));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 
@@ -253,13 +271,7 @@ var Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
       return resizeObserver ? resizeObserver.disconnect() : {};
     };
   }, [columns, spacing, children]);
-  var handleRef = useForkRef(ref, masonryRef);
-  var lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0
-  }; //  columns are likely to have different heights and hence can start to merge;
+  var handleRef = useForkRef(ref, masonryRef); //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging
 
   var lineBreaks = new Array(numberOfLineBreaks).fill('').map(function (_, index) {
