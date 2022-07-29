@@ -1,4 +1,4 @@
-import { GetState, PartialState, SetState, State, StoreApi } from '../vanilla';
+import { StateCreator, StoreApi, StoreMutatorIdentifier } from '../vanilla';
 declare module '../vanilla' {
     interface StoreMutators<S, A> {
         'zustand/devtools': WithDevtools<S>;
@@ -6,23 +6,19 @@ declare module '../vanilla' {
 }
 declare type Write<T extends object, U extends object> = Omit<T, keyof U> & U;
 declare type Cast<T, U> = T extends U ? T : U;
-declare type WithDevtools<S> = Write<Cast<S, object>, StoreSetStateWithAction<S>> & {
-    /**
-     * @deprecated `devtools` property on the store is deprecated
-     * it will be removed in the next major.
-     * You shouldn't interact with the extension directly. But in case you still want to
-     * you can patch `window.__REDUX_DEVTOOLS_EXTENSION__` directly
-     */
-    devtools?: DevtoolsType;
-};
-declare type StoreSetStateWithAction<S> = S extends {
-    getState: () => infer T;
-} ? S & {
-    setState: NamedSet<Cast<T, object>>;
+declare type TakeTwo<T> = T extends [] ? [undefined, undefined] : T extends [unknown] ? [...a0: T, a1: undefined] : T extends [unknown?] ? [...a0: T, a1: undefined] : T extends [unknown, unknown] ? T : T extends [unknown, unknown?] ? T : T extends [unknown?, unknown?] ? T : T extends [infer A0, infer A1, ...unknown[]] ? [A0, A1] : T extends [infer A0, (infer A1)?, ...unknown[]] ? [A0, A1?] : T extends [(infer A0)?, (infer A1)?, ...unknown[]] ? [A0?, A1?] : never;
+declare type WithDevtools<S> = Write<Cast<S, object>, StoreDevtools<S>>;
+declare type StoreDevtools<S> = S extends {
+    setState: (...a: infer A) => infer Sr;
+} ? {
+    setState(...a: [...a: TakeTwo<A>, actionType?: string | {
+        type: unknown;
+    }]): Sr;
 } : never;
-interface DevtoolsOptions {
-    name?: string;
+export interface DevtoolsOptions {
+    enabled?: boolean;
     anonymousActionType?: string;
+    name?: string;
     serialize?: boolean | {
         date?: boolean;
         regex?: boolean;
@@ -33,73 +29,14 @@ interface DevtoolsOptions {
         symbol?: boolean;
         map?: boolean;
         set?: boolean;
-        /**
-         * @deprecated serialize.options is deprecated, just use serialize
-         */
-        options: boolean | {
-            date?: boolean;
-            regex?: boolean;
-            undefined?: boolean;
-            nan?: boolean;
-            infinity?: boolean;
-            error?: boolean;
-            symbol?: boolean;
-            map?: boolean;
-            set?: boolean;
-        };
     };
 }
-declare type DevtoolsType = {
-    /**
-     * @deprecated along with `api.devtools`, `api.devtools.prefix` is deprecated.
-     * We no longer prefix the actions/names, because the `name` option already
-     * creates a separate instance of devtools for each store.
-     */
-    prefix: string;
-    subscribe: (dispatch: any) => () => void;
-    unsubscribe: () => void;
-    send: {
-        (action: string | {
-            type: unknown;
-        }, state: any): void;
-        (action: null, liftedState: any): void;
-    };
-    init: (state: any) => void;
-    error: (payload: any) => void;
-};
-export declare type NamedSet<T extends State> = {
-    <K1 extends keyof T, K2 extends keyof T = K1, K3 extends keyof T = K2, K4 extends keyof T = K3>(partial: PartialState<T, K1, K2, K3, K4>, replace?: boolean, name?: string | {
-        type: unknown;
-    }): void;
-};
-/**
- * @deprecated Use `Mutate<StoreApi<T>, [["zustand/devtools", never]]>`.
- * See tests/middlewaresTypes.test.tsx for usage with multiple middlewares.
- */
-export declare type StoreApiWithDevtools<T extends State> = StoreApi<T> & {
-    setState: NamedSet<T>;
-    /**
-     * @deprecated `devtools` property on the store is deprecated
-     * it will be removed in the next major.
-     * You shouldn't interact with the extension directly. But in case you still want to
-     * you can patch `window.__REDUX_DEVTOOLS_EXTENSION__` directly
-     */
-    devtools?: DevtoolsType;
-};
-export declare function devtools<S extends State, CustomSetState extends SetState<S>, CustomGetState extends GetState<S>, CustomStoreApi extends StoreApi<S>>(fn: (set: NamedSet<S>, get: CustomGetState, api: CustomStoreApi) => S): (set: CustomSetState, get: CustomGetState, api: CustomStoreApi & StoreApiWithDevtools<S> & {
-    dispatch?: unknown;
-    dispatchFromDevtools?: boolean;
-}) => S;
-/**
- * @deprecated Passing `name` as directly will be not allowed in next major.
- * Pass the `name` in an object `{ name: ... }` instead
- */
-export declare function devtools<S extends State, CustomSetState extends SetState<S> = SetState<S>, CustomGetState extends GetState<S> = GetState<S>, CustomStoreApi extends StoreApi<S> = StoreApi<S>>(fn: (set: NamedSet<S>, get: CustomGetState, api: CustomStoreApi) => S, options?: string): (set: CustomSetState, get: CustomGetState, api: CustomStoreApi & StoreApiWithDevtools<S> & {
-    dispatch?: unknown;
-    dispatchFromDevtools?: boolean;
-}) => S;
-export declare function devtools<S extends State, CustomSetState extends SetState<S>, CustomGetState extends GetState<S>, CustomStoreApi extends StoreApi<S>>(fn: (set: NamedSet<S>, get: CustomGetState, api: CustomStoreApi) => S, options?: DevtoolsOptions): (set: CustomSetState, get: CustomGetState, api: CustomStoreApi & StoreApiWithDevtools<S> & {
-    dispatch?: unknown;
-    dispatchFromDevtools?: boolean;
-}) => S;
+declare type Devtools = <T extends object, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [...Mps, ['zustand/devtools', never]], Mcs>, devtoolsOptions?: DevtoolsOptions) => StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
+declare module '../vanilla' {
+    interface StoreMutators<S, A> {
+        'zustand/devtools': WithDevtools<S>;
+    }
+}
+export declare type NamedSet<T extends object> = WithDevtools<StoreApi<T>>['setState'];
+export declare const devtools: Devtools;
 export {};

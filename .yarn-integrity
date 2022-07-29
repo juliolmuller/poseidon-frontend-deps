@@ -70,7 +70,7 @@
     "vite@^2.9.14",
     "web-vitals@^2.1.4",
     "yup@~0.32.11",
-    "zustand@^3.7.2"
+    "zustand@^4.0.0"
   ],
   "lockfileEntries": {
     "@ampproject/remapping@^2.1.0": "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.1.2.tgz",
@@ -1501,6 +1501,7 @@
     "update-browserslist-db@^1.0.5": "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.5.tgz#be06a5eedd62f107b7c19eb5bcefb194411abf38",
     "uri-js@^4.2.2": "https://registry.npmjs.org/uri-js/-/uri-js-4.4.1.tgz",
     "use-memo-one@^1.1.1": "https://registry.npmjs.org/use-memo-one/-/use-memo-one-1.1.2.tgz",
+    "use-sync-external-store@1.2.0": "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a",
     "util-deprecate@^1.0.1": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
     "util@0.12.4": "https://registry.npmjs.org/util/-/util-0.12.4.tgz",
     "util@^0.12.0": "https://registry.npmjs.org/util/-/util-0.12.4.tgz",
@@ -1555,7 +1556,7 @@
     "yn@3.1.1": "https://registry.npmjs.org/yn/-/yn-3.1.1.tgz",
     "yocto-queue@^0.1.0": "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz",
     "yup@~0.32.11": "https://registry.npmjs.org/yup/-/yup-0.32.11.tgz",
-    "zustand@^3.7.2": "https://registry.yarnpkg.com/zustand/-/zustand-3.7.2.tgz#7b44c4f4a5bfd7a8296a3957b13e1c346f42514d"
+    "zustand@^4.0.0": "https://registry.yarnpkg.com/zustand/-/zustand-4.0.0.tgz#739cba69209ffe67b31e7d6741c25b51496114a7"
   },
   "files": [],
   "artifacts": {}

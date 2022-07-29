@@ -1,40 +1,73 @@
-export declare type State = object;
-/**
- * @deprecated Use the builtin `Partial<T>` instead of `PartialState<T>`.
- * Additionally turn on `--exactOptionalPropertyTypes` tsc flag.
- * `PartialState` will be removed in next major
- */
-export declare type PartialState<T extends State, K1 extends keyof T = keyof T, K2 extends keyof T = K1, K3 extends keyof T = K2, K4 extends keyof T = K3> = (Pick<T, K1> | Pick<T, K2> | Pick<T, K3> | Pick<T, K4> | T) | ((state: T) => Pick<T, K1> | Pick<T, K2> | Pick<T, K3> | Pick<T, K4> | T);
-export declare type StateSelector<T extends State, U> = (state: T) => U;
-export declare type EqualityChecker<T> = (state: T, newState: T) => boolean;
-export declare type StateListener<T> = (state: T, previousState: T) => void;
-/**
- * @deprecated Use `StateListener<T>` instead of `StateSliceListener<T>`.
- */
-export declare type StateSliceListener<T> = (slice: T, previousSlice: T) => void;
-export declare type Subscribe<T extends State> = {
-    (listener: StateListener<T>): () => void;
-    /**
-     * @deprecated Please use `subscribeWithSelector` middleware
-     */
-    <StateSlice>(listener: StateSliceListener<StateSlice>, selector?: StateSelector<T, StateSlice>, equalityFn?: EqualityChecker<StateSlice>): () => void;
+declare type SetStateInternal<T> = {
+    _(partial: T | Partial<T> | {
+        _(state: T): T | Partial<T>;
+    }['_'], replace?: boolean | undefined): void;
+}['_'];
+export interface StoreApi<T extends object = object> {
+    setState: SetStateInternal<T>;
+    getState: () => T;
+    subscribe: (listener: (state: T, prevState: T) => void) => () => void;
+    destroy: () => void;
+}
+declare type Get<T, K, F = never> = K extends keyof T ? T[K] : F;
+export declare type Mutate<S, Ms> = Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never;
+export declare type StateCreator<T extends object, Mis extends [StoreMutatorIdentifier, unknown][] = [], Mos extends [StoreMutatorIdentifier, unknown][] = [], U = T> = ((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', undefined>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', undefined>, store: Mutate<StoreApi<T>, Mis>, $$storeMutations: Mis) => U) & {
+    $$storeMutators?: Mos;
 };
-export declare type SetState<T extends State> = {
-    <K1 extends keyof T, K2 extends keyof T = K1, K3 extends keyof T = K2, K4 extends keyof T = K3>(partial: PartialState<T, K1, K2, K3, K4>, replace?: boolean): void;
-};
-export declare type GetState<T extends State> = () => T;
-export declare type Destroy = () => void;
-export declare type StoreApi<T extends State> = {
-    setState: SetState<T>;
-    getState: GetState<T>;
-    subscribe: Subscribe<T>;
-    destroy: Destroy;
-};
-export declare type StateCreator<T extends State, CustomSetState = SetState<T>, CustomGetState = GetState<T>, CustomStoreApi extends StoreApi<T> = StoreApi<T>> = (set: CustomSetState, get: CustomGetState, api: CustomStoreApi) => T;
-declare function createStore<TState extends State, CustomSetState, CustomGetState, CustomStoreApi extends StoreApi<TState>>(createState: StateCreator<TState, CustomSetState, CustomGetState, CustomStoreApi>): CustomStoreApi;
-declare function createStore<TState extends State>(createState: StateCreator<TState, SetState<TState>, GetState<TState>, any>): StoreApi<TState>;
-export default createStore;
 export interface StoreMutators<S, A> {
 }
 export declare type StoreMutatorIdentifier = keyof StoreMutators<unknown, unknown>;
-export declare type Mutate<S, Ms> = Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never;
+declare type CreateStore = {
+    <T extends object, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): Mutate<StoreApi<T>, Mos>;
+    <T extends object>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => Mutate<StoreApi<T>, Mos>;
+};
+declare const createStore: CreateStore;
+export default createStore;
+/**
+ * @deprecated Use `object` instead of `State`
+ */
+export declare type State = object;
+/**
+ * @deprecated Use `Partial<T> | ((s: T) => Partial<T>)` instead of `PartialState<T>`
+ */
+export declare type PartialState<T extends State> = Partial<T> | ((state: T) => Partial<T>);
+/**
+ * @deprecated Use `(s: T) => U` instead of `StateSelector<T, U>`
+ */
+export declare type StateSelector<T extends State, U> = (state: T) => U;
+/**
+ * @deprecated Use `(a: T, b: T) => boolean` instead of `EqualityChecker<T>`
+ */
+export declare type EqualityChecker<T> = (state: T, newState: T) => boolean;
+/**
+ * @deprecated Use `(state: T, previousState: T) => void` instead of `StateListener<T>`
+ */
+export declare type StateListener<T> = (state: T, previousState: T) => void;
+/**
+ * @deprecated Use `(slice: T, previousSlice: T) => void` instead of `StateSliceListener<T>`.
+ */
+export declare type StateSliceListener<T> = (slice: T, previousSlice: T) => void;
+/**
+ * @deprecated Use `(listener: (state: T) => void) => void` instead of `Subscribe<T>`.
+ */
+export declare type Subscribe<T extends State> = {
+    (listener: (state: T, previousState: T) => void): () => void;
+};
+/**
+ * @deprecated You might be looking for `StateCreator`, if not then
+ * use `StoreApi<T>['setState']` instead of `SetState<T>`.
+ */
+export declare type SetState<T extends State> = {
+    _(partial: T | Partial<T> | {
+        _(state: T): T | Partial<T>;
+    }['_'], replace?: boolean | undefined): void;
+}['_'];
+/**
+ * @deprecated You might be looking for `StateCreator`, if not then
+ * use `StoreApi<T>['getState']` instead of `GetState<T>`.
+ */
+export declare type GetState<T extends State> = () => T;
+/**
+ * @deprecated Use `StoreApi<T>['destroy']` instead of `GetState<T>`.
+ */
+export declare type Destroy = () => void;

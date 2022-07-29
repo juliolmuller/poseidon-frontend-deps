@@ -1,4 +1,4 @@
-function createStore(createState) {
+const createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
   const setState = (partial, replace) => {
@@ -10,30 +10,19 @@ function createStore(createState) {
     }
   };
   const getState = () => state;
-  const subscribeWithSelector = (listener, selector = getState, equalityFn = Object.is) => {
-    console.warn("[DEPRECATED] Please use `subscribeWithSelector` middleware");
-    let currentSlice = selector(state);
-    function listenerToAdd() {
-      const nextSlice = selector(state);
-      if (!equalityFn(currentSlice, nextSlice)) {
-        const previousSlice = currentSlice;
-        listener(currentSlice = nextSlice, previousSlice);
-      }
-    }
-    listeners.add(listenerToAdd);
-    return () => listeners.delete(listenerToAdd);
-  };
-  const subscribe = (listener, selector, equalityFn) => {
-    if (selector || equalityFn) {
-      return subscribeWithSelector(listener, selector, equalityFn);
-    }
+  const subscribe = (listener) => {
     listeners.add(listener);
     return () => listeners.delete(listener);
   };
   const destroy = () => listeners.clear();
   const api = { setState, getState, subscribe, destroy };
-  state = createState(setState, getState, api);
+  state = createState(
+    setState,
+    getState,
+    api
+  );
   return api;
-}
+};
+const createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
 
 export { createStore as default };

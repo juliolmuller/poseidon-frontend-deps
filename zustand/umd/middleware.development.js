@@ -5,7 +5,7 @@
 })(this, (function (exports) { 'use strict';
 
   function _extends() {
-    _extends = Object.assign || function (target) {
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
 
@@ -18,12 +18,26 @@
 
       return target;
     };
-
     return _extends.apply(this, arguments);
   }
 
-  var redux = function redux(reducer, initial) {
-    return function (set, get, api) {
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      target[key] = source[key];
+    }
+
+    return target;
+  }
+
+  var reduxImpl = function reduxImpl(reducer, initial) {
+    return function (set, _get, api) {
       api.dispatch = function (action) {
         set(function (state) {
           return reducer(state, action);
@@ -34,95 +48,55 @@
       api.dispatchFromDevtools = true;
       return _extends({
         dispatch: function dispatch() {
-          return api.dispatch.apply(api, arguments);
+          var _ref;
+
+          return (_ref = api).dispatch.apply(_ref, arguments);
         }
       }, initial);
     };
   };
 
-  function devtools(fn, options) {
+  var redux = reduxImpl;
+
+  var _excluded = ["enabled", "anonymousActionType"];
+
+  var devtoolsImpl = function devtoolsImpl(fn, devtoolsOptions) {
+    if (devtoolsOptions === void 0) {
+      devtoolsOptions = {};
+    }
+
     return function (set, get, api) {
-      var _serialize;
-
-      var didWarnAboutNameDeprecation = false;
-
-      if (typeof options === 'string' && !didWarnAboutNameDeprecation) {
-        console.warn('[zustand devtools middleware]: passing `name` as directly will be not allowed in next major' + 'pass the `name` in an object `{ name: ... }` instead');
-        didWarnAboutNameDeprecation = true;
-      }
-
-      var devtoolsOptions = options === undefined ? {
-        name: undefined,
-        anonymousActionType: undefined
-      } : typeof options === 'string' ? {
-        name: options
-      } : options;
-
-      if (typeof (devtoolsOptions == null ? void 0 : (_serialize = devtoolsOptions.serialize) == null ? void 0 : _serialize.options) !== 'undefined') {
-        console.warn('[zustand devtools middleware]: `serialize.options` is deprecated, just use `serialize`');
-      }
+      var _devtoolsOptions = devtoolsOptions,
+          enabled = _devtoolsOptions.enabled,
+          anonymousActionType = _devtoolsOptions.anonymousActionType,
+          options = _objectWithoutPropertiesLoose(_devtoolsOptions, _excluded);
 
       var extensionConnector;
 
       try {
-        extensionConnector = window.__REDUX_DEVTOOLS_EXTENSION__ || window.top.__REDUX_DEVTOOLS_EXTENSION__;
+        extensionConnector = (enabled != null ? enabled : true) && window.__REDUX_DEVTOOLS_EXTENSION__;
       } catch (_unused) {}
 
       if (!extensionConnector) {
-        if (typeof window !== 'undefined') {
+        if (enabled) {
           console.warn('[zustand devtools middleware] Please install/enable Redux devtools extension');
         }
 
         return fn(set, get, api);
       }
 
-      var extension = Object.create(extensionConnector.connect(devtoolsOptions));
-      var didWarnAboutDevtools = false;
-      Object.defineProperty(api, 'devtools', {
-        get: function get() {
-          if (!didWarnAboutDevtools) {
-            console.warn('[zustand devtools middleware] `devtools` property on the store is deprecated ' + 'it will be removed in the next major.\n' + "You shouldn't interact with the extension directly. But in case you still want to " + 'you can patch `window.__REDUX_DEVTOOLS_EXTENSION__` directly');
-            didWarnAboutDevtools = true;
-          }
-
-          return extension;
-        },
-        set: function set(value) {
-          if (!didWarnAboutDevtools) {
-            console.warn('[zustand devtools middleware] `api.devtools` is deprecated, ' + 'it will be removed in the next major.\n' + "You shouldn't interact with the extension directly. But in case you still want to " + 'you can patch `window.__REDUX_DEVTOOLS_EXTENSION__` directly');
-            didWarnAboutDevtools = true;
-          }
-
-          extension = value;
-        }
-      });
-      var didWarnAboutPrefix = false;
-      Object.defineProperty(extension, 'prefix', {
-        get: function get() {
-          if (!didWarnAboutPrefix) {
-            console.warn('[zustand devtools middleware] along with `api.devtools`, `api.devtools.prefix` is deprecated.\n' + 'We no longer prefix the actions/names' + devtoolsOptions.name === undefined ? ', pass the `name` option to create a separate instance of devtools for each store.' : ', because the `name` option already creates a separate instance of devtools for each store.');
-            didWarnAboutPrefix = true;
-          }
-
-          return '';
-        },
-        set: function set() {
-          if (!didWarnAboutPrefix) {
-            console.warn('[zustand devtools middleware] along with `api.devtools`, `api.devtools.prefix` is deprecated.\n' + 'We no longer prefix the actions/names' + devtoolsOptions.name === undefined ? ', pass the `name` option to create a separate instance of devtools for each store.' : ', because the `name` option already creates a separate instance of devtools for each store.');
-            didWarnAboutPrefix = true;
-          }
-        }
-      });
+      var extension = extensionConnector.connect(options);
       var isRecording = true;
 
       api.setState = function (state, replace, nameOrAction) {
-        set(state, replace);
-        if (!isRecording) return;
+        var r = set(state, replace);
+        if (!isRecording) return r;
         extension.send(nameOrAction === undefined ? {
-          type: devtoolsOptions.anonymousActionType || 'anonymous'
+          type: anonymousActionType || 'anonymous'
         } : typeof nameOrAction === 'string' ? {
           type: nameOrAction
         } : nameOrAction, get());
+        return r;
       };
 
       var setStateFromDevtools = function setStateFromDevtools() {
@@ -151,7 +125,6 @@
           originalDispatch.apply(void 0, a);
         };
       }
-
       extension.subscribe(function (message) {
         switch (message.type) {
           case 'ACTION':
@@ -213,7 +186,9 @@
       });
       return initialState;
     };
-  }
+  };
+
+  var devtools = devtoolsImpl;
 
   var parseJsonThen = function parseJsonThen(stringified, f) {
     var parsed;
@@ -227,7 +202,7 @@
     if (parsed !== undefined) f(parsed);
   };
 
-  var subscribeWithSelector = function subscribeWithSelector(fn) {
+  var subscribeWithSelectorImpl = function subscribeWithSelectorImpl(fn) {
     return function (set, get, api) {
       var origSubscribe = api.subscribe;
 
@@ -260,9 +235,11 @@
     };
   };
 
+  var subscribeWithSelector = subscribeWithSelectorImpl;
+
   var combine = function combine(initialState, create) {
-    return function (set, get, api) {
-      return Object.assign({}, initialState, create(set, get, api));
+    return function () {
+      return Object.assign({}, initialState, create.apply(void 0, arguments));
     };
   };
 
@@ -296,7 +273,7 @@
     };
   };
 
-  var persist = function persist(config, baseOptions) {
+  var persistImpl = function persistImpl(config, baseOptions) {
     return function (set, get, api) {
       var options = _extends({
         getStorage: function getStorage() {
@@ -313,10 +290,6 @@
         }
       }, baseOptions);
 
-      if (options.blacklist || options.whitelist) {
-        console.warn("The " + (options.blacklist ? 'blacklist' : 'whitelist') + " option is deprecated and will be removed in the next version. Please use the 'partialize' option instead.");
-      }
-
       var _hasHydrated = false;
       var hydrationListeners = new Set();
       var finishHydrationListeners = new Set();
@@ -331,29 +304,12 @@
           console.warn("[zustand persist middleware] Unable to update item '" + options.name + "', the given storage is currently unavailable.");
           set.apply(void 0, arguments);
         }, get, api);
-      } else if (!storage.removeItem) {
-        console.warn("[zustand persist middleware] The given storage for item '" + options.name + "' does not contain a 'removeItem' method, which will be required in v4.");
       }
 
       var thenableSerialize = toThenable(options.serialize);
 
       var setItem = function setItem() {
         var state = options.partialize(_extends({}, get()));
-
-        if (options.whitelist) {
-          Object.keys(state).forEach(function (key) {
-            var _options$whitelist;
-
-            !((_options$whitelist = options.whitelist) != null && _options$whitelist.includes(key)) && delete state[key];
-          });
-        }
-
-        if (options.blacklist) {
-          options.blacklist.forEach(function (key) {
-            return delete state[key];
-          });
-        }
-
         var errorInSync;
         var thenable = thenableSerialize({
           state: state,
@@ -435,7 +391,10 @@
         clearStorage: function clearStorage() {
           var _storage;
 
-          (_storage = storage) == null ? void 0 : _storage.removeItem == null ? void 0 : _storage.removeItem(options.name);
+          (_storage = storage) == null ? void 0 : _storage.removeItem(options.name);
+        },
+        getOptions: function getOptions() {
+          return options;
         },
         rehydrate: function rehydrate() {
           return hydrate();
@@ -460,6 +419,8 @@
       return stateFromStorage || configResult;
     };
   };
+
+  var persist = persistImpl;
 
   exports.combine = combine;
   exports.devtools = devtools;

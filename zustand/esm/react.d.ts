@@ -1,15 +1,20 @@
-import { EqualityChecker, GetState, SetState, State, StateCreator, StateSelector, StoreApi } from './vanilla';
-/**
- * @deprecated Please use UseBoundStore instead
- */
-export declare type UseStore<T extends State, CustomStoreApi extends StoreApi<T> = StoreApi<T>> = {
-    (): T;
-    <U>(selector: StateSelector<T, U>, equalityFn?: EqualityChecker<U>): U;
-} & CustomStoreApi;
-export declare type UseBoundStore<T extends State, CustomStoreApi extends StoreApi<T> = StoreApi<T>> = {
-    (): T;
-    <U>(selector: StateSelector<T, U>, equalityFn?: EqualityChecker<U>): U;
-} & CustomStoreApi;
-declare function create<TState extends State, CustomSetState, CustomGetState, CustomStoreApi extends StoreApi<TState>>(createState: StateCreator<TState, CustomSetState, CustomGetState, CustomStoreApi> | CustomStoreApi): UseBoundStore<TState, CustomStoreApi>;
-declare function create<TState extends State>(createState: StateCreator<TState, SetState<TState>, GetState<TState>, any> | StoreApi<TState>): UseBoundStore<TState, StoreApi<TState>>;
+import { Mutate, StateCreator, StoreApi, StoreMutatorIdentifier } from './vanilla';
+declare type ExtractState<S> = S extends {
+    getState: () => infer T;
+} ? T : never;
+declare type WithReact<S extends StoreApi> = S & {
+    getServerState?: () => ExtractState<S>;
+};
+export declare function useStore<S extends WithReact<StoreApi>>(api: S): ExtractState<S>;
+export declare function useStore<S extends WithReact<StoreApi>, U>(api: S, selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;
+export declare type UseBoundStore<S extends WithReact<StoreApi>> = {
+    (): ExtractState<S>;
+    <U>(selector: (state: ExtractState<S>) => U, equals?: (a: U, b: U) => boolean): U;
+} & S;
+declare type Create = {
+    <T extends object, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): UseBoundStore<Mutate<StoreApi<T>, Mos>>;
+    <T extends object>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => UseBoundStore<Mutate<StoreApi<T>, Mos>>;
+    <S extends StoreApi>(store: S): UseBoundStore<S>;
+};
+declare const create: Create;
 export default create;
