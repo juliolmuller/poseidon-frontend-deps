@@ -25,9 +25,9 @@ import {
   __toESM
 } from "./chunk-5537U2Q2.js";
 
-// node_modules/react-is/cjs/react-is.development.js
+// node_modules/react-redux/node_modules/react-is/cjs/react-is.development.js
 var require_react_is_development = __commonJS({
-  "node_modules/react-is/cjs/react-is.development.js"(exports) {
+  "node_modules/react-redux/node_modules/react-is/cjs/react-is.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -217,9 +217,9 @@ var require_react_is_development = __commonJS({
   }
 });
 
-// node_modules/react-is/index.js
+// node_modules/react-redux/node_modules/react-is/index.js
 var require_react_is = __commonJS({
-  "node_modules/react-is/index.js"(exports, module) {
+  "node_modules/react-redux/node_modules/react-is/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
