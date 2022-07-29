@@ -1,53 +1,22 @@
-import { GetState, SetState, State, StoreApi } from '../vanilla';
-declare type DevtoolsType = {
-    prefix: string;
-    subscribe: (dispatch: any) => () => void;
-    unsubscribe: () => void;
-    send: (action: string, state: any) => void;
-    init: (state: any) => void;
-    error: (payload: any) => void;
-};
-/**
- * @deprecated Use `Mutate<StoreApi<T & { dispatch: (a: A) => A }>, [["zustand/redux", A]]>`.
- * See tests/middlewaresTypes.test.tsx for usage with multiple middlewares.
- */
-export declare type StoreApiWithRedux<T extends State, A extends {
+import { StateCreator, StoreMutatorIdentifier } from '../vanilla';
+declare type Write<T extends object, U extends object> = Omit<T, keyof U> & U;
+declare type Cast<T, U> = T extends U ? T : U;
+declare type Action = {
     type: unknown;
-}> = StoreApi<T & {
-    dispatch: (a: A) => A;
-}> & {
-    dispatch: (a: A) => A;
-    dispatchFromDevtools: boolean;
 };
+declare type ReduxState<A extends Action> = {
+    dispatch: StoreRedux<A>['dispatch'];
+};
+declare type StoreRedux<A extends Action> = {
+    dispatch: (a: A) => A;
+    dispatchFromDevtools: true;
+};
+declare type WithRedux<S, A> = Write<Cast<S, object>, StoreRedux<Cast<A, Action>>>;
+declare type Redux = <T extends object, A extends Action, Cms extends [StoreMutatorIdentifier, unknown][] = []>(reducer: (state: T, action: A) => T, initialState: T) => StateCreator<Write<T, ReduxState<A>>, Cms, [['zustand/redux', A]]>;
 declare module '../vanilla' {
     interface StoreMutators<S, A> {
         'zustand/redux': WithRedux<S, A>;
     }
 }
-interface StoreRedux<A extends Action> {
-    dispatch: (a: A) => A;
-    dispatchFromDevtools: true;
-}
-interface Action {
-    type: unknown;
-}
-declare type Write<T extends object, U extends object> = Omit<T, keyof U> & U;
-declare type Cast<T, U> = T extends U ? T : U;
-declare type WithRedux<S, A> = Write<Cast<S, object>, StoreRedux<Cast<A, Action>>>;
-export declare const redux: <S extends object, A extends {
-    type: unknown;
-}>(reducer: (state: S, action: A) => S, initial: S) => (set: SetState<S & {
-    dispatch: (a: A) => A;
-}>, get: GetState<S & {
-    dispatch: (a: A) => A;
-}>, api: StoreApi<S & {
-    dispatch: (a: A) => A;
-}> & {
-    dispatch: (a: A) => A;
-    dispatchFromDevtools: boolean;
-} & {
-    devtools?: DevtoolsType;
-}) => S & {
-    dispatch: (a: A) => A;
-};
+export declare const redux: Redux;
 export {};

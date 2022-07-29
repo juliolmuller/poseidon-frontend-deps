@@ -4,7 +4,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.zustandVanilla = {}));
 })(this, (function (exports) { 'use strict';
 
-  function createStore(createState) {
+  var createStoreImpl = function createStoreImpl(createState) {
     var state;
     var listeners = new Set();
 
@@ -24,38 +24,7 @@
       return state;
     };
 
-    var subscribeWithSelector = function subscribeWithSelector(listener, selector, equalityFn) {
-      if (selector === void 0) {
-        selector = getState;
-      }
-
-      if (equalityFn === void 0) {
-        equalityFn = Object.is;
-      }
-
-      console.warn('[DEPRECATED] Please use `subscribeWithSelector` middleware');
-      var currentSlice = selector(state);
-
-      function listenerToAdd() {
-        var nextSlice = selector(state);
-
-        if (!equalityFn(currentSlice, nextSlice)) {
-          var _previousSlice = currentSlice;
-          listener(currentSlice = nextSlice, _previousSlice);
-        }
-      }
-
-      listeners.add(listenerToAdd);
-      return function () {
-        return listeners.delete(listenerToAdd);
-      };
-    };
-
-    var subscribe = function subscribe(listener, selector, equalityFn) {
-      if (selector || equalityFn) {
-        return subscribeWithSelector(listener, selector, equalityFn);
-      }
-
+    var subscribe = function subscribe(listener) {
       listeners.add(listener);
       return function () {
         return listeners.delete(listener);
@@ -74,7 +43,11 @@
     };
     state = createState(setState, getState, api);
     return api;
-  }
+  };
+
+  var createStore = function createStore(createState) {
+    return createState ? createStoreImpl(createState) : createStoreImpl;
+  };
 
   exports["default"] = createStore;
 

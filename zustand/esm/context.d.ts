@@ -1,27 +1,21 @@
 import { ReactNode } from 'react';
-import { EqualityChecker, State, StateSelector, UseBoundStore } from 'zustand';
-/**
- * @deprecated Use `typeof MyContext.useStore` instead.
- */
-export declare type UseContextStore<T extends State> = {
-    (): T;
-    <U>(selector: StateSelector<T, U>, equalityFn?: EqualityChecker<U>): U;
+import { StoreApi } from 'zustand';
+declare type UseContextStore<S extends StoreApi> = {
+    (): ExtractState<S>;
+    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;
 };
-declare function createContext<TState extends State, TUseBoundStore extends UseBoundStore<TState> = UseBoundStore<TState>>(): {
-    Provider: ({ initialStore, createStore, children, }: {
-        /**
-         * @deprecated
-         */
-        initialStore?: TUseBoundStore;
-        createStore: () => TUseBoundStore;
+declare type ExtractState<S> = S extends {
+    getState: () => infer T;
+} ? T : never;
+declare type WithoutCallSignature<T> = {
+    [K in keyof T]: T[K];
+};
+declare function createContext<S extends StoreApi>(): {
+    Provider: ({ createStore, children, }: {
+        createStore: () => S;
         children: ReactNode;
-    }) => import("react").FunctionComponentElement<import("react").ProviderProps<TUseBoundStore | undefined>>;
-    useStore: UseContextStore<TState>;
-    useStoreApi: () => {
-        getState: TUseBoundStore['getState'];
-        setState: TUseBoundStore['setState'];
-        subscribe: TUseBoundStore['subscribe'];
-        destroy: TUseBoundStore['destroy'];
-    };
+    }) => import("react").FunctionComponentElement<import("react").ProviderProps<S | undefined>>;
+    useStore: UseContextStore<S>;
+    useStoreApi: () => WithoutCallSignature<S>;
 };
 export default createContext;
