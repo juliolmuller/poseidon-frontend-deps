@@ -24,7 +24,6 @@ const defaultOptionStringifier = option => {
 
 function useSelect(props) {
   const {
-    buttonComponent,
     buttonRef: buttonRefProp,
     defaultValue,
     disabled = false,
@@ -41,7 +40,6 @@ function useSelect(props) {
   const buttonRef = React.useRef(null);
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
   const listboxRef = React.useRef(null);
-  const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -67,7 +65,7 @@ function useSelect(props) {
     focusListboxIfRequested();
   };
 
-  const handleListboxRef = useForkRef(intermediaryListboxRef, updateListboxRef);
+  const handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
   React.useEffect(() => {
     focusListboxIfRequested();
   }, [focusListboxIfRequested]);
@@ -169,7 +167,6 @@ function useSelect(props) {
     active: buttonActive,
     focusVisible: buttonFocusVisible
   } = useButton({
-    component: buttonComponent,
     disabled,
     ref: handleButtonRef
   });
@@ -184,8 +181,9 @@ function useSelect(props) {
       listboxRef: handleListboxRef,
       multiple: true,
       onChange: newOptions => {
-        setValue(newOptions.map(o => o.value));
-        onChange?.(newOptions.map(o => o.value));
+        const newValues = newOptions.map(o => o.value);
+        setValue(newValues);
+        onChange?.(newValues);
       },
       options,
       optionStringifier,
@@ -241,8 +239,8 @@ function useSelect(props) {
 
   React.useDebugValue({
     selectedOption: listboxSelectedOption,
-    open,
-    highlightedOption
+    highlightedOption,
+    open
   });
   return {
     buttonActive,

@@ -71,7 +71,7 @@ const FormHelperTextRoot = (0, _styled.default)('p', {
   theme,
   ownerState
 }) => (0, _extends2.default)({
-  color: theme.palette.text.secondary
+  color: (theme.vars || theme).palette.text.secondary
 }, theme.typography.caption, {
   textAlign: 'left',
   marginTop: 3,
@@ -79,10 +79,10 @@ const FormHelperTextRoot = (0, _styled.default)('p', {
   marginBottom: 0,
   marginLeft: 0,
   [`&.${_formHelperTextClasses.default.disabled}`]: {
-    color: theme.palette.text.disabled
+    color: (theme.vars || theme).palette.text.disabled
   },
   [`&.${_formHelperTextClasses.default.error}`]: {
-    color: theme.palette.error.main
+    color: (theme.vars || theme).palette.error.main
   }
 }, ownerState.size === 'small' && {
   marginTop: 4
@@ -202,7 +202,9 @@ process.env.NODE_ENV !== "production" ? FormHelperText.propTypes
   /**
    * The variant to use.
    */
-  variant: _propTypes.default.oneOf(['filled', 'outlined', 'standard'])
+  variant: _propTypes.default
+  /* @typescript-to-proptypes-ignore */
+  .oneOfType([_propTypes.default.oneOf(['filled', 'outlined', 'standard']), _propTypes.default.string])
 } : void 0;
 var _default = FormHelperText;
 exports.default = _default;

@@ -1,6 +1,6 @@
 /** @typedef {import('./index').Logger} Logger */
 
-import { basename, join } from 'path'
+import path from 'node:path'
 
 import debug from 'debug'
 import normalize from 'normalize-path'
@@ -14,15 +14,14 @@ const debugLog = debug('lint-staged:searchConfigs')
 
 const EXEC_GIT = ['ls-files', '-z', '--full-name']
 
-const filterPossibleConfigFiles = (file) => searchPlaces.includes(basename(file))
+const filterPossibleConfigFiles = (files) =>
+  files.filter((file) => searchPlaces.includes(path.basename(file)))
 
 const numberOfLevels = (file) => file.split('/').length
 
 const sortDeepestParth = (a, b) => (numberOfLevels(a) > numberOfLevels(b) ? -1 : 1)
 
 const isInsideDirectory = (dir) => (file) => file.startsWith(normalize(dir))
-
-export const ConfigObjectSymbol = Symbol()
 
 /**
  * Search all config files from the git repository, preferring those inside `cwd`.
@@ -45,7 +44,7 @@ export const searchConfigs = async (
   if (configObject) {
     debugLog('Using single direct configuration object...')
 
-    return { [ConfigObjectSymbol]: validateConfig(configObject, 'config object', logger) }
+    return { '': validateConfig(configObject, 'config object', logger) }
   }
 
   // Use only explicit config path instead of discovering multiple
@@ -58,20 +57,18 @@ export const searchConfigs = async (
     return { [configPath]: validateConfig(config, filepath, logger) }
   }
 
-  /** Get all possible config files known to git */
-  const cachedFiles = parseGitZOutput(await execGit(EXEC_GIT, { cwd: gitDir })).filter(
-    filterPossibleConfigFiles
-  )
-
-  /** Get all possible config files from uncommitted files */
-  const otherFiles = parseGitZOutput(
-    await execGit([...EXEC_GIT, '--others', '--exclude-standard'], { cwd: gitDir })
-  ).filter(filterPossibleConfigFiles)
+  const [cachedFiles, otherFiles] = await Promise.all([
+    /** Get all possible config files known to git */
+    execGit(EXEC_GIT, { cwd: gitDir }).then(parseGitZOutput).then(filterPossibleConfigFiles),
+    /** Get all possible config files from uncommitted files */
+    execGit([...EXEC_GIT, '--others', '--exclude-standard'], { cwd: gitDir })
+      .then(parseGitZOutput)
+      .then(filterPossibleConfigFiles),
+  ])
 
   /** Sort possible config files so that deepest is first */
   const possibleConfigFiles = [...cachedFiles, ...otherFiles]
-    .map((file) => join(gitDir, file))
-    .map((file) => normalize(file))
+    .map((file) => normalize(path.join(gitDir, file)))
     .filter(isInsideDirectory(cwd))
     .sort(sortDeepestParth)
 
@@ -85,15 +82,17 @@ export const searchConfigs = async (
 
   /** Load and validate all configs to the above object */
   await Promise.all(
-    possibleConfigFiles
-      .map((configPath) => loadConfig({ configPath }, logger))
-      .map((promise) =>
-        promise.then(({ config, filepath }) => {
-          if (config) {
-            configs[filepath] = validateConfig(config, filepath, logger)
+    Object.keys(configs).map((configPath) =>
+      loadConfig({ configPath }, logger).then(({ config, filepath }) => {
+        if (config) {
+          if (configPath !== filepath) {
+            debugLog('Config file "%s" resolved to "%s"', configPath, filepath)
           }
-        })
-      )
+
+          configs[configPath] = validateConfig(config, filepath, logger)
+        }
+      })
+    )
   )
 
   /** Get validated configs from the above object, without any `null` values (not found) */

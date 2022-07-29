@@ -1,3 +1,55 @@
+### 11.18.3
+
+- types: bindI18n option for UseTranslationOptions
+
+### 11.18.2
+
+- more html entities to unescape by default [1538](https://github.com/i18next/react-i18next/pull/1538)
+
+### 11.18.1
+
+- types: allow iterable with objects as children [1531](https://github.com/i18next/react-i18next/pull/1531)
+
+### 11.18.0
+
+- ability to add custom unescape function [1529](https://github.com/i18next/react-i18next/pull/1529)
+
+### 11.17.4
+
+- fix: UMD build [1527](https://github.com/i18next/react-i18next/issues/1527)
+
+### 11.17.3
+
+- style: explicit React imports [1525](https://github.com/i18next/react-i18next/pull/1525)
+
+### 11.17.2
+
+- reset t if ns changes in useTranslation [1518](https://github.com/i18next/react-i18next/pull/1518)
+
+### 11.17.1
+
+- Stricter typescript type for Trans components prop [1516](https://github.com/i18next/react-i18next/pull/1516)
+
+### 11.17.0
+
+- Add support for keyPrefix in withTranslation [1512](https://github.com/i18next/react-i18next/pull/1512)
+
+### 11.16.11
+
+- types: fix Translation component types regression [1511](https://github.com/i18next/react-i18next/pull/1511)
+
+### 11.16.10
+
+- types: translation component types [1509](https://github.com/i18next/react-i18next/pull/1509)
+
+### 11.16.9
+
+- types: fix missing generic type for HTMLAttributes [1499](https://github.com/i18next/react-i18next/pull/1499)
+
+### 11.16.8
+
+- types: fix Trans component to support react 18 types, by introducing allowObjectInHTMLChildren TS option [1492](https://github.com/i18next/react-i18next/pull/1492)
+
 ### 11.16.7
 
 - types: Added objects explicitly to Trans children [1486](https://github.com/i18next/react-i18next/pull/1486)

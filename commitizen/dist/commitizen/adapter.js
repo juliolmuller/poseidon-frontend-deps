@@ -1,12 +1,42 @@
 "use strict";
 
-var cov_8emx7ww64 = function () {
-  var path = "/home/travis/build/commitizen/cz-cli/src/commitizen/adapter.js";
-  var hash = "6791eafae3a57f2505b9da5805871775ceeec510";
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addPathToAdapterConfig = addPathToAdapterConfig;
+exports.generateNpmInstallAdapterCommand = generateNpmInstallAdapterCommand;
+exports.generateYarnAddAdapterCommand = generateYarnAddAdapterCommand;
+exports.getGitRootPath = getGitRootPath;
+exports.getNearestNodeModulesDirectory = getNearestNodeModulesDirectory;
+exports.getNearestProjectRootDirectory = getNearestProjectRootDirectory;
+exports.getNpmInstallStringMappings = getNpmInstallStringMappings;
+exports.getPrompter = getPrompter;
+exports.getYarnAddStringMappings = getYarnAddStringMappings;
+exports.resolveAdapterPath = resolveAdapterPath;
+
+var _child_process = _interopRequireDefault(require("child_process"));
+
+var _path = _interopRequireDefault(require("path"));
+
+var _fs = _interopRequireDefault(require("fs"));
+
+var _findNodeModules = _interopRequireDefault(require("find-node-modules"));
+
+var _lodash = _interopRequireDefault(require("lodash"));
+
+var _detectIndent = _interopRequireDefault(require("detect-indent"));
+
+var _util = require("../common/util");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function cov_16lcdpz3tp() {
+  var path = "/home/runner/work/cz-cli/cz-cli/src/commitizen/adapter.js";
+  var hash = "64a129a685b55284cc7bfdc7f237a0c0a925fd53";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "/home/travis/build/commitizen/cz-cli/src/commitizen/adapter.js",
+    path: "/home/runner/work/cz-cli/cz-cli/src/commitizen/adapter.js",
     statementMap: {
       "0": {
         start: {
@@ -658,12 +688,12 @@ var cov_8emx7ww64 = function () {
           }
         }, {
           start: {
-            line: 52,
-            column: 2
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 54,
-            column: 3
+            line: undefined,
+            column: undefined
           }
         }],
         line: 52
@@ -691,12 +721,12 @@ var cov_8emx7ww64 = function () {
           }
         }, {
           start: {
-            line: 68,
-            column: 4
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 70,
-            column: 5
+            line: undefined,
+            column: undefined
           }
         }],
         line: 68
@@ -724,12 +754,12 @@ var cov_8emx7ww64 = function () {
           }
         }, {
           start: {
-            line: 86,
-            column: 4
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 88,
-            column: 5
+            line: undefined,
+            column: undefined
           }
         }],
         line: 86
@@ -1189,47 +1219,26 @@ var cov_8emx7ww64 = function () {
       "14": [0, 0],
       "15": [0, 0]
     },
-    _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "6791eafae3a57f2505b9da5805871775ceeec510"
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "64a129a685b55284cc7bfdc7f237a0c0a925fd53"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
-  if (coverage[path] && coverage[path].hash === hash) {
-    return coverage[path];
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
   }
 
-  return coverage[path] = coverageData;
-}();
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_16lcdpz3tp = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.addPathToAdapterConfig = addPathToAdapterConfig;
-exports.getNearestNodeModulesDirectory = getNearestNodeModulesDirectory;
-exports.getNearestProjectRootDirectory = getNearestProjectRootDirectory;
-exports.getNpmInstallStringMappings = getNpmInstallStringMappings;
-exports.getPrompter = getPrompter;
-exports.generateNpmInstallAdapterCommand = generateNpmInstallAdapterCommand;
-exports.resolveAdapterPath = resolveAdapterPath;
-exports.getYarnAddStringMappings = getYarnAddStringMappings;
-exports.generateYarnAddAdapterCommand = generateYarnAddAdapterCommand;
-exports.getGitRootPath = getGitRootPath;
-
-var _child_process = _interopRequireDefault(require("child_process"));
-
-var _path = _interopRequireDefault(require("path"));
-
-var _fs = _interopRequireDefault(require("fs"));
-
-var _findNodeModules = _interopRequireDefault(require("find-node-modules"));
-
-var _lodash = _interopRequireDefault(require("lodash"));
-
-var _detectIndent = _interopRequireDefault(require("detect-indent"));
-
-var _util = require("../common/util");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+cov_16lcdpz3tp();
 
 /**
  * ADAPTER
@@ -1245,31 +1254,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Must be passed an absolute path to the cli's root
  */
 function addPathToAdapterConfig(cliPath, repoPath, adapterNpmName) {
-  cov_8emx7ww64.f[0]++;
-  let commitizenAdapterConfig = (cov_8emx7ww64.s[0]++, {
+  cov_16lcdpz3tp().f[0]++;
+  let commitizenAdapterConfig = (cov_16lcdpz3tp().s[0]++, {
     config: {
       commitizen: {
         path: `./node_modules/${adapterNpmName}`
       }
     }
   });
-  let packageJsonPath = (cov_8emx7ww64.s[1]++, _path.default.join(getNearestProjectRootDirectory(repoPath), 'package.json'));
-  let packageJsonString = (cov_8emx7ww64.s[2]++, _fs.default.readFileSync(packageJsonPath, 'utf-8')); // tries to detect the indentation and falls back to a default if it can't
+  let packageJsonPath = (cov_16lcdpz3tp().s[1]++, _path.default.join(getNearestProjectRootDirectory(repoPath), 'package.json'));
+  let packageJsonString = (cov_16lcdpz3tp().s[2]++, _fs.default.readFileSync(packageJsonPath, 'utf-8')); // tries to detect the indentation and falls back to a default if it can't
 
-  let indent = (cov_8emx7ww64.s[3]++, (cov_8emx7ww64.b[0][0]++, (0, _detectIndent.default)(packageJsonString).indent) || (cov_8emx7ww64.b[0][1]++, '  '));
-  let packageJsonContent = (cov_8emx7ww64.s[4]++, JSON.parse(packageJsonString));
-  let newPackageJsonContent = (cov_8emx7ww64.s[5]++, '');
-  cov_8emx7ww64.s[6]++;
+  let indent = (cov_16lcdpz3tp().s[3]++, (cov_16lcdpz3tp().b[0][0]++, (0, _detectIndent.default)(packageJsonString).indent) || (cov_16lcdpz3tp().b[0][1]++, '  '));
+  let packageJsonContent = (cov_16lcdpz3tp().s[4]++, JSON.parse(packageJsonString));
+  let newPackageJsonContent = (cov_16lcdpz3tp().s[5]++, '');
+  cov_16lcdpz3tp().s[6]++;
 
   if (_lodash.default.get(packageJsonContent, 'config.commitizen.path') !== adapterNpmName) {
-    cov_8emx7ww64.b[1][0]++;
-    cov_8emx7ww64.s[7]++;
+    cov_16lcdpz3tp().b[1][0]++;
+    cov_16lcdpz3tp().s[7]++;
     newPackageJsonContent = _lodash.default.merge(packageJsonContent, commitizenAdapterConfig);
   } else {
-    cov_8emx7ww64.b[1][1]++;
+    cov_16lcdpz3tp().b[1][1]++;
   }
 
-  cov_8emx7ww64.s[8]++;
+  cov_16lcdpz3tp().s[8]++;
 
   _fs.default.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent) + '\n');
 }
@@ -1279,25 +1288,25 @@ function addPathToAdapterConfig(cliPath, repoPath, adapterNpmName) {
 
 
 function generateNpmInstallAdapterCommand(stringMappings, adapterNpmName) {
-  cov_8emx7ww64.f[1]++;
+  cov_16lcdpz3tp().f[1]++;
   // Start with an initial npm install command
-  let installAdapterCommand = (cov_8emx7ww64.s[9]++, `npm install ${adapterNpmName}`); // Append the neccesary arguments to it based on user preferences
+  let installAdapterCommand = (cov_16lcdpz3tp().s[9]++, `npm install ${adapterNpmName}`); // Append the neccesary arguments to it based on user preferences
 
-  cov_8emx7ww64.s[10]++;
+  cov_16lcdpz3tp().s[10]++;
 
   for (let value of stringMappings.values()) {
-    cov_8emx7ww64.s[11]++;
+    cov_16lcdpz3tp().s[11]++;
 
     if (value) {
-      cov_8emx7ww64.b[2][0]++;
-      cov_8emx7ww64.s[12]++;
+      cov_16lcdpz3tp().b[2][0]++;
+      cov_16lcdpz3tp().s[12]++;
       installAdapterCommand = installAdapterCommand + ' ' + value;
     } else {
-      cov_8emx7ww64.b[2][1]++;
+      cov_16lcdpz3tp().b[2][1]++;
     }
   }
 
-  cov_8emx7ww64.s[13]++;
+  cov_16lcdpz3tp().s[13]++;
   return installAdapterCommand;
 }
 /**
@@ -1306,25 +1315,25 @@ function generateNpmInstallAdapterCommand(stringMappings, adapterNpmName) {
 
 
 function generateYarnAddAdapterCommand(stringMappings, adapterNpmName) {
-  cov_8emx7ww64.f[2]++;
+  cov_16lcdpz3tp().f[2]++;
   // Start with an initial yarn add command
-  let installAdapterCommand = (cov_8emx7ww64.s[14]++, `yarn add ${adapterNpmName}`); // Append the necessary arguments to it based on user preferences
+  let installAdapterCommand = (cov_16lcdpz3tp().s[14]++, `yarn add ${adapterNpmName}`); // Append the necessary arguments to it based on user preferences
 
-  cov_8emx7ww64.s[15]++;
+  cov_16lcdpz3tp().s[15]++;
 
   for (let value of stringMappings.values()) {
-    cov_8emx7ww64.s[16]++;
+    cov_16lcdpz3tp().s[16]++;
 
     if (value) {
-      cov_8emx7ww64.b[3][0]++;
-      cov_8emx7ww64.s[17]++;
+      cov_16lcdpz3tp().b[3][0]++;
+      cov_16lcdpz3tp().s[17]++;
       installAdapterCommand = installAdapterCommand + ' ' + value;
     } else {
-      cov_8emx7ww64.b[3][1]++;
+      cov_16lcdpz3tp().b[3][1]++;
     }
   }
 
-  cov_8emx7ww64.s[18]++;
+  cov_16lcdpz3tp().s[18]++;
   return installAdapterCommand;
 }
 /**
@@ -1333,17 +1342,17 @@ function generateYarnAddAdapterCommand(stringMappings, adapterNpmName) {
 
 
 function getNearestNodeModulesDirectory(options) {
-  cov_8emx7ww64.f[3]++;
+  cov_16lcdpz3tp().f[3]++;
   // Get the nearest node_modules directories to the current working directory
-  let nodeModulesDirectories = (cov_8emx7ww64.s[19]++, (0, _findNodeModules.default)(options)); // Make sure we find a node_modules folder
+  let nodeModulesDirectories = (cov_16lcdpz3tp().s[19]++, (0, _findNodeModules.default)(options)); // Make sure we find a node_modules folder
 
   /* istanbul ignore else */
 
-  cov_8emx7ww64.s[20]++;
+  cov_16lcdpz3tp().s[20]++;
 
-  if ((cov_8emx7ww64.b[5][0]++, nodeModulesDirectories) && (cov_8emx7ww64.b[5][1]++, nodeModulesDirectories.length > 0)) {
-    cov_8emx7ww64.b[4][0]++;
-    cov_8emx7ww64.s[21]++;
+  if ((cov_16lcdpz3tp().b[5][0]++, nodeModulesDirectories) && (cov_16lcdpz3tp().b[5][1]++, nodeModulesDirectories.length > 0)) {
+    cov_16lcdpz3tp().b[4][0]++;
+    cov_16lcdpz3tp().s[21]++;
     return nodeModulesDirectories[0];
   } else {
     console.error(`Error: Could not locate node_modules in your project's root directory. Did you forget to npm init or npm install?`);
@@ -1355,8 +1364,8 @@ function getNearestNodeModulesDirectory(options) {
 
 
 function getNearestProjectRootDirectory(repoPath, options) {
-  cov_8emx7ww64.f[4]++;
-  cov_8emx7ww64.s[22]++;
+  cov_16lcdpz3tp().f[4]++;
+  cov_16lcdpz3tp().s[22]++;
   return _path.default.join(repoPath, getNearestNodeModulesDirectory(options), '/../');
 }
 /**
@@ -1365,9 +1374,9 @@ function getNearestProjectRootDirectory(repoPath, options) {
 
 
 function getNpmInstallStringMappings(save, saveDev, saveExact, force) {
-  cov_8emx7ww64.f[5]++;
-  cov_8emx7ww64.s[23]++;
-  return new Map().set('save', (cov_8emx7ww64.b[7][0]++, save) && (cov_8emx7ww64.b[7][1]++, !saveDev) ? (cov_8emx7ww64.b[6][0]++, '--save') : (cov_8emx7ww64.b[6][1]++, undefined)).set('saveDev', saveDev ? (cov_8emx7ww64.b[8][0]++, '--save-dev') : (cov_8emx7ww64.b[8][1]++, undefined)).set('saveExact', saveExact ? (cov_8emx7ww64.b[9][0]++, '--save-exact') : (cov_8emx7ww64.b[9][1]++, undefined)).set('force', force ? (cov_8emx7ww64.b[10][0]++, '--force') : (cov_8emx7ww64.b[10][1]++, undefined));
+  cov_16lcdpz3tp().f[5]++;
+  cov_16lcdpz3tp().s[23]++;
+  return new Map().set('save', (cov_16lcdpz3tp().b[7][0]++, save) && (cov_16lcdpz3tp().b[7][1]++, !saveDev) ? (cov_16lcdpz3tp().b[6][0]++, '--save') : (cov_16lcdpz3tp().b[6][1]++, undefined)).set('saveDev', saveDev ? (cov_16lcdpz3tp().b[8][0]++, '--save-dev') : (cov_16lcdpz3tp().b[8][1]++, undefined)).set('saveExact', saveExact ? (cov_16lcdpz3tp().b[9][0]++, '--save-exact') : (cov_16lcdpz3tp().b[9][1]++, undefined)).set('force', force ? (cov_16lcdpz3tp().b[10][0]++, '--force') : (cov_16lcdpz3tp().b[10][1]++, undefined));
 }
 /**
  * Gets a map of arguments where the value is the corresponding yarn strings
@@ -1375,9 +1384,9 @@ function getNpmInstallStringMappings(save, saveDev, saveExact, force) {
 
 
 function getYarnAddStringMappings(dev, exact, force) {
-  cov_8emx7ww64.f[6]++;
-  cov_8emx7ww64.s[24]++;
-  return new Map().set('dev', dev ? (cov_8emx7ww64.b[11][0]++, '--dev') : (cov_8emx7ww64.b[11][1]++, undefined)).set('exact', exact ? (cov_8emx7ww64.b[12][0]++, '--exact') : (cov_8emx7ww64.b[12][1]++, undefined)).set('force', force ? (cov_8emx7ww64.b[13][0]++, '--force') : (cov_8emx7ww64.b[13][1]++, undefined));
+  cov_16lcdpz3tp().f[6]++;
+  cov_16lcdpz3tp().s[24]++;
+  return new Map().set('dev', dev ? (cov_16lcdpz3tp().b[11][0]++, '--dev') : (cov_16lcdpz3tp().b[11][1]++, undefined)).set('exact', exact ? (cov_16lcdpz3tp().b[12][0]++, '--exact') : (cov_16lcdpz3tp().b[12][1]++, undefined)).set('force', force ? (cov_16lcdpz3tp().b[13][0]++, '--force') : (cov_16lcdpz3tp().b[13][1]++, undefined));
 }
 /**
  * Gets the prompter from an adapter given an adapter path
@@ -1385,11 +1394,11 @@ function getYarnAddStringMappings(dev, exact, force) {
 
 
 function getPrompter(adapterPath) {
-  cov_8emx7ww64.f[7]++;
+  cov_16lcdpz3tp().f[7]++;
   // Resolve the adapter path
-  let resolvedAdapterPath = (cov_8emx7ww64.s[25]++, resolveAdapterPath(adapterPath)); // Load the adapter
+  let resolvedAdapterPath = (cov_16lcdpz3tp().s[25]++, resolveAdapterPath(adapterPath)); // Load the adapter
 
-  let adapter = (cov_8emx7ww64.s[26]++, require(resolvedAdapterPath));
+  let adapter = (cov_16lcdpz3tp().s[26]++, require(resolvedAdapterPath));
   /* istanbul ignore next */
 
   if (adapter && adapter.prompter && (0, _util.isFunction)(adapter.prompter)) {
@@ -1407,29 +1416,29 @@ function getPrompter(adapterPath) {
 
 
 function resolveAdapterPath(inboundAdapterPath) {
-  cov_8emx7ww64.f[8]++;
+  cov_16lcdpz3tp().f[8]++;
   // Check if inboundAdapterPath is a path or node module name
-  let parsed = (cov_8emx7ww64.s[27]++, _path.default.parse(inboundAdapterPath));
-  let isPath = (cov_8emx7ww64.s[28]++, (cov_8emx7ww64.b[14][0]++, parsed.dir.length > 0) && (cov_8emx7ww64.b[14][1]++, parsed.dir.charAt(0) !== "@")); // Resolve from the root of the git repo if inboundAdapterPath is a path
+  let parsed = (cov_16lcdpz3tp().s[27]++, _path.default.parse(inboundAdapterPath));
+  let isPath = (cov_16lcdpz3tp().s[28]++, (cov_16lcdpz3tp().b[14][0]++, parsed.dir.length > 0) && (cov_16lcdpz3tp().b[14][1]++, parsed.dir.charAt(0) !== "@")); // Resolve from the root of the git repo if inboundAdapterPath is a path
 
-  let absoluteAdapterPath = (cov_8emx7ww64.s[29]++, isPath ? (cov_8emx7ww64.b[15][0]++, _path.default.resolve(getGitRootPath(), inboundAdapterPath)) : (cov_8emx7ww64.b[15][1]++, inboundAdapterPath));
-  cov_8emx7ww64.s[30]++;
+  let absoluteAdapterPath = (cov_16lcdpz3tp().s[29]++, isPath ? (cov_16lcdpz3tp().b[15][0]++, _path.default.resolve(getGitRootPath(), inboundAdapterPath)) : (cov_16lcdpz3tp().b[15][1]++, inboundAdapterPath));
+  cov_16lcdpz3tp().s[30]++;
 
   try {
-    cov_8emx7ww64.s[31]++;
+    cov_16lcdpz3tp().s[31]++;
     // try to resolve the given path
     return require.resolve(absoluteAdapterPath);
   } catch (error) {
-    cov_8emx7ww64.s[32]++;
+    cov_16lcdpz3tp().s[32]++;
     error.message = "Could not resolve " + absoluteAdapterPath + ". " + error.message;
-    cov_8emx7ww64.s[33]++;
+    cov_16lcdpz3tp().s[33]++;
     throw error;
   }
 }
 
 function getGitRootPath() {
-  cov_8emx7ww64.f[9]++;
-  cov_8emx7ww64.s[34]++;
+  cov_16lcdpz3tp().f[9]++;
+  cov_16lcdpz3tp().s[34]++;
   return _child_process.default.spawnSync('git', ['rev-parse', '--show-toplevel'], {
     encoding: 'utf8'
   }).stdout.trim();

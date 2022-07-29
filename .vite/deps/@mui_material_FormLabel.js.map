@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["dep:@mui_material_FormLabel"],
+  "sourcesContent": ["import d from \"./node_modules/@mui/material/FormLabel/index.js\";export default d;\nexport * from \"./node_modules/@mui/material/FormLabel/index.js\""],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;AAAgE,IAAO,iCAAQ;",
+  "names": []
+}

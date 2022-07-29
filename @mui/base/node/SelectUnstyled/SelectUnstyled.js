@@ -15,8 +15,6 @@ var React = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _clsx = _interopRequireDefault(require("clsx"));
-
 var _utils = require("@mui/utils");
 
 var _utils2 = require("./utils");
@@ -35,7 +33,7 @@ var _selectUnstyledClasses = require("./selectUnstyledClasses");
 
 var _jsxRuntime = require("react/jsx-runtime");
 
-const _excluded = ["autoFocus", "children", "className", "component", "components", "componentsProps", "defaultValue", "defaultListboxOpen", "disabled", "listboxOpen", "onChange", "onListboxOpenChange", "renderValue", "value"];
+const _excluded = ["autoFocus", "children", "component", "components", "componentsProps", "defaultValue", "defaultListboxOpen", "disabled", "listboxId", "listboxOpen", "onChange", "onListboxOpenChange", "renderValue", "value"];
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -63,22 +61,30 @@ function useUtilityClasses(ownerState) {
 }
 /**
  * The foundation for building custom-styled select components.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
 
 
 const SelectUnstyled = /*#__PURE__*/React.forwardRef(function SelectUnstyled(props, ref) {
-  var _ref, _components$Listbox, _components$Popper, _componentsProps$list, _componentsProps$list2, _componentsProps$root, _componentsProps$list3, _componentsProps$popp;
+  var _ref, _components$Listbox, _components$Popper;
 
   const {
     autoFocus,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
+    listboxId,
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
@@ -114,7 +120,6 @@ const SelectUnstyled = /*#__PURE__*/React.forwardRef(function SelectUnstyled(pro
   };
 
   const handleButtonRef = (0, _utils.unstable_useForkRef)(ref, handleButtonRefChange);
-  const handleListboxRef = (0, _utils.unstable_useForkRef)(listboxRef, (_componentsProps$list = componentsProps.listbox) == null ? void 0 : _componentsProps$list.ref);
   React.useEffect(() => {
     if (autoFocus) {
       buttonRef.current.focus();
@@ -136,12 +141,10 @@ const SelectUnstyled = /*#__PURE__*/React.forwardRef(function SelectUnstyled(pro
     getOptionState,
     value
   } = (0, _useSelect.default)({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId: (_componentsProps$list2 = componentsProps.listbox) == null ? void 0 : _componentsProps$list2.id,
-    listboxRef: handleListboxRef,
+    listboxId,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
@@ -162,22 +165,37 @@ const SelectUnstyled = /*#__PURE__*/React.forwardRef(function SelectUnstyled(pro
   const selectedOptions = React.useMemo(() => {
     return options.find(o => value === o.value);
   }, [options, value]);
-  const buttonProps = (0, _utils3.appendOwnerState)(Button, (0, _extends2.default)({}, getButtonProps(), other, componentsProps.root, {
-    className: (0, _clsx.default)(className, (_componentsProps$root = componentsProps.root) == null ? void 0 : _componentsProps$root.className, classes.root)
-  }), ownerState);
-  const listboxProps = (0, _utils3.appendOwnerState)(ListboxRoot, (0, _extends2.default)({}, getListboxProps(), componentsProps.listbox, {
-    className: (0, _clsx.default)((_componentsProps$list3 = componentsProps.listbox) == null ? void 0 : _componentsProps$list3.className, classes.listbox)
-  }), ownerState); // Popper must be a (non-host) component, therefore ownerState will be present within the props
-
-  const popperProps = (0, _utils3.appendOwnerState)(Popper, (0, _extends2.default)({
-    open: listboxOpen,
-    anchorEl: buttonRef.current,
-    placement: 'bottom-start',
-    disablePortal: true,
-    role: undefined
-  }, componentsProps.popper, {
-    className: (0, _clsx.default)((_componentsProps$popp = componentsProps.popper) == null ? void 0 : _componentsProps$popp.className, classes.popper)
-  }), ownerState);
+  const buttonProps = (0, _utils3.useSlotProps)({
+    elementType: Button,
+    getSlotProps: getButtonProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    className: classes.root
+  });
+  const listboxProps = (0, _utils3.useSlotProps)({
+    elementType: ListboxRoot,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
+    additionalProps: {
+      ref: listboxRef
+    },
+    ownerState,
+    className: classes.listbox
+  });
+  const popperProps = (0, _utils3.useSlotProps)({
+    elementType: Popper,
+    externalSlotProps: componentsProps.popper,
+    additionalProps: {
+      anchorEl: buttonRef.current,
+      disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start',
+      role: undefined
+    },
+    ownerState,
+    className: classes.popper
+  });
   const context = {
     getOptionProps,
     getOptionState,
@@ -216,12 +234,8 @@ process.env.NODE_ENV !== "production" ? SelectUnstyled.propTypes
   children: _propTypes.default.node,
 
   /**
-   * @ignore
-   */
-  className: _propTypes.default.string,
-
-  /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: _propTypes.default.elementType,
 
@@ -243,9 +257,9 @@ process.env.NODE_ENV !== "production" ? SelectUnstyled.propTypes
    * @default {}
    */
   componentsProps: _propTypes.default.shape({
-    listbox: _propTypes.default.object,
-    popper: _propTypes.default.object,
-    root: _propTypes.default.object
+    listbox: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object]),
+    popper: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object]),
+    root: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object])
   }),
 
   /**
@@ -266,6 +280,12 @@ process.env.NODE_ENV !== "production" ? SelectUnstyled.propTypes
    * @default false
    */
   disabled: _propTypes.default.bool,
+
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: _propTypes.default.string,
 
   /**
    * Controls the open state of the select's listbox.
@@ -297,17 +317,5 @@ process.env.NODE_ENV !== "production" ? SelectUnstyled.propTypes
   /* @typescript-to-proptypes-ignore */
   .any
 } : void 0;
-/**
- * The foundation for building custom-styled select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
- */
-
 var _default = SelectUnstyled;
 exports.default = _default;

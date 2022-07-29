@@ -2,6 +2,7 @@ import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWith
 import _extends from "@babel/runtime/helpers/esm/extends";
 const _excluded = ["children", "className", "component", "columns", "spacing", "defaultColumns", "defaultHeight", "defaultSpacing"];
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { flushSync } from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { createUnarySpacing, getValue, handleBreakpoints, unstable_resolveBreakpointValues as resolveBreakpointValues } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -13,6 +14,12 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
 export const parseToNumber = val => {
   return Number(val.replace('px', ''));
+};
+const lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0
 };
 
 const useUtilityClasses = ownerState => {
@@ -33,17 +40,17 @@ export const getStyle = ({
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box'
     }
   };
-  const stylesSSR = {};
+  const stylesSSR = {}; // Only applicable for Server-Side Rendering
 
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
-    const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
 
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[`&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`] = {
@@ -67,15 +74,22 @@ export const getStyle = ({
   const transformer = createUnarySpacing(theme);
 
   const spacingStyleFromPropValue = propValue => {
-    const themeSpacingValue = Number(propValue);
-    const spacing = Number(getValue(transformer, themeSpacingValue).replace('px', ''));
+    let spacing; // in case of string/number value
+
+    if (typeof propValue === 'string' && !Number.isNaN(Number(propValue)) || typeof propValue === 'number') {
+      const themeSpacingValue = Number(propValue);
+      spacing = getValue(transformer, themeSpacingValue);
+    } else {
+      spacing = propValue;
+    }
+
     return _extends({
-      margin: -(spacing / 2),
+      margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
-        margin: spacing / 2
+        margin: `calc(${spacing} / 2)`
       }
     }, ownerState.maxColumnHeight && {
-      height: Math.ceil(ownerState.maxColumnHeight + spacing)
+      height: typeof spacing === 'number' ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing)) : `calc(${ownerState.maxColumnHeight}px + ${spacing})`
     });
   };
 
@@ -90,7 +104,7 @@ export const getStyle = ({
   const columnStyleFromPropValue = propValue => {
     const columnValue = Number(propValue);
     const width = `${(100 / columnValue).toFixed(2)}%`;
-    const spacing = typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
+    const spacing = typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues)) || typeof spacingValues === 'number' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
       '& > *': {
         width: `calc(${width} - ${spacing})`
@@ -223,9 +237,13 @@ const Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
     });
 
     if (!skip) {
-      setMaxColumnHeight(Math.max(...columnHeights));
-      const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      flushSync(() => {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 
@@ -245,13 +263,7 @@ const Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
 
     return () => resizeObserver ? resizeObserver.disconnect() : {};
   }, [columns, spacing, children]);
-  const handleRef = useForkRef(ref, masonryRef);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0
-  }; //  columns are likely to have different heights and hence can start to merge;
+  const handleRef = useForkRef(ref, masonryRef); //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging
 
   const lineBreaks = new Array(numberOfLineBreaks).fill('').map((_, index) => /*#__PURE__*/_jsx("span", {

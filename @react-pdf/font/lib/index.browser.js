@@ -93,14 +93,14 @@ var FontSource = /*#__PURE__*/function () {
     this.fontStyle = fontStyle || 'normal';
     this.fontWeight = fontWeight || 400;
     this.data = null;
-    this.loading = false;
     this.options = options;
+    this.loadResultPromise = null;
   }
 
   var _proto = FontSource.prototype;
 
-  _proto.load = /*#__PURE__*/function () {
-    var _load = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2() {
+  _proto._load = /*#__PURE__*/function () {
+    var _load2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2() {
       var _this = this;
 
       var postscriptName, _this$options, headers, body, _this$options$method, method, data;
@@ -109,49 +109,45 @@ var FontSource = /*#__PURE__*/function () {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              this.loading = true;
               postscriptName = this.options.postscriptName;
 
               if (!isDataUrl(this.src)) {
-                _context2.next = 6;
+                _context2.next = 5;
                 break;
               }
 
               this.data = fontkit__default["default"].create(Buffer.from(this.src.split(',')[1], 'base64'), postscriptName);
-              _context2.next = 17;
+              _context2.next = 16;
               break;
 
-            case 6:
+            case 5:
 
               _this$options = this.options, headers = _this$options.headers, body = _this$options.body, _this$options$method = _this$options.method, method = _this$options$method === void 0 ? 'GET' : _this$options$method;
-              _context2.next = 10;
+              _context2.next = 9;
               return fetchFont(this.src, {
                 method: method,
                 body: body,
                 headers: headers
               });
 
-            case 10:
+            case 9:
               data = _context2.sent;
               this.data = fontkit__default["default"].create(data, postscriptName);
-              _context2.next = 17;
+              _context2.next = 16;
               break;
 
-            case 14:
-              _context2.next = 16;
+            case 13:
+              _context2.next = 15;
               return new Promise(function (resolve, reject) {
                 return fontkit__default["default"].open(_this.src, postscriptName, function (err, data) {
                   return err ? reject(err) : resolve(data);
                 });
               });
 
-            case 16:
+            case 15:
               this.data = _context2.sent;
 
-            case 17:
-              this.loading = false;
-
-            case 18:
+            case 16:
             case "end":
               return _context2.stop();
           }
@@ -159,8 +155,35 @@ var FontSource = /*#__PURE__*/function () {
       }, _callee2, this);
     }));
 
+    function _load() {
+      return _load2.apply(this, arguments);
+    }
+
+    return _load;
+  }();
+
+  _proto.load = /*#__PURE__*/function () {
+    var _load3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3() {
+      return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              if (this.loadResultPromise === null) {
+                this.loadResultPromise = this._load();
+              }
+
+              return _context3.abrupt("return", this.loadResultPromise);
+
+            case 2:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this);
+    }));
+
     function load() {
-      return _load.apply(this, arguments);
+      return _load3.apply(this, arguments);
     }
 
     return load;
@@ -244,7 +267,7 @@ var Font = /*#__PURE__*/function () {
   return Font;
 }();
 
-var standard = ['Courier', 'Courier-Bold', 'Courier-Oblique', 'Helvetica', 'Helvetica-Bold', 'Helvetica-Oblique', 'Times-Roman', 'Times-Bold', 'Times-Italic'];
+var standard = ['Courier', 'Courier-Bold', 'Courier-Oblique', 'Courier-BoldOblique', 'Helvetica', 'Helvetica-Bold', 'Helvetica-Oblique', 'Helvetica-BoldOblique', 'Times-Roman', 'Times-Bold', 'Times-Italic', 'Times-BoldItalic'];
 
 function FontStore() {
   var _this = this;
@@ -318,15 +341,10 @@ function FontStore() {
             case 4:
               f = _this.getFont(descriptor); // We cache the font to avoid fetching it many times
 
-              if (!(!f.data && !f.loading)) {
-                _context.next = 8;
-                break;
-              }
-
-              _context.next = 8;
+              _context.next = 7;
               return f.load();
 
-            case 8:
+            case 7:
             case "end":
               return _context.stop();
           }

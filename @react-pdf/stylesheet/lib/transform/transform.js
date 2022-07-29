@@ -34,6 +34,17 @@ var parse = function parse(transformString) {
   return parsed;
 };
 
+var parseAngle = function parseAngle(value) {
+  var unitsRegexp = /(-?\d*\.?\d*)(\w*)?/i;
+
+  var _unitsRegexp$exec = unitsRegexp.exec(value),
+      angle = _unitsRegexp$exec[1],
+      unit = _unitsRegexp$exec[2];
+
+  var number = Number.parseFloat(angle);
+  return unit === 'rad' ? number * 180 / Math.PI : number;
+};
+
 var normalizeTransformOperation = function normalizeTransformOperation(_ref) {
   var operation = _ref.operation,
       value = _ref.value;
@@ -72,16 +83,9 @@ var normalizeTransformOperation = function normalizeTransformOperation(_ref) {
 
     case 'rotate':
       {
-        var unitsRegexp = /(-?\d*\.?\d*)(\w*)?/i;
-
-        var _unitsRegexp$exec = unitsRegexp.exec(value),
-            angle = _unitsRegexp$exec[1],
-            unit = _unitsRegexp$exec[2];
-
-        var number = Number.parseFloat(angle);
         return {
           operation: 'rotate',
-          value: [unit === 'rad' ? number * 180 / Math.PI : number]
+          value: [parseAngle(value)]
         };
       }
 
@@ -108,6 +112,30 @@ var normalizeTransformOperation = function normalizeTransformOperation(_ref) {
         return {
           operation: 'translate',
           value: [0, Number.parseFloat(value)]
+        };
+      }
+
+    case 'skew':
+      {
+        return {
+          operation: 'skew',
+          value: value.map(parseAngle)
+        };
+      }
+
+    case 'skewX':
+      {
+        return {
+          operation: 'skew',
+          value: [parseAngle(value), 0]
+        };
+      }
+
+    case 'skewY':
+      {
+        return {
+          operation: 'skew',
+          value: [0, parseAngle(value)]
         };
       }
 

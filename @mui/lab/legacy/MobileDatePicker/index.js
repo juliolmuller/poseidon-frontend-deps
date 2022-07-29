@@ -1,1 +1,2 @@
-export { MobileDatePicker as default } from '@mui/x-date-pickers/MobileDatePicker';
+export { default } from './MobileDatePicker';
+export * from './MobileDatePicker';

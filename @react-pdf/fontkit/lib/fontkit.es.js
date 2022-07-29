@@ -3,7 +3,7 @@ import fs from 'fs';
 import _applyDecoratedDescriptor from '@babel/runtime/helpers/applyDecoratedDescriptor';
 import { PropertyDescriptor, resolveLength } from 'restructure/src/utils';
 import isEqual from 'deep-equal';
-import unicode from '@react-pdf/unicode-properties';
+import unicode from 'unicode-properties';
 import UnicodeTrie from 'unicode-trie';
 import StateMachine from 'dfa';
 import cloneDeep from 'clone';
@@ -36681,8 +36681,8 @@ class CFFGlyph extends Glyph {
 
             case 10:
               // callsubr
-              let index = stack.pop() + subrsBias;
-              let subr = subrs[index];
+              var index = stack.pop() + subrsBias;
+              var subr = subrs[index];
 
               if (subr) {
                 usedSubrs[index] = true;

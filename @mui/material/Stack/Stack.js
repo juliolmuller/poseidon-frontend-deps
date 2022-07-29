@@ -46,7 +46,8 @@ export const style = ({
   theme
 }) => {
   let styles = _extends({
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column'
   }, handleBreakpoints({
     theme
   }, resolveBreakpointValues({
@@ -59,7 +60,7 @@ export const style = ({
   if (ownerState.spacing) {
     const transformer = createUnarySpacing(theme);
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+      if (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null || typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null) {
         acc[breakpoint] = true;
       }
 
@@ -73,6 +74,17 @@ export const style = ({
       values: ownerState.spacing,
       base
     });
+
+    if (typeof directionValues === 'object') {
+      Object.keys(directionValues).forEach((breakpoint, index, breakpoints) => {
+        const directionValue = directionValues[breakpoint];
+
+        if (!directionValue) {
+          const previousDirectionValue = index > 0 ? directionValues[breakpoints[index - 1]] : 'column';
+          directionValues[breakpoint] = previousDirectionValue;
+        }
+      });
+    }
 
     const styleFromPropValue = (propValue, breakpoint) => {
       return {

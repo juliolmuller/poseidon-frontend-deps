@@ -2,7 +2,14 @@
 
 <!--dividing-->
 
-[![](https://img.shields.io/github/issues/jaywcjlove/hotkeys.svg)](https://github.com/jaywcjlove/hotkeys/issues) [![](https://img.shields.io/github/forks/jaywcjlove/hotkeys.svg)](https://github.com/jaywcjlove/hotkeys/network) [![](https://img.shields.io/github/stars/jaywcjlove/hotkeys.svg)](https://github.com/jaywcjlove/hotkeys/stargazers) [![](https://img.shields.io/github/release/jaywcjlove/hotkeys.svg)](https://github.com/jaywcjlove/hotkeys/releases) ![](http://jaywcjlove.github.io/sb/status/no-dependencies.svg) [![Build Status](https://www.travis-ci.org/jaywcjlove/hotkeys.svg?branch=master)](https://www.travis-ci.org/jaywcjlove/hotkeys) [![Coverage Status](https://coveralls.io/repos/github/jaywcjlove/hotkeys/badge.svg?branch=master)](https://coveralls.io/github/jaywcjlove/hotkeys?branch=master) [![jaywcjlove/hotkeys](https://jaywcjlove.github.io/sb/lang/chinese.svg)](./README-zh.md) [![jaywcjlove/hotkeys](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://gitee.com/jaywcjlove/hotkeys)
+[![CDN jsdelivr](https://data.jsdelivr.com/v1/package/npm/hotkeys-js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/hotkeys-js)
+[![](https://img.shields.io/npm/dm/hotkeys-js?logo=npm)](https://www.npmjs.com/package/hotkeys-js)
+[![](https://img.shields.io/github/stars/jaywcjlove/hotkeys.svg)](https://github.com/jaywcjlove/hotkeys/stargazers)
+![no dependencies](http://jaywcjlove.github.io/sb/status/no-dependencies.svg)
+[![GitHub Actions CI](https://github.com/jaywcjlove/hotkeys/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/hotkeys/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/jaywcjlove/hotkeys/badge.svg?branch=master)](https://coveralls.io/github/jaywcjlove/hotkeys?branch=master)
+[![jaywcjlove/hotkeys](https://jaywcjlove.github.io/sb/lang/chinese.svg)](https://github.com/jaywcjlove/hotkeys/blob/master/README-zh.md)
+[![jaywcjlove/hotkeys](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://gitee.com/jaywcjlove/hotkeys)
 
 HotKeys.js is an input capture library with some very special features, it is easy to pick up and use, has a reasonable footprint ([~3kb](https://bundlephobia.com/result?p=hotkeys-js)) (gzipped: 1.73kb), and has no dependencies. It should not interfere with any JavaScript libraries or frameworks. Official document [demo preview](http://jaywcjlove.github.io/hotkeys). [More examples](https://github.com/jaywcjlove/hotkeys/issues?q=label%3ADemo+).
 
@@ -76,7 +83,7 @@ Chrome
 
 HotKeys understands the following modifiers: `⇧`, `shift`, `option`, `⌥`, `alt`, `ctrl`, `control`, `command`, and `⌘`.
 
-The following special keys can be used for shortcuts: backspace, tab, clear, enter, return, esc, escape, space, up, down, left, right, home, end, pageup, pagedown, del, delete and f1 through f19.
+The following special keys can be used for shortcuts: backspace, tab, clear, enter, return, esc, escape, space, up, down, left, right, home, end, pageup, pagedown, del, delete, f1 through f19, num_0 through num_9, num_multiply, num_add, num_enter, num_subtract, num_decimal, num_divide.
 
 `⌘` Command()  
 `⌃` Control  
@@ -151,6 +158,7 @@ hotkeys('*','wcj', function(event){
 - `keyup<Boolean>`
 - `keydown<Boolean>`
 - `splitKey<string>` (default is `+`)
+- `capture<Boolean>`
 
 ```js
 hotkeys('o, enter', {
@@ -167,6 +175,22 @@ hotkeys('ctrl-+', { splitKey: '-' }, function(e) {
 hotkeys('+', { splitKey: '-' }, function(e){
   console.log('you pressed +');
 })
+```
+
+**keyup**
+
+**key down** and **key up** both perform callback events.
+
+```js
+hotkeys('ctrl+a,alt+a+s', {keyup: true}, function(event, handler) {
+  if (event.type === 'keydown') {
+    console.log('keydown:', event.type, handler, handler.key);
+  }
+
+  if (event.type === 'keyup') {
+    console.log('keyup:', event.type, handler, handler.key);
+  }
+});
 ```
 
 ## API REFERENCE
@@ -239,6 +263,11 @@ Use the `hotkeys.deleteScope` method to delete a scope. This will also remove al
 ```js
 hotkeys.deleteScope('issues');
 ```
+You can use second argument, if need set new scope after deleting.
+
+```js
+hotkeys.deleteScope('issues', 'newScopeName');
+```
 
 ### unbind
 
@@ -284,20 +313,11 @@ hotkeys('a', function() {
 });
 ```
 
-## keyup
-
-**key down** and **key up** both perform callback events.
+### trigger
 
 ```js
-hotkeys('ctrl+a,alt+a+s', {keyup: true}, function(event, handler) {
-  if (event.type === 'keydown') {
-    console.log('keydown:', event.type, handler, handler.key);
-  }
-
-  if (event.type === 'keyup') {
-    console.log('keyup:', event.type, handler, handler.key);
-  }
-});
+hotkeys.trigger('ctrl+o');
+hotkeys.trigger('ctrl+o', 'scope2');
 ```
 
 ### getPressedKeyCodes
@@ -321,8 +341,9 @@ hotkeys.filter = function(event){
 //How to add the filter to edit labels. <div contentEditable="true"></div>
 //"contentEditable" Older browsers that do not support drops
 hotkeys.filter = function(event) {
-  var tagName = (event.target || event.srcElement).tagName;
-  return !(tagName.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+  var target = event.target || event.srcElement;
+  var tagName = target.tagName;
+  return !(target.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
 }
 
 hotkeys.filter = function(event){
@@ -377,6 +398,16 @@ To contribute, please fork Hotkeys.js, add your patch and tests for it (in the `
 $ npm run test
 $ npm run test:watch # Development model
 ```
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/hotkeys/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/hotkeys/CONTRIBUTORS.svg" />
+</a>
+
+Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 ## License
 

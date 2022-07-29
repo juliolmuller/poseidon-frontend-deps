@@ -198,7 +198,7 @@ var createRenderer = function createRenderer(_ref) {
   });
 };
 
-var version = "2.1.1";
+var version = "2.3.0";
 
 var fontStore = new FontStore__default["default"](); // We must keep a single renderer instance, otherwise React will complain
 
@@ -235,7 +235,7 @@ var pdf = function pdf(initialValue) {
 
   var render = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(compress) {
-      var props, pdfVersion, language, ctx, layout;
+      var props, pdfVersion, language, pageLayout, pageMode, ctx, layout;
       return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -245,13 +245,15 @@ var pdf = function pdf(initialValue) {
               }
 
               props = container.document.props || {};
-              pdfVersion = props.pdfVersion, language = props.language;
+              pdfVersion = props.pdfVersion, language = props.language, pageLayout = props.pageLayout, pageMode = props.pageMode;
               ctx = new PDFDocument__default["default"]({
                 compress: compress,
                 pdfVersion: pdfVersion,
                 lang: language,
                 displayTitle: true,
-                autoFirstPage: false
+                autoFirstPage: false,
+                pageLayout: pageLayout,
+                pageMode: pageMode
               });
               _context.next = 6;
               return layoutDocument__default["default"](container.document, fontStore);
@@ -546,7 +548,8 @@ var PDFDownloadLink = function PDFDownloadLink(_ref) {
       className = _ref.className,
       doc = _ref.document,
       _ref$fileName = _ref.fileName,
-      fileName = _ref$fileName === void 0 ? 'document.pdf' : _ref$fileName;
+      fileName = _ref$fileName === void 0 ? 'document.pdf' : _ref$fileName,
+      onClick = _ref.onClick;
 
   var _usePDF = usePDF({
     document: doc
@@ -568,12 +571,17 @@ var PDFDownloadLink = function PDFDownloadLink(_ref) {
     }
   };
 
+  var handleClick = function handleClick(event) {
+    handleDownloadIE();
+    if (typeof onClick === 'function') onClick(event, instance);
+  };
+
   return /*#__PURE__*/React__default["default"].createElement("a", {
     style: style,
     href: instance.url,
     download: fileName,
     className: className,
-    onClick: handleDownloadIE
+    onClick: handleClick
   }, typeof children === 'function' ? children(instance) : children);
 };
 

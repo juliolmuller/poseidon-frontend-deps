@@ -277,7 +277,7 @@ const AutocompletePopper = (0, _styled.default)(_Popper.default, {
   theme,
   ownerState
 }) => (0, _extends2.default)({
-  zIndex: theme.zIndex.modal
+  zIndex: (theme.vars || theme).zIndex.modal
 }, ownerState.disablePortal && {
   position: 'absolute'
 }));
@@ -297,7 +297,7 @@ const AutocompleteLoading = (0, _styled.default)('div', {
 })(({
   theme
 }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px'
 }));
 const AutocompleteNoOptions = (0, _styled.default)('div', {
@@ -307,7 +307,7 @@ const AutocompleteNoOptions = (0, _styled.default)('div', {
 })(({
   theme
 }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px'
 }));
 const AutocompleteListbox = (0, _styled.default)('div', {
@@ -340,30 +340,30 @@ const AutocompleteListbox = (0, _styled.default)('div', {
       minHeight: 'auto'
     },
     [`&.${_autocompleteClasses.default.focused}`]: {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent'
       }
     },
     '&[aria-disabled="true"]': {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none'
     },
     [`&.${_autocompleteClasses.default.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus
+      backgroundColor: (theme.vars || theme).palette.action.focus
     },
     '&[aria-selected="true"]': {
-      backgroundColor: (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${_autocompleteClasses.default.focused}`]: {
-        backgroundColor: (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected
+          backgroundColor: (theme.vars || theme).palette.action.selected
         }
       },
       [`&.${_autocompleteClasses.default.focusVisible}`]: {
-        backgroundColor: (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0, _system.alpha)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
       }
     }
   }
@@ -375,7 +375,7 @@ const AutocompleteGroupLabel = (0, _styled.default)(_ListSubheader.default, {
 })(({
   theme
 }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   top: -8
 }));
 const AutocompleteGroupUl = (0, _styled.default)('ul', {
@@ -389,7 +389,7 @@ const AutocompleteGroupUl = (0, _styled.default)('ul', {
   }
 });
 const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps, ref) {
-  var _componentsProps$clea, _componentsProps$pape;
+  var _componentsProps$clea, _componentsProps$popu, _componentsProps$popp, _componentsProps$pape;
 
   const props = (0, _useThemeProps.default)({
     props: inProps,
@@ -478,7 +478,8 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
     componentName: 'Autocomplete'
   }));
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
-  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false; // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
+
   const ownerState = (0, _extends2.default)({}, props, {
     disablePortal,
     focused,
@@ -494,12 +495,12 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = params => (0, _extends2.default)({
-      className: (0, _clsx.default)(classes.tag),
+      className: classes.tag,
       disabled
     }, getTagProps(params));
 
     if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps);
+      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
       startAdornment = value.map((option, index) => /*#__PURE__*/(0, _jsxRuntime.jsx)(_Chip.default, (0, _extends2.default)({
         label: getOptionLabel(option),
@@ -568,10 +569,11 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
         fullWidth: true,
         size: size === 'small' ? 'small' : undefined,
         InputLabelProps: getInputLabelProps(),
-        InputProps: {
+        InputProps: (0, _extends2.default)({
           ref: setAnchorEl,
           className: classes.inputRoot,
-          startAdornment,
+          startAdornment
+        }, (hasClearIcon || hasPopupIcon) && {
           endAdornment: /*#__PURE__*/(0, _jsxRuntime.jsxs)(AutocompleteEndAdornment, {
             className: classes.endAdornment,
             ownerState: ownerState,
@@ -586,21 +588,21 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
               disabled: disabled,
               "aria-label": popupOpen ? closeText : openText,
               title: popupOpen ? closeText : openText,
-              className: (0, _clsx.default)(classes.popupIndicator),
-              ownerState: ownerState,
+              ownerState: ownerState
+            }, componentsProps.popupIndicator, {
+              className: (0, _clsx.default)(classes.popupIndicator, (_componentsProps$popu = componentsProps.popupIndicator) == null ? void 0 : _componentsProps$popu.className),
               children: popupIcon
             })) : null]
           })
-        },
+        }),
         inputProps: (0, _extends2.default)({
-          className: (0, _clsx.default)(classes.input),
+          className: classes.input,
           disabled,
           readOnly
         }, getInputProps())
       })
-    })), popupOpen && anchorEl ? /*#__PURE__*/(0, _jsxRuntime.jsx)(AutocompletePopper, {
+    })), popupOpen && anchorEl ? /*#__PURE__*/(0, _jsxRuntime.jsx)(AutocompletePopper, (0, _extends2.default)({
       as: PopperComponent,
-      className: (0, _clsx.default)(classes.popper),
       disablePortal: disablePortal,
       style: {
         width: anchorEl ? anchorEl.clientWidth : null
@@ -608,7 +610,9 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
       ownerState: ownerState,
       role: "presentation",
       anchorEl: anchorEl,
-      open: true,
+      open: true
+    }, componentsProps.popper, {
+      className: (0, _clsx.default)(classes.popper, (_componentsProps$popp = componentsProps.popper) == null ? void 0 : _componentsProps$popp.className),
       children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(AutocompletePaper, (0, _extends2.default)({
         ownerState: ownerState,
         as: PaperComponent
@@ -645,7 +649,7 @@ const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps
           })
         })) : null]
       }))
-    }) : null]
+    })) : null]
   });
 });
 process.env.NODE_ENV !== "production" ? Autocomplete.propTypes
@@ -747,7 +751,9 @@ process.env.NODE_ENV !== "production" ? Autocomplete.propTypes
    */
   componentsProps: _propTypes.default.shape({
     clearIndicator: _propTypes.default.object,
-    paper: _propTypes.default.object
+    paper: _propTypes.default.object,
+    popper: _propTypes.default.object,
+    popupIndicator: _propTypes.default.object
   }),
 
   /**
@@ -1075,6 +1081,7 @@ process.env.NODE_ENV !== "production" ? Autocomplete.propTypes
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags: _propTypes.default.func,

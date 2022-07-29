@@ -165,7 +165,12 @@ const LoadingButton = /*#__PURE__*/React.forwardRef(function LoadingButton(inPro
     variant
   });
   const classes = useUtilityClasses(ownerState);
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(LoadingButtonRoot, (0, _extends2.default)({
+  const loadingButtonLoadingIndicator = loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)(LoadingButtonLoadingIndicator, {
+    className: classes.loadingIndicator,
+    ownerState: ownerState,
+    children: loadingIndicator
+  }) : null;
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(LoadingButtonRoot, (0, _extends2.default)({
     disabled: disabled || loading,
     id: id,
     ref: ref
@@ -173,19 +178,7 @@ const LoadingButton = /*#__PURE__*/React.forwardRef(function LoadingButton(inPro
     variant: variant,
     classes: classes,
     ownerState: ownerState,
-    children: ownerState.loadingPosition === 'end' ? /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-      children: [children, loading && /*#__PURE__*/(0, _jsxRuntime.jsx)(LoadingButtonLoadingIndicator, {
-        className: classes.loadingIndicator,
-        ownerState: ownerState,
-        children: loadingIndicator
-      })]
-    }) : /*#__PURE__*/(0, _jsxRuntime.jsxs)(React.Fragment, {
-      children: [loading && /*#__PURE__*/(0, _jsxRuntime.jsx)(LoadingButtonLoadingIndicator, {
-        className: classes.loadingIndicator,
-        ownerState: ownerState,
-        children: loadingIndicator
-      }), children]
-    })
+    children: [ownerState.loadingPosition === 'end' ? children : loadingButtonLoadingIndicator, ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : children]
   }));
 });
 process.env.NODE_ENV !== "production" ? LoadingButton.propTypes

@@ -1,12 +1,31 @@
 "use strict";
 
-var cov_2ale029yls = function () {
-  var path = "/home/travis/build/commitizen/cz-cli/src/commitizen/init.js";
-  var hash = "338dde00e6bc74cf76624a22bb02140620560f29";
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _child_process = _interopRequireDefault(require("child_process"));
+
+var _path = _interopRequireDefault(require("path"));
+
+var configLoader = _interopRequireWildcard(require("./configLoader"));
+
+var adapter = _interopRequireWildcard(require("./adapter"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function cov_1ss29zpusr() {
+  var path = "/home/runner/work/cz-cli/cz-cli/src/commitizen/init.js";
+  var hash = "e4f46936046367f86f542d40fc45a41f7f10a7af";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "/home/travis/build/commitizen/cz-cli/src/commitizen/init.js",
+    path: "/home/runner/work/cz-cli/cz-cli/src/commitizen/init.js",
     statementMap: {
       "0": {
         start: {
@@ -652,12 +671,12 @@ var cov_2ale029yls = function () {
           }
         }, {
           start: {
-            line: 77,
-            column: 2
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 85,
-            column: 3
+            line: undefined,
+            column: undefined
           }
         }],
         line: 77
@@ -736,12 +755,12 @@ var cov_2ale029yls = function () {
           }
         }, {
           start: {
-            line: 89,
-            column: 4
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 91,
-            column: 5
+            line: undefined,
+            column: undefined
           }
         }],
         line: 89
@@ -769,12 +788,12 @@ var cov_2ale029yls = function () {
           }
         }, {
           start: {
-            line: 103,
-            column: 2
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 105,
-            column: 3
+            line: undefined,
+            column: undefined
           }
         }],
         line: 103
@@ -802,12 +821,12 @@ var cov_2ale029yls = function () {
           }
         }, {
           start: {
-            line: 106,
-            column: 2
+            line: undefined,
+            column: undefined
           },
           end: {
-            line: 108,
-            column: 3
+            line: undefined,
+            column: undefined
           }
         }],
         line: 106
@@ -835,8 +854,8 @@ var cov_2ale029yls = function () {
           }
         }, {
           start: {
-            line: 117,
-            column: 2
+            line: 119,
+            column: 9
           },
           end: {
             line: 121,
@@ -896,47 +915,36 @@ var cov_2ale029yls = function () {
       "16": [0, 0],
       "17": [0, 0]
     },
-    _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "338dde00e6bc74cf76624a22bb02140620560f29"
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "e4f46936046367f86f542d40fc45a41f7f10a7af"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
-  if (coverage[path] && coverage[path].hash === hash) {
-    return coverage[path];
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
   }
 
-  return coverage[path] = coverageData;
-}();
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1ss29zpusr = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _child_process = _interopRequireDefault(require("child_process"));
-
-var _path = _interopRequireDefault(require("path"));
-
-var configLoader = _interopRequireWildcard(require("./configLoader"));
-
-var adapter = _interopRequireWildcard(require("./adapter"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+cov_1ss29zpusr();
 let {
   addPathToAdapterConfig,
   generateNpmInstallAdapterCommand,
   getNpmInstallStringMappings,
   generateYarnAddAdapterCommand,
   getYarnAddStringMappings
-} = (cov_2ale029yls.s[0]++, adapter);
+} = (cov_1ss29zpusr().s[0]++, adapter);
 var _default = init;
 exports.default = _default;
-const CLI_PATH = (cov_2ale029yls.s[1]++, _path.default.normalize(_path.default.join(__dirname, '../../')));
+const CLI_PATH = (cov_1ss29zpusr().s[1]++, _path.default.normalize(_path.default.join(__dirname, '../../')));
 /**
  * CZ INIT
  *
@@ -955,7 +963,7 @@ const CLI_PATH = (cov_2ale029yls.s[1]++, _path.default.normalize(_path.default.j
  * The defaults for init
  */
 
-const defaultInitOptions = (cov_2ale029yls.s[2]++, {
+const defaultInitOptions = (cov_1ss29zpusr().s[2]++, {
   save: false,
   saveDev: true,
   saveExact: false,
@@ -972,32 +980,32 @@ const defaultInitOptions = (cov_2ale029yls.s[2]++, {
  */
 
 function init(repoPath, adapterNpmName, {
-  save = (cov_2ale029yls.b[1][0]++, false),
-  saveDev = (cov_2ale029yls.b[2][0]++, true),
-  saveExact = (cov_2ale029yls.b[3][0]++, false),
-  force = (cov_2ale029yls.b[4][0]++, false),
-  yarn = (cov_2ale029yls.b[5][0]++, false),
-  dev = (cov_2ale029yls.b[6][0]++, false),
-  exact = (cov_2ale029yls.b[7][0]++, false),
-  includeCommitizen = (cov_2ale029yls.b[8][0]++, false)
-} = (cov_2ale029yls.b[0][0]++, defaultInitOptions)) {
-  cov_2ale029yls.f[0]++;
-  cov_2ale029yls.s[3]++;
+  save = (cov_1ss29zpusr().b[1][0]++, false),
+  saveDev = (cov_1ss29zpusr().b[2][0]++, true),
+  saveExact = (cov_1ss29zpusr().b[3][0]++, false),
+  force = (cov_1ss29zpusr().b[4][0]++, false),
+  yarn = (cov_1ss29zpusr().b[5][0]++, false),
+  dev = (cov_1ss29zpusr().b[6][0]++, false),
+  exact = (cov_1ss29zpusr().b[7][0]++, false),
+  includeCommitizen = (cov_1ss29zpusr().b[8][0]++, false)
+} = (cov_1ss29zpusr().b[0][0]++, defaultInitOptions)) {
+  cov_1ss29zpusr().f[0]++;
+  cov_1ss29zpusr().s[3]++;
   // Don't let things move forward if required args are missing
   checkRequiredArguments(repoPath, adapterNpmName); // Load the current adapter config
 
-  let adapterConfig = (cov_2ale029yls.s[4]++, loadAdapterConfig(repoPath)); // Get the npm string mappings based on the arguments provided
+  let adapterConfig = (cov_1ss29zpusr().s[4]++, loadAdapterConfig(repoPath)); // Get the npm string mappings based on the arguments provided
 
-  let stringMappings = (cov_2ale029yls.s[5]++, yarn ? (cov_2ale029yls.b[9][0]++, getYarnAddStringMappings(dev, exact, force)) : (cov_2ale029yls.b[9][1]++, getNpmInstallStringMappings(save, saveDev, saveExact, force))); // Generate a string that represents the npm install command
+  let stringMappings = (cov_1ss29zpusr().s[5]++, yarn ? (cov_1ss29zpusr().b[9][0]++, getYarnAddStringMappings(dev, exact, force)) : (cov_1ss29zpusr().b[9][1]++, getNpmInstallStringMappings(save, saveDev, saveExact, force))); // Generate a string that represents the npm install command
 
-  let installAdapterCommand = (cov_2ale029yls.s[6]++, yarn ? (cov_2ale029yls.b[10][0]++, generateYarnAddAdapterCommand(stringMappings, adapterNpmName)) : (cov_2ale029yls.b[10][1]++, generateNpmInstallAdapterCommand(stringMappings, adapterNpmName)));
-  let installCommitizenCommand = (cov_2ale029yls.s[7]++, yarn ? (cov_2ale029yls.b[11][0]++, generateYarnAddAdapterCommand(stringMappings, "commitizen")) : (cov_2ale029yls.b[11][1]++, generateNpmInstallAdapterCommand(stringMappings, "commitizen"))); // Check for previously installed adapters
+  let installAdapterCommand = (cov_1ss29zpusr().s[6]++, yarn ? (cov_1ss29zpusr().b[10][0]++, generateYarnAddAdapterCommand(stringMappings, adapterNpmName)) : (cov_1ss29zpusr().b[10][1]++, generateNpmInstallAdapterCommand(stringMappings, adapterNpmName)));
+  let installCommitizenCommand = (cov_1ss29zpusr().s[7]++, yarn ? (cov_1ss29zpusr().b[11][0]++, generateYarnAddAdapterCommand(stringMappings, "commitizen")) : (cov_1ss29zpusr().b[11][1]++, generateNpmInstallAdapterCommand(stringMappings, "commitizen"))); // Check for previously installed adapters
 
-  cov_2ale029yls.s[8]++;
+  cov_1ss29zpusr().s[8]++;
 
-  if ((cov_2ale029yls.b[13][0]++, adapterConfig) && (cov_2ale029yls.b[13][1]++, adapterConfig.path) && (cov_2ale029yls.b[13][2]++, adapterConfig.path.length > 0) && (cov_2ale029yls.b[13][3]++, !force)) {
-    cov_2ale029yls.b[12][0]++;
-    cov_2ale029yls.s[9]++;
+  if ((cov_1ss29zpusr().b[13][0]++, adapterConfig) && (cov_1ss29zpusr().b[13][1]++, adapterConfig.path) && (cov_1ss29zpusr().b[13][2]++, adapterConfig.path.length > 0) && (cov_1ss29zpusr().b[13][3]++, !force)) {
+    cov_1ss29zpusr().b[12][0]++;
+    cov_1ss29zpusr().s[9]++;
     throw new Error(`A previous adapter is already configured. Use --force to override
     adapterConfig.path: ${adapterConfig.path}
     repoPath: ${repoPath}
@@ -1006,35 +1014,35 @@ function init(repoPath, adapterNpmName, {
     adapterNpmName: ${adapterNpmName}
     `);
   } else {
-    cov_2ale029yls.b[12][1]++;
+    cov_1ss29zpusr().b[12][1]++;
   }
 
-  cov_2ale029yls.s[10]++;
+  cov_1ss29zpusr().s[10]++;
 
   try {
-    cov_2ale029yls.s[11]++;
+    cov_1ss29zpusr().s[11]++;
 
     _child_process.default.execSync(installAdapterCommand, {
       cwd: repoPath
     });
 
-    cov_2ale029yls.s[12]++;
+    cov_1ss29zpusr().s[12]++;
 
     if (includeCommitizen) {
-      cov_2ale029yls.b[14][0]++;
-      cov_2ale029yls.s[13]++;
+      cov_1ss29zpusr().b[14][0]++;
+      cov_1ss29zpusr().s[13]++;
 
       _child_process.default.execSync(installCommitizenCommand, {
         cwd: repoPath
       });
     } else {
-      cov_2ale029yls.b[14][1]++;
+      cov_1ss29zpusr().b[14][1]++;
     }
 
-    cov_2ale029yls.s[14]++;
+    cov_1ss29zpusr().s[14]++;
     addPathToAdapterConfig(CLI_PATH, repoPath, adapterNpmName);
   } catch (e) {
-    cov_2ale029yls.s[15]++;
+    cov_1ss29zpusr().s[15]++;
     console.error(e);
   }
 }
@@ -1045,25 +1053,25 @@ function init(repoPath, adapterNpmName, {
 
 
 function checkRequiredArguments(path, adapterNpmName) {
-  cov_2ale029yls.f[1]++;
-  cov_2ale029yls.s[16]++;
+  cov_1ss29zpusr().f[1]++;
+  cov_1ss29zpusr().s[16]++;
 
   if (!path) {
-    cov_2ale029yls.b[15][0]++;
-    cov_2ale029yls.s[17]++;
+    cov_1ss29zpusr().b[15][0]++;
+    cov_1ss29zpusr().s[17]++;
     throw new Error("Path is required when running init.");
   } else {
-    cov_2ale029yls.b[15][1]++;
+    cov_1ss29zpusr().b[15][1]++;
   }
 
-  cov_2ale029yls.s[18]++;
+  cov_1ss29zpusr().s[18]++;
 
   if (!adapterNpmName) {
-    cov_2ale029yls.b[16][0]++;
-    cov_2ale029yls.s[19]++;
+    cov_1ss29zpusr().b[16][0]++;
+    cov_1ss29zpusr().s[19]++;
     throw new Error("The adapter's npm name is required when running init.");
   } else {
-    cov_2ale029yls.b[16][1]++;
+    cov_1ss29zpusr().b[16][1]++;
   }
 }
 /**
@@ -1073,15 +1081,15 @@ function checkRequiredArguments(path, adapterNpmName) {
 
 
 function loadAdapterConfig(cwd) {
-  cov_2ale029yls.f[2]++;
-  let config = (cov_2ale029yls.s[20]++, configLoader.load(null, cwd));
-  cov_2ale029yls.s[21]++;
+  cov_1ss29zpusr().f[2]++;
+  let config = (cov_1ss29zpusr().s[20]++, configLoader.load(null, cwd));
+  cov_1ss29zpusr().s[21]++;
 
   if (config) {
-    cov_2ale029yls.b[17][0]++;
-    cov_2ale029yls.s[22]++;
+    cov_1ss29zpusr().b[17][0]++;
+    cov_1ss29zpusr().s[22]++;
     return config;
   } else {
-    cov_2ale029yls.b[17][1]++;
+    cov_1ss29zpusr().b[17][1]++;
   }
 }

@@ -3,11 +3,10 @@ import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutProperties";
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_useForkRef as useForkRef, unstable_useControlled as useControlled } from '@mui/utils';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
-import { appendOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
@@ -37,15 +36,22 @@ function useUtilityClasses(ownerState) {
 }
 /**
  * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
 
 
 var MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUnstyled(props, ref) {
-  var _props$renderValue, _ref, _components$Listbox, _components$Popper, _componentsProps$list, _componentsProps$list2, _componentsProps$root, _componentsProps$list3, _componentsProps$popp;
+  var _props$renderValue, _ref, _components$Listbox, _components$Popper;
 
   var autoFocus = props.autoFocus,
       children = props.children,
-      className = props.className,
       component = props.component,
       _props$components = props.components,
       components = _props$components === void 0 ? {} : _props$components,
@@ -56,11 +62,12 @@ var MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUnst
       _props$defaultValue = props.defaultValue,
       defaultValue = _props$defaultValue === void 0 ? [] : _props$defaultValue,
       disabledProp = props.disabled,
+      listboxId = props.listboxId,
       listboxOpenProp = props.listboxOpen,
       onChange = props.onChange,
       onListboxOpenChange = props.onListboxOpenChange,
       valueProp = props.value,
-      other = _objectWithoutProperties(props, ["autoFocus", "children", "className", "component", "components", "componentsProps", "defaultListboxOpen", "defaultValue", "disabled", "listboxOpen", "onChange", "onListboxOpenChange", "value"]);
+      other = _objectWithoutProperties(props, ["autoFocus", "children", "component", "components", "componentsProps", "defaultListboxOpen", "defaultValue", "disabled", "listboxId", "listboxOpen", "onChange", "onListboxOpenChange", "value"]);
 
   var renderValue = (_props$renderValue = props.renderValue) != null ? _props$renderValue : defaultRenderMultipleValues;
 
@@ -105,7 +112,6 @@ var MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUnst
   };
 
   var handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  var handleListboxRef = useForkRef(listboxRef, (_componentsProps$list = componentsProps.listbox) == null ? void 0 : _componentsProps$list.ref);
   React.useEffect(function () {
     if (autoFocus) {
       buttonRef.current.focus();
@@ -118,12 +124,10 @@ var MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUnst
   };
 
   var _useSelect = useSelect({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue: defaultValue,
     disabled: disabledProp,
-    listboxId: (_componentsProps$list2 = componentsProps.listbox) == null ? void 0 : _componentsProps$list2.id,
-    listboxRef: handleListboxRef,
+    listboxId: listboxId,
     multiple: true,
     onChange: onChange,
     onOpenChange: handleOpenChange,
@@ -160,22 +164,37 @@ var MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUnst
       return value.includes(o.value);
     });
   }, [options, value]);
-  var buttonProps = appendOwnerState(Button, _extends({}, getButtonProps(), other, componentsProps.root, {
-    className: clsx(className, (_componentsProps$root = componentsProps.root) == null ? void 0 : _componentsProps$root.className, classes.root)
-  }), ownerState);
-  var listboxProps = appendOwnerState(ListboxRoot, _extends({}, getListboxProps(), componentsProps.listbox, {
-    className: clsx((_componentsProps$list3 = componentsProps.listbox) == null ? void 0 : _componentsProps$list3.className, classes.listbox)
-  }), ownerState); // Popper must be a (non-host) component, therefore ownerState will be present within the props
-
-  var popperProps = appendOwnerState(Popper, _extends({
-    open: listboxOpen,
-    anchorEl: buttonRef.current,
-    placement: 'bottom-start',
-    disablePortal: true,
-    role: undefined
-  }, componentsProps.popper, {
-    className: clsx((_componentsProps$popp = componentsProps.popper) == null ? void 0 : _componentsProps$popp.className, classes.popper)
-  }), ownerState);
+  var buttonProps = useSlotProps({
+    elementType: Button,
+    getSlotProps: getButtonProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState: ownerState,
+    className: classes.root
+  });
+  var listboxProps = useSlotProps({
+    elementType: ListboxRoot,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
+    additionalProps: {
+      ref: listboxRef
+    },
+    ownerState: ownerState,
+    className: classes.listbox
+  });
+  var popperProps = useSlotProps({
+    elementType: Popper,
+    externalSlotProps: componentsProps.popper,
+    additionalProps: {
+      anchorEl: buttonRef.current,
+      disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start',
+      role: undefined
+    },
+    ownerState: ownerState,
+    className: classes.popper
+  });
   var context = {
     getOptionProps: getOptionProps,
     getOptionState: getOptionState,
@@ -214,12 +233,8 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
   children: PropTypes.node,
 
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-
-  /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
 
@@ -241,9 +256,9 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    popper: PropTypes.object,
-    root: PropTypes.object
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   }),
 
   /**
@@ -263,6 +278,12 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    * @default false
    */
   disabled: PropTypes.bool,
+
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
 
   /**
    * Controls the open state of the select's listbox.
@@ -292,16 +313,4 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    */
   value: PropTypes.array
 } : void 0;
-/**
- * The foundation for building custom-styled multi-selection select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
- */
-
 export default MultiSelectUnstyled;

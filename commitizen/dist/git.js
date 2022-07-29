@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "addPath", {
-  enumerable: true,
-  get: function () {
-    return _add.addPath;
-  }
-});
 Object.defineProperty(exports, "addFile", {
   enumerable: true,
   get: function () {
     return _add.addFile;
+  }
+});
+Object.defineProperty(exports, "addPath", {
+  enumerable: true,
+  get: function () {
+    return _add.addPath;
   }
 });
 Object.defineProperty(exports, "commit", {

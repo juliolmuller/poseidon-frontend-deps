@@ -1,5 +1,6 @@
 import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutProperties";
 import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
+import _typeof from "@babel/runtime/helpers/esm/typeof";
 import _extends from "@babel/runtime/helpers/esm/extends";
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -46,7 +47,8 @@ export var style = function style(_ref) {
       theme = _ref.theme;
 
   var styles = _extends({
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column'
   }, handleBreakpoints({
     theme: theme
   }, resolveBreakpointValues({
@@ -61,7 +63,7 @@ export var style = function style(_ref) {
   if (ownerState.spacing) {
     var transformer = createUnarySpacing(theme);
     var base = Object.keys(theme.breakpoints.values).reduce(function (acc, breakpoint) {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+      if (_typeof(ownerState.spacing) === 'object' && ownerState.spacing[breakpoint] != null || _typeof(ownerState.direction) === 'object' && ownerState.direction[breakpoint] != null) {
         acc[breakpoint] = true;
       }
 
@@ -75,6 +77,17 @@ export var style = function style(_ref) {
       values: ownerState.spacing,
       base: base
     });
+
+    if (_typeof(directionValues) === 'object') {
+      Object.keys(directionValues).forEach(function (breakpoint, index, breakpoints) {
+        var directionValue = directionValues[breakpoint];
+
+        if (!directionValue) {
+          var previousDirectionValue = index > 0 ? directionValues[breakpoints[index - 1]] : 'column';
+          directionValues[breakpoint] = previousDirectionValue;
+        }
+      });
+    }
 
     var styleFromPropValue = function styleFromPropValue(propValue, breakpoint) {
       return {

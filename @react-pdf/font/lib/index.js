@@ -56,12 +56,11 @@ class FontSource {
     this.fontStyle = fontStyle || 'normal';
     this.fontWeight = fontWeight || 400;
     this.data = null;
-    this.loading = false;
     this.options = options;
+    this.loadResultPromise = null;
   }
 
-  async load() {
-    this.loading = true;
+  async _load() {
     const {
       postscriptName
     } = this.options;
@@ -83,8 +82,14 @@ class FontSource {
     } else {
       this.data = await new Promise((resolve, reject) => fontkit__default["default"].open(this.src, postscriptName, (err, data) => err ? reject(err) : resolve(data)));
     }
+  }
 
-    this.loading = false;
+  async load() {
+    if (this.loadResultPromise === null) {
+      this.loadResultPromise = this._load();
+    }
+
+    return this.loadResultPromise;
   }
 
 }
@@ -147,7 +152,7 @@ class Font {
 
 }
 
-var standard = ['Courier', 'Courier-Bold', 'Courier-Oblique', 'Helvetica', 'Helvetica-Bold', 'Helvetica-Oblique', 'Times-Roman', 'Times-Bold', 'Times-Italic'];
+var standard = ['Courier', 'Courier-Bold', 'Courier-Oblique', 'Courier-BoldOblique', 'Helvetica', 'Helvetica-Bold', 'Helvetica-Oblique', 'Helvetica-BoldOblique', 'Times-Roman', 'Times-Bold', 'Times-Italic', 'Times-BoldItalic'];
 
 function FontStore() {
   let fonts = {};
@@ -212,9 +217,7 @@ function FontStore() {
     if (isStandard) return;
     const f = this.getFont(descriptor); // We cache the font to avoid fetching it many times
 
-    if (!f.data && !f.loading) {
-      await f.load();
-    }
+    await f.load();
   };
 
   this.reset = () => {
