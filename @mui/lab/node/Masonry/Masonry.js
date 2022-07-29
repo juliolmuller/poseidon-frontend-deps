@@ -13,6 +13,8 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _base = require("@mui/base");
 
+var _reactDom = require("react-dom");
+
 var _styles = require("@mui/material/styles");
 
 var _system = require("@mui/system");
@@ -40,6 +42,12 @@ const parseToNumber = val => {
 };
 
 exports.parseToNumber = parseToNumber;
+const lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0
+};
 
 const useUtilityClasses = ownerState => {
   const {
@@ -59,17 +67,17 @@ const getStyle = ({
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box'
     }
   };
-  const stylesSSR = {};
+  const stylesSSR = {}; // Only applicable for Server-Side Rendering
 
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
-    const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
 
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[`&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`] = {
@@ -93,15 +101,22 @@ const getStyle = ({
   const transformer = (0, _system.createUnarySpacing)(theme);
 
   const spacingStyleFromPropValue = propValue => {
-    const themeSpacingValue = Number(propValue);
-    const spacing = Number((0, _system.getValue)(transformer, themeSpacingValue).replace('px', ''));
+    let spacing; // in case of string/number value
+
+    if (typeof propValue === 'string' && !Number.isNaN(Number(propValue)) || typeof propValue === 'number') {
+      const themeSpacingValue = Number(propValue);
+      spacing = (0, _system.getValue)(transformer, themeSpacingValue);
+    } else {
+      spacing = propValue;
+    }
+
     return (0, _extends2.default)({
-      margin: -(spacing / 2),
+      margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
-        margin: spacing / 2
+        margin: `calc(${spacing} / 2)`
       }
     }, ownerState.maxColumnHeight && {
-      height: Math.ceil(ownerState.maxColumnHeight + spacing)
+      height: typeof spacing === 'number' ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing)) : `calc(${ownerState.maxColumnHeight}px + ${spacing})`
     });
   };
 
@@ -116,7 +131,7 @@ const getStyle = ({
   const columnStyleFromPropValue = propValue => {
     const columnValue = Number(propValue);
     const width = `${(100 / columnValue).toFixed(2)}%`;
-    const spacing = typeof spacingValues !== 'object' ? (0, _system.getValue)(transformer, Number(spacingValues)) : '0px';
+    const spacing = typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues)) || typeof spacingValues === 'number' ? (0, _system.getValue)(transformer, Number(spacingValues)) : '0px';
     return {
       '& > *': {
         width: `calc(${width} - ${spacing})`
@@ -247,9 +262,13 @@ const Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
     });
 
     if (!skip) {
-      setMaxColumnHeight(Math.max(...columnHeights));
-      const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      (0, _reactDom.flushSync)(() => {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 
@@ -269,13 +288,7 @@ const Masonry = /*#__PURE__*/React.forwardRef(function Masonry(inProps, ref) {
 
     return () => resizeObserver ? resizeObserver.disconnect() : {};
   }, [columns, spacing, children]);
-  const handleRef = (0, _utils.unstable_useForkRef)(ref, masonryRef);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0
-  }; //  columns are likely to have different heights and hence can start to merge;
+  const handleRef = (0, _utils.unstable_useForkRef)(ref, masonryRef); //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging
 
   const lineBreaks = new Array(numberOfLineBreaks).fill('').map((_, index) => /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {

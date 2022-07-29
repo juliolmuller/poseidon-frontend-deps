@@ -7,7 +7,7 @@ var fs = require('fs');
 var _applyDecoratedDescriptor = require('@babel/runtime/helpers/applyDecoratedDescriptor');
 var utils = require('restructure/src/utils');
 var isEqual = require('deep-equal');
-var unicode = require('@react-pdf/unicode-properties');
+var unicode = require('unicode-properties');
 var UnicodeTrie = require('unicode-trie');
 var StateMachine = require('dfa');
 var cloneDeep = require('clone');
@@ -36698,8 +36698,8 @@ class CFFGlyph extends Glyph {
 
             case 10:
               // callsubr
-              let index = stack.pop() + subrsBias;
-              let subr = subrs[index];
+              var index = stack.pop() + subrsBias;
+              var subr = subrs[index];
 
               if (subr) {
                 usedSubrs[index] = true;

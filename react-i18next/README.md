@@ -3,12 +3,14 @@
 [![CircleCI](https://circleci.com/gh/i18next/react-i18next.svg?style=svg)](https://circleci.com/gh/i18next/react-i18next)
 [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/i18next/react-i18next)
 [![Coverage Status](https://coveralls.io/repos/github/i18next/react-i18next/badge.svg)](https://coveralls.io/github/i18next/react-i18next)
-[![Quality][quality-badge] ][quality-url]
+[![Quality][quality-badge]][quality-url]
+[![npm][npm-dl-badge]][npm-url]
 
 [npm-icon]: https://nodei.co/npm/react-i18next.png?downloads=true
 [npm-url]: https://npmjs.org/package/react-i18next
-[quality-badge]: http://npm.packagequality.com/shield/react-i18next.svg
-[quality-url]: http://packagequality.com/#?package=react-i18next
+[quality-badge]: https://npm.packagequality.com/shield/react-i18next.svg
+[quality-url]: https://packagequality.com/#?package=react-i18next
+[npm-dl-badge]: https://img.shields.io/npm/dw/react-i18next
 
 ### IMPORTANT:
 
@@ -75,7 +77,7 @@ Head over to the **interactive playground** at [codesandbox](https://codesandbox
 ### Why i18next?
 
 - **Simplicity:** no need to change your webpack configuration or add additional babel transpilers, just use create-react-app and go.
-- **Production ready** we know there are more needs for production than just doing i18n on the clientside, so we offer wider support on [serverside](https://www.i18next.com/supported-frameworks.html) too (nodejs, php, ruby, .net, ...). **Learn once - translate everywhere**.
+- **Production ready** we know there are more needs for production than just doing i18n on the clientside, so we offer wider support on [serverside](https://www.i18next.com/overview/supported-frameworks) too (nodejs, php, ruby, .net, ...). **Learn once - translate everywhere**.
 - **Beyond i18n** comes with [locize](https://locize.com) bridging the gap between developement and translations - covering the whole translation process.
 
 ![ecosystem](https://raw.githubusercontent.com/i18next/i18next/master/assets/i18next-ecosystem.jpg)
@@ -165,6 +167,9 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <p align="center">
   <a href="https://locize.com/" target="_blank">
     <img src="https://raw.githubusercontent.com/i18next/i18next/master/assets/locize_sponsor_240.gif" width="240px">
+  </a>
+  <a href="https://localistars.com/" target="_blank">
+    <img src="https://raw.githubusercontent.com/i18next/i18next/master/assets/localistars_sponsor_240.gif" width="240px">
   </a>
 </p>
 

@@ -13,6 +13,7 @@ var resolve = isWindows ? (...paths) => normalizePath(win32.resolve(...paths)) :
 var isAbsolute = isWindows ? win32.isAbsolute : posix.isAbsolute;
 var join = posix.join;
 var relative = posix.relative;
+var basename = posix.basename;
 
 // src/index.ts
 import { normalizePath as normalizePath3 } from "vite";
@@ -129,7 +130,7 @@ var src_default = (opts = {}) => {
     const isIncluded = getIncluder(config);
     let importerExtRE = /./;
     if (!opts.loose) {
-      importerExtRE = config.allowJs ? /\.(vue|svelte|mdx|mjs|[jt]sx?)$/ : /\.tsx?$/;
+      importerExtRE = config.allowJs || basename(config.configPath) === "jsconfig.json" ? /\.(vue|svelte|mdx|mjs|[jt]sx?)$/ : /\.tsx?$/;
     }
     const resolved = new Map();
     return async (viteResolve, id, importer) => {
@@ -208,7 +209,7 @@ function findProjects(viteRoot, opts) {
   if (!projects) {
     debug(`crawling "${root}"`);
     projects = crawl(root, {
-      only: ["tsconfig.json"],
+      only: ["jsconfig.json", "tsconfig.json"],
       skip: ["node_modules", ".git"]
     });
   }

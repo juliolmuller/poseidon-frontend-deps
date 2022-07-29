@@ -48,7 +48,7 @@ function useHotkeys(keys, callback, options, deps) {
   var ref = react.useRef(null); // The return value of this callback determines if the browsers default behavior is prevented.
 
   var memoisedCallback = react.useCallback(function (keyboardEvent, hotkeysEvent) {
-    var _keyboardEvent$target;
+    var _keyboardEvent$target, _ref$current;
 
     if (filter && !filter(keyboardEvent)) {
       return !filterPreventDefault;
@@ -59,7 +59,7 @@ function useHotkeys(keys, callback, options, deps) {
       return true;
     }
 
-    if (ref.current === null || document.activeElement === ref.current) {
+    if (ref.current === null || document.activeElement === ref.current || (_ref$current = ref.current) != null && _ref$current.contains(document.activeElement)) {
       callback(keyboardEvent, hotkeysEvent);
       return true;
     }

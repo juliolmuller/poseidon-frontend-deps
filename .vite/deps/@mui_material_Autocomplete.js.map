@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["dep:@mui_material_Autocomplete"],
+  "sourcesContent": ["import d from \"./node_modules/@mui/material/Autocomplete/index.js\";export default d;\nexport * from \"./node_modules/@mui/material/Autocomplete/index.js\""],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAmE,IAAO,oCAAQ;",
+  "names": []
+}

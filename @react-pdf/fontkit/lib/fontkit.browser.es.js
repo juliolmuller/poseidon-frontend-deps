@@ -7,7 +7,7 @@ import _applyDecoratedDescriptor from '@babel/runtime/helpers/applyDecoratedDesc
 import _inheritsLoose from '@babel/runtime/helpers/inheritsLoose';
 import { PropertyDescriptor, resolveLength } from 'restructure/src/utils';
 import isEqual from 'deep-equal';
-import unicode from '@react-pdf/unicode-properties';
+import unicode from 'unicode-properties';
 import UnicodeTrie from 'unicode-trie';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import cloneDeep from 'clone';

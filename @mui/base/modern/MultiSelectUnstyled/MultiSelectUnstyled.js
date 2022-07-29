@@ -1,13 +1,12 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-const _excluded = ["autoFocus", "children", "className", "component", "components", "componentsProps", "defaultListboxOpen", "defaultValue", "disabled", "listboxOpen", "onChange", "onListboxOpenChange", "value"];
+const _excluded = ["autoFocus", "children", "component", "components", "componentsProps", "defaultListboxOpen", "defaultValue", "disabled", "listboxId", "listboxOpen", "onChange", "onListboxOpenChange", "value"];
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_useForkRef as useForkRef, unstable_useControlled as useControlled } from '@mui/utils';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
-import { appendOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
@@ -37,6 +36,14 @@ function useUtilityClasses(ownerState) {
 }
 /**
  * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
 
 
@@ -44,13 +51,13 @@ const MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUn
   const {
     autoFocus,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
+    listboxId,
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
@@ -86,7 +93,6 @@ const MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUn
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
   React.useEffect(() => {
     if (autoFocus) {
       buttonRef.current.focus();
@@ -108,12 +114,10 @@ const MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUn
     getOptionState,
     value
   } = useSelect({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId: componentsProps.listbox?.id,
-    listboxRef: handleListboxRef,
+    listboxId,
     multiple: true,
     onChange,
     onOpenChange: handleOpenChange,
@@ -140,22 +144,37 @@ const MultiSelectUnstyled = /*#__PURE__*/React.forwardRef(function MultiSelectUn
 
     return options.filter(o => value.includes(o.value));
   }, [options, value]);
-  const buttonProps = appendOwnerState(Button, _extends({}, getButtonProps(), other, componentsProps.root, {
-    className: clsx(className, componentsProps.root?.className, classes.root)
-  }), ownerState);
-  const listboxProps = appendOwnerState(ListboxRoot, _extends({}, getListboxProps(), componentsProps.listbox, {
-    className: clsx(componentsProps.listbox?.className, classes.listbox)
-  }), ownerState); // Popper must be a (non-host) component, therefore ownerState will be present within the props
-
-  const popperProps = appendOwnerState(Popper, _extends({
-    open: listboxOpen,
-    anchorEl: buttonRef.current,
-    placement: 'bottom-start',
-    disablePortal: true,
-    role: undefined
-  }, componentsProps.popper, {
-    className: clsx(componentsProps.popper?.className, classes.popper)
-  }), ownerState);
+  const buttonProps = useSlotProps({
+    elementType: Button,
+    getSlotProps: getButtonProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    className: classes.root
+  });
+  const listboxProps = useSlotProps({
+    elementType: ListboxRoot,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
+    additionalProps: {
+      ref: listboxRef
+    },
+    ownerState,
+    className: classes.listbox
+  });
+  const popperProps = useSlotProps({
+    elementType: Popper,
+    externalSlotProps: componentsProps.popper,
+    additionalProps: {
+      anchorEl: buttonRef.current,
+      disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start',
+      role: undefined
+    },
+    ownerState,
+    className: classes.popper
+  });
   const context = {
     getOptionProps,
     getOptionState,
@@ -194,12 +213,8 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
   children: PropTypes.node,
 
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-
-  /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
 
@@ -221,9 +236,9 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    popper: PropTypes.object,
-    root: PropTypes.object
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   }),
 
   /**
@@ -243,6 +258,12 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    * @default false
    */
   disabled: PropTypes.bool,
+
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
 
   /**
    * Controls the open state of the select's listbox.
@@ -272,16 +293,4 @@ process.env.NODE_ENV !== "production" ? MultiSelectUnstyled.propTypes
    */
   value: PropTypes.array
 } : void 0;
-/**
- * The foundation for building custom-styled multi-selection select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
- */
-
 export default MultiSelectUnstyled;

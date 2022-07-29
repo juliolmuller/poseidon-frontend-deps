@@ -131,7 +131,9 @@ process.env.NODE_ENV !== "production" ? TimelineDot.propTypes
    * The dot can have a different colors.
    * @default 'grey'
    */
-  color: _propTypes.default.oneOf(['error', 'grey', 'info', 'inherit', 'primary', 'secondary', 'success', 'warning']),
+  color: _propTypes.default
+  /* @typescript-to-proptypes-ignore */
+  .oneOfType([_propTypes.default.oneOf(['error', 'grey', 'info', 'inherit', 'primary', 'secondary', 'success', 'warning']), _propTypes.default.string]),
 
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

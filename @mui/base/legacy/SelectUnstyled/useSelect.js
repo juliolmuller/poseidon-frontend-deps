@@ -22,8 +22,7 @@ var defaultOptionStringifier = function defaultOptionStringifier(option) {
 };
 
 function useSelect(props) {
-  var buttonComponent = props.buttonComponent,
-      buttonRefProp = props.buttonRef,
+  var buttonRefProp = props.buttonRef,
       defaultValue = props.defaultValue,
       _props$disabled = props.disabled,
       disabled = _props$disabled === void 0 ? false : _props$disabled,
@@ -42,7 +41,6 @@ function useSelect(props) {
   var buttonRef = React.useRef(null);
   var handleButtonRef = useForkRef(buttonRefProp, buttonRef);
   var listboxRef = React.useRef(null);
-  var intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   var _useControlled = useControlled({
     controlled: valueProp,
@@ -76,7 +74,7 @@ function useSelect(props) {
     focusListboxIfRequested();
   };
 
-  var handleListboxRef = useForkRef(intermediaryListboxRef, updateListboxRef);
+  var handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
   React.useEffect(function () {
     focusListboxIfRequested();
   }, [focusListboxIfRequested]);
@@ -200,7 +198,6 @@ function useSelect(props) {
   };
 
   var _useButton = useButton({
-    component: buttonComponent,
     disabled: disabled,
     ref: handleButtonRef
   }),
@@ -233,12 +230,11 @@ function useSelect(props) {
       listboxRef: handleListboxRef,
       multiple: true,
       onChange: function onChange(newOptions) {
-        setValue(newOptions.map(function (o) {
+        var newValues = newOptions.map(function (o) {
           return o.value;
-        }));
-        _onChange == null ? void 0 : _onChange(newOptions.map(function (o) {
-          return o.value;
-        }));
+        });
+        setValue(newValues);
+        _onChange == null ? void 0 : _onChange(newValues);
       },
       options: options,
       optionStringifier: optionStringifier,
@@ -306,8 +302,8 @@ function useSelect(props) {
 
   React.useDebugValue({
     selectedOption: listboxSelectedOption,
-    open: open,
-    highlightedOption: highlightedOption
+    highlightedOption: highlightedOption,
+    open: open
   });
   return {
     buttonActive: buttonActive,
